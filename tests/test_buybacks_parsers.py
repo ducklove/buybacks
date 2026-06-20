@@ -4,6 +4,7 @@ from scripts.buybacks.fetch_dart_buybacks import (
     normalize_disclosure_events,
     normalize_holding_rows,
     normalize_holding_snapshot,
+    normalize_stock_total_snapshots,
 )
 from scripts.buybacks.parsers import classify_event_type, normalize_date, parse_number, parse_ratio_percent
 
@@ -175,6 +176,32 @@ def test_normalize_holding_rows_merges_stock_total_denominator():
     ]
     snapshots = normalize_holding_rows(rows, stock_totals, "005930", 2025, "11011")
     assert len(snapshots) == 1
+    assert snapshots[0].issued_shares == 1000
+    assert snapshots[0].floating_shares == 885
+    assert snapshots[0].treasury_ratio == 0.115
+
+
+def test_stock_total_snapshot_stores_total_and_treasury_share_counts():
+    snapshots = normalize_stock_total_snapshots(
+        [
+            {
+                "corp_code": "00126380",
+                "corp_name": "Samsung Electronics",
+                "se": "\uBCF4\uD1B5\uC8FC",
+                "stlm_dt": "2025-12-31",
+                "istc_totqy": "1,000",
+                "tesstk_co": "115",
+                "distb_stock_co": "885",
+                "rcept_no": "20260314000001",
+            }
+        ],
+        "005930",
+        2025,
+        "11011",
+    )
+
+    assert len(snapshots) == 1
+    assert snapshots[0].ending_qty == 115
     assert snapshots[0].issued_shares == 1000
     assert snapshots[0].floating_shares == 885
     assert snapshots[0].treasury_ratio == 0.115

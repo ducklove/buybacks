@@ -200,7 +200,7 @@ a:hover {
 
 .filter-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 0.8fr 0.7fr 0.7fr minmax(220px, 1.3fr) auto;
+  grid-template-columns: 1fr 1fr minmax(240px, 1.6fr) auto;
   gap: 14px;
   align-items: end;
 }

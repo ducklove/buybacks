@@ -25,9 +25,7 @@ export const DEFAULT_FILTERS: Filters = {
   market: "ALL",
   eventTypes: [],
   year: "ALL",
-  search: "",
-  minHoldingRatio: 0,
-  maxHoldingRatio: 0.3
+  search: ""
 };
 
 export function enrichEvents(dataset: BuybacksDataset): EnrichedEvent[] {
@@ -136,14 +134,11 @@ export function filterEvents(events: EnrichedEvent[], filters: Filters): Enriche
     const typeMatch =
       filters.eventTypes.length === 0 || filters.eventTypes.includes(event.event_type);
     const yearMatch = filters.year === "ALL" || event.disclosure_date.startsWith(filters.year);
-    const ratio = event.holding?.treasury_ratio ?? event.holding_before_ratio_common ?? null;
-    const ratioMatch =
-      ratio === null || (ratio >= filters.minHoldingRatio && ratio <= filters.maxHoldingRatio);
     const searchMatch =
       search.length === 0 ||
       event.corp_name.toLowerCase().includes(search) ||
       event.stock_code.includes(search);
-    return marketMatch && typeMatch && yearMatch && ratioMatch && searchMatch;
+    return marketMatch && typeMatch && yearMatch && searchMatch;
   });
 }
 

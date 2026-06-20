@@ -72,6 +72,7 @@ def collect_dart_dataset(
     raw_dir: Path | None = None,
     disclosure_items: Iterable[dict] | None = None,
     report_codes: Iterable[str] | None = None,
+    include_holdings: bool = True,
 ) -> tuple[list[Company], list[BuybackEvent], list[TreasuryHoldingSnapshot], list[str]]:
     client = OpenDartClient(api_key, raw_dir=raw_dir)
     hydrated_companies: list[Company] = []
@@ -81,6 +82,7 @@ def collect_dart_dataset(
     disclosures_by_corp: dict[str, list[dict]] = {}
     for item in disclosure_items or []:
         disclosures_by_corp.setdefault(str(item.get("corp_code") or ""), []).append(item)
+    years_to_fetch = list(years)
     report_codes_to_fetch = list(report_codes or REPORT_CODES)
 
     for company in companies:
@@ -102,55 +104,15 @@ def collect_dart_dataset(
                 apply_market_from_item(company, item)
                 events.append(normalize_decision_event(item, company.stock_code, endpoint))
 
-        for year in years:
-            for report_code in report_codes_to_fetch:
-                try:
-                    data = client.request_json(
-                        "tesstkAcqsDspsSttus.json",
-                        {
-                            "corp_code": company.corp_code,
-                            "bsns_year": str(year),
-                            "reprt_code": report_code,
-                        },
-                    )
-                except OpenDartNoData:
-                    continue
-                except Exception as exc:  # noqa: BLE001
-                    warning = f"{company.stock_code} holdings {year}/{report_code} failed: {exc}"
-                    LOGGER.warning(warning)
-                    warnings.append(warning)
-                    continue
-                stock_totals: list[dict] = []
-                try:
-                    stock_total_data = client.request_json(
-                        "stockTotqySttus.json",
-                        {
-                            "corp_code": company.corp_code,
-                            "bsns_year": str(year),
-                            "reprt_code": report_code,
-                        },
-                    )
-                    stock_totals = stock_total_data.get("list", [])
-                    for item in stock_totals:
-                        apply_market_from_item(company, item)
-                except OpenDartNoData:
-                    stock_totals = []
-                except Exception as exc:  # noqa: BLE001
-                    warning = f"{company.stock_code} stock totals {year}/{report_code} failed: {exc}"
-                    LOGGER.warning(warning)
-                    warnings.append(warning)
-                normalized = normalize_holding_rows(
-                    data.get("list", []),
-                    stock_totals,
-                    company.stock_code,
-                    year,
-                    report_code,
-                )
-                holdings.extend(normalized)
-                if not normalized:
-                    holdings.extend(
-                        normalize_stock_total_snapshots(stock_totals, company.stock_code, year, report_code)
-                    )
+        if include_holdings:
+            company_holdings, holding_warnings = collect_company_holding_snapshots(
+                client,
+                company,
+                years_to_fetch,
+                report_codes_to_fetch,
+            )
+            holdings.extend(company_holdings)
+            warnings.extend(holding_warnings)
 
         events.extend(
             normalize_disclosure_events(
@@ -161,6 +123,102 @@ def collect_dart_dataset(
         )
 
     return hydrated_companies, dedupe_events(events), dedupe_holdings(holdings), warnings
+
+
+def collect_dart_holding_snapshots(
+    api_key: str,
+    companies: Iterable[Company],
+    years: Iterable[int],
+    raw_dir: Path | None = None,
+    report_codes: Iterable[str] | None = None,
+) -> tuple[list[TreasuryHoldingSnapshot], list[str]]:
+    client = OpenDartClient(api_key, raw_dir=raw_dir)
+    company_list = list(companies)
+    years_to_fetch = list(years)
+    report_codes_to_fetch = list(report_codes or REPORT_CODES)
+    holdings: list[TreasuryHoldingSnapshot] = []
+    warnings: list[str] = []
+
+    for index, company in enumerate(company_list, start=1):
+        if index == 1 or index % 100 == 0 or index == len(company_list):
+            print(f"collecting holding snapshots {index}/{len(company_list)}", flush=True)
+        company_holdings, holding_warnings = collect_company_holding_snapshots(
+            client,
+            company,
+            years_to_fetch,
+            report_codes_to_fetch,
+        )
+        holdings.extend(company_holdings)
+        warnings.extend(holding_warnings)
+
+    return dedupe_holdings(holdings), warnings
+
+
+def collect_company_holding_snapshots(
+    client: OpenDartClient,
+    company: Company,
+    years: Iterable[int],
+    report_codes: Iterable[str],
+) -> tuple[list[TreasuryHoldingSnapshot], list[str]]:
+    holdings: list[TreasuryHoldingSnapshot] = []
+    warnings: list[str] = []
+
+    for year in years:
+        for report_code in report_codes:
+            rows: list[dict] = []
+            try:
+                data = client.request_json(
+                    "tesstkAcqsDspsSttus.json",
+                    {
+                        "corp_code": company.corp_code,
+                        "bsns_year": str(year),
+                        "reprt_code": report_code,
+                    },
+                )
+                rows = data.get("list", [])
+                for item in rows:
+                    apply_market_from_item(company, item)
+            except OpenDartNoData:
+                rows = []
+            except Exception as exc:  # noqa: BLE001
+                warning = f"{company.stock_code} holdings {year}/{report_code} failed: {exc}"
+                LOGGER.warning(warning)
+                warnings.append(warning)
+
+            stock_totals: list[dict] = []
+            try:
+                stock_total_data = client.request_json(
+                    "stockTotqySttus.json",
+                    {
+                        "corp_code": company.corp_code,
+                        "bsns_year": str(year),
+                        "reprt_code": report_code,
+                    },
+                )
+                stock_totals = stock_total_data.get("list", [])
+                for item in stock_totals:
+                    apply_market_from_item(company, item)
+            except OpenDartNoData:
+                stock_totals = []
+            except Exception as exc:  # noqa: BLE001
+                warning = f"{company.stock_code} stock totals {year}/{report_code} failed: {exc}"
+                LOGGER.warning(warning)
+                warnings.append(warning)
+
+            normalized = normalize_holding_rows(
+                rows,
+                stock_totals,
+                company.stock_code,
+                year,
+                report_code,
+            )
+            holdings.extend(normalized)
+            if not normalized:
+                holdings.extend(
+                    normalize_stock_total_snapshots(stock_totals, company.stock_code, year, report_code)
+                )
+
+    return holdings, warnings
 
 
 def decision_endpoints_for_company(disclosures: list[dict]) -> list[str]:

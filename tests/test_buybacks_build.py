@@ -1,10 +1,22 @@
-from scripts.buybacks.build_buybacks_dataset import companies_from_disclosures, dedupe_companies, parse_stock_codes
+from scripts.buybacks.build_buybacks_dataset import (
+    companies_from_disclosures,
+    dedupe_companies,
+    parse_holding_stock_codes,
+    parse_stock_codes,
+    select_holding_companies,
+)
 from scripts.buybacks.models import Company
 
 
 def test_parse_stock_codes_all_uses_disclosure_only_mode():
     assert parse_stock_codes("ALL") is None
     assert parse_stock_codes("005930, 035420") == {"005930", "035420"}
+
+
+def test_parse_holding_stock_codes_supports_all_events_and_explicit_codes():
+    assert parse_holding_stock_codes("ALL") is None
+    assert parse_holding_stock_codes("EVENTS") == "EVENTS"
+    assert parse_holding_stock_codes("005930, 006800") == {"005930", "006800"}
 
 
 def test_companies_from_disclosures_uses_list_rows_without_corp_master():
@@ -74,3 +86,41 @@ def test_dedupe_companies_can_preserve_source_order():
         "006800",
         "137080",
     ]
+
+
+def test_select_holding_companies_uses_full_master_for_all_scope():
+    event_companies = [
+        Company("00111722", "006800", "Mirae Asset Securities", "KOSPI", None, "2026-06-17")
+    ]
+    all_companies = [
+        *event_companies,
+        Company("00126380", "005930", "Samsung Electronics", "KOSPI", None, "2026-06-20"),
+    ]
+
+    selected = select_holding_companies(
+        None,
+        all_companies,
+        event_companies,
+        {company.stock_code: company for company in all_companies},
+    )
+
+    assert [company.stock_code for company in selected] == ["006800", "005930"]
+
+
+def test_select_holding_companies_can_limit_to_event_scope():
+    event_companies = [
+        Company("00111722", "006800", "Mirae Asset Securities", "KOSPI", None, "2026-06-17")
+    ]
+    all_companies = [
+        *event_companies,
+        Company("00126380", "005930", "Samsung Electronics", "KOSPI", None, "2026-06-20"),
+    ]
+
+    selected = select_holding_companies(
+        "EVENTS",
+        all_companies,
+        event_companies,
+        {company.stock_code: company for company in all_companies},
+    )
+
+    assert selected == event_companies

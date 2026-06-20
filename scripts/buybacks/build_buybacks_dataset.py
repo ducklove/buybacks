@@ -11,13 +11,17 @@ from pathlib import Path
 if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parents[2]))
     from scripts.buybacks.fetch_corp_codes import fetch_corp_codes
-    from scripts.buybacks.fetch_dart_buybacks import collect_dart_dataset, fetch_buyback_disclosures
+    from scripts.buybacks.fetch_dart_buybacks import (
+        collect_dart_dataset,
+        collect_dart_holding_snapshots,
+        fetch_buyback_disclosures,
+    )
     from scripts.buybacks.fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
     from scripts.buybacks.models import BuybackEvent, Company, PriceReaction, to_jsonable
     from scripts.buybacks.parsers import market_from_corp_cls, normalize_date
 else:
     from .fetch_corp_codes import fetch_corp_codes
-    from .fetch_dart_buybacks import collect_dart_dataset, fetch_buyback_disclosures
+    from .fetch_dart_buybacks import collect_dart_dataset, collect_dart_holding_snapshots, fetch_buyback_disclosures
     from .fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
     from .models import BuybackEvent, Company, PriceReaction, to_jsonable
     from .parsers import market_from_corp_cls, normalize_date
@@ -57,6 +61,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     warnings: list[str] = []
     raw_dir = Path(args.raw_dir)
     stock_codes = parse_stock_codes(args.stock_codes)
+    holding_stock_codes = parse_holding_stock_codes(args.holding_stock_codes)
 
     disclosure_start = args.start or rolling_start_yyyymmdd(args.end, 89)
     if days_between(disclosure_start, args.end) > 92:
@@ -80,8 +85,12 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     )
     warnings.extend(disclosure_warnings)
 
-    if stock_codes is not None:
-        print("fetching OpenDART corp code master for seed stock codes...", flush=True)
+    all_companies: list[Company] | None = None
+    company_by_corp: dict[str, Company] = {}
+    company_by_stock: dict[str, Company] = {}
+    needs_corp_master = stock_codes is not None or holding_stock_codes != "EVENTS"
+    if needs_corp_master:
+        print("fetching OpenDART corp code master...", flush=True)
         all_companies = fetch_corp_codes(api_key, raw_dir / "corp_codes.json")
         company_by_corp = {company.corp_code: company for company in all_companies}
         company_by_stock = {company.stock_code: company for company in all_companies}
@@ -91,38 +100,69 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
                 market = market_from_corp_cls(item.get("corp_cls"))
                 if market != "OTHER":
                     company.market = market
+
+    if stock_codes is not None:
         candidate_corps = {str(item.get("corp_code") or "") for item in disclosures}
         candidate_companies = [company_by_corp[corp_code] for corp_code in candidate_corps if corp_code in company_by_corp]
         candidate_companies.extend(company_by_stock[code] for code in stock_codes if code in company_by_stock)
     else:
         candidate_companies = companies_from_disclosures(disclosures)
 
-    companies = dedupe_companies(candidate_companies, sort_by_name=stock_codes is not None)
-    if args.max_companies and len(companies) > args.max_companies:
-        warnings.append(f"Candidate company list truncated from {len(companies)} to {args.max_companies}.")
-        companies = companies[: args.max_companies]
+    event_companies = dedupe_companies(candidate_companies, sort_by_name=stock_codes is not None)
+    if args.max_companies and len(event_companies) > args.max_companies:
+        warnings.append(f"Candidate company list truncated from {len(event_companies)} to {args.max_companies}.")
+        event_companies = event_companies[: args.max_companies]
 
-    if not companies:
-        warnings.append("No listed buyback candidates found in OpenDART disclosure search; fixture data kept.")
-        return copy_fixture_dataset(fixture_dir, output_dir)
+    if not event_companies:
+        warnings.append("No listed buyback candidates found in OpenDART disclosure search; event table may be empty.")
 
     years = [int(part) for part in args.years.split(",") if part]
+    report_codes = parse_report_codes(args.report_codes)
     print(
-        f"collecting structured OpenDART rows for {len(companies)} companies, "
+        f"collecting structured OpenDART rows for {len(event_companies)} event companies, "
         f"years={','.join(str(year) for year in years)}, report_codes={args.report_codes}",
         flush=True,
     )
-    live_companies, events, holdings, collection_warnings = collect_dart_dataset(
+    live_event_companies, events, _, collection_warnings = collect_dart_dataset(
         api_key=api_key,
-        companies=companies,
+        companies=event_companies,
         bgn_de=disclosure_start,
         end_de=args.end,
         years=years,
         raw_dir=raw_dir,
         disclosure_items=disclosures,
-        report_codes=parse_report_codes(args.report_codes),
+        report_codes=report_codes,
+        include_holdings=False,
     )
     warnings.extend(collection_warnings)
+
+    holding_companies = select_holding_companies(
+        holding_stock_codes,
+        all_companies,
+        live_event_companies,
+        company_by_stock,
+    )
+    if args.max_holding_companies and len(holding_companies) > args.max_holding_companies:
+        warnings.append(
+            f"Holding company list truncated from {len(holding_companies)} to {args.max_holding_companies}."
+        )
+        holding_companies = holding_companies[: args.max_holding_companies]
+
+    print(
+        f"collecting OpenDART holding snapshots for {len(holding_companies)} companies, "
+        f"years={','.join(str(year) for year in years)}, report_codes={args.report_codes}",
+        flush=True,
+    )
+    holdings, holding_warnings = collect_dart_holding_snapshots(
+        api_key=api_key,
+        companies=holding_companies,
+        years=years,
+        raw_dir=raw_dir,
+        report_codes=report_codes,
+    )
+    warnings.extend(holding_warnings)
+
+    live_companies = dedupe_companies([*holding_companies, *live_event_companies], sort_by_name=True)
     if not events and not holdings:
         warnings.append("OpenDART returned no live buyback rows for candidate companies; fixture data kept.")
         return copy_fixture_dataset(fixture_dir, output_dir)
@@ -141,6 +181,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         "warnings": [
             *warnings,
             f"OpenDART disclosure discovery window: {disclosure_start} to {args.end}.",
+            f"OpenDART holding scan scope: {len(holding_companies)} companies.",
             "Price reactions use kis_proxy when configured; otherwise they remain missing.",
         ],
     }
@@ -161,13 +202,19 @@ def main() -> None:
     parser.add_argument(
         "--stock-codes",
         default="005930,000660,035420,051910,005380,035900",
-        help="Comma-separated seed stock codes. Use ALL to include only disclosure-discovered companies.",
+        help="Comma-separated seed stock codes for event enrichment. Use ALL for disclosure-discovered event companies.",
+    )
+    parser.add_argument(
+        "--holding-stock-codes",
+        default="ALL",
+        help="Holding scan scope: ALL, EVENTS, or comma-separated stock codes.",
     )
     parser.add_argument("--start", default="")
     parser.add_argument("--end", default=datetime.now().strftime("%Y%m%d"))
     parser.add_argument("--years", default=default_report_years())
     parser.add_argument("--report-codes", default="11011")
     parser.add_argument("--max-companies", type=int, default=12)
+    parser.add_argument("--max-holding-companies", type=int, default=0)
     parser.add_argument("--discovery-page-limit", type=int, default=3)
     parser.add_argument(
         "--price-source",
@@ -194,6 +241,28 @@ def parse_stock_codes(value: str) -> set[str] | None:
     if value.strip().upper() == "ALL":
         return None
     return {part.strip() for part in value.split(",") if part.strip()}
+
+
+def parse_holding_stock_codes(value: str) -> set[str] | None | str:
+    normalized = value.strip().upper()
+    if normalized == "ALL":
+        return None
+    if normalized == "EVENTS":
+        return "EVENTS"
+    return {part.strip() for part in value.split(",") if part.strip()}
+
+
+def select_holding_companies(
+    holding_stock_codes: set[str] | None | str,
+    all_companies: list[Company] | None,
+    event_companies: list[Company],
+    company_by_stock: dict[str, Company],
+) -> list[Company]:
+    if holding_stock_codes == "EVENTS":
+        return event_companies
+    if holding_stock_codes is None:
+        return all_companies or event_companies
+    return [company_by_stock[code] for code in holding_stock_codes if code in company_by_stock]
 
 
 def companies_from_disclosures(disclosures: list[dict]) -> list[Company]:

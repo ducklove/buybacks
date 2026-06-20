@@ -53,28 +53,6 @@ export function FilterBar({ filters, years, onChange }: FilterBarProps) {
             ))}
           </select>
         </label>
-        <label>
-          보유비율 최소
-          <input
-            min="0"
-            max="30"
-            step="0.5"
-            type="number"
-            value={Math.round(filters.minHoldingRatio * 1000) / 10}
-            onChange={(event) => setFilter("minHoldingRatio", Number(event.target.value) / 100)}
-          />
-        </label>
-        <label>
-          보유비율 최대
-          <input
-            min="0"
-            max="30"
-            step="0.5"
-            type="number"
-            value={Math.round(filters.maxHoldingRatio * 1000) / 10}
-            onChange={(event) => setFilter("maxHoldingRatio", Number(event.target.value) / 100)}
-          />
-        </label>
         <label className="search-label">
           검색
           <input
@@ -123,10 +101,6 @@ export function FilterBar({ filters, years, onChange }: FilterBarProps) {
         <span>시장: {filters.market === "ALL" ? "전체" : filters.market}</span>
         <span>이벤트: {eventTypeSummary}</span>
         <span>연도: {filters.year === "ALL" ? "전체" : filters.year}</span>
-        <span>
-          보유비율 {(filters.minHoldingRatio * 100).toFixed(1)}% ~{" "}
-          {(filters.maxHoldingRatio * 100).toFixed(1)}%
-        </span>
       </div>
     </section>
   );

@@ -114,8 +114,6 @@ export interface Filters {
   eventTypes: EventType[];
   year: string;
   search: string;
-  minHoldingRatio: number;
-  maxHoldingRatio: number;
 }
 
 export interface EnrichedEvent extends BuybackEvent {
