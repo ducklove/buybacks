@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-06-20T00:00:00+09:00",
+  "dart_available": false,
+  "krx_available": false,
+  "companies_count": 6,
+  "events_count": 8,
+  "holdings_count": 6,
+  "price_reactions_count": 7,
+  "warnings": [
+    "Fixture data for development and static build verification only.",
+    "Set DART_API_KEY in local or GitHub Actions to collect live OpenDART data.",
+    "KRX treasury execution details are adapter-only until official API/licensing is confirmed."
+  ]
+}
+

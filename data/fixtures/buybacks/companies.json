@@ -1,0 +1,51 @@
+[
+  {
+    "corp_code": "00126380",
+    "stock_code": "005930",
+    "corp_name": "삼성전자",
+    "market": "KOSPI",
+    "sector": "반도체 및 전자제품",
+    "last_updated": "2026-06-20"
+  },
+  {
+    "corp_code": "00164779",
+    "stock_code": "000660",
+    "corp_name": "SK하이닉스",
+    "market": "KOSPI",
+    "sector": "반도체",
+    "last_updated": "2026-06-20"
+  },
+  {
+    "corp_code": "00266961",
+    "stock_code": "035420",
+    "corp_name": "NAVER",
+    "market": "KOSPI",
+    "sector": "인터넷 서비스",
+    "last_updated": "2026-06-20"
+  },
+  {
+    "corp_code": "00356370",
+    "stock_code": "051910",
+    "corp_name": "LG화학",
+    "market": "KOSPI",
+    "sector": "화학",
+    "last_updated": "2026-06-20"
+  },
+  {
+    "corp_code": "00164742",
+    "stock_code": "005380",
+    "corp_name": "현대차",
+    "market": "KOSPI",
+    "sector": "자동차",
+    "last_updated": "2026-06-20"
+  },
+  {
+    "corp_code": "00258801",
+    "stock_code": "035900",
+    "corp_name": "JYP Ent.",
+    "market": "KOSDAQ",
+    "sector": "엔터테인먼트",
+    "last_updated": "2026-06-20"
+  }
+]
+

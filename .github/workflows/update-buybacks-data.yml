@@ -1,0 +1,79 @@
+name: Update buybacks data and deploy Pages
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 20 * * 0"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install Python test tools
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build buybacks static dataset
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
+        run: python scripts/buybacks/build_buybacks_dataset.py --live-if-available --output public/data/buybacks
+
+      - name: Validate data
+        run: python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
+
+      - name: Test Python pipeline
+        run: python -m pytest
+
+      - name: Test frontend
+        run: npm run test
+
+      - name: Build static site
+        env:
+          VITE_BASE_PATH: ./
+        run: npm run build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

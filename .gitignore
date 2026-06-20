@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.vite/
+.env
+.env.*
+!.env.example
+coverage/
+data/raw/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+
