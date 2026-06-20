@@ -97,7 +97,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     else:
         candidate_companies = companies_from_disclosures(disclosures)
 
-    companies = dedupe_companies(candidate_companies)
+    companies = dedupe_companies(candidate_companies, sort_by_name=stock_codes is not None)
     if args.max_companies and len(companies) > args.max_companies:
         warnings.append(f"Candidate company list truncated from {len(companies)} to {args.max_companies}.")
         companies = companies[: args.max_companies]
@@ -213,7 +213,7 @@ def companies_from_disclosures(disclosures: list[dict]) -> list[Company]:
                 last_updated=normalize_date(item.get("rcept_dt")) or str(item.get("rcept_dt") or ""),
             )
         )
-    return dedupe_companies(companies)
+    return dedupe_companies(companies, sort_by_name=False)
 
 
 def build_price_reactions(
@@ -245,10 +245,15 @@ def missing_price_reactions(events: list[BuybackEvent]) -> list[PriceReaction]:
     return [missing_reaction(event.event_id, event.stock_code, event.disclosure_date) for event in events]
 
 
-def dedupe_companies(companies: list[Company]) -> list[Company]:
+def dedupe_companies(companies: list[Company], sort_by_name: bool = True) -> list[Company]:
     seen: set[str] = set()
     output: list[Company] = []
-    for company in sorted(companies, key=lambda item: (item.market, item.corp_name, item.stock_code)):
+    source = (
+        sorted(companies, key=lambda item: (item.market, item.corp_name, item.stock_code))
+        if sort_by_name
+        else companies
+    )
+    for company in source:
         if company.stock_code in seen:
             continue
         seen.add(company.stock_code)
