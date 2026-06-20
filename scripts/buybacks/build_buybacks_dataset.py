@@ -108,6 +108,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         years=years,
         raw_dir=raw_dir,
         disclosure_items=disclosures,
+        report_codes=parse_report_codes(args.report_codes),
     )
     warnings.extend(collection_warnings)
     if not events and not holdings:
@@ -151,8 +152,9 @@ def main() -> None:
     parser.add_argument("--start", default="")
     parser.add_argument("--end", default=datetime.now().strftime("%Y%m%d"))
     parser.add_argument("--years", default=default_report_years())
-    parser.add_argument("--max-companies", type=int, default=120)
-    parser.add_argument("--discovery-page-limit", type=int, default=30)
+    parser.add_argument("--report-codes", default="11011")
+    parser.add_argument("--max-companies", type=int, default=40)
+    parser.add_argument("--discovery-page-limit", type=int, default=10)
     args = parser.parse_args()
 
     output_dir = Path(args.output)
@@ -187,8 +189,11 @@ def dedupe_companies(companies: list[Company]) -> list[Company]:
 
 def default_report_years() -> str:
     now = datetime.now()
-    years = [now.year, now.year - 1]
-    return ",".join(str(year) for year in years)
+    return str(now.year - 1)
+
+
+def parse_report_codes(value: str) -> list[str]:
+    return [part.strip() for part in value.split(",") if part.strip()]
 
 
 def rolling_start_yyyymmdd(end_yyyymmdd: str, days: int) -> str:

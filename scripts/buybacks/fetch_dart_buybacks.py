@@ -43,6 +43,7 @@ DECISION_ENDPOINTS = {
     "tsstkAqTrctrCnsDecsn.json": "trust_contract_start",
     "tsstkAqTrctrCcDecsn.json": "trust_contract_end",
 }
+EVENT_TYPE_TO_ENDPOINT = {event_type: endpoint for endpoint, event_type in DECISION_ENDPOINTS.items()}
 REPORT_CODES = ["11011", "11014", "11012", "11013"]
 BUYBACK_REPORT_KEYWORDS = [
     "자기주식취득",
@@ -70,6 +71,7 @@ def collect_dart_dataset(
     years: Iterable[int],
     raw_dir: Path | None = None,
     disclosure_items: Iterable[dict] | None = None,
+    report_codes: Iterable[str] | None = None,
 ) -> tuple[list[Company], list[BuybackEvent], list[TreasuryHoldingSnapshot], list[str]]:
     client = OpenDartClient(api_key, raw_dir=raw_dir)
     hydrated_companies: list[Company] = []
@@ -79,10 +81,11 @@ def collect_dart_dataset(
     disclosures_by_corp: dict[str, list[dict]] = {}
     for item in disclosure_items or []:
         disclosures_by_corp.setdefault(str(item.get("corp_code") or ""), []).append(item)
+    report_codes_to_fetch = list(report_codes or REPORT_CODES)
 
     for company in companies:
         hydrated_companies.append(company)
-        for endpoint in DECISION_ENDPOINTS:
+        for endpoint in decision_endpoints_for_company(disclosures_by_corp.get(company.corp_code, [])):
             try:
                 data = client.request_json(
                     endpoint,
@@ -100,7 +103,7 @@ def collect_dart_dataset(
                 events.append(normalize_decision_event(item, company.stock_code, endpoint))
 
         for year in years:
-            for report_code in REPORT_CODES:
+            for report_code in report_codes_to_fetch:
                 stock_totals: list[dict] = []
                 try:
                     stock_total_data = client.request_json(
@@ -158,6 +161,23 @@ def collect_dart_dataset(
         )
 
     return hydrated_companies, dedupe_events(events), dedupe_holdings(holdings), warnings
+
+
+def decision_endpoints_for_company(disclosures: list[dict]) -> list[str]:
+    if not disclosures:
+        return []
+    hinted_types = {classify_event_type(item.get("report_nm")) for item in disclosures}
+    endpoints = [
+        EVENT_TYPE_TO_ENDPOINT[event_type]
+        for event_type in [
+            "direct_acquisition",
+            "direct_disposition",
+            "trust_contract_start",
+            "trust_contract_end",
+        ]
+        if event_type in hinted_types
+    ]
+    return endpoints
 
 
 def fetch_buyback_disclosures(

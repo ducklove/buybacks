@@ -46,8 +46,10 @@ jobs:
           python scripts/buybacks/build_buybacks_dataset.py
           --live-if-available
           --output public/data/buybacks
-          --max-companies 120
-          --discovery-page-limit 30
+          --stock-codes ALL
+          --report-codes 11011
+          --max-companies 40
+          --discovery-page-limit 10
 
       - name: Validate data
         run: python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
