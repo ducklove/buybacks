@@ -60,11 +60,73 @@ export function latestHoldingMap(
   return byStock;
 }
 
+export function latestHoldingSnapshots(
+  snapshots: TreasuryHoldingSnapshot[]
+): TreasuryHoldingSnapshot[] {
+  const byStockKind = new Map<string, TreasuryHoldingSnapshot>();
+  snapshots.forEach((snapshot) => {
+    const key = `${snapshot.stock_code}:${holdingKindKey(snapshot)}`;
+    const previous = byStockKind.get(key);
+    if (!previous || isBetterHoldingSnapshot(snapshot, previous)) {
+      byStockKind.set(key, snapshot);
+    }
+  });
+  return Array.from(byStockKind.values());
+}
+
+export function dedupeHoldingTimeline(
+  snapshots: TreasuryHoldingSnapshot[]
+): TreasuryHoldingSnapshot[] {
+  const byDateKind = new Map<string, TreasuryHoldingSnapshot>();
+  snapshots.forEach((snapshot) => {
+    const key = `${snapshot.stock_code}:${snapshot.as_of_date}:${holdingKindKey(snapshot)}`;
+    const previous = byDateKind.get(key);
+    if (!previous || holdingCompletenessScore(snapshot) > holdingCompletenessScore(previous)) {
+      byDateKind.set(key, snapshot);
+    }
+  });
+  return Array.from(byDateKind.values());
+}
+
 function holdingKindPriority(snapshot: TreasuryHoldingSnapshot) {
   const stockKind = snapshot.stock_kind.toLowerCase();
   if (stockKind.includes("\uBCF4\uD1B5") || stockKind.includes("common")) return 3;
   if (stockKind.includes("\uC6B0\uC120") || stockKind.includes("preferred")) return 2;
   return 1;
+}
+
+function holdingKindKey(snapshot: TreasuryHoldingSnapshot) {
+  const stockKind = snapshot.stock_kind.trim().replace(/\s+/g, "").toLowerCase();
+  if (!stockKind) return "unknown";
+  if (stockKind.includes("\uBCF4\uD1B5") || stockKind.includes("common")) return "common";
+  if (stockKind.includes("\uC6B0\uC120") || stockKind.includes("preferred")) {
+    return `preferred:${stockKind}`;
+  }
+  return stockKind;
+}
+
+function isBetterHoldingSnapshot(
+  candidate: TreasuryHoldingSnapshot,
+  previous: TreasuryHoldingSnapshot
+) {
+  if (candidate.as_of_date !== previous.as_of_date) {
+    return candidate.as_of_date > previous.as_of_date;
+  }
+  const candidateScore = holdingCompletenessScore(candidate);
+  const previousScore = holdingCompletenessScore(previous);
+  if (candidateScore !== previousScore) {
+    return candidateScore > previousScore;
+  }
+  return candidate.report_code.localeCompare(previous.report_code) > 0;
+}
+
+function holdingCompletenessScore(snapshot: TreasuryHoldingSnapshot) {
+  return [
+    snapshot.treasury_ratio,
+    snapshot.ending_qty,
+    snapshot.issued_shares,
+    snapshot.floating_shares
+  ].filter((value) => value !== null).length;
 }
 
 export function filterEvents(events: EnrichedEvent[], filters: Filters): EnrichedEvent[] {
@@ -127,7 +189,7 @@ export function buildKpis(events: EnrichedEvent[], holdings: TreasuryHoldingSnap
     {
       label: "최고 보유비율",
       value: topHolding ? `${((topHolding.treasury_ratio ?? 0) * 100).toFixed(2)}%` : "-",
-      detail: topHolding ? `${topHolding.corp_name} · ${topHolding.as_of_date}` : "데이터 없음",
+      detail: topHolding ? holdingSummary(topHolding) : "데이터 없음",
       tone: "neutral"
     },
     {
@@ -164,9 +226,15 @@ export function topHoldings(holdings: TreasuryHoldingSnapshot[], limit = 10): Ch
     .sort((a, b) => (b.treasury_ratio ?? 0) - (a.treasury_ratio ?? 0))
     .slice(0, limit)
     .map((holding) => ({
-      label: `${holding.corp_name} ${holding.stock_code}`,
+      label: holdingSummary(holding),
       value: holding.treasury_ratio ?? 0
     }));
+}
+
+function holdingSummary(holding: TreasuryHoldingSnapshot) {
+  return [holding.corp_name, holding.stock_code, holding.stock_kind, holding.as_of_date]
+    .filter(Boolean)
+    .join(" ");
 }
 
 export function returnDistribution(reactions: PriceReaction[]): ChartDatum[] {

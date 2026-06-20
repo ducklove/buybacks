@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_FILTERS, filterEvents } from "./metrics";
-import type { EnrichedEvent, EventType } from "../types/buybacks";
+import {
+  DEFAULT_FILTERS,
+  dedupeHoldingTimeline,
+  filterEvents,
+  latestHoldingSnapshots,
+  topHoldings
+} from "./metrics";
+import type { EnrichedEvent, EventType, TreasuryHoldingSnapshot } from "../types/buybacks";
 
 const event = (event_id: string, event_type: EventType): EnrichedEvent => ({
   event_id,
@@ -36,6 +42,30 @@ const event = (event_id: string, event_type: EventType): EnrichedEvent => ({
   }
 });
 
+const holding = (
+  stock_kind: string,
+  treasury_ratio: number | null,
+  overrides: Partial<TreasuryHoldingSnapshot> = {}
+): TreasuryHoldingSnapshot => ({
+  corp_code: "00111722",
+  stock_code: "006800",
+  corp_name: "Mirae Asset Securities",
+  as_of_date: "2025-12-31",
+  report_year: 2025,
+  report_code: "11011",
+  stock_kind,
+  beginning_qty: null,
+  acquired_qty: null,
+  disposed_qty: null,
+  retired_qty: null,
+  ending_qty: 100,
+  issued_shares: 1000,
+  treasury_ratio,
+  floating_shares: 900,
+  source_rcept_no: null,
+  ...overrides
+});
+
 describe("filterEvents", () => {
   const events = [
     event("acquisition", "direct_acquisition"),
@@ -61,5 +91,40 @@ describe("filterEvents", () => {
       "acquisition",
       "retirement"
     ]);
+  });
+});
+
+describe("holding snapshots", () => {
+  it("keeps the latest common and preferred holdings separately", () => {
+    const snapshots = [
+      holding("\uBCF4\uD1B5\uC8FC", 0.12, { as_of_date: "2024-12-31" }),
+      holding("\uBCF4\uD1B5\uC8FC", 0.23),
+      holding("1\uC6B0\uC120\uC8FC", 0.3)
+    ];
+
+    const latest = latestHoldingSnapshots(snapshots);
+
+    expect(latest).toHaveLength(2);
+    expect(topHoldings(latest, 2).map((item) => item.label)).toEqual([
+      "Mirae Asset Securities 006800 1\uC6B0\uC120\uC8FC 2025-12-31",
+      "Mirae Asset Securities 006800 \uBCF4\uD1B5\uC8FC 2025-12-31"
+    ]);
+  });
+
+  it("deduplicates same-date timeline rows by stock kind and keeps richer rows", () => {
+    const sparse = holding("\uBCF4\uD1B5\uC8FC", null, {
+      ending_qty: null,
+      issued_shares: 1000,
+      floating_shares: 1000,
+      report_code: "11014"
+    });
+    const complete = holding("\uBCF4\uD1B5\uC8FC", 0.23, {
+      ending_qty: 230,
+      issued_shares: 1000,
+      floating_shares: 770,
+      report_code: "11011"
+    });
+
+    expect(dedupeHoldingTimeline([sparse, complete])).toEqual([complete]);
   });
 });

@@ -14,7 +14,7 @@ import {
   buildKpis,
   enrichEvents,
   filterEvents,
-  latestHoldingMap
+  latestHoldingSnapshots
 } from "./utils/metrics";
 import type { BuybacksDataset, Filters } from "./types/buybacks";
 
@@ -47,7 +47,7 @@ function App() {
   );
   const years = useMemo(() => availableYears(enrichedEvents), [enrichedEvents]);
   const latestHoldings = useMemo(
-    () => (dataset ? Array.from(latestHoldingMap(dataset.holdingSnapshots).values()) : []),
+    () => (dataset ? latestHoldingSnapshots(dataset.holdingSnapshots) : []),
     [dataset]
   );
   const kpis = useMemo(() => buildKpis(filteredEvents, latestHoldings), [filteredEvents, latestHoldings]);

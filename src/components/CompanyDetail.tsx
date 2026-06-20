@@ -15,6 +15,7 @@ import {
   formatSignedPercent
 } from "../utils/format";
 import { latestMarketCap } from "../utils/marketCap";
+import { dedupeHoldingTimeline } from "../utils/metrics";
 import { displayReaction } from "../utils/priceReactions";
 
 interface CompanyDetailProps {
@@ -41,8 +42,7 @@ export function CompanyDetail({
   );
   const companyHoldings = useMemo(
     () =>
-      holdings
-        .filter((snapshot) => snapshot.stock_code === company?.stock_code)
+      dedupeHoldingTimeline(holdings.filter((snapshot) => snapshot.stock_code === company?.stock_code))
         .sort((a, b) => a.as_of_date.localeCompare(b.as_of_date)),
     [company?.stock_code, holdings]
   );
