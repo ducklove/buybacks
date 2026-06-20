@@ -5,10 +5,12 @@ import {
   EVENT_TYPE_LABELS,
   dartUrl,
   formatKRW,
+  formatMarketCapKRW,
   formatNumber,
   formatPercent,
   formatSignedPercent
 } from "../utils/format";
+import { marketCapFrom } from "../utils/marketCap";
 import { displayReaction, displayReactionValue } from "../utils/priceReactions";
 
 interface EventTableProps {
@@ -17,7 +19,7 @@ interface EventTableProps {
   onSelectStock: (stockCode: string) => void;
 }
 
-type SortKey = "date" | "company" | "amount" | "reaction";
+type SortKey = "date" | "company" | "amount" | "marketCap" | "reaction";
 
 export function EventTable({ events, selectedStockCode, onSelectStock }: EventTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>("date");
@@ -30,6 +32,13 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
       if (sortKey === "company") return direction * a.corp_name.localeCompare(b.corp_name);
       if (sortKey === "amount") {
         return direction * ((a.planned_amount_krw ?? -1) - (b.planned_amount_krw ?? -1));
+      }
+      if (sortKey === "marketCap") {
+        return (
+          direction *
+          ((marketCapFrom(a.priceReaction, a.holding).amount ?? -1) -
+            (marketCapFrom(b.priceReaction, b.holding).amount ?? -1))
+        );
       }
       return direction * ((displayReactionValue(a.priceReaction) ?? -99) - (displayReactionValue(b.priceReaction) ?? -99));
     });
@@ -71,6 +80,9 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
               <th>예정주식수</th>
               <th>목적</th>
               <th>보유비율</th>
+              <SortableHeader active={sortKey === "marketCap"} onClick={() => changeSort("marketCap")}>
+                시가총액
+              </SortableHeader>
               <SortableHeader active={sortKey === "reaction"} onClick={() => changeSort("reaction")}>
                 가격반응
               </SortableHeader>
@@ -109,6 +121,9 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                   </td>
                   <td className="purpose-cell">{event.purpose ?? "-"}</td>
                   <td>{formatPercent(event.holding?.treasury_ratio ?? event.holding_before_ratio_common)}</td>
+                  <td>
+                    <MarketCapCell event={event} />
+                  </td>
                   <td>
                     <PriceReactionCell event={event} />
                   </td>
@@ -165,6 +180,24 @@ function PriceReactionCell({ event }: { event: EnrichedEvent }) {
       <small>
         {reaction.label} · {DATA_QUALITY_LABELS[reaction.quality]}
       </small>
+    </div>
+  );
+}
+
+function MarketCapCell({ event }: { event: EnrichedEvent }) {
+  const marketCap = marketCapFrom(event.priceReaction, event.holding);
+  return (
+    <div className="stacked-value">
+      <strong>{formatMarketCapKRW(marketCap.amount)}</strong>
+      {marketCap.amount !== null && marketCap.close !== null && marketCap.priceDate !== null ? (
+        <small>
+          {marketCap.priceDate} 종가 {formatNumber(marketCap.close)}원
+        </small>
+      ) : marketCap.close !== null && marketCap.issuedShares === null ? (
+        <small>발행주식수 없음</small>
+      ) : (
+        <small>가격 없음</small>
+      )}
     </div>
   );
 }

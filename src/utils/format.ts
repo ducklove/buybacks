@@ -36,6 +36,16 @@ export function formatKRW(value: number | null | undefined): string {
   return `${formatNumber(value)}원`;
 }
 
+export function formatMarketCapKRW(value: number | null | undefined): string {
+  if (value === null || value === undefined || Number.isNaN(value)) return "-";
+  const abs = Math.abs(value);
+  if (abs >= 1_0000_0000_0000) {
+    return `${formatNumber(Math.round((value / 1_0000_0000_0000) * 10) / 10)}조원`;
+  }
+  if (abs >= 1_0000_0000) return `${formatNumber(Math.round(value / 1_0000_0000))}억원`;
+  return `${formatNumber(value)}원`;
+}
+
 export function formatPercent(value: number | null | undefined, digits = 2): string {
   if (value === null || value === undefined || Number.isNaN(value)) return "-";
   return `${(value * 100).toFixed(digits)}%`;
@@ -50,4 +60,3 @@ export function formatSignedPercent(value: number | null | undefined, digits = 2
 export function dartUrl(rceptNo: string | null): string | null {
   return rceptNo ? `https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${rceptNo}` : null;
 }
-

@@ -49,11 +49,22 @@ export function latestHoldingMap(
   const byStock = new Map<string, TreasuryHoldingSnapshot>();
   snapshots.forEach((snapshot) => {
     const previous = byStock.get(snapshot.stock_code);
-    if (!previous || previous.as_of_date < snapshot.as_of_date) {
+    if (
+      !previous ||
+      previous.as_of_date < snapshot.as_of_date ||
+      (previous.as_of_date === snapshot.as_of_date && holdingKindPriority(snapshot) > holdingKindPriority(previous))
+    ) {
       byStock.set(snapshot.stock_code, snapshot);
     }
   });
   return byStock;
+}
+
+function holdingKindPriority(snapshot: TreasuryHoldingSnapshot) {
+  const stockKind = snapshot.stock_kind.toLowerCase();
+  if (stockKind.includes("\uBCF4\uD1B5") || stockKind.includes("common")) return 3;
+  if (stockKind.includes("\uC6B0\uC120") || stockKind.includes("preferred")) return 2;
+  return 1;
 }
 
 export function filterEvents(events: EnrichedEvent[], filters: Filters): EnrichedEvent[] {
@@ -187,4 +198,3 @@ const acquisitionTypes = new Set<EventType>(["direct_acquisition", "trust_contra
 export function marketOptions(): Array<Market | "ALL"> {
   return ["ALL", "KOSPI", "KOSDAQ", "KONEX", "OTHER"];
 }
-

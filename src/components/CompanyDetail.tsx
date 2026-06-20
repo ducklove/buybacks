@@ -9,10 +9,12 @@ import {
   DATA_QUALITY_LABELS,
   EVENT_TYPE_LABELS,
   formatKRW,
+  formatMarketCapKRW,
   formatNumber,
   formatPercent,
   formatSignedPercent
 } from "../utils/format";
+import { latestMarketCap } from "../utils/marketCap";
 import { displayReaction } from "../utils/priceReactions";
 
 interface CompanyDetailProps {
@@ -49,6 +51,10 @@ export function CompanyDetail({
     [company?.stock_code, priceReactions]
   );
   const latestHolding = useMemo(() => pickPrimaryHolding(companyHoldings), [companyHoldings]);
+  const currentMarketCap = useMemo(
+    () => latestMarketCap(companyReactions, latestHolding),
+    [companyReactions, latestHolding]
+  );
   const maxHoldingRatio = useMemo(
     () => Math.max(...companyHoldings.map((snapshot) => snapshot.treasury_ratio ?? 0), 0.01),
     [companyHoldings]
@@ -107,6 +113,19 @@ export function CompanyDetail({
         <div>
           <span>최근 예정금액</span>
           <strong>{formatKRW(companyEvents[0]?.planned_amount_krw)}</strong>
+        </div>
+        <div>
+          <span>시가총액</span>
+          <strong>{formatMarketCapKRW(currentMarketCap.amount)}</strong>
+          {currentMarketCap.amount !== null && currentMarketCap.close !== null && currentMarketCap.priceDate !== null ? (
+            <small>
+              {currentMarketCap.priceDate} 종가 {formatNumber(currentMarketCap.close)}원
+            </small>
+          ) : currentMarketCap.close !== null && currentMarketCap.issuedShares === null ? (
+            <small>발행주식수 없음</small>
+          ) : (
+            <small>가격 없음</small>
+          )}
         </div>
       </div>
 
