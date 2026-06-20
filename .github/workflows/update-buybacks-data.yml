@@ -39,6 +39,7 @@ jobs:
         run: npm ci
 
       - name: Build buybacks static dataset
+        timeout-minutes: 8
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
           KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
@@ -48,8 +49,8 @@ jobs:
           --output public/data/buybacks
           --stock-codes ALL
           --report-codes 11011
-          --max-companies 40
-          --discovery-page-limit 10
+          --max-companies 12
+          --discovery-page-limit 3
 
       - name: Validate data
         run: python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks

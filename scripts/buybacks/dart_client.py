@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import time
 from pathlib import Path
 from typing import Any
@@ -26,15 +27,19 @@ class OpenDartClient:
     def __init__(
         self,
         api_key: str,
-        timeout: float = 12.0,
-        retries: int = 2,
-        rate_limit_seconds: float = 0.18,
+        timeout: float | None = None,
+        retries: int | None = None,
+        rate_limit_seconds: float | None = None,
         raw_dir: str | Path | None = None,
     ) -> None:
         self.api_key = api_key
-        self.timeout = timeout
-        self.retries = retries
-        self.rate_limit_seconds = rate_limit_seconds
+        self.timeout = timeout if timeout is not None else env_float("DART_TIMEOUT_SECONDS", 8.0)
+        self.retries = retries if retries is not None else env_int("DART_RETRIES", 1)
+        self.rate_limit_seconds = (
+            rate_limit_seconds
+            if rate_limit_seconds is not None
+            else env_float("DART_RATE_LIMIT_SECONDS", 0.08)
+        )
         self.raw_dir = Path(raw_dir) if raw_dir else None
         if self.raw_dir:
             self.raw_dir.mkdir(parents=True, exist_ok=True)
@@ -82,3 +87,16 @@ class OpenDartClient:
         path = self.raw_dir / f"{safe_key[:180]}.json"
         path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
+
+def env_float(name: str, default: float) -> float:
+    try:
+        return float(os.environ.get(name, default))
+    except ValueError:
+        return default
+
+
+def env_int(name: str, default: int) -> int:
+    try:
+        return int(os.environ.get(name, default))
+    except ValueError:
+        return default

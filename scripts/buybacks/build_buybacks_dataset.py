@@ -55,6 +55,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     fixture_dir = Path(args.fixture_dir)
     warnings: list[str] = []
     raw_dir = Path(args.raw_dir)
+    print("fetching OpenDART corp code master...", flush=True)
     all_companies = fetch_corp_codes(api_key, raw_dir / "corp_codes.json")
     company_by_corp = {company.corp_code: company for company in all_companies}
     company_by_stock = {company.stock_code: company for company in all_companies}
@@ -74,6 +75,10 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         end_de=args.end,
         raw_dir=raw_dir,
         page_limit=args.discovery_page_limit,
+    )
+    print(
+        f"discovered {len(disclosures)} buyback disclosure rows from {disclosure_start} to {args.end}",
+        flush=True,
     )
     warnings.extend(disclosure_warnings)
 
@@ -100,6 +105,11 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         return copy_fixture_dataset(fixture_dir, output_dir)
 
     years = [int(part) for part in args.years.split(",") if part]
+    print(
+        f"collecting structured OpenDART rows for {len(companies)} companies, "
+        f"years={','.join(str(year) for year in years)}, report_codes={args.report_codes}",
+        flush=True,
+    )
     live_companies, events, holdings, collection_warnings = collect_dart_dataset(
         api_key=api_key,
         companies=companies,
@@ -153,8 +163,8 @@ def main() -> None:
     parser.add_argument("--end", default=datetime.now().strftime("%Y%m%d"))
     parser.add_argument("--years", default=default_report_years())
     parser.add_argument("--report-codes", default="11011")
-    parser.add_argument("--max-companies", type=int, default=40)
-    parser.add_argument("--discovery-page-limit", type=int, default=10)
+    parser.add_argument("--max-companies", type=int, default=12)
+    parser.add_argument("--discovery-page-limit", type=int, default=3)
     args = parser.parse_args()
 
     output_dir = Path(args.output)

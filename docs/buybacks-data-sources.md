@@ -22,7 +22,7 @@ OpenDART is the primary source for official disclosure metadata and structured t
 - Endpoint: `GET https://opendart.fss.or.kr/api/list.json`
 - Important parameters: `corp_code`, `bgn_de`, `end_de`, `last_reprt_at`, `pblntf_ty`, `pblntf_detail_ty`, `page_no`, `page_count`.
 - Use: discover recent buyback-related candidate companies and capture disclosures that are not covered well by structured APIs, especially retirement announcements.
-- Operational limit: when `corp_code` is omitted, OpenDART limits the search period to about three months. The Actions job therefore uses a rolling recent window, caps page count, and calls structured decision endpoints only when a company's disclosure names imply that event type.
+- Operational limit: when `corp_code` is omitted, OpenDART limits the search period to about three months. The Actions job therefore uses a rolling recent window, caps page count, calls structured decision endpoints only when a company's disclosure names imply that event type, and fetches share-total rows only after treasury-holding rows are available.
 - Keywords:
   - `자기주식취득`
   - `자기주식처분`

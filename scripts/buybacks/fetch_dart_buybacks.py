@@ -104,6 +104,22 @@ def collect_dart_dataset(
 
         for year in years:
             for report_code in report_codes_to_fetch:
+                try:
+                    data = client.request_json(
+                        "tesstkAcqsDspsSttus.json",
+                        {
+                            "corp_code": company.corp_code,
+                            "bsns_year": str(year),
+                            "reprt_code": report_code,
+                        },
+                    )
+                except OpenDartNoData:
+                    continue
+                except Exception as exc:  # noqa: BLE001
+                    warning = f"{company.stock_code} holdings {year}/{report_code} failed: {exc}"
+                    LOGGER.warning(warning)
+                    warnings.append(warning)
+                    continue
                 stock_totals: list[dict] = []
                 try:
                     stock_total_data = client.request_json(
@@ -123,22 +139,6 @@ def collect_dart_dataset(
                     warning = f"{company.stock_code} stock totals {year}/{report_code} failed: {exc}"
                     LOGGER.warning(warning)
                     warnings.append(warning)
-                try:
-                    data = client.request_json(
-                        "tesstkAcqsDspsSttus.json",
-                        {
-                            "corp_code": company.corp_code,
-                            "bsns_year": str(year),
-                            "reprt_code": report_code,
-                        },
-                    )
-                except OpenDartNoData:
-                    continue
-                except Exception as exc:  # noqa: BLE001
-                    warning = f"{company.stock_code} holdings {year}/{report_code} failed: {exc}"
-                    LOGGER.warning(warning)
-                    warnings.append(warning)
-                    continue
                 normalized = normalize_holding_rows(
                     data.get("list", []),
                     stock_totals,
