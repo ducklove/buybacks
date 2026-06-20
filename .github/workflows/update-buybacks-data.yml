@@ -42,7 +42,12 @@ jobs:
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
           KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
-        run: python scripts/buybacks/build_buybacks_dataset.py --live-if-available --output public/data/buybacks
+        run: >
+          python scripts/buybacks/build_buybacks_dataset.py
+          --live-if-available
+          --output public/data/buybacks
+          --max-companies 120
+          --discovery-page-limit 30
 
       - name: Validate data
         run: python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
@@ -76,4 +81,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

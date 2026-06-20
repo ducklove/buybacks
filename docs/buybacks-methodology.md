@@ -95,5 +95,12 @@ python scripts/buybacks/build_buybacks_dataset.py --live-if-available --output p
 python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
 ```
 
-KRX price integration requires `KRX_AUTH_KEY` and per-service approval. Until the relevant official API IDs are confirmed, price reaction can be calculated from fixture or externally prepared official price rows.
+GitHub Actions live build:
 
+1. Register `DART_API_KEY` in repository Actions secrets.
+2. Run `Update buybacks data and deploy Pages`.
+3. The workflow fetches `corpCode.xml`, searches recent major-report disclosures for buyback-related report names, calls structured decision APIs for discovered companies, merges `stockTotqySttus` denominators into treasury holding snapshots, then builds the static Vite site.
+
+The default live discovery window is the last 89 days because OpenDART `list.json` without `corp_code` is limited to roughly three months. Historical backfills should pass explicit seed `--stock-codes` or run a separate controlled job rather than querying every listed company.
+
+KRX price integration requires `KRX_AUTH_KEY` and per-service approval. Until the relevant official API IDs are confirmed, price reaction can be calculated from fixture or externally prepared official price rows.

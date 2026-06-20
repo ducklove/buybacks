@@ -21,7 +21,8 @@ OpenDART is the primary source for official disclosure metadata and structured t
 - Official guide: <https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&apiId=2019001>
 - Endpoint: `GET https://opendart.fss.or.kr/api/list.json`
 - Important parameters: `corp_code`, `bgn_de`, `end_de`, `last_reprt_at`, `pblntf_ty`, `pblntf_detail_ty`, `page_no`, `page_count`.
-- Use: capture disclosures that are not covered well by structured APIs, especially retirement announcements.
+- Use: discover recent buyback-related candidate companies and capture disclosures that are not covered well by structured APIs, especially retirement announcements.
+- Operational limit: when `corp_code` is omitted, OpenDART limits the search period to about three months. The Actions job therefore uses a rolling recent window and caps page count.
 - Keywords:
   - `자기주식취득`
   - `자기주식처분`
@@ -51,9 +52,10 @@ OpenDART is the primary source for official disclosure metadata and structured t
 
 ### Share count status
 
-- Endpoint family: `stockTotqySttus.json`
-- Use: enrich `issued_shares`, `floating_shares`, and treasury holding ratio when available.
-- MVP note: `tesstkAcqsDspsSttus` does not always provide the denominator needed for ratio calculation. If share-count and treasury-share dates differ, mark the related metric as partial rather than forcing precision.
+- Official guide: <https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020002>
+- Endpoint: `GET https://opendart.fss.or.kr/api/stockTotqySttus.json`
+- Fields used: `istc_totqy`, `tesstk_co`, `distb_stock_co`, `stlm_dt`.
+- Use: enrich `issued_shares`, `floating_shares`, and treasury holding ratio when available. `tesstkAcqsDspsSttus` does not always provide the denominator needed for ratio calculation, so the pipeline merges stock total rows by stock kind.
 
 ### Decision APIs
 
@@ -134,4 +136,3 @@ The frontend reads only:
 - `holdings_count`
 - `price_reactions_count`
 - `warnings`
-
