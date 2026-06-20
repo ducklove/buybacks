@@ -111,7 +111,7 @@ export interface BuybacksDataset {
 
 export interface Filters {
   market: Market | "ALL";
-  eventType: EventType | "ALL";
+  eventTypes: EventType[];
   year: string;
   search: string;
   minHoldingRatio: number;

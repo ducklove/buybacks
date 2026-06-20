@@ -12,6 +12,19 @@ export function FilterBar({ filters, years, onChange }: FilterBarProps) {
   const setFilter = <K extends keyof Filters>(key: K, value: Filters[K]) => {
     onChange({ ...filters, [key]: value });
   };
+  const toggleEventType = (type: EventType) => {
+    const selected = filters.eventTypes.includes(type);
+    setFilter(
+      "eventTypes",
+      selected
+        ? filters.eventTypes.filter((item) => item !== type)
+        : [...filters.eventTypes, type]
+    );
+  };
+  const eventTypeSummary =
+    filters.eventTypes.length === 0
+      ? "전체"
+      : filters.eventTypes.map((type) => EVENT_TYPE_LABELS[type]).join(", ");
 
   return (
     <section className="filter-panel" aria-label="이벤트 필터">
@@ -25,20 +38,6 @@ export function FilterBar({ filters, years, onChange }: FilterBarProps) {
             {marketOptions().map((market) => (
               <option value={market} key={market}>
                 {market === "ALL" ? "전체 시장" : MARKET_LABELS[market]}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          이벤트 유형
-          <select
-            value={filters.eventType}
-            onChange={(event) => setFilter("eventType", event.target.value as EventType | "ALL")}
-          >
-            <option value="ALL">전체</option>
-            {EVENT_TYPES.map((type) => (
-              <option value={type} key={type}>
-                {EVENT_TYPE_LABELS[type]}
               </option>
             ))}
           </select>
@@ -88,9 +87,41 @@ export function FilterBar({ filters, years, onChange }: FilterBarProps) {
         <button className="secondary-button" type="button" onClick={() => onChange(DEFAULT_FILTERS)}>
           초기화
         </button>
+        <div className="event-type-filter">
+          <span>이벤트 유형</span>
+          <div className="event-type-options" role="group" aria-label="이벤트 유형">
+            <button
+              className={
+                filters.eventTypes.length === 0
+                  ? "filter-toggle active-filter-toggle"
+                  : "filter-toggle"
+              }
+              type="button"
+              aria-pressed={filters.eventTypes.length === 0}
+              onClick={() => setFilter("eventTypes", [])}
+            >
+              전체
+            </button>
+            {EVENT_TYPES.map((type) => {
+              const active = filters.eventTypes.includes(type);
+              return (
+                <button
+                  className={active ? "filter-toggle active-filter-toggle" : "filter-toggle"}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => toggleEventType(type)}
+                  key={type}
+                >
+                  {EVENT_TYPE_LABELS[type]}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
       <div className="active-filters" aria-live="polite">
         <span>시장: {filters.market === "ALL" ? "전체" : filters.market}</span>
+        <span>이벤트: {eventTypeSummary}</span>
         <span>연도: {filters.year === "ALL" ? "전체" : filters.year}</span>
         <span>
           보유비율 {(filters.minHoldingRatio * 100).toFixed(1)}% ~{" "}
@@ -100,4 +131,3 @@ export function FilterBar({ filters, years, onChange }: FilterBarProps) {
     </section>
   );
 }
-

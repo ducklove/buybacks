@@ -23,7 +23,7 @@ export interface ChartDatum {
 
 export const DEFAULT_FILTERS: Filters = {
   market: "ALL",
-  eventType: "ALL",
+  eventTypes: [],
   year: "ALL",
   search: "",
   minHoldingRatio: 0,
@@ -71,7 +71,8 @@ export function filterEvents(events: EnrichedEvent[], filters: Filters): Enriche
   const search = filters.search.trim().toLowerCase();
   return events.filter((event) => {
     const marketMatch = filters.market === "ALL" || event.company?.market === filters.market;
-    const typeMatch = filters.eventType === "ALL" || event.event_type === filters.eventType;
+    const typeMatch =
+      filters.eventTypes.length === 0 || filters.eventTypes.includes(event.event_type);
     const yearMatch = filters.year === "ALL" || event.disclosure_date.startsWith(filters.year);
     const ratio = event.holding?.treasury_ratio ?? event.holding_before_ratio_common ?? null;
     const ratioMatch =

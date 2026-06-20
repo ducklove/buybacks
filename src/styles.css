@@ -213,6 +213,43 @@ label {
   font-weight: 700;
 }
 
+.event-type-filter {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 7px;
+  color: #35413f;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.event-type-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-toggle {
+  min-height: 42px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  color: #344341;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.filter-toggle:hover {
+  border-color: var(--teal);
+  color: var(--teal-strong);
+}
+
+.active-filter-toggle {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+  color: var(--teal-strong);
+}
+
 select,
 input {
   min-height: 42px;
