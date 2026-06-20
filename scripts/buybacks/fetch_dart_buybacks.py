@@ -225,8 +225,13 @@ def fetch_buyback_disclosures(
 
 def normalize_decision_event(item: dict, stock_code: str, endpoint: str) -> BuybackEvent:
     event_type = DECISION_ENDPOINTS[endpoint]
-    disclosure_date = normalize_date(item.get("rcept_dt")) or normalize_date(item.get("bddd")) or date.today().isoformat()
     rcept_no = item.get("rcept_no")
+    disclosure_date = (
+        normalize_date(item.get("rcept_dt"))
+        or receipt_date_from_no(rcept_no)
+        or normalize_date(item.get("bddd"))
+        or date.today().isoformat()
+    )
 
     if event_type == "direct_acquisition":
         planned_shares_common = parse_number(item.get("aqpln_stk_ostk"))
@@ -395,7 +400,7 @@ def normalize_disclosure_events(
         event_type = classify_event_type(report_name)
         if event_type == "unknown":
             continue
-        disclosure_date = normalize_date(item.get("rcept_dt")) or date.today().isoformat()
+        disclosure_date = normalize_date(item.get("rcept_dt")) or receipt_date_from_no(rcept_no) or date.today().isoformat()
         events.append(
             BuybackEvent(
                 event_id=event_id("DART", rcept_no, stock_code, event_type, disclosure_date),
@@ -510,6 +515,13 @@ def dedupe_holdings(snapshots: list[TreasuryHoldingSnapshot]) -> list[TreasuryHo
         seen.add(key)
         output.append(snapshot)
     return output
+
+
+def receipt_date_from_no(rcept_no: object) -> str | None:
+    text = str(rcept_no or "")
+    if len(text) < 8 or not text[:8].isdigit():
+        return None
+    return normalize_date(text[:8])
 
 
 def is_total_holding_row(row: dict) -> bool:

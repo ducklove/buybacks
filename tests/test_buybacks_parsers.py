@@ -61,6 +61,20 @@ def test_normalize_dart_acquisition_response_fixture():
     assert event.source_url and event.source_url.endswith("20260522000001")
 
 
+def test_normalize_decision_event_falls_back_to_receipt_number_date():
+    item = {
+        "rcept_no": "20260617000504",
+        "corp_code": "00111722",
+        "corp_name": "Mirae Asset Securities",
+        "aqpln_stk_ostk": "3,898,635",
+        "aqpln_prc_ostk": "200,000,000,000",
+    }
+
+    event = normalize_decision_event(item, "006800", "tsstkAqDecsn.json")
+
+    assert event.disclosure_date == "2026-06-17"
+
+
 def test_normalize_holding_snapshot_computes_ratio_when_issued_shares_exists():
     item = {
         "corp_code": "00126380",
