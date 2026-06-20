@@ -67,12 +67,19 @@ def test_normalize_decision_event_falls_back_to_receipt_number_date():
         "corp_code": "00111722",
         "corp_name": "Mirae Asset Securities",
         "aqpln_stk_ostk": "3,898,635",
+        "aqpln_stk_estk": "7,090,936",
         "aqpln_prc_ostk": "200,000,000,000",
+        "aqpln_prc_estk": "100,000,000,000",
     }
 
     event = normalize_decision_event(item, "006800", "tsstkAqDecsn.json")
 
     assert event.disclosure_date == "2026-06-17"
+    assert event.planned_shares_common == 3_898_635
+    assert event.planned_shares_other == 7_090_936
+    assert event.planned_amount_common_krw == 200_000_000_000
+    assert event.planned_amount_other_krw == 100_000_000_000
+    assert event.planned_amount_krw == 300_000_000_000
 
 
 def test_normalize_holding_snapshot_computes_ratio_when_issued_shares_exists():

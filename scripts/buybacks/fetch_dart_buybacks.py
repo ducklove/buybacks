@@ -236,7 +236,9 @@ def normalize_decision_event(item: dict, stock_code: str, endpoint: str) -> Buyb
     if event_type == "direct_acquisition":
         planned_shares_common = parse_number(item.get("aqpln_stk_ostk"))
         planned_shares_other = parse_number(item.get("aqpln_stk_estk"))
-        planned_amount_krw = parse_number(item.get("aqpln_prc_ostk"))
+        planned_amount_common_krw = parse_number(item.get("aqpln_prc_ostk"))
+        planned_amount_other_krw = parse_number(item.get("aqpln_prc_estk"))
+        planned_amount_krw = sum_optional(planned_amount_common_krw, planned_amount_other_krw)
         period_start = normalize_date(item.get("aqexpd_bgd"))
         period_end = normalize_date(item.get("aqexpd_edd"))
         method = clean_text(item.get("aq_mth"))
@@ -247,7 +249,9 @@ def normalize_decision_event(item: dict, stock_code: str, endpoint: str) -> Buyb
     elif event_type == "direct_disposition":
         planned_shares_common = parse_number(item.get("dppln_stk_ostk"))
         planned_shares_other = parse_number(item.get("dppln_stk_estk"))
-        planned_amount_krw = parse_number(item.get("dppln_prc_ostk"))
+        planned_amount_common_krw = parse_number(item.get("dppln_prc_ostk"))
+        planned_amount_other_krw = parse_number(item.get("dppln_prc_estk"))
+        planned_amount_krw = sum_optional(planned_amount_common_krw, planned_amount_other_krw)
         period_start = normalize_date(item.get("dpprpd_bgd") or item.get("dpprd_bgd"))
         period_end = normalize_date(item.get("dpprpd_edd") or item.get("dpprd_edd"))
         method = disposition_method(item)
@@ -259,6 +263,8 @@ def normalize_decision_event(item: dict, stock_code: str, endpoint: str) -> Buyb
         planned_shares_common = None
         planned_shares_other = None
         planned_amount_krw = parse_number(item.get("ctr_prc") or item.get("ctr_prc_bfcc") or item.get("trctr_prc"))
+        planned_amount_common_krw = planned_amount_krw
+        planned_amount_other_krw = None
         period_start = normalize_date(item.get("ctr_pd_bgd") or item.get("ctr_pd_bfcc_bgd") or item.get("trctr_bgd"))
         period_end = normalize_date(item.get("ctr_pd_edd") or item.get("ctr_pd_bfcc_edd") or item.get("trctr_edd"))
         method = "자기주식취득 신탁계약"
@@ -280,6 +286,8 @@ def normalize_decision_event(item: dict, stock_code: str, endpoint: str) -> Buyb
         planned_shares_common=planned_shares_common,
         planned_shares_other=planned_shares_other,
         planned_amount_krw=planned_amount_krw,
+        planned_amount_common_krw=planned_amount_common_krw,
+        planned_amount_other_krw=planned_amount_other_krw,
         actual_shares=None,
         actual_amount_krw=None,
         method=method,
@@ -415,6 +423,8 @@ def normalize_disclosure_events(
                 planned_shares_common=None,
                 planned_shares_other=None,
                 planned_amount_krw=None,
+                planned_amount_common_krw=None,
+                planned_amount_other_krw=None,
                 actual_shares=None,
                 actual_amount_krw=None,
                 method=None,
@@ -588,6 +598,13 @@ def clean_text(value: object) -> str | None:
 
 def as_int(value: int | float | None) -> int | None:
     return int(value) if value is not None else None
+
+
+def sum_optional(*values: int | float | None) -> int | float | None:
+    present = [value for value in values if value is not None]
+    if not present:
+        return None
+    return sum(present)
 
 
 def main() -> None:

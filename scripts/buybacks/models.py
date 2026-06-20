@@ -41,6 +41,8 @@ class BuybackEvent:
     planned_shares_common: int | float | None
     planned_shares_other: int | float | None
     planned_amount_krw: int | float | None
+    planned_amount_common_krw: int | float | None
+    planned_amount_other_krw: int | float | None
     actual_shares: int | float | None
     actual_amount_krw: int | float | None
     method: str | None
@@ -98,4 +100,3 @@ def to_jsonable(value):
     if isinstance(value, list):
         return [to_jsonable(item) for item in value]
     return value
-

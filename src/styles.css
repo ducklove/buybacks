@@ -570,6 +570,24 @@ tbody tr:last-child td {
   line-height: 1.5;
 }
 
+.stacked-value {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.stacked-value strong {
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.stacked-value small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
 .muted {
   color: var(--muted);
 }
@@ -603,7 +621,7 @@ tbody tr:last-child td {
 
 .detail-metrics {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 12px;
   margin: 16px 0;
 }
@@ -618,6 +636,9 @@ tbody tr:last-child td {
 
 .detail-metrics strong {
   font-size: 17px;
+  line-height: 1.25;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .detail-section {
@@ -637,12 +658,17 @@ tbody tr:last-child td {
 
 .mini-timeline div {
   display: grid;
-  grid-template-columns: 92px 1fr auto;
+  grid-template-columns: minmax(124px, 0.75fr) minmax(80px, 1fr) auto;
   align-items: center;
   gap: 10px;
   color: var(--muted);
   font-size: 12px;
   font-weight: 750;
+  min-width: 0;
+}
+
+.mini-timeline span {
+  min-width: 0;
 }
 
 .mini-timeline i {
@@ -650,6 +676,7 @@ tbody tr:last-child td {
   height: 9px;
   border-radius: 999px;
   background: var(--teal);
+  max-width: 100%;
 }
 
 .event-timeline {

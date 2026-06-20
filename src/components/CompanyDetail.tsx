@@ -47,7 +47,11 @@ export function CompanyDetail({
     () => priceReactions.filter((reaction) => reaction.stock_code === company?.stock_code),
     [company?.stock_code, priceReactions]
   );
-  const latestHolding = companyHoldings[companyHoldings.length - 1];
+  const latestHolding = useMemo(() => pickPrimaryHolding(companyHoldings), [companyHoldings]);
+  const maxHoldingRatio = useMemo(
+    () => Math.max(...companyHoldings.map((snapshot) => snapshot.treasury_ratio ?? 0), 0.01),
+    [companyHoldings]
+  );
 
   if (!company) {
     return (
@@ -109,13 +113,18 @@ export function CompanyDetail({
         <h3>보유비율 추이</h3>
         {companyHoldings.length > 0 ? (
           <div className="mini-timeline">
-            {companyHoldings.map((snapshot) => (
-              <div key={`${snapshot.stock_code}-${snapshot.as_of_date}`}>
-                <span>{snapshot.as_of_date}</span>
-                <i style={{ width: `${Math.max((snapshot.treasury_ratio ?? 0) * 450, 3)}%` }} />
-                <strong>{formatPercent(snapshot.treasury_ratio)}</strong>
-              </div>
-            ))}
+            {companyHoldings.map((snapshot) => {
+              const width = holdingBarWidth(snapshot.treasury_ratio, maxHoldingRatio);
+              return (
+                <div
+                  key={`${snapshot.stock_code}-${snapshot.as_of_date}-${snapshot.report_code}-${snapshot.stock_kind}`}
+                >
+                  <span>{formatHoldingLabel(snapshot)}</span>
+                  <i style={{ width: `${width}%` }} />
+                  <strong>{formatPercent(snapshot.treasury_ratio)}</strong>
+                </div>
+              );
+            })}
           </div>
         ) : (
           <p className="empty-copy">정기보고서 기반 보유현황이 없습니다.</p>
@@ -161,3 +170,29 @@ export function CompanyDetail({
   );
 }
 
+function pickPrimaryHolding(
+  snapshots: TreasuryHoldingSnapshot[]
+): TreasuryHoldingSnapshot | undefined {
+  const latestDate = snapshots[snapshots.length - 1]?.as_of_date;
+  if (!latestDate) {
+    return undefined;
+  }
+  const latestSnapshots = snapshots.filter((snapshot) => snapshot.as_of_date === latestDate);
+  return latestSnapshots.find(isCommonHolding) ?? latestSnapshots[latestSnapshots.length - 1];
+}
+
+function isCommonHolding(snapshot: TreasuryHoldingSnapshot) {
+  const stockKind = snapshot.stock_kind.toLowerCase();
+  return stockKind.includes("\uBCF4\uD1B5") || stockKind.includes("common");
+}
+
+function formatHoldingLabel(snapshot: TreasuryHoldingSnapshot) {
+  return snapshot.stock_kind ? `${snapshot.as_of_date} ${snapshot.stock_kind}` : snapshot.as_of_date;
+}
+
+function holdingBarWidth(ratio: number | null, maxRatio: number) {
+  if (ratio === null || ratio <= 0 || maxRatio <= 0) {
+    return 0;
+  }
+  return Math.min(100, Math.max((ratio / maxRatio) * 100, 3));
+}

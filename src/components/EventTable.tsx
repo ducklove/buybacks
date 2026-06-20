@@ -99,8 +99,12 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                       {EVENT_TYPE_LABELS[event.event_type]}
                     </span>
                   </td>
-                  <td>{formatKRW(event.planned_amount_krw)}</td>
-                  <td>{formatNumber(event.planned_shares_common)}</td>
+                  <td>
+                    <AmountBreakdown event={event} />
+                  </td>
+                  <td>
+                    <ShareBreakdown event={event} />
+                  </td>
                   <td className="purpose-cell">{event.purpose ?? "-"}</td>
                   <td>{formatPercent(event.holding?.treasury_ratio ?? event.holding_before_ratio_common)}</td>
                   <td>{formatSignedPercent(event.priceReaction?.return_20d)}</td>
@@ -123,6 +127,32 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
   );
 }
 
+function AmountBreakdown({ event }: { event: EnrichedEvent }) {
+  const commonAmount = event.planned_amount_common_krw ?? event.planned_amount_krw;
+  const otherAmount = event.planned_amount_other_krw ?? null;
+  return (
+    <div className="stacked-value">
+      <strong>{formatKRW(event.planned_amount_krw)}</strong>
+      {otherAmount !== null && (
+        <small>
+          보통 {formatKRW(commonAmount)} / 기타 {formatKRW(otherAmount)}
+        </small>
+      )}
+    </div>
+  );
+}
+
+function ShareBreakdown({ event }: { event: EnrichedEvent }) {
+  return (
+    <div className="stacked-value">
+      <strong>{formatNumber(event.planned_shares_common)}</strong>
+      {event.planned_shares_other !== null && (
+        <small>기타 {formatNumber(event.planned_shares_other)}</small>
+      )}
+    </div>
+  );
+}
+
 function SortableHeader({
   children,
   active,
@@ -140,4 +170,3 @@ function SortableHeader({
     </th>
   );
 }
-
