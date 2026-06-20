@@ -331,7 +331,7 @@ def normalize_holding_snapshot(
         as_of_date=normalize_date(item.get("stlm_dt")) or f"{report_year}-12-31",
         report_year=report_year,
         report_code=report_code,
-        stock_kind=item.get("stock_knd") or "",
+        stock_kind=clean_stock_kind(item.get("stock_knd")),
         beginning_qty=as_int(parse_number(item.get("bsis_qy"))),
         acquired_qty=as_int(parse_number(item.get("change_qy_acqs"))),
         disposed_qty=as_int(parse_number(item.get("change_qy_dsps"))),
@@ -442,7 +442,7 @@ def normalize_disclosure_events(
 
 
 def select_holding_rows(rows: list[dict]) -> list[dict]:
-    listed = [row for row in rows if row.get("stock_knd")]
+    listed = [row for row in rows if not is_placeholder_stock_kind(row.get("stock_knd"))]
     if not listed:
         return []
     totals = [row for row in listed if is_total_holding_row(row)]
@@ -457,7 +457,7 @@ def select_holding_rows(rows: list[dict]) -> list[dict]:
 
 
 def select_stock_total_rows(rows: list[dict]) -> list[dict]:
-    valid = [row for row in rows if normalize_stock_kind(row.get("se")) not in {"합계", "비고", ""}]
+    valid = [row for row in rows if not is_placeholder_stock_kind(row.get("se"))]
     return valid or rows[:1]
 
 
@@ -472,7 +472,7 @@ def best_stock_total(stock_kind: object, stock_totals: list[dict]) -> dict | Non
         for row in stock_totals:
             if "보통" in normalize_stock_kind(row.get("se")):
                 return row
-    return next((row for row in stock_totals if normalize_stock_kind(row.get("se")) not in {"합계", "비고", ""}), stock_totals[0])
+    return next((row for row in stock_totals if not is_placeholder_stock_kind(row.get("se"))), stock_totals[0])
 
 
 def is_buyback_report(report_name: object) -> bool:
@@ -507,10 +507,17 @@ def dedupe_events(events: list[BuybackEvent]) -> list[BuybackEvent]:
 
 def dedupe_holdings(snapshots: list[TreasuryHoldingSnapshot]) -> list[TreasuryHoldingSnapshot]:
     seen: set[tuple[str, str, int, str, str]] = set()
+    seen_facts: set[tuple[str, str, int, str, int | None, int | None, float | None]] = set()
     output: list[TreasuryHoldingSnapshot] = []
     for snapshot in sorted(
         snapshots,
-        key=lambda item: (item.as_of_date, item.stock_code, item.report_code, item.stock_kind),
+        key=lambda item: (
+            item.as_of_date,
+            item.stock_code,
+            item.report_code,
+            stock_kind_quality(item.stock_kind),
+            item.stock_kind,
+        ),
         reverse=True,
     ):
         key = (
@@ -520,9 +527,11 @@ def dedupe_holdings(snapshots: list[TreasuryHoldingSnapshot]) -> list[TreasuryHo
             snapshot.report_code,
             normalize_stock_kind(snapshot.stock_kind),
         )
-        if key in seen:
+        fact_key = holding_fact_key(snapshot)
+        if key in seen or (is_placeholder_stock_kind(snapshot.stock_kind) and fact_key in seen_facts):
             continue
         seen.add(key)
+        seen_facts.add(fact_key)
         output.append(snapshot)
     return output
 
@@ -562,6 +571,38 @@ def normalize_stock_kind(value: object) -> str:
     if "우선" in text:
         return "우선주"
     return text
+
+
+def clean_stock_kind(value: object) -> str:
+    return "" if is_placeholder_stock_kind(value) else str(value or "").strip()
+
+
+def is_placeholder_stock_kind(value: object) -> bool:
+    return normalize_stock_kind(value) in {"", "-", "–", "—", "합계", "비고"}
+
+
+def stock_kind_quality(value: object) -> int:
+    if is_placeholder_stock_kind(value):
+        return 0
+    normalized = normalize_stock_kind(value)
+    if "보통" in normalized:
+        return 3
+    return 2
+
+
+def holding_fact_key(
+    snapshot: TreasuryHoldingSnapshot,
+) -> tuple[str, str, int, str, int | None, int | None, float | None]:
+    ratio = round(snapshot.treasury_ratio, 12) if snapshot.treasury_ratio is not None else None
+    return (
+        snapshot.stock_code,
+        snapshot.as_of_date,
+        snapshot.report_year,
+        snapshot.report_code,
+        snapshot.ending_qty,
+        snapshot.issued_shares,
+        ratio,
+    )
 
 
 def disposition_method(item: dict) -> str | None:

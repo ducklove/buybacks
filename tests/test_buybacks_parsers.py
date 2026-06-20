@@ -1,4 +1,5 @@
 from scripts.buybacks.fetch_dart_buybacks import (
+    dedupe_holdings,
     normalize_decision_event,
     normalize_disclosure_events,
     normalize_holding_rows,
@@ -177,3 +178,65 @@ def test_normalize_holding_rows_merges_stock_total_denominator():
     assert snapshots[0].issued_shares == 1000
     assert snapshots[0].floating_shares == 885
     assert snapshots[0].treasury_ratio == 0.115
+
+
+def test_holding_rows_ignore_placeholder_stock_kind_duplicates():
+    rows = [
+        {
+            "corp_code": "00301112",
+            "corp_name": "Samhwa Networks",
+            "stlm_dt": "2025-12-31",
+            "stock_knd": "\uBCF4\uD1B5\uC8FC",
+            "trmend_qy": "3,583,547",
+            "isu_stock_totqy": "43,172,933",
+            "rcept_no": "20260318000485",
+        },
+        {
+            "corp_code": "00301112",
+            "corp_name": "Samhwa Networks",
+            "stlm_dt": "2025-12-31",
+            "stock_knd": "-",
+            "trmend_qy": "3,583,547",
+            "isu_stock_totqy": "43,172,933",
+            "rcept_no": "20260318000485",
+        },
+    ]
+
+    snapshots = normalize_holding_rows(rows, [], "046390", 2025, "11011")
+
+    assert len(snapshots) == 1
+    assert snapshots[0].stock_kind == "\uBCF4\uD1B5\uC8FC"
+
+
+def test_dedupe_holdings_drops_placeholder_duplicate_fact():
+    common = normalize_holding_snapshot(
+        {
+            "corp_code": "00301112",
+            "corp_name": "Samhwa Networks",
+            "stlm_dt": "2025-12-31",
+            "stock_knd": "\uBCF4\uD1B5\uC8FC",
+            "trmend_qy": "3,583,547",
+            "isu_stock_totqy": "43,172,933",
+        },
+        "046390",
+        2025,
+        "11011",
+    )
+    placeholder = normalize_holding_snapshot(
+        {
+            "corp_code": "00301112",
+            "corp_name": "Samhwa Networks",
+            "stlm_dt": "2025-12-31",
+            "stock_knd": "-",
+            "trmend_qy": "3,583,547",
+            "isu_stock_totqy": "43,172,933",
+        },
+        "046390",
+        2025,
+        "11011",
+    )
+
+    snapshots = dedupe_holdings([placeholder, common])
+
+    assert len(snapshots) == 1
+    assert snapshots[0].stock_kind == "\uBCF4\uD1B5\uC8FC"
