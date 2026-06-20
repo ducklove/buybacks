@@ -85,7 +85,7 @@ function App() {
           <div>
             <h1>자사주 매입·처분·소각 분석</h1>
             <p>
-              OpenDART 공시와 KRX 가격 데이터를 정적 JSON으로 정규화해 보유 현황, 이벤트,
+              OpenDART 공시와 kis_proxy 가격 데이터를 정적 JSON으로 정규화해 보유 현황, 이벤트,
               공시 후 주가 흐름을 함께 살펴봅니다.
             </p>
           </div>
@@ -125,4 +125,3 @@ function App() {
 }
 
 export default App;
-

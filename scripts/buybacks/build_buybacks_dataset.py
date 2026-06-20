@@ -12,14 +12,14 @@ if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parents[2]))
     from scripts.buybacks.fetch_corp_codes import fetch_corp_codes
     from scripts.buybacks.fetch_dart_buybacks import collect_dart_dataset, fetch_buyback_disclosures
-    from scripts.buybacks.fetch_krx_prices import missing_reaction
-    from scripts.buybacks.models import Company, to_jsonable
+    from scripts.buybacks.fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
+    from scripts.buybacks.models import BuybackEvent, Company, PriceReaction, to_jsonable
     from scripts.buybacks.parsers import market_from_corp_cls, normalize_date
 else:
     from .fetch_corp_codes import fetch_corp_codes
     from .fetch_dart_buybacks import collect_dart_dataset, fetch_buyback_disclosures
-    from .fetch_krx_prices import missing_reaction
-    from .models import Company, to_jsonable
+    from .fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
+    from .models import BuybackEvent, Company, PriceReaction, to_jsonable
     from .parsers import market_from_corp_cls, normalize_date
 
 DATA_FILES = [
@@ -47,6 +47,7 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path) -> dict:
     status["generated_at"] = datetime.now(timezone.utc).isoformat()
     status["dart_available"] = False
     status["krx_available"] = False
+    status["price_source"] = "fixture"
     write_json(output_dir / "data_status.json", status)
     return status
 
@@ -126,11 +127,13 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         warnings.append("OpenDART returned no live buyback rows for candidate companies; fixture data kept.")
         return copy_fixture_dataset(fixture_dir, output_dir)
 
-    price_reactions = [missing_reaction(event.event_id, event.stock_code, event.disclosure_date) for event in events]
+    price_reactions, price_warnings, price_source = build_price_reactions(args, events, live_companies)
+    warnings.extend(price_warnings)
     status = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "dart_available": True,
-        "krx_available": bool(os.environ.get("KRX_AUTH_KEY")),
+        "krx_available": False,
+        "price_source": price_source,
         "companies_count": len(live_companies),
         "events_count": len(events),
         "holdings_count": len(holdings),
@@ -138,7 +141,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         "warnings": [
             *warnings,
             f"OpenDART disclosure discovery window: {disclosure_start} to {args.end}.",
-            "KRX treasury execution details remain fixture/adapter data until official API IDs are confirmed.",
+            "Price reactions use kis_proxy when configured; otherwise they remain missing.",
         ],
     }
     write_json(output_dir / "companies.json", to_jsonable(live_companies))
@@ -166,6 +169,12 @@ def main() -> None:
     parser.add_argument("--report-codes", default="11011")
     parser.add_argument("--max-companies", type=int, default=12)
     parser.add_argument("--discovery-page-limit", type=int, default=3)
+    parser.add_argument(
+        "--price-source",
+        choices=["auto", "kis_proxy", "missing"],
+        default="auto",
+        help="Price reaction source. auto uses KIS_PROXY_URL when present, otherwise missing.",
+    )
     args = parser.parse_args()
 
     output_dir = Path(args.output)
@@ -205,6 +214,35 @@ def companies_from_disclosures(disclosures: list[dict]) -> list[Company]:
             )
         )
     return dedupe_companies(companies)
+
+
+def build_price_reactions(
+    args: argparse.Namespace,
+    events: list[BuybackEvent],
+    companies: list[Company],
+) -> tuple[list[PriceReaction], list[str], str]:
+    if args.price_source == "missing":
+        return missing_price_reactions(events), [], "missing"
+
+    kis_proxy_url = os.environ.get("KIS_PROXY_URL", "").strip()
+    if kis_proxy_url:
+        print("collecting price reactions from kis_proxy...", flush=True)
+        reactions, warnings = calculate_kis_proxy_price_reactions(
+            events,
+            companies,
+            base_url=kis_proxy_url,
+            token=os.environ.get("KIS_PROXY_TOKEN", "").strip(),
+        )
+        return reactions, warnings, "kis_proxy"
+
+    warnings = ["KIS_PROXY_URL is not set; price reactions marked missing."]
+    if args.price_source == "kis_proxy":
+        warnings.append("Requested --price-source kis_proxy but no proxy URL was configured.")
+    return missing_price_reactions(events), warnings, "missing"
+
+
+def missing_price_reactions(events: list[BuybackEvent]) -> list[PriceReaction]:
+    return [missing_reaction(event.event_id, event.stock_code, event.disclosure_date) for event in events]
 
 
 def dedupe_companies(companies: list[Company]) -> list[Company]:

@@ -103,4 +103,4 @@ GitHub Actions live build:
 
 The default live discovery window is the last 89 days because OpenDART `list.json` without `corp_code` is limited to roughly three months. The scheduled workflow keeps requests bounded by using only disclosure-discovered companies (`--stock-codes ALL`), skipping the full `corpCode.xml` master download in that mode, annual-report holdings (`--report-codes 11011`), a 12-company cap, and a 3-page disclosure discovery cap. Historical backfills should pass explicit seed `--stock-codes`, widen `--report-codes`, or run a separate controlled job rather than querying every listed company.
 
-KRX price integration requires `KRX_AUTH_KEY` and per-service approval. Until the relevant official API IDs are confirmed, price reaction can be calculated from fixture or externally prepared official price rows.
+Price reactions use `kis_proxy` when `KIS_PROXY_URL` is configured. If the proxy is unavailable, the dataset keeps price reaction rows with null metrics and `data_quality="missing"` rather than substituting an unofficial external API.

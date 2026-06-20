@@ -81,9 +81,25 @@ OpenDART may not expose every stock-retirement announcement through one stable s
 2. Uses `tesstkAcqsDspsSttus.change_qy_incnr` as periodic confirmation when available.
 3. Leaves raw XML/HTML parsing as a separate adapter only when a stable official table format is verified.
 
+## kis_proxy Price Data
+
+`kis_proxy` is the project price source for daily stock prices and index returns. It wraps KIS/Naver/Yahoo access behind one server so this repository does not need a paid KRX Open API key.
+
+Required GitHub Actions secrets when price reactions should be populated:
+
+- `KIS_PROXY_URL`: base URL such as `https://example.com:3298`
+- `KIS_PROXY_TOKEN`: optional public proxy token sent as `X-KIS-Proxy-Token`
+
+Endpoints used:
+
+- `GET /v1/stocks/{symbol}/history?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD&period=D&adjusted=true`
+- `GET /v1/indexes/{market}/history?start_date=YYYY-MM-DD&period=D`
+
+The pipeline maps KOSDAQ companies to `market=kosdaq`; all other companies use `market=kospi` for the benchmark return. If `KIS_PROXY_URL` is missing or a proxy request fails, price reaction rows remain present with `data_quality="missing"` and null return fields.
+
 ## KRX Data Marketplace / KRX Open API
 
-KRX is the intended source for trading prices, index returns, and potentially treasury execution details.
+KRX remains an optional future source for trading prices, index returns, and potentially treasury execution details.
 
 - Data Marketplace: <https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd?locale=en>
 - Open API usage guide: <https://openapi.krx.co.kr/contents/OPP/INFO/OPPINFO003.jsp>
@@ -98,11 +114,13 @@ Official KRX Open API usage requires:
 
 The KRX page for `유가증권 일별매매정보` states that daily trading data is provided from 2010-01-04 and that the service was recently modified on 2026-01-16. Similar daily APIs exist for KOSDAQ/KONEX and item master data.
 
-### MVP policy for KRX data
+### Policy for KRX data
 
-- Use official KRX Open API endpoints for daily prices and index returns after service approval.
+- Do not require `KRX_AUTH_KEY` for the scheduled workflow.
+- Use `kis_proxy` for price reactions.
+- Use official KRX Open API endpoints only if service approval becomes available later.
 - Do not build production scraping against internal web UI calls until terms, robots policy, and stability are confirmed.
-- Keep `scripts/buybacks/fetch_krx_prices.py` as the official API adapter and price-reaction calculation module.
+- Keep `scripts/buybacks/fetch_krx_prices.py` as the price-source adapter and price-reaction calculation module.
 - Keep treasury execution detail as fixture/adapter-only until an official endpoint or license path is confirmed.
 
 Target KRX datasets to confirm:
@@ -131,6 +149,7 @@ The frontend reads only:
 - `generated_at`
 - `dart_available`
 - `krx_available`
+- `price_source`
 - `companies_count`
 - `events_count`
 - `holdings_count`

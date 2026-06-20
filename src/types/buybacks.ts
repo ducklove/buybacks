@@ -91,6 +91,7 @@ export interface DataStatus {
   generated_at: string;
   dart_available: boolean;
   krx_available: boolean;
+  price_source?: string;
   companies_count: number;
   events_count: number;
   holdings_count: number;
@@ -120,4 +121,3 @@ export interface EnrichedEvent extends BuybackEvent {
   holding?: TreasuryHoldingSnapshot;
   priceReaction?: PriceReaction;
 }
-

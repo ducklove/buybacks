@@ -1,4 +1,4 @@
-from scripts.buybacks.fetch_krx_prices import PriceRow, calculate_price_reaction
+from scripts.buybacks.fetch_krx_prices import PriceRow, calculate_price_reaction, coerce_price_row
 
 
 def make_prices(length=70):
@@ -38,3 +38,16 @@ def test_calculate_price_reaction_marks_missing_without_future_prices():
     assert reaction.data_quality == "missing"
     assert reaction.close_t0 is None
 
+
+def test_coerce_price_row_accepts_kis_proxy_history_fields():
+    row = coerce_price_row(
+        {
+            "stck_bsop_date": "20260620",
+            "stck_clpr": "71,200",
+            "acml_vol": "12,345,678",
+        }
+    )
+
+    assert row.date == "2026-06-20"
+    assert row.close == 71200
+    assert row.volume == 12_345_678

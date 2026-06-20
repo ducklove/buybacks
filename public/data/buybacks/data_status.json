@@ -2,6 +2,7 @@
   "generated_at": "2026-06-20T11:39:36.640467+00:00",
   "dart_available": false,
   "krx_available": false,
+  "price_source": "fixture",
   "companies_count": 6,
   "events_count": 8,
   "holdings_count": 6,
@@ -9,6 +10,6 @@
   "warnings": [
     "Fixture data for development and static build verification only.",
     "Set DART_API_KEY in local or GitHub Actions to collect live OpenDART data.",
-    "KRX treasury execution details are adapter-only until official API/licensing is confirmed."
+    "Set KIS_PROXY_URL to calculate price reactions from kis_proxy."
   ]
 }

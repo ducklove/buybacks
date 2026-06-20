@@ -5,6 +5,7 @@ import json
 import os
 import sys
 from dataclasses import dataclass
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Iterable
 from urllib.parse import urlencode
@@ -12,10 +13,10 @@ from urllib.request import Request, urlopen
 
 if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parents[2]))
-    from scripts.buybacks.models import PriceReaction
+    from scripts.buybacks.models import BuybackEvent, Company, PriceReaction
     from scripts.buybacks.parsers import normalize_date, parse_number
 else:
-    from .models import PriceReaction
+    from .models import BuybackEvent, Company, PriceReaction
     from .parsers import normalize_date, parse_number
 
 
@@ -44,6 +45,98 @@ class KRXPriceClient:
         request = Request(url, headers={"AUTH_KEY": self.auth_key, "User-Agent": "value-invest-buybacks/0.1"})
         with urlopen(request, timeout=self.timeout) as response:
             return json.loads(response.read().decode("utf-8"))
+
+
+class KISProxyPriceClient:
+    def __init__(self, base_url: str, token: str = "", timeout: float = 12.0) -> None:
+        self.base_url = base_url.rstrip("/")
+        self.token = token
+        self.timeout = timeout
+
+    def request_json(self, path: str, params: dict[str, str]) -> dict:
+        url = f"{self.base_url}{path}?{urlencode(params)}"
+        headers = {"User-Agent": "value-invest-buybacks/0.1"}
+        if self.token:
+            headers["X-KIS-Proxy-Token"] = self.token
+        request = Request(url, headers=headers)
+        with urlopen(request, timeout=self.timeout) as response:
+            return json.loads(response.read().decode("utf-8"))
+
+    def stock_history(self, stock_code: str, start_date: date, end_date: date) -> list[dict]:
+        payload = self.request_json(
+            f"/v1/stocks/{stock_code}/history",
+            {
+                "start_date": start_date.isoformat(),
+                "end_date": end_date.isoformat(),
+                "period": "D",
+                "adjusted": "true",
+            },
+        )
+        return payload.get("items", [])
+
+    def index_history(self, market: str, start_date: date) -> list[dict]:
+        payload = self.request_json(
+            f"/v1/indexes/{kis_proxy_index_market(market)}/history",
+            {
+                "start_date": start_date.isoformat(),
+                "period": "D",
+            },
+        )
+        return payload.get("items", [])
+
+
+def calculate_kis_proxy_price_reactions(
+    events: Iterable[BuybackEvent],
+    companies: Iterable[Company],
+    base_url: str,
+    token: str = "",
+) -> tuple[list[PriceReaction], list[str]]:
+    client = KISProxyPriceClient(base_url=base_url, token=token)
+    event_list = list(events)
+    company_by_stock = {company.stock_code: company for company in companies}
+    events_by_stock: dict[str, list[BuybackEvent]] = {}
+    for event in event_list:
+        events_by_stock.setdefault(event.stock_code, []).append(event)
+
+    warnings: list[str] = []
+    stock_prices: dict[str, list[PriceRow]] = {}
+    market_prices: dict[str, list[PriceRow]] = {}
+
+    for stock_code, stock_events in events_by_stock.items():
+        company = company_by_stock.get(stock_code)
+        market = company.market if company else "OTHER"
+        start_date, end_date = price_window(stock_events)
+        try:
+            stock_prices[stock_code] = [coerce_price_row(row) for row in client.stock_history(stock_code, start_date, end_date)]
+        except Exception as exc:  # noqa: BLE001 - live price enrichment should not break DART data.
+            warnings.append(f"kis_proxy stock history failed for {stock_code}: {exc}")
+            stock_prices[stock_code] = []
+        index_market = kis_proxy_index_market(market)
+        if index_market not in market_prices:
+            try:
+                market_prices[index_market] = [coerce_price_row(row) for row in client.index_history(market, start_date)]
+            except Exception as exc:  # noqa: BLE001
+                warnings.append(f"kis_proxy index history failed for {index_market}: {exc}")
+                market_prices[index_market] = []
+
+    reactions: list[PriceReaction] = []
+    for event in event_list:
+        company = company_by_stock.get(event.stock_code)
+        index_market = kis_proxy_index_market(company.market if company else "OTHER")
+        prices = stock_prices.get(event.stock_code, [])
+        if not prices:
+            reactions.append(missing_reaction(event.event_id, event.stock_code, event.disclosure_date))
+            continue
+        reactions.append(
+            calculate_price_reaction(
+                event.event_id,
+                event.stock_code,
+                event.disclosure_date,
+                prices,
+                market_prices.get(index_market) or None,
+            )
+        )
+    return reactions, warnings
 
 
 def calculate_price_reaction(
@@ -96,9 +189,28 @@ def calculate_price_reaction(
 def coerce_price_row(row: PriceRow | dict) -> PriceRow:
     if isinstance(row, PriceRow):
         return row
-    row_date = normalize_date(row.get("date") or row.get("basDd") or row.get("TRD_DD"))
-    close = parse_number(row.get("close") or row.get("clpr") or row.get("CLSPRC"))
-    volume = parse_number(row.get("volume") or row.get("trqu") or row.get("ACC_TRDVOL"))
+    row_date = normalize_date(
+        row.get("date")
+        or row.get("basDd")
+        or row.get("TRD_DD")
+        or row.get("stck_bsop_date")
+        or row.get("datetime")
+    )
+    close = parse_number(
+        row.get("close")
+        or row.get("clpr")
+        or row.get("CLSPRC")
+        or row.get("stck_clpr")
+        or row.get("bstp_nmix_prpr")
+        or row.get("current_price")
+    )
+    volume = parse_number(
+        row.get("volume")
+        or row.get("trqu")
+        or row.get("ACC_TRDVOL")
+        or row.get("acml_vol")
+        or row.get("cntg_vol")
+    )
     if row_date is None or close is None:
         raise ValueError(f"invalid price row: {row}")
     return PriceRow(row_date, float(close), float(volume) if volume is not None else None)
@@ -116,6 +228,22 @@ def calculate_market_return(
     if start_index is None or start_index + offset >= len(rows):
         return None
     return rows[start_index + offset].close / rows[start_index].close - 1
+
+
+def price_window(events: list[BuybackEvent]) -> tuple[date, date]:
+    dates = [parse_iso_date(event.disclosure_date) for event in events]
+    start_date = min(dates) - timedelta(days=10)
+    end_date = min(max(dates) + timedelta(days=140), date.today())
+    return start_date, end_date
+
+
+def parse_iso_date(value: str) -> date:
+    normalized = normalize_date(value) or value
+    return datetime.strptime(normalized, "%Y-%m-%d").date()
+
+
+def kis_proxy_index_market(market: str) -> str:
+    return "kosdaq" if market == "KOSDAQ" else "kospi"
 
 
 def max_drawdown(rows: list[PriceRow], base_close: float) -> float | None:
@@ -163,12 +291,12 @@ def main() -> None:
     parser.add_argument("--fixtures", type=Path, default=Path("data/fixtures/buybacks/price_reactions.json"))
     parser.add_argument("--output", type=Path, default=Path("public/data/buybacks/price_reactions.json"))
     args = parser.parse_args()
-    if not os.environ.get("KRX_AUTH_KEY"):
+    if not os.environ.get("KIS_PROXY_URL"):
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(args.fixtures.read_text(encoding="utf-8"), encoding="utf-8")
-        print("KRX_AUTH_KEY not set; copied fixture price reactions")
+        print("KIS_PROXY_URL not set; copied fixture price reactions")
         return
-    print("KRX_AUTH_KEY is set, but treasury execution mapping is adapter-only until official API IDs are confirmed.")
+    print("Use build_buybacks_dataset.py to calculate event-specific reactions from kis_proxy.")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(args.fixtures.read_text(encoding="utf-8"), encoding="utf-8")
 

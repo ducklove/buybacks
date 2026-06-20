@@ -9,19 +9,19 @@ export function DataStatusBanner({ status }: DataStatusBannerProps) {
     dateStyle: "medium",
     timeStyle: "short"
   }).format(new Date(status.generated_at));
+  const priceSource = status.price_source ?? (status.krx_available ? "krx" : "missing");
 
   return (
-    <aside className="status-banner" aria-label="데이터 갱신 상태">
+    <aside className="status-banner" aria-label="Data refresh status">
       <div>
         <span className="status-dot" data-active={status.dart_available} />
-        DART {status.dart_available ? "연결" : "fixture"}
+        DART {status.dart_available ? "live" : "fixture"}
       </div>
       <div>
-        <span className="status-dot" data-active={status.krx_available} />
-        KRX {status.krx_available ? "연결" : "대기"}
+        <span className="status-dot" data-active={priceSource !== "missing"} />
+        Price {priceSource}
       </div>
-      <div>기준 {generatedAt}</div>
+      <div>Updated {generatedAt}</div>
     </aside>
   );
 }
-
