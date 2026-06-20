@@ -45,6 +45,8 @@ jobs:
         timeout-minutes: 60
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_RETRIES: "3"
+          DART_TIMEOUT_SECONDS: "30"
           KIS_PROXY_URL: ${{ secrets.KIS_PROXY_URL }}
           KIS_PROXY_TOKEN: ${{ secrets.KIS_PROXY_TOKEN }}
         run: >
