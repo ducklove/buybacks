@@ -159,6 +159,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         years=years,
         raw_dir=raw_dir,
         report_codes=report_codes,
+        include_treasury_tables=args.holding_source == "treasury_tables",
     )
     warnings.extend(holding_warnings)
 
@@ -182,6 +183,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
             *warnings,
             f"OpenDART disclosure discovery window: {disclosure_start} to {args.end}.",
             f"OpenDART holding scan scope: {len(holding_companies)} companies.",
+            f"OpenDART holding scan source: {args.holding_source}.",
             "Price reactions use kis_proxy when configured; otherwise they remain missing.",
         ],
     }
@@ -208,6 +210,12 @@ def main() -> None:
         "--holding-stock-codes",
         default="ALL",
         help="Holding scan scope: ALL, EVENTS, or comma-separated stock codes.",
+    )
+    parser.add_argument(
+        "--holding-source",
+        choices=["stock_totals", "treasury_tables"],
+        default="stock_totals",
+        help="stock_totals stores total and treasury share counts with fewer DART requests.",
     )
     parser.add_argument("--start", default="")
     parser.add_argument("--end", default=datetime.now().strftime("%Y%m%d"))

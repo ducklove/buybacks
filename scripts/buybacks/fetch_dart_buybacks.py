@@ -131,6 +131,7 @@ def collect_dart_holding_snapshots(
     years: Iterable[int],
     raw_dir: Path | None = None,
     report_codes: Iterable[str] | None = None,
+    include_treasury_tables: bool = True,
 ) -> tuple[list[TreasuryHoldingSnapshot], list[str]]:
     client = OpenDartClient(api_key, raw_dir=raw_dir)
     company_list = list(companies)
@@ -147,6 +148,7 @@ def collect_dart_holding_snapshots(
             company,
             years_to_fetch,
             report_codes_to_fetch,
+            include_treasury_tables=include_treasury_tables,
         )
         holdings.extend(company_holdings)
         warnings.extend(holding_warnings)
@@ -159,6 +161,7 @@ def collect_company_holding_snapshots(
     company: Company,
     years: Iterable[int],
     report_codes: Iterable[str],
+    include_treasury_tables: bool = True,
 ) -> tuple[list[TreasuryHoldingSnapshot], list[str]]:
     holdings: list[TreasuryHoldingSnapshot] = []
     warnings: list[str] = []
@@ -166,24 +169,25 @@ def collect_company_holding_snapshots(
     for year in years:
         for report_code in report_codes:
             rows: list[dict] = []
-            try:
-                data = client.request_json(
-                    "tesstkAcqsDspsSttus.json",
-                    {
-                        "corp_code": company.corp_code,
-                        "bsns_year": str(year),
-                        "reprt_code": report_code,
-                    },
-                )
-                rows = data.get("list", [])
-                for item in rows:
-                    apply_market_from_item(company, item)
-            except OpenDartNoData:
-                rows = []
-            except Exception as exc:  # noqa: BLE001
-                warning = f"{company.stock_code} holdings {year}/{report_code} failed: {exc}"
-                LOGGER.warning(warning)
-                warnings.append(warning)
+            if include_treasury_tables:
+                try:
+                    data = client.request_json(
+                        "tesstkAcqsDspsSttus.json",
+                        {
+                            "corp_code": company.corp_code,
+                            "bsns_year": str(year),
+                            "reprt_code": report_code,
+                        },
+                    )
+                    rows = data.get("list", [])
+                    for item in rows:
+                        apply_market_from_item(company, item)
+                except OpenDartNoData:
+                    rows = []
+                except Exception as exc:  # noqa: BLE001
+                    warning = f"{company.stock_code} holdings {year}/{report_code} failed: {exc}"
+                    LOGGER.warning(warning)
+                    warnings.append(warning)
 
             stock_totals: list[dict] = []
             try:

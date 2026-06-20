@@ -1,4 +1,5 @@
 from scripts.buybacks.fetch_dart_buybacks import (
+    collect_company_holding_snapshots,
     dedupe_holdings,
     normalize_decision_event,
     normalize_disclosure_events,
@@ -6,6 +7,7 @@ from scripts.buybacks.fetch_dart_buybacks import (
     normalize_holding_snapshot,
     normalize_stock_total_snapshots,
 )
+from scripts.buybacks.models import Company
 from scripts.buybacks.parsers import classify_event_type, normalize_date, parse_number, parse_ratio_percent
 
 
@@ -205,6 +207,42 @@ def test_stock_total_snapshot_stores_total_and_treasury_share_counts():
     assert snapshots[0].issued_shares == 1000
     assert snapshots[0].floating_shares == 885
     assert snapshots[0].treasury_ratio == 0.115
+
+
+def test_collect_holding_snapshots_can_use_stock_totals_only():
+    calls = []
+
+    class FakeClient:
+        def request_json(self, endpoint, params):
+            calls.append(endpoint)
+            assert endpoint == "stockTotqySttus.json"
+            return {
+                "list": [
+                    {
+                        "corp_code": params["corp_code"],
+                        "corp_name": "Samsung Electronics",
+                        "se": "\uBCF4\uD1B5\uC8FC",
+                        "stlm_dt": "2025-12-31",
+                        "istc_totqy": "1,000",
+                        "tesstk_co": "115",
+                        "distb_stock_co": "885",
+                    }
+                ]
+            }
+
+    company = Company("00126380", "005930", "Samsung Electronics", "KOSPI", None, "2026-06-20")
+    snapshots, warnings = collect_company_holding_snapshots(
+        FakeClient(),
+        company,
+        [2025],
+        ["11011"],
+        include_treasury_tables=False,
+    )
+
+    assert calls == ["stockTotqySttus.json"]
+    assert warnings == []
+    assert snapshots[0].ending_qty == 115
+    assert snapshots[0].issued_shares == 1000
 
 
 def test_holding_rows_ignore_placeholder_stock_kind_duplicates():
