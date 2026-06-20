@@ -14,13 +14,13 @@ if __package__ in {None, ""}:
     from scripts.buybacks.fetch_dart_buybacks import collect_dart_dataset, fetch_buyback_disclosures
     from scripts.buybacks.fetch_krx_prices import missing_reaction
     from scripts.buybacks.models import Company, to_jsonable
-    from scripts.buybacks.parsers import market_from_corp_cls
+    from scripts.buybacks.parsers import market_from_corp_cls, normalize_date
 else:
     from .fetch_corp_codes import fetch_corp_codes
     from .fetch_dart_buybacks import collect_dart_dataset, fetch_buyback_disclosures
     from .fetch_krx_prices import missing_reaction
     from .models import Company, to_jsonable
-    from .parsers import market_from_corp_cls
+    from .parsers import market_from_corp_cls, normalize_date
 
 DATA_FILES = [
     "companies.json",
@@ -55,10 +55,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     fixture_dir = Path(args.fixture_dir)
     warnings: list[str] = []
     raw_dir = Path(args.raw_dir)
-    print("fetching OpenDART corp code master...", flush=True)
-    all_companies = fetch_corp_codes(api_key, raw_dir / "corp_codes.json")
-    company_by_corp = {company.corp_code: company for company in all_companies}
-    company_by_stock = {company.stock_code: company for company in all_companies}
+    stock_codes = parse_stock_codes(args.stock_codes)
 
     disclosure_start = args.start or rolling_start_yyyymmdd(args.end, 89)
     if days_between(disclosure_start, args.end) > 92:
@@ -82,18 +79,22 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     )
     warnings.extend(disclosure_warnings)
 
-    for item in disclosures:
-        company = company_by_corp.get(str(item.get("corp_code") or ""))
-        if company:
-            market = market_from_corp_cls(item.get("corp_cls"))
-            if market != "OTHER":
-                company.market = market
-
-    stock_codes = parse_stock_codes(args.stock_codes)
-    candidate_corps = {str(item.get("corp_code") or "") for item in disclosures}
-    candidate_companies = [company_by_corp[corp_code] for corp_code in candidate_corps if corp_code in company_by_corp]
     if stock_codes is not None:
+        print("fetching OpenDART corp code master for seed stock codes...", flush=True)
+        all_companies = fetch_corp_codes(api_key, raw_dir / "corp_codes.json")
+        company_by_corp = {company.corp_code: company for company in all_companies}
+        company_by_stock = {company.stock_code: company for company in all_companies}
+        for item in disclosures:
+            company = company_by_corp.get(str(item.get("corp_code") or ""))
+            if company:
+                market = market_from_corp_cls(item.get("corp_cls"))
+                if market != "OTHER":
+                    company.market = market
+        candidate_corps = {str(item.get("corp_code") or "") for item in disclosures}
+        candidate_companies = [company_by_corp[corp_code] for corp_code in candidate_corps if corp_code in company_by_corp]
         candidate_companies.extend(company_by_stock[code] for code in stock_codes if code in company_by_stock)
+    else:
+        candidate_companies = companies_from_disclosures(disclosures)
 
     companies = dedupe_companies(candidate_companies)
     if args.max_companies and len(companies) > args.max_companies:
@@ -184,6 +185,26 @@ def parse_stock_codes(value: str) -> set[str] | None:
     if value.strip().upper() == "ALL":
         return None
     return {part.strip() for part in value.split(",") if part.strip()}
+
+
+def companies_from_disclosures(disclosures: list[dict]) -> list[Company]:
+    companies: list[Company] = []
+    for item in disclosures:
+        stock_code = str(item.get("stock_code") or "").strip()
+        corp_code = str(item.get("corp_code") or "").strip()
+        if len(stock_code) != 6 or not corp_code:
+            continue
+        companies.append(
+            Company(
+                corp_code=corp_code,
+                stock_code=stock_code,
+                corp_name=str(item.get("corp_name") or "").strip(),
+                market=market_from_corp_cls(item.get("corp_cls")),
+                sector=None,
+                last_updated=normalize_date(item.get("rcept_dt")) or str(item.get("rcept_dt") or ""),
+            )
+        )
+    return dedupe_companies(companies)
 
 
 def dedupe_companies(companies: list[Company]) -> list[Company]:
