@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { EnrichedEvent } from "../types/buybacks";
 import {
+  DATA_QUALITY_LABELS,
   EVENT_TYPE_LABELS,
   dartUrl,
   formatKRW,
@@ -8,6 +9,7 @@ import {
   formatPercent,
   formatSignedPercent
 } from "../utils/format";
+import { displayReaction, displayReactionValue } from "../utils/priceReactions";
 
 interface EventTableProps {
   events: EnrichedEvent[];
@@ -15,7 +17,7 @@ interface EventTableProps {
   onSelectStock: (stockCode: string) => void;
 }
 
-type SortKey = "date" | "company" | "amount" | "return20d";
+type SortKey = "date" | "company" | "amount" | "reaction";
 
 export function EventTable({ events, selectedStockCode, onSelectStock }: EventTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>("date");
@@ -29,7 +31,7 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
       if (sortKey === "amount") {
         return direction * ((a.planned_amount_krw ?? -1) - (b.planned_amount_krw ?? -1));
       }
-      return direction * ((a.priceReaction?.return_20d ?? -99) - (b.priceReaction?.return_20d ?? -99));
+      return direction * ((displayReactionValue(a.priceReaction) ?? -99) - (displayReactionValue(b.priceReaction) ?? -99));
     });
     return sorted;
   }, [ascending, events, sortKey]);
@@ -69,8 +71,8 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
               <th>예정주식수</th>
               <th>목적</th>
               <th>보유비율</th>
-              <SortableHeader active={sortKey === "return20d"} onClick={() => changeSort("return20d")}>
-                +20D
+              <SortableHeader active={sortKey === "reaction"} onClick={() => changeSort("reaction")}>
+                가격반응
               </SortableHeader>
               <th>DART</th>
             </tr>
@@ -107,7 +109,9 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                   </td>
                   <td className="purpose-cell">{event.purpose ?? "-"}</td>
                   <td>{formatPercent(event.holding?.treasury_ratio ?? event.holding_before_ratio_common)}</td>
-                  <td>{formatSignedPercent(event.priceReaction?.return_20d)}</td>
+                  <td>
+                    <PriceReactionCell event={event} />
+                  </td>
                   <td>
                     {url ? (
                       <a href={url} target="_blank" rel="noreferrer">
@@ -149,6 +153,18 @@ function ShareBreakdown({ event }: { event: EnrichedEvent }) {
       {event.planned_shares_other !== null && (
         <small>기타 {formatNumber(event.planned_shares_other)}</small>
       )}
+    </div>
+  );
+}
+
+function PriceReactionCell({ event }: { event: EnrichedEvent }) {
+  const reaction = displayReaction(event.priceReaction);
+  return (
+    <div className="stacked-value">
+      <strong>{formatSignedPercent(reaction.value)}</strong>
+      <small>
+        {reaction.label} · {DATA_QUALITY_LABELS[reaction.quality]}
+      </small>
     </div>
   );
 }

@@ -13,6 +13,7 @@ import {
   formatPercent,
   formatSignedPercent
 } from "../utils/format";
+import { displayReaction } from "../utils/priceReactions";
 
 interface CompanyDetailProps {
   companies: Company[];
@@ -154,13 +155,18 @@ export function CompanyDetail({
         <h3>공시 후 가격 반응</h3>
         {companyReactions.length > 0 ? (
           <div className="reaction-list">
-            {companyReactions.map((reaction) => (
-              <div key={reaction.event_id}>
-                <span>{reaction.event_date}</span>
-                <strong>{formatSignedPercent(reaction.return_20d)}</strong>
-                <small>{DATA_QUALITY_LABELS[reaction.data_quality]}</small>
-              </div>
-            ))}
+            {companyReactions.map((reaction) => {
+              const display = displayReaction(reaction);
+              return (
+                <div key={reaction.event_id}>
+                  <span>{reaction.event_date}</span>
+                  <strong>{formatSignedPercent(display.value)}</strong>
+                  <small>
+                    {display.label} · {DATA_QUALITY_LABELS[display.quality]}
+                  </small>
+                </div>
+              );
+            })}
           </div>
         ) : (
           <p className="empty-copy">가격 반응 데이터가 아직 없습니다.</p>

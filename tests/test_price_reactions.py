@@ -39,6 +39,19 @@ def test_calculate_price_reaction_marks_missing_without_future_prices():
     assert reaction.close_t0 is None
 
 
+def test_calculate_price_reaction_marks_partial_with_short_window():
+    reaction = calculate_price_reaction(
+        event_id="event-3",
+        stock_code="005930",
+        event_date="2026-03-17",
+        stock_prices=make_prices(),
+    )
+    assert reaction.close_t0 == 179
+    assert reaction.return_1d is not None
+    assert reaction.return_20d is None
+    assert reaction.data_quality == "partial"
+
+
 def test_coerce_price_row_accepts_kis_proxy_history_fields():
     row = coerce_price_row(
         {

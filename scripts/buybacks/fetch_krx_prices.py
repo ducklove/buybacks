@@ -160,30 +160,72 @@ def calculate_price_reaction(
             return None
         return prices[target_index].close / base.close - 1
 
+    return_1d = ret(1)
+    return_5d = ret(5)
     return_20d = ret(20)
+    return_60d = ret(60)
+    max_drawdown_20d = max_drawdown(prices[start_index : start_index + 21], base.close)
+    max_drawdown_60d = max_drawdown(prices[start_index : start_index + 61], base.close)
     market_return_20d = calculate_market_return(market_prices, event_date_norm, 20)
-    quality = "complete" if ret(60) is not None else "partial"
-    if return_20d is None:
-        quality = "missing"
+    volume_change_20d = volume_change(prices, start_index, 20)
+    quality = price_data_quality(
+        close_t0=base.close,
+        return_1d=return_1d,
+        return_5d=return_5d,
+        return_20d=return_20d,
+        return_60d=return_60d,
+        max_drawdown_20d=max_drawdown_20d,
+        max_drawdown_60d=max_drawdown_60d,
+        volume_change_20d=volume_change_20d,
+    )
 
     return PriceReaction(
         event_id=event_id,
         stock_code=stock_code,
         event_date=event_date_norm,
         close_t0=base.close,
-        return_1d=ret(1),
-        return_5d=ret(5),
+        return_1d=return_1d,
+        return_5d=return_5d,
         return_20d=return_20d,
-        return_60d=ret(60),
-        max_drawdown_20d=max_drawdown(prices[start_index : start_index + 21], base.close),
-        max_drawdown_60d=max_drawdown(prices[start_index : start_index + 61], base.close),
+        return_60d=return_60d,
+        max_drawdown_20d=max_drawdown_20d,
+        max_drawdown_60d=max_drawdown_60d,
         market_return_20d=market_return_20d,
         abnormal_return_20d=return_20d - market_return_20d
         if return_20d is not None and market_return_20d is not None
         else None,
-        volume_change_20d=volume_change(prices, start_index, 20),
+        volume_change_20d=volume_change_20d,
         data_quality=quality,  # type: ignore[arg-type]
     )
+
+
+def price_data_quality(
+    *,
+    close_t0: float | None,
+    return_1d: float | None,
+    return_5d: float | None,
+    return_20d: float | None,
+    return_60d: float | None,
+    max_drawdown_20d: float | None,
+    max_drawdown_60d: float | None,
+    volume_change_20d: float | None,
+) -> str:
+    if return_60d is not None:
+        return "complete"
+    if any(
+        value is not None
+        for value in [
+            close_t0,
+            return_1d,
+            return_5d,
+            return_20d,
+            max_drawdown_20d,
+            max_drawdown_60d,
+            volume_change_20d,
+        ]
+    ):
+        return "partial"
+    return "missing"
 
 
 def coerce_price_row(row: PriceRow | dict) -> PriceRow:
