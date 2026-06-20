@@ -31,7 +31,7 @@ def parse_corp_code_zip(payload: bytes) -> list[Company]:
     companies: list[Company] = []
     for item in root.findall("list"):
         stock_code = text(item, "stock_code")
-        if not stock_code:
+        if not stock_code or len(stock_code) != 6 or not stock_code.isdigit():
             continue
         companies.append(
             Company(
