@@ -31,7 +31,7 @@ export function DashboardCharts({ events, holdings, reactions }: DashboardCharts
       <ChartPanel title="보유비율 상위 종목" summary="최근 정기보고서 기준 자기주식 보유비율입니다.">
         <HorizontalBars data={topHoldings(holdings, 8)} percent />
       </ChartPanel>
-      <ChartPanel title="+20D 수익률 분포" summary="가격 데이터가 있는 이벤트만 집계합니다.">
+      <ChartPanel title="+20D 지수대비 분포" summary="시장지수 대비 수익률이 있는 이벤트만 집계합니다.">
         <VerticalBars data={returnDistribution(reactions)} compact />
       </ChartPanel>
     </section>
@@ -108,4 +108,3 @@ function DistributionList({ data }: { data: ChartDatum[] }) {
     </div>
   );
 }
-

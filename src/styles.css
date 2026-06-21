@@ -252,6 +252,8 @@ label {
 
 select,
 input {
+  width: 100%;
+  min-width: 0;
   min-height: 42px;
   border: 1px solid var(--border-strong);
   border-radius: 6px;
@@ -452,6 +454,12 @@ a:focus-visible {
   font-weight: 700;
 }
 
+.hbar-row > span,
+.distribution-row > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .hbar-track {
   height: 10px;
   overflow: hidden;
@@ -492,6 +500,15 @@ meter {
   justify-content: space-between;
   gap: 18px;
   margin-bottom: 14px;
+}
+
+.panel-header > div {
+  min-width: 0;
+}
+
+.detail-panel .panel-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .panel-header > span {
@@ -625,12 +642,17 @@ tbody tr:last-child td {
   line-height: 1.35;
 }
 
+.reaction-value {
+  min-width: 118px;
+}
+
 .muted {
   color: var(--muted);
 }
 
 .compact-select {
-  width: min(260px, 100%);
+  width: 100%;
+  min-width: 0;
 }
 
 .company-heading {
@@ -648,7 +670,8 @@ tbody tr:last-child td {
 }
 
 .company-heading strong {
-  font-size: 24px;
+  font-size: clamp(18px, 2.4vw, 24px);
+  overflow-wrap: anywhere;
 }
 
 .company-heading span {
@@ -713,6 +736,7 @@ tbody tr:last-child td {
 
 .mini-timeline span {
   min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .mini-timeline i {
@@ -761,7 +785,7 @@ tbody tr:last-child td {
 
 .reaction-list div {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: minmax(78px, 0.75fr) minmax(72px, auto) minmax(0, 1.25fr);
   gap: 8px;
   align-items: center;
   border: 1px solid var(--border);
@@ -777,6 +801,8 @@ tbody tr:last-child td {
 .reaction-list small {
   color: var(--muted);
   font-weight: 800;
+  line-height: 1.45;
+  min-width: 0;
 }
 
 .empty-copy {

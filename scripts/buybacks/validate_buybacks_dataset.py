@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-MARKETS = {"KOSPI", "KOSDAQ", "KONEX", "OTHER"}
+MARKETS = {"KOSPI", "KOSDAQ"}
 EVENT_TYPES = {
     "direct_acquisition",
     "direct_disposition",
@@ -100,4 +100,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

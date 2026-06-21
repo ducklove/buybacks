@@ -1,11 +1,13 @@
 from scripts.buybacks.build_buybacks_dataset import (
     companies_from_disclosures,
     dedupe_companies,
+    filter_json_dataset_to_supported_markets,
+    filter_live_dataset_to_supported_markets,
     parse_holding_stock_codes,
     parse_stock_codes,
     select_holding_companies,
 )
-from scripts.buybacks.models import Company
+from scripts.buybacks.models import Company, TreasuryHoldingSnapshot
 
 
 def test_parse_stock_codes_all_uses_disclosure_only_mode():
@@ -41,6 +43,13 @@ def test_companies_from_disclosures_uses_list_rows_without_corp_master():
                 "corp_name": "Unlisted",
                 "stock_code": "",
                 "corp_cls": "E",
+                "rcept_dt": "20260621",
+            },
+            {
+                "corp_code": "00999999",
+                "corp_name": "Konex Company",
+                "stock_code": "123456",
+                "corp_cls": "N",
                 "rcept_dt": "20260621",
             },
         ]
@@ -124,3 +133,71 @@ def test_select_holding_companies_can_limit_to_event_scope():
     )
 
     assert selected == event_companies
+
+
+def holding(stock_code: str) -> TreasuryHoldingSnapshot:
+    return TreasuryHoldingSnapshot(
+        corp_code="00126380",
+        stock_code=stock_code,
+        corp_name="Company",
+        as_of_date="2025-12-31",
+        report_year=2025,
+        report_code="11011",
+        stock_kind="common",
+        beginning_qty=None,
+        acquired_qty=None,
+        disposed_qty=None,
+        retired_qty=None,
+        ending_qty=10,
+        issued_shares=100,
+        treasury_ratio=0.1,
+        floating_shares=90,
+        source_rcept_no=None,
+    )
+
+
+def test_filter_live_dataset_keeps_supported_markets_with_data_only():
+    companies = [
+        Company("00126380", "005930", "Samsung Electronics", "KOSPI", None, "2026-06-20"),
+        Company("00620715", "137080", "Narae Nanotech", "KOSDAQ", None, "2026-06-16"),
+        Company("00999999", "123456", "Konex Company", "KONEX", None, "2026-06-16"),
+        Company("00888888", "999999", "No Data", "KOSPI", None, "2026-06-16"),
+    ]
+
+    filtered_companies, filtered_events, filtered_holdings = filter_live_dataset_to_supported_markets(
+        companies,
+        [],
+        [holding("005930"), holding("137080"), holding("123456")],
+    )
+
+    assert filtered_events == []
+    assert [company.stock_code for company in filtered_companies] == ["005930", "137080"]
+    assert [snapshot.stock_code for snapshot in filtered_holdings] == ["005930", "137080"]
+
+
+def test_filter_json_dataset_removes_unsupported_markets_and_orphan_reactions():
+    companies = [
+        {"stock_code": "005930", "market": "KOSPI"},
+        {"stock_code": "123456", "market": "OTHER"},
+    ]
+    events = [
+        {"event_id": "keep", "stock_code": "005930"},
+        {"event_id": "drop", "stock_code": "123456"},
+    ]
+    holdings = [
+        {"stock_code": "005930"},
+        {"stock_code": "123456"},
+    ]
+    reactions = [
+        {"event_id": "keep"},
+        {"event_id": "drop"},
+    ]
+
+    filtered = filter_json_dataset_to_supported_markets(companies, events, holdings, reactions)
+
+    assert filtered == (
+        [{"stock_code": "005930", "market": "KOSPI"}],
+        [{"event_id": "keep", "stock_code": "005930"}],
+        [{"stock_code": "005930"}],
+        [{"event_id": "keep"}],
+    )

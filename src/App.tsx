@@ -50,6 +50,11 @@ function App() {
     () => (dataset ? latestHoldingSnapshots(dataset.holdingSnapshots) : []),
     [dataset]
   );
+  const filteredPriceReactions = useMemo(() => {
+    if (!dataset) return [];
+    const eventIds = new Set(filteredEvents.map((event) => event.event_id));
+    return dataset.priceReactions.filter((reaction) => eventIds.has(reaction.event_id));
+  }, [dataset, filteredEvents]);
   const kpis = useMemo(() => buildKpis(filteredEvents, latestHoldings), [filteredEvents, latestHoldings]);
 
   if (error) {
@@ -99,7 +104,7 @@ function App() {
         <DashboardCharts
           events={filteredEvents}
           holdings={latestHoldings}
-          reactions={dataset.priceReactions}
+          reactions={filteredPriceReactions}
         />
 
         <section className="split-layout">

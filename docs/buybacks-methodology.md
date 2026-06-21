@@ -7,6 +7,7 @@ This MVP is a data exploration tool, not investment advice. It avoids labels suc
 ### Company
 
 Maps OpenDART company identity to the listed stock code used by KRX and the frontend.
+Generated live datasets are restricted to OpenDART market-classified KOSPI/KOSDAQ companies that have at least one event or holding row in the output dataset.
 
 ### BuybackEvent
 
@@ -41,6 +42,8 @@ t0 = first trading day after event_date
 return_Nd = close(t0 + N trading days) / close(t0) - 1
 abnormal_return_20d = return_20d - market_return_20d
 ```
+
+The frontend shows both simple return and index-relative return. Summary cards, sorting, and return distribution charts use `abnormal_return_20d` as the representative return metric.
 
 If trading is suspended, delisted, or the required future window is not available, the metric remains null and `data_quality` becomes `partial` or `missing`.
 
@@ -101,6 +104,6 @@ GitHub Actions live build:
 2. Run `Update buybacks data and deploy Pages`.
 3. The workflow fetches `corpCode.xml`, searches recent major-report disclosures for buyback-related report names, calls structured decision APIs for discovered event companies, scans listed companies for `stockTotqySttus` share-count snapshots, then builds the static Vite site.
 
-The default live discovery window is the last 89 days because OpenDART `list.json` without `corp_code` is limited to roughly three months. The scheduled workflow uses disclosure-discovered companies for event enrichment (`--stock-codes ALL`) and scans all listed companies for the latest annual-report share-count snapshots (`--holding-stock-codes ALL`, `--holding-source stock_totals`, `--report-codes 11011`). This keeps the top holding-ratio chart based on actual treasury-share ratios across the available listed universe instead of only recent disclosure candidates. Historical backfills should widen `--report-codes` or run `--holding-source treasury_tables` in a separate controlled job when acquisition/disposition flow fields are needed.
+The default live discovery window is the last 89 days because OpenDART `list.json` without `corp_code` is limited to roughly three months. The scheduled workflow uses disclosure-discovered companies for event enrichment (`--stock-codes ALL`) and scans all listed companies for the latest annual-report share-count snapshots (`--holding-stock-codes ALL`, `--holding-source stock_totals`, `--report-codes 11011`). The output is then narrowed to KOSPI/KOSDAQ market-classified companies with event or holding rows. This keeps the top holding-ratio chart based on actual treasury-share ratios across the available KOSPI/KOSDAQ universe instead of only recent disclosure candidates. Historical backfills should widen `--report-codes` or run `--holding-source treasury_tables` in a separate controlled job when acquisition/disposition flow fields are needed.
 
 Price reactions use `kis_proxy` when `KIS_PROXY_URL` is configured. If the proxy is unavailable, the dataset keeps price reaction rows with null metrics and `data_quality="missing"` rather than substituting an unofficial external API.

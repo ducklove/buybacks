@@ -11,7 +11,11 @@ import {
   formatSignedPercent
 } from "../utils/format";
 import { marketCapFrom } from "../utils/marketCap";
-import { displayReaction, displayReactionValue } from "../utils/priceReactions";
+import {
+  displayReactionValue,
+  displayRelativeReaction,
+  displaySimpleReaction
+} from "../utils/priceReactions";
 
 interface EventTableProps {
   events: EnrichedEvent[];
@@ -173,13 +177,15 @@ function ShareBreakdown({ event }: { event: EnrichedEvent }) {
 }
 
 function PriceReactionCell({ event }: { event: EnrichedEvent }) {
-  const reaction = displayReaction(event.priceReaction);
+  const relative = displayRelativeReaction(event.priceReaction);
+  const simple = displaySimpleReaction(event.priceReaction);
   return (
-    <div className="stacked-value">
-      <strong>{formatSignedPercent(reaction.value)}</strong>
+    <div className="stacked-value reaction-value">
+      <strong>{formatSignedPercent(relative.value)}</strong>
       <small>
-        {reaction.label} · {DATA_QUALITY_LABELS[reaction.quality]}
+        {relative.label} / {DATA_QUALITY_LABELS[relative.quality]}
       </small>
+      <small>{`\uB2E8\uC21C ${simple.label}: ${formatSignedPercent(simple.value)}`}</small>
     </div>
   );
 }

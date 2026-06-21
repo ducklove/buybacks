@@ -156,9 +156,9 @@ export function buildKpis(events: EnrichedEvent[], holdings: TreasuryHoldingSnap
   const topHolding = [...holdings]
     .filter((holding) => holding.treasury_ratio !== null)
     .sort((a, b) => (b.treasury_ratio ?? 0) - (a.treasury_ratio ?? 0))[0];
-  const averageReturn20d = average(
+  const averageAbnormalReturn20d = average(
     events
-      .map((event) => event.priceReaction?.return_20d ?? null)
+      .map((event) => event.priceReaction?.abnormal_return_20d ?? null)
       .filter((value): value is number => value !== null)
   );
 
@@ -188,9 +188,12 @@ export function buildKpis(events: EnrichedEvent[], holdings: TreasuryHoldingSnap
       tone: "neutral"
     },
     {
-      label: "평균 +20D 수익률",
-      value: averageReturn20d === null ? "-" : `${averageReturn20d > 0 ? "+" : ""}${(averageReturn20d * 100).toFixed(2)}%`,
-      detail: "가격 데이터가 있는 이벤트 평균",
+      label: "평균 +20D 지수대비",
+      value:
+        averageAbnormalReturn20d === null
+          ? "-"
+          : `${averageAbnormalReturn20d > 0 ? "+" : ""}${(averageAbnormalReturn20d * 100).toFixed(2)}%`,
+      detail: "시장지수 대비 초과수익률 평균",
       tone: "teal"
     }
   ];
@@ -245,9 +248,9 @@ export function returnDistribution(reactions: PriceReaction[]): ChartDatum[] {
     label: bucket.label,
     value: reactions.filter(
       (reaction) =>
-        reaction.return_20d !== null &&
-        reaction.return_20d >= bucket.min &&
-        reaction.return_20d < bucket.max
+        reaction.abnormal_return_20d !== null &&
+        reaction.abnormal_return_20d >= bucket.min &&
+        reaction.abnormal_return_20d < bucket.max
     ).length
   }));
 }
@@ -260,5 +263,5 @@ function average(values: number[]): number | null {
 const acquisitionTypes = new Set<EventType>(["direct_acquisition", "trust_contract_start"]);
 
 export function marketOptions(): Array<Market | "ALL"> {
-  return ["ALL", "KOSPI", "KOSDAQ", "KONEX", "OTHER"];
+  return ["ALL", "KOSPI", "KOSDAQ"];
 }

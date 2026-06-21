@@ -6,7 +6,19 @@ interface DisplayReaction {
   quality: DataQuality;
 }
 
-export function displayReaction(reaction: PriceReaction | undefined): DisplayReaction {
+export function displayRelativeReaction(reaction: PriceReaction | undefined): DisplayReaction {
+  if (!reaction) {
+    return { label: "\uC9C0\uC218\uB300\uBE44 +20D", value: null, quality: "missing" };
+  }
+
+  return {
+    label: "\uC9C0\uC218\uB300\uBE44 +20D",
+    value: isUsableNumber(reaction.abnormal_return_20d) ? reaction.abnormal_return_20d : null,
+    quality: reaction.data_quality
+  };
+}
+
+export function displaySimpleReaction(reaction: PriceReaction | undefined): DisplayReaction {
   if (!reaction) {
     return { label: "+20D", value: null, quality: "missing" };
   }
@@ -32,6 +44,14 @@ export function displayReaction(reaction: PriceReaction | undefined): DisplayRea
   };
 }
 
+export function displayReaction(reaction: PriceReaction | undefined): DisplayReaction {
+  return displayRelativeReaction(reaction);
+}
+
 export function displayReactionValue(reaction: PriceReaction | undefined): number | null {
-  return displayReaction(reaction).value;
+  return displayRelativeReaction(reaction).value;
+}
+
+function isUsableNumber(value: number | null | undefined): value is number {
+  return value !== null && value !== undefined && !Number.isNaN(value);
 }

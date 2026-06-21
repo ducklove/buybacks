@@ -3,7 +3,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import shutil
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -17,13 +16,13 @@ if __package__ in {None, ""}:
         fetch_buyback_disclosures,
     )
     from scripts.buybacks.fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
-    from scripts.buybacks.models import BuybackEvent, Company, PriceReaction, to_jsonable
+    from scripts.buybacks.models import BuybackEvent, Company, PriceReaction, TreasuryHoldingSnapshot, to_jsonable
     from scripts.buybacks.parsers import market_from_corp_cls, normalize_date
 else:
     from .fetch_corp_codes import fetch_corp_codes
     from .fetch_dart_buybacks import collect_dart_dataset, collect_dart_holding_snapshots, fetch_buyback_disclosures
     from .fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
-    from .models import BuybackEvent, Company, PriceReaction, to_jsonable
+    from .models import BuybackEvent, Company, PriceReaction, TreasuryHoldingSnapshot, to_jsonable
     from .parsers import market_from_corp_cls, normalize_date
 
 DATA_FILES = [
@@ -32,6 +31,7 @@ DATA_FILES = [
     "holding_snapshots.json",
     "price_reactions.json",
 ]
+SUPPORTED_MARKETS = {"KOSPI", "KOSDAQ"}
 
 
 def load_json(path: Path):
@@ -45,13 +45,25 @@ def write_json(path: Path, payload) -> None:
 
 def copy_fixture_dataset(fixture_dir: Path, output_dir: Path) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
-    for file_name in DATA_FILES:
-        shutil.copyfile(fixture_dir / file_name, output_dir / file_name)
+    companies, events, holdings, reactions = filter_json_dataset_to_supported_markets(
+        load_json(fixture_dir / "companies.json"),
+        load_json(fixture_dir / "events.json"),
+        load_json(fixture_dir / "holding_snapshots.json"),
+        load_json(fixture_dir / "price_reactions.json"),
+    )
+    write_json(output_dir / "companies.json", companies)
+    write_json(output_dir / "events.json", events)
+    write_json(output_dir / "holding_snapshots.json", holdings)
+    write_json(output_dir / "price_reactions.json", reactions)
     status = load_json(fixture_dir / "data_status.json")
     status["generated_at"] = datetime.now(timezone.utc).isoformat()
     status["dart_available"] = False
     status["krx_available"] = False
     status["price_source"] = "fixture"
+    status["companies_count"] = len(companies)
+    status["events_count"] = len(events)
+    status["holdings_count"] = len(holdings)
+    status["price_reactions_count"] = len(reactions)
     write_json(output_dir / "data_status.json", status)
     return status
 
@@ -168,6 +180,15 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         warnings.append("OpenDART returned no live buyback rows for candidate companies; fixture data kept.")
         return copy_fixture_dataset(fixture_dir, output_dir)
 
+    live_companies, events, holdings = filter_live_dataset_to_supported_markets(
+        live_companies,
+        events,
+        holdings,
+    )
+    warnings.append(
+        "Output universe restricted to KOSPI/KOSDAQ OpenDART market-classified companies with event or holding rows."
+    )
+
     price_reactions, price_warnings, price_source = build_price_reactions(args, events, live_companies)
     warnings.extend(price_warnings)
     status = {
@@ -280,12 +301,15 @@ def companies_from_disclosures(disclosures: list[dict]) -> list[Company]:
         corp_code = str(item.get("corp_code") or "").strip()
         if len(stock_code) != 6 or not corp_code:
             continue
+        market = market_from_corp_cls(item.get("corp_cls"))
+        if market not in SUPPORTED_MARKETS:
+            continue
         companies.append(
             Company(
                 corp_code=corp_code,
                 stock_code=stock_code,
                 corp_name=str(item.get("corp_name") or "").strip(),
-                market=market_from_corp_cls(item.get("corp_cls")),
+                market=market,
                 sector=None,
                 last_updated=normalize_date(item.get("rcept_dt")) or str(item.get("rcept_dt") or ""),
             )
@@ -320,6 +344,60 @@ def build_price_reactions(
 
 def missing_price_reactions(events: list[BuybackEvent]) -> list[PriceReaction]:
     return [missing_reaction(event.event_id, event.stock_code, event.disclosure_date) for event in events]
+
+
+def filter_live_dataset_to_supported_markets(
+    companies: list[Company],
+    events: list[BuybackEvent],
+    holdings: list[TreasuryHoldingSnapshot],
+) -> tuple[list[Company], list[BuybackEvent], list[TreasuryHoldingSnapshot]]:
+    supported_stocks = {
+        company.stock_code
+        for company in companies
+        if company.market in SUPPORTED_MARKETS
+    }
+    filtered_events = [event for event in events if event.stock_code in supported_stocks]
+    filtered_holdings = [holding for holding in holdings if holding.stock_code in supported_stocks]
+    data_stocks = {event.stock_code for event in filtered_events} | {
+        holding.stock_code for holding in filtered_holdings
+    }
+    filtered_companies = [
+        company
+        for company in companies
+        if company.market in SUPPORTED_MARKETS and company.stock_code in data_stocks
+    ]
+    return filtered_companies, filtered_events, filtered_holdings
+
+
+def filter_json_dataset_to_supported_markets(
+    companies: list[dict],
+    events: list[dict],
+    holdings: list[dict],
+    reactions: list[dict],
+) -> tuple[list[dict], list[dict], list[dict], list[dict]]:
+    supported_stocks = {
+        str(company.get("stock_code") or "")
+        for company in companies
+        if company.get("market") in SUPPORTED_MARKETS
+    }
+    filtered_events = [
+        event for event in events if str(event.get("stock_code") or "") in supported_stocks
+    ]
+    filtered_holdings = [
+        holding for holding in holdings if str(holding.get("stock_code") or "") in supported_stocks
+    ]
+    event_ids = {event.get("event_id") for event in filtered_events}
+    filtered_reactions = [reaction for reaction in reactions if reaction.get("event_id") in event_ids]
+    data_stocks = {str(event.get("stock_code") or "") for event in filtered_events} | {
+        str(holding.get("stock_code") or "") for holding in filtered_holdings
+    }
+    filtered_companies = [
+        company
+        for company in companies
+        if company.get("market") in SUPPORTED_MARKETS
+        and str(company.get("stock_code") or "") in data_stocks
+    ]
+    return filtered_companies, filtered_events, filtered_holdings, filtered_reactions
 
 
 def dedupe_companies(companies: list[Company], sort_by_name: bool = True) -> list[Company]:

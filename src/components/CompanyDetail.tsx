@@ -16,7 +16,7 @@ import {
 } from "../utils/format";
 import { latestMarketCap } from "../utils/marketCap";
 import { dedupeHoldingTimeline } from "../utils/metrics";
-import { displayReaction } from "../utils/priceReactions";
+import { displayRelativeReaction, displaySimpleReaction } from "../utils/priceReactions";
 
 interface CompanyDetailProps {
   companies: Company[];
@@ -175,13 +175,16 @@ export function CompanyDetail({
         {companyReactions.length > 0 ? (
           <div className="reaction-list">
             {companyReactions.map((reaction) => {
-              const display = displayReaction(reaction);
+              const relative = displayRelativeReaction(reaction);
+              const simple = displaySimpleReaction(reaction);
               return (
                 <div key={reaction.event_id}>
                   <span>{reaction.event_date}</span>
-                  <strong>{formatSignedPercent(display.value)}</strong>
+                  <strong>{formatSignedPercent(relative.value)}</strong>
                   <small>
-                    {display.label} · {DATA_QUALITY_LABELS[display.quality]}
+                    {relative.label} / {DATA_QUALITY_LABELS[relative.quality]}
+                    <br />
+                    {`\uB2E8\uC21C ${simple.label}: ${formatSignedPercent(simple.value)}`}
                   </small>
                 </div>
               );

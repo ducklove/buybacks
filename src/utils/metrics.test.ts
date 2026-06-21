@@ -1,14 +1,42 @@
 import { describe, expect, it } from "vitest";
 import {
   DEFAULT_FILTERS,
+  buildKpis,
   dedupeHoldingTimeline,
   filterEvents,
   latestHoldingSnapshots,
+  marketOptions,
+  returnDistribution,
   topHoldings
 } from "./metrics";
-import type { EnrichedEvent, EventType, TreasuryHoldingSnapshot } from "../types/buybacks";
+import type { EnrichedEvent, EventType, PriceReaction, TreasuryHoldingSnapshot } from "../types/buybacks";
 
-const event = (event_id: string, event_type: EventType): EnrichedEvent => ({
+const priceReaction = (
+  event_id: string,
+  return_20d: number | null,
+  abnormal_return_20d: number | null
+): PriceReaction => ({
+  event_id,
+  stock_code: "005930",
+  event_date: "2026-05-22",
+  close_t0: 100,
+  return_1d: null,
+  return_5d: null,
+  return_20d,
+  return_60d: null,
+  max_drawdown_20d: null,
+  max_drawdown_60d: null,
+  market_return_20d: return_20d !== null && abnormal_return_20d !== null ? return_20d - abnormal_return_20d : null,
+  abnormal_return_20d,
+  volume_change_20d: null,
+  data_quality: "partial"
+});
+
+const event = (
+  event_id: string,
+  event_type: EventType,
+  reaction?: PriceReaction
+): EnrichedEvent => ({
   event_id,
   event_type,
   corp_code: "00126380",
@@ -39,7 +67,8 @@ const event = (event_id: string, event_type: EventType): EnrichedEvent => ({
     market: "KOSPI",
     sector: null,
     last_updated: "2026-06-20"
-  }
+  },
+  priceReaction: reaction
 });
 
 const holding = (
@@ -126,5 +155,38 @@ describe("holding snapshots", () => {
     });
 
     expect(dedupeHoldingTimeline([sparse, complete])).toEqual([complete]);
+  });
+});
+
+describe("return metrics", () => {
+  it("uses index-relative returns for KPI averages and distribution buckets", () => {
+    const reactions = [
+      priceReaction("positive-simple-negative-relative", 0.2, -0.06),
+      priceReaction("negative-simple-positive-relative", -0.2, 0.07)
+    ];
+    const kpis = buildKpis(
+      [
+        event("positive-simple-negative-relative", "direct_acquisition", reactions[0]),
+        event("negative-simple-positive-relative", "direct_acquisition", reactions[1])
+      ],
+      []
+    );
+
+    expect(kpis[kpis.length - 1]).toMatchObject({
+      label: "평균 +20D 지수대비",
+      value: "+0.50%"
+    });
+    expect(returnDistribution(reactions)).toEqual([
+      { label: "< -10%", value: 0 },
+      { label: "-10~-5%", value: 1 },
+      { label: "-5~0%", value: 0 },
+      { label: "0~5%", value: 0 },
+      { label: "5~10%", value: 1 },
+      { label: "> 10%", value: 0 }
+    ]);
+  });
+
+  it("offers only KOSPI and KOSDAQ market filters", () => {
+    expect(marketOptions()).toEqual(["ALL", "KOSPI", "KOSDAQ"]);
   });
 });
