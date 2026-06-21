@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { latestMarketCap, marketCapFrom } from "./marketCap";
-import type { PriceReaction, TreasuryHoldingSnapshot } from "../types/buybacks";
+import type { LatestPriceSnapshot, PriceReaction, TreasuryHoldingSnapshot } from "../types/buybacks";
 
 const holding: TreasuryHoldingSnapshot = {
   corp_code: "00111722",
@@ -38,6 +38,13 @@ const reaction: PriceReaction = {
   data_quality: "partial"
 };
 
+const latestPrice: LatestPriceSnapshot = {
+  stock_code: "006800",
+  price_date: "2026-06-19",
+  close: 51_000,
+  source: "kis_proxy"
+};
+
 describe("market cap utilities", () => {
   it("calculates market cap from close and issued shares", () => {
     expect(marketCapFrom(reaction, holding)).toMatchObject({
@@ -51,7 +58,15 @@ describe("market cap utilities", () => {
   it("uses the latest reaction with a close", () => {
     const stale = { ...reaction, event_id: "old", event_date: "2026-06-10", close_t0: 49_000 };
     const missing = { ...reaction, event_id: "newer", event_date: "2026-06-18", close_t0: null };
-    expect(latestMarketCap([stale, missing, reaction], holding).amount).toBe(50_700 * 567_085_734);
+    expect(latestMarketCap(undefined, [stale, missing, reaction], holding).amount).toBe(50_700 * 567_085_734);
+  });
+
+  it("prefers latest prices over event reaction closes", () => {
+    expect(latestMarketCap(latestPrice, [reaction], holding)).toMatchObject({
+      amount: 51_000 * 567_085_734,
+      close: 51_000,
+      priceDate: "2026-06-19"
+    });
   });
 
   it("returns null when a price or share denominator is unavailable", () => {

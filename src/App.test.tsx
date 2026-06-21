@@ -95,6 +95,16 @@ describe("App", () => {
           }
         ]);
       }
+      if (url.endsWith("latest_prices.json")) {
+        return okResponse([
+          {
+            stock_code: "005930",
+            price_date: "2026-06-19",
+            close: 110,
+            source: "fixture"
+          }
+        ]);
+      }
       return okResponse({
         generated_at: "2026-06-20T00:00:00+09:00",
         dart_available: false,
@@ -103,6 +113,7 @@ describe("App", () => {
         events_count: 1,
         holdings_count: 1,
         price_reactions_count: 1,
+        latest_prices_count: 1,
         warnings: []
       });
     });

@@ -16,6 +16,9 @@
     "OpenDART incremental event company scope: 24 companies.",
     "OpenDART holding scan source: stock_totals.",
     "Listed issue master source: naver.",
-    "Price reactions use kis_proxy when configured; otherwise they remain missing."
-  ]
+    "Price reactions use kis_proxy when configured; otherwise they remain missing.",
+    "Latest prices are stored separately from event reaction windows for market-cap display."
+  ],
+  "latest_price_source": "price_reaction",
+  "latest_prices_count": 52
 }

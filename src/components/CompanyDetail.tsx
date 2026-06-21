@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import type {
   Company,
   EnrichedEvent,
+  LatestPriceSnapshot,
   PriceReaction,
   TreasuryHoldingSnapshot
 } from "../types/buybacks";
@@ -15,7 +16,7 @@ import {
   formatSignedPercent
 } from "../utils/format";
 import { latestMarketCap } from "../utils/marketCap";
-import { dedupeHoldingTimeline } from "../utils/metrics";
+import { dedupeHoldingTimeline, latestPriceMap } from "../utils/metrics";
 import { displayRelativeReaction, displaySimpleReaction } from "../utils/priceReactions";
 
 interface CompanyDetailProps {
@@ -23,6 +24,7 @@ interface CompanyDetailProps {
   events: EnrichedEvent[];
   holdings: TreasuryHoldingSnapshot[];
   priceReactions: PriceReaction[];
+  latestPrices: LatestPriceSnapshot[];
   selectedStockCode: string;
   onSelectStock: (stockCode: string) => void;
 }
@@ -32,6 +34,7 @@ export function CompanyDetail({
   events,
   holdings,
   priceReactions,
+  latestPrices,
   selectedStockCode,
   onSelectStock
 }: CompanyDetailProps) {
@@ -50,10 +53,12 @@ export function CompanyDetail({
     () => priceReactions.filter((reaction) => reaction.stock_code === company?.stock_code),
     [company?.stock_code, priceReactions]
   );
+  const latestPriceByStock = useMemo(() => latestPriceMap(latestPrices), [latestPrices]);
+  const latestPrice = company ? latestPriceByStock.get(company.stock_code) : undefined;
   const latestHolding = useMemo(() => pickPrimaryHolding(companyHoldings), [companyHoldings]);
   const currentMarketCap = useMemo(
-    () => latestMarketCap(companyReactions, latestHolding),
-    [companyReactions, latestHolding]
+    () => latestMarketCap(latestPrice, companyReactions, latestHolding),
+    [companyReactions, latestHolding, latestPrice]
   );
   const maxHoldingRatio = useMemo(
     () => Math.max(...companyHoldings.map((snapshot) => snapshot.treasury_ratio ?? 0), 0.01),

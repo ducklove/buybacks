@@ -4,14 +4,16 @@ from scripts.buybacks.build_buybacks_dataset import (
     filter_json_dataset_to_supported_markets,
     filter_live_dataset_to_supported_markets,
     incremental_start_yyyymmdd,
+    merge_latest_prices,
     merge_price_reactions,
     parse_holding_stock_codes,
     parse_stock_codes,
     select_holding_companies,
+    select_latest_price_stock_codes,
     select_price_reaction_events,
 )
 from scripts.buybacks.fetch_listed_issues import ListedIssue
-from scripts.buybacks.models import BuybackEvent, Company, PriceReaction, TreasuryHoldingSnapshot
+from scripts.buybacks.models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction, TreasuryHoldingSnapshot
 
 
 def test_parse_stock_codes_all_uses_disclosure_only_mode():
@@ -347,6 +349,43 @@ def test_merge_price_reactions_replaces_refreshed_and_adds_missing_for_new_event
     assert [(item.event_id, item.data_quality) for item in merged] == [
         ("one", "complete"),
         ("two", "missing"),
+    ]
+
+
+def test_select_latest_price_stock_codes_refreshes_all_event_stocks_for_market_caps():
+    events = [
+        event("one", "2026-06-20", "003540"),
+        event("two", "2026-06-19", "005930"),
+    ]
+    selected = select_latest_price_stock_codes(
+        events,
+        [LatestPriceSnapshot("005930", "2026-06-19", 100, "kis_proxy")],
+        [],
+    )
+
+    assert selected == {"003540", "005930"}
+
+
+def test_merge_latest_prices_prefers_newer_supported_prices():
+    companies = [
+        Company("00126380", "005930", "Samsung Electronics", "KOSPI", None, "2026-06-20"),
+        Company("00378363", "003540", "Daishin Securities", "KOSPI", None, "2026-06-20"),
+    ]
+    merged = merge_latest_prices(
+        [
+            LatestPriceSnapshot("005930", "2026-06-18", 100, "kis_proxy"),
+            LatestPriceSnapshot("000000", "2026-06-19", 200, "kis_proxy"),
+        ],
+        [
+            LatestPriceSnapshot("005930", "2026-06-19", 110, "kis_proxy"),
+            LatestPriceSnapshot("003540", "2026-06-19", 17800, "kis_proxy"),
+        ],
+        companies,
+    )
+
+    assert [(item.stock_code, item.price_date, item.close) for item in merged] == [
+        ("003540", "2026-06-19", 17800),
+        ("005930", "2026-06-19", 110),
     ]
 
 

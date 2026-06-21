@@ -1,0 +1,314 @@
+[
+  {
+    "stock_code": "001080",
+    "price_date": "2026-06-16",
+    "close": 4300,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "001940",
+    "price_date": "2026-06-09",
+    "close": 23500,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "002030",
+    "price_date": "2026-06-10",
+    "close": 193300,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "002170",
+    "price_date": "2026-06-12",
+    "close": 54500,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "002700",
+    "price_date": "2026-06-17",
+    "close": 1221,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "003850",
+    "price_date": "2026-06-12",
+    "close": 9250,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "006800",
+    "price_date": "2026-06-17",
+    "close": 50700,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "008470",
+    "price_date": "2026-06-15",
+    "close": 3285,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "009240",
+    "price_date": "2026-06-09",
+    "close": 32200,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "010400",
+    "price_date": "2026-06-11",
+    "close": 3760,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "016920",
+    "price_date": "2026-06-10",
+    "close": 840,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "020400",
+    "price_date": "2026-06-11",
+    "close": 3185,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "023160",
+    "price_date": "2026-06-10",
+    "close": 26100,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "024090",
+    "price_date": "2026-06-11",
+    "close": 11070,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "028100",
+    "price_date": "2026-06-10",
+    "close": 14900,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "036120",
+    "price_date": "2026-06-10",
+    "close": 1654,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "038540",
+    "price_date": "2026-06-16",
+    "close": 2065,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "039290",
+    "price_date": "2026-06-11",
+    "close": 3000,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "041460",
+    "price_date": "2026-06-11",
+    "close": 3455,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "046390",
+    "price_date": "2026-06-18",
+    "close": 1526,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "049070",
+    "price_date": "2026-06-15",
+    "close": 20700,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "049430",
+    "price_date": "2026-06-15",
+    "close": 19350,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "051380",
+    "price_date": "2026-06-15",
+    "close": 1676,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "053160",
+    "price_date": "2026-06-15",
+    "close": 9240,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "054090",
+    "price_date": "2026-06-11",
+    "close": 942,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "057540",
+    "price_date": "2026-06-12",
+    "close": 739,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "069080",
+    "price_date": "2026-06-10",
+    "close": 10660,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "079370",
+    "price_date": "2026-06-11",
+    "close": 12120,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "096250",
+    "price_date": "2026-06-17",
+    "close": 7470,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "101970",
+    "price_date": "2026-06-17",
+    "close": 9670,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "104700",
+    "price_date": "2026-06-09",
+    "close": 8910,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "114840",
+    "price_date": "2026-06-11",
+    "close": 9120,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "137080",
+    "price_date": "2026-06-16",
+    "close": 5090,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "143240",
+    "price_date": "2026-06-11",
+    "close": 16770,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "197140",
+    "price_date": "2026-06-10",
+    "close": 1892,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "205100",
+    "price_date": "2026-06-17",
+    "close": 1518,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "209640",
+    "price_date": "2026-06-18",
+    "close": 4415,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "222800",
+    "price_date": "2026-06-17",
+    "close": 127500,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "224110",
+    "price_date": "2026-06-11",
+    "close": 8150,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "263750",
+    "price_date": "2026-06-09",
+    "close": 40100,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "263920",
+    "price_date": "2026-06-11",
+    "close": 3175,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "267790",
+    "price_date": "2026-06-15",
+    "close": 3480,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "306040",
+    "price_date": "2026-06-10",
+    "close": 2125,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "310870",
+    "price_date": "2026-06-16",
+    "close": 1273,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "316140",
+    "price_date": "2026-06-10",
+    "close": 30150,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "318160",
+    "price_date": "2026-06-10",
+    "close": 5660,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "362320",
+    "price_date": "2026-06-10",
+    "close": 4070,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "388050",
+    "price_date": "2026-06-10",
+    "close": 8470,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "403550",
+    "price_date": "2026-06-11",
+    "close": 11120,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "419540",
+    "price_date": "2026-06-11",
+    "close": 2715,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "432980",
+    "price_date": "2026-06-15",
+    "close": 3330,
+    "source": "price_reaction"
+  },
+  {
+    "stock_code": "473980",
+    "price_date": "2026-06-10",
+    "close": 14500,
+    "source": "price_reaction"
+  }
+]

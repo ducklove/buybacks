@@ -27,12 +27,19 @@ def load(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def load_optional(path: Path, fallback: Any) -> Any:
+    if not path.exists():
+        return fallback
+    return load(path)
+
+
 def validate_dataset(data_dir: Path) -> list[str]:
     errors: list[str] = []
     companies = load(data_dir / "companies.json")
     events = load(data_dir / "events.json")
     holdings = load(data_dir / "holding_snapshots.json")
     reactions = load(data_dir / "price_reactions.json")
+    latest_prices = load_optional(data_dir / "latest_prices.json", [])
     status = load(data_dir / "data_status.json")
 
     stocks = set()
@@ -74,12 +81,23 @@ def validate_dataset(data_dir: Path) -> list[str]:
         if reaction.get("data_quality") not in QUALITIES:
             errors.append(f"price_reactions[{index}] invalid data_quality")
 
+    for index, price in enumerate(latest_prices):
+        if price.get("stock_code") not in stocks:
+            errors.append(f"latest_prices[{index}] unknown stock_code")
+        if not ISO_DATE.match(str(price.get("price_date", ""))):
+            errors.append(f"latest_prices[{index}] invalid price_date")
+        close = price.get("close")
+        if not isinstance(close, (int, float)) or close <= 0:
+            errors.append(f"latest_prices[{index}] invalid close")
+
     expected_counts = {
         "companies_count": len(companies),
         "events_count": len(events),
         "holdings_count": len(holdings),
         "price_reactions_count": len(reactions),
     }
+    if "latest_prices_count" in status:
+        expected_counts["latest_prices_count"] = len(latest_prices)
     for key, expected in expected_counts.items():
         if status.get(key) != expected:
             errors.append(f"data_status.{key}={status.get(key)} expected {expected}")

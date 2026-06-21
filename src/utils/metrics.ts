@@ -3,6 +3,7 @@ import type {
   EnrichedEvent,
   EventType,
   Filters,
+  LatestPriceSnapshot,
   Market,
   PriceReaction,
   TreasuryHoldingSnapshot
@@ -33,13 +34,28 @@ export function enrichEvents(dataset: BuybacksDataset): EnrichedEvent[] {
   const companyByStock = new Map(dataset.companies.map((company) => [company.stock_code, company]));
   const latestHoldingByStock = latestHoldingMap(dataset.holdingSnapshots);
   const reactionByEvent = new Map(dataset.priceReactions.map((reaction) => [reaction.event_id, reaction]));
+  const latestPriceByStock = latestPriceMap(dataset.latestPrices);
 
   return dataset.events.map((event) => ({
     ...event,
     company: companyByStock.get(event.stock_code),
     holding: latestHoldingByStock.get(event.stock_code),
-    priceReaction: reactionByEvent.get(event.event_id)
+    priceReaction: reactionByEvent.get(event.event_id),
+    latestPrice: latestPriceByStock.get(event.stock_code)
   }));
+}
+
+export function latestPriceMap(
+  prices: LatestPriceSnapshot[]
+): Map<string, LatestPriceSnapshot> {
+  const byStock = new Map<string, LatestPriceSnapshot>();
+  prices.forEach((price) => {
+    const previous = byStock.get(price.stock_code);
+    if (!previous || price.price_date > previous.price_date) {
+      byStock.set(price.stock_code, price);
+    }
+  });
+  return byStock;
 }
 
 export function latestHoldingMap(

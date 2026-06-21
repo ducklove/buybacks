@@ -69,6 +69,14 @@ describe("validateDataset", () => {
           data_quality: "partial"
         }
       ],
+      latestPrices: [
+        {
+          stock_code: "005930",
+          price_date: "2026-06-19",
+          close: 110,
+          source: "fixture"
+        }
+      ],
       status: {
         generated_at: "2026-06-20T00:00:00+09:00",
         dart_available: true,
@@ -77,6 +85,7 @@ describe("validateDataset", () => {
         events_count: 1,
         holdings_count: 0,
         price_reactions_count: 1,
+        latest_prices_count: 1,
         warnings: []
       }
     };
@@ -100,6 +109,7 @@ describe("validateDataset", () => {
       ],
       holdingSnapshots: [],
       priceReactions: [],
+      latestPrices: [],
       status: {
         generated_at: "",
         dart_available: false,

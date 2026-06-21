@@ -1,4 +1,9 @@
-from scripts.buybacks.fetch_krx_prices import PriceRow, calculate_price_reaction, coerce_price_row
+from scripts.buybacks.fetch_krx_prices import (
+    PriceRow,
+    calculate_price_reaction,
+    coerce_price_row,
+    latest_price_snapshot,
+)
 
 
 def make_prices(length=70):
@@ -85,3 +90,18 @@ def test_coerce_price_row_accepts_kis_proxy_history_fields():
     assert row.date == "2026-06-20"
     assert row.close == 71200
     assert row.volume == 12_345_678
+
+
+def test_latest_price_snapshot_uses_latest_available_close():
+    snapshot = latest_price_snapshot(
+        "003540",
+        [
+            {"stck_bsop_date": "20260618", "stck_clpr": "17,450"},
+            {"stck_bsop_date": "20260619", "stck_clpr": "17,800"},
+        ],
+    )
+
+    assert snapshot is not None
+    assert snapshot.stock_code == "003540"
+    assert snapshot.price_date == "2026-06-19"
+    assert snapshot.close == 17800

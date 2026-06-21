@@ -80,6 +80,18 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
     }
   });
 
+  dataset.latestPrices.forEach((price, index) => {
+    if (!companyCodes.has(price.stock_code)) {
+      errors.push(`latestPrices[${index}] unknown stock_code ${price.stock_code}`);
+    }
+    if (!ISO_DATE.test(price.price_date)) {
+      errors.push(`latestPrices[${index}] invalid price_date`);
+    }
+    if (typeof price.close !== "number" || price.close <= 0) {
+      errors.push(`latestPrices[${index}] close must be positive`);
+    }
+  });
+
   if (dataset.status.companies_count !== dataset.companies.length) {
     errors.push("data_status.companies_count does not match companies length");
   }

@@ -93,15 +93,24 @@ export interface PriceReaction {
   data_quality: DataQuality;
 }
 
+export interface LatestPriceSnapshot {
+  stock_code: string;
+  price_date: string;
+  close: number;
+  source: string;
+}
+
 export interface DataStatus {
   generated_at: string;
   dart_available: boolean;
   krx_available: boolean;
   price_source?: string;
+  latest_price_source?: string;
   companies_count: number;
   events_count: number;
   holdings_count: number;
   price_reactions_count: number;
+  latest_prices_count?: number;
   warnings: string[];
 }
 
@@ -110,6 +119,7 @@ export interface BuybacksDataset {
   events: BuybackEvent[];
   holdingSnapshots: TreasuryHoldingSnapshot[];
   priceReactions: PriceReaction[];
+  latestPrices: LatestPriceSnapshot[];
   status: DataStatus;
 }
 
@@ -124,4 +134,5 @@ export interface EnrichedEvent extends BuybackEvent {
   company?: Company;
   holding?: TreasuryHoldingSnapshot;
   priceReaction?: PriceReaction;
+  latestPrice?: LatestPriceSnapshot;
 }

@@ -13,10 +13,10 @@ from urllib.request import Request, urlopen
 
 if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parents[2]))
-    from scripts.buybacks.models import BuybackEvent, Company, PriceReaction
+    from scripts.buybacks.models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction
     from scripts.buybacks.parsers import normalize_date, parse_number
 else:
-    from .models import BuybackEvent, Company, PriceReaction
+    from .models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction
     from .parsers import normalize_date, parse_number
 
 
@@ -137,6 +137,51 @@ def calculate_kis_proxy_price_reactions(
             )
         )
     return reactions, warnings
+
+
+def calculate_kis_proxy_latest_prices(
+    stock_codes: Iterable[str],
+    base_url: str,
+    token: str = "",
+    lookback_days: int = 10,
+    as_of: date | None = None,
+) -> tuple[list[LatestPriceSnapshot], list[str]]:
+    client = KISProxyPriceClient(base_url=base_url, token=token)
+    end_date = as_of or date.today()
+    start_date = end_date - timedelta(days=lookback_days)
+    snapshots: list[LatestPriceSnapshot] = []
+    warnings: list[str] = []
+
+    for stock_code in sorted(set(stock_codes)):
+        try:
+            prices = [coerce_price_row(row) for row in client.stock_history(stock_code, start_date, end_date)]
+        except Exception as exc:  # noqa: BLE001 - missing latest prices should not break DART data.
+            warnings.append(f"kis_proxy latest price failed for {stock_code}: {exc}")
+            continue
+        snapshot = latest_price_snapshot(stock_code, prices)
+        if snapshot is None:
+            warnings.append(f"kis_proxy latest price missing for {stock_code}")
+            continue
+        snapshots.append(snapshot)
+
+    return snapshots, warnings
+
+
+def latest_price_snapshot(
+    stock_code: str,
+    stock_prices: Iterable[PriceRow | dict],
+    source: str = "kis_proxy",
+) -> LatestPriceSnapshot | None:
+    prices = sorted([coerce_price_row(row) for row in stock_prices], key=lambda row: row.date)
+    if not prices:
+        return None
+    latest = prices[-1]
+    return LatestPriceSnapshot(
+        stock_code=stock_code,
+        price_date=latest.date,
+        close=latest.close,
+        source=source,
+    )
 
 
 def calculate_price_reaction(

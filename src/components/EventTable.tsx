@@ -40,8 +40,8 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
       if (sortKey === "marketCap") {
         return (
           direction *
-          ((marketCapFrom(a.priceReaction, a.holding).amount ?? -1) -
-            (marketCapFrom(b.priceReaction, b.holding).amount ?? -1))
+          ((marketCapFrom(a.latestPrice ?? a.priceReaction, a.holding).amount ?? -1) -
+            (marketCapFrom(b.latestPrice ?? b.priceReaction, b.holding).amount ?? -1))
         );
       }
       return direction * ((displayReactionValue(a.priceReaction) ?? -99) - (displayReactionValue(b.priceReaction) ?? -99));
@@ -191,7 +191,7 @@ function PriceReactionCell({ event }: { event: EnrichedEvent }) {
 }
 
 function MarketCapCell({ event }: { event: EnrichedEvent }) {
-  const marketCap = marketCapFrom(event.priceReaction, event.holding);
+  const marketCap = marketCapFrom(event.latestPrice ?? event.priceReaction, event.holding);
   return (
     <div className="stacked-value">
       <strong>{formatMarketCapKRW(marketCap.amount)}</strong>

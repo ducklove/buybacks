@@ -19,9 +19,20 @@ if __package__ in {None, ""}:
         dedupe_holdings,
         fetch_buyback_disclosures,
     )
-    from scripts.buybacks.fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
+    from scripts.buybacks.fetch_krx_prices import (
+        calculate_kis_proxy_latest_prices,
+        calculate_kis_proxy_price_reactions,
+        missing_reaction,
+    )
     from scripts.buybacks.fetch_listed_issues import ListedIssue, fetch_naver_listed_issues
-    from scripts.buybacks.models import BuybackEvent, Company, PriceReaction, TreasuryHoldingSnapshot, to_jsonable
+    from scripts.buybacks.models import (
+        BuybackEvent,
+        Company,
+        LatestPriceSnapshot,
+        PriceReaction,
+        TreasuryHoldingSnapshot,
+        to_jsonable,
+    )
     from scripts.buybacks.parsers import market_from_corp_cls, normalize_date
 else:
     from .fetch_corp_codes import fetch_corp_codes
@@ -32,12 +43,23 @@ else:
         dedupe_holdings,
         fetch_buyback_disclosures,
     )
-    from .fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
+    from .fetch_krx_prices import (
+        calculate_kis_proxy_latest_prices,
+        calculate_kis_proxy_price_reactions,
+        missing_reaction,
+    )
     from .fetch_listed_issues import ListedIssue, fetch_naver_listed_issues
-    from .models import BuybackEvent, Company, PriceReaction, TreasuryHoldingSnapshot, to_jsonable
+    from .models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction, TreasuryHoldingSnapshot, to_jsonable
     from .parsers import market_from_corp_cls, normalize_date
 
 DATA_FILES = [
+    "companies.json",
+    "events.json",
+    "holding_snapshots.json",
+    "price_reactions.json",
+    "latest_prices.json",
+]
+CORE_DATA_FILES = [
     "companies.json",
     "events.json",
     "holding_snapshots.json",
@@ -64,10 +86,13 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path) -> dict:
         load_json(fixture_dir / "holding_snapshots.json"),
         load_json(fixture_dir / "price_reactions.json"),
     )
+    latest_prices = load_fixture_latest_prices(fixture_dir, reactions)
+    latest_prices = filter_latest_prices_to_companies(latest_prices, companies)
     write_json(output_dir / "companies.json", companies)
     write_json(output_dir / "events.json", events)
     write_json(output_dir / "holding_snapshots.json", holdings)
     write_json(output_dir / "price_reactions.json", reactions)
+    write_json(output_dir / "latest_prices.json", latest_prices)
     status = load_json(fixture_dir / "data_status.json")
     status["generated_at"] = datetime.now(timezone.utc).isoformat()
     status["dart_available"] = False
@@ -77,6 +102,7 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path) -> dict:
     status["events_count"] = len(events)
     status["holdings_count"] = len(holdings)
     status["price_reactions_count"] = len(reactions)
+    status["latest_prices_count"] = len(latest_prices)
     write_json(output_dir / "data_status.json", status)
     return status
 
@@ -206,15 +232,22 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
 
     price_reactions, price_warnings, price_source = build_price_reactions(args, events, live_companies)
     warnings.extend(price_warnings)
+    latest_prices, latest_price_warnings, latest_price_source = build_latest_prices(
+        args,
+        [company.stock_code for company in live_companies],
+    )
+    warnings.extend(latest_price_warnings)
     status = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "dart_available": True,
         "krx_available": False,
         "price_source": price_source,
+        "latest_price_source": latest_price_source,
         "companies_count": len(live_companies),
         "events_count": len(events),
         "holdings_count": len(holdings),
         "price_reactions_count": len(price_reactions),
+        "latest_prices_count": len(latest_prices),
         "warnings": [
             *warnings,
             f"OpenDART disclosure discovery window: {disclosure_start} to {args.end}.",
@@ -222,12 +255,14 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
             f"OpenDART holding scan source: {args.holding_source}.",
             f"Listed issue master source: {args.listed_issue_source}.",
             "Price reactions use kis_proxy when configured; otherwise they remain missing.",
+            "Latest prices use kis_proxy when configured; otherwise market caps remain missing.",
         ],
     }
     write_json(output_dir / "companies.json", to_jsonable(live_companies))
     write_json(output_dir / "events.json", to_jsonable(events))
     write_json(output_dir / "holding_snapshots.json", to_jsonable(holdings))
     write_json(output_dir / "price_reactions.json", to_jsonable(price_reactions))
+    write_json(output_dir / "latest_prices.json", to_jsonable(latest_prices))
     write_json(output_dir / "data_status.json", status)
     return status
 
@@ -241,6 +276,7 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
     existing_events = load_events(output_dir / "events.json")
     existing_holdings = load_holdings(output_dir / "holding_snapshots.json")
     existing_reactions = load_reactions(output_dir / "price_reactions.json")
+    existing_latest_prices = load_latest_prices(output_dir / "latest_prices.json")
     existing_status = load_json(output_dir / "data_status.json")
     raw_dir = Path(args.raw_dir)
     warnings: list[str] = []
@@ -341,18 +377,33 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
         )
         warnings.extend(price_warnings)
     price_reactions = merge_price_reactions(existing_reactions, refreshed_reactions, events)
+    latest_price_stock_codes = select_latest_price_stock_codes(
+        events,
+        existing_latest_prices,
+        price_refresh_events,
+    )
+    refreshed_latest_prices, latest_price_warnings, latest_price_source = build_latest_prices(
+        args,
+        latest_price_stock_codes,
+    )
+    warnings.extend(latest_price_warnings)
+    latest_prices = merge_latest_prices(existing_latest_prices, refreshed_latest_prices, live_companies)
 
     status = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "dart_available": True,
         "krx_available": False,
         "price_source": price_source,
+        "latest_price_source": latest_price_source
+        if refreshed_latest_prices or not existing_latest_prices
+        else existing_status.get("latest_price_source", "missing"),
         "update_mode": "incremental",
         "previous_generated_at": existing_status.get("generated_at"),
         "companies_count": len(live_companies),
         "events_count": len(events),
         "holdings_count": len(holdings),
         "price_reactions_count": len(price_reactions),
+        "latest_prices_count": len(latest_prices),
         "warnings": [
             "Incremental update merged with the committed dataset instead of rebuilding the full universe.",
             "Holding snapshots are refreshed only for companies with incremental event disclosures; existing all-market snapshots are preserved.",
@@ -362,12 +413,14 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
             f"OpenDART holding scan source: {args.holding_source}.",
             f"Listed issue master source: {args.listed_issue_source}.",
             "Price reactions use kis_proxy when configured; otherwise they remain missing.",
+            "Latest prices use kis_proxy when configured; otherwise market caps remain missing.",
         ],
     }
     write_json(output_dir / "companies.json", to_jsonable(live_companies))
     write_json(output_dir / "events.json", to_jsonable(events))
     write_json(output_dir / "holding_snapshots.json", to_jsonable(holdings))
     write_json(output_dir / "price_reactions.json", to_jsonable(price_reactions))
+    write_json(output_dir / "latest_prices.json", to_jsonable(latest_prices))
     write_json(output_dir / "data_status.json", status)
     return status
 
@@ -423,6 +476,12 @@ def main() -> None:
         choices=["auto", "kis_proxy", "missing"],
         default="auto",
         help="Price reaction source. auto uses KIS_PROXY_URL when present, otherwise missing.",
+    )
+    parser.add_argument(
+        "--latest-price-lookback-days",
+        type=int,
+        default=10,
+        help="Recent calendar days to request from kis_proxy when collecting latest closes for market caps.",
     )
     parser.add_argument(
         "--listed-issue-source",
@@ -529,12 +588,39 @@ def build_price_reactions(
     return missing_price_reactions(events), warnings, "missing"
 
 
+def build_latest_prices(
+    args: argparse.Namespace,
+    stock_codes: list[str] | set[str],
+) -> tuple[list[LatestPriceSnapshot], list[str], str]:
+    codes = sorted({code for code in stock_codes if code})
+    if not codes:
+        return [], [], "missing"
+    if args.price_source == "missing":
+        return [], [], "missing"
+
+    kis_proxy_url = os.environ.get("KIS_PROXY_URL", "").strip()
+    if kis_proxy_url:
+        print(f"collecting latest prices from kis_proxy for {len(codes)} stocks...", flush=True)
+        snapshots, warnings = calculate_kis_proxy_latest_prices(
+            codes,
+            base_url=kis_proxy_url,
+            token=os.environ.get("KIS_PROXY_TOKEN", "").strip(),
+            lookback_days=args.latest_price_lookback_days,
+        )
+        return snapshots, warnings, "kis_proxy"
+
+    warnings = ["KIS_PROXY_URL is not set; latest prices marked missing."]
+    if args.price_source == "kis_proxy":
+        warnings.append("Requested --price-source kis_proxy but no proxy URL was configured.")
+    return [], warnings, "missing"
+
+
 def missing_price_reactions(events: list[BuybackEvent]) -> list[PriceReaction]:
     return [missing_reaction(event.event_id, event.stock_code, event.disclosure_date) for event in events]
 
 
 def existing_dataset_available(output_dir: Path) -> bool:
-    return all((output_dir / name).exists() for name in [*DATA_FILES, "data_status.json"])
+    return all((output_dir / name).exists() for name in [*CORE_DATA_FILES, "data_status.json"])
 
 
 def load_companies(path: Path) -> list[Company]:
@@ -551,6 +637,12 @@ def load_holdings(path: Path) -> list[TreasuryHoldingSnapshot]:
 
 def load_reactions(path: Path) -> list[PriceReaction]:
     return [PriceReaction(**reaction_payload(item)) for item in load_json(path)]
+
+
+def load_latest_prices(path: Path) -> list[LatestPriceSnapshot]:
+    if not path.exists():
+        return []
+    return [LatestPriceSnapshot(**item) for item in load_json(path)]
 
 
 def event_payload(item: dict) -> dict:
@@ -604,6 +696,31 @@ def merge_price_reactions(
         by_event[event.event_id]
         for event in sorted(events, key=lambda item: (item.disclosure_date, item.event_id), reverse=True)
     ]
+
+
+def select_latest_price_stock_codes(
+    events: list[BuybackEvent],
+    existing_prices: list[LatestPriceSnapshot],
+    price_refresh_events: list[BuybackEvent],
+) -> set[str]:
+    event_stock_codes = {event.stock_code for event in events}
+    return event_stock_codes
+
+
+def merge_latest_prices(
+    existing: list[LatestPriceSnapshot],
+    refreshed: list[LatestPriceSnapshot],
+    companies: list[Company],
+) -> list[LatestPriceSnapshot]:
+    supported_stock_codes = {company.stock_code for company in companies}
+    by_stock: dict[str, LatestPriceSnapshot] = {}
+    for snapshot in [*existing, *refreshed]:
+        if snapshot.stock_code not in supported_stock_codes:
+            continue
+        previous = by_stock.get(snapshot.stock_code)
+        if previous is None or snapshot.price_date >= previous.price_date:
+            by_stock[snapshot.stock_code] = snapshot
+    return [by_stock[stock_code] for stock_code in sorted(by_stock)]
 
 
 def select_price_reaction_events(
@@ -867,6 +984,41 @@ def filter_json_dataset_to_supported_markets(
         and str(company.get("stock_code") or "") in data_stocks
     ]
     return filtered_companies, filtered_events, filtered_holdings, filtered_reactions
+
+
+def load_fixture_latest_prices(fixture_dir: Path, reactions: list[dict]) -> list[dict]:
+    latest_path = fixture_dir / "latest_prices.json"
+    if latest_path.exists():
+        return load_json(latest_path)
+    return latest_prices_from_reactions(reactions)
+
+
+def latest_prices_from_reactions(reactions: list[dict]) -> list[dict]:
+    by_stock: dict[str, dict] = {}
+    for reaction in reactions:
+        stock_code = str(reaction.get("stock_code") or "")
+        close = reaction.get("close_t0")
+        price_date = reaction.get("event_date")
+        if not stock_code or close is None or not price_date:
+            continue
+        previous = by_stock.get(stock_code)
+        if previous is None or str(price_date) >= str(previous.get("price_date") or ""):
+            by_stock[stock_code] = {
+                "stock_code": stock_code,
+                "price_date": price_date,
+                "close": close,
+                "source": "fixture",
+            }
+    return [by_stock[stock_code] for stock_code in sorted(by_stock)]
+
+
+def filter_latest_prices_to_companies(latest_prices: list[dict], companies: list[dict]) -> list[dict]:
+    company_stock_codes = {str(company.get("stock_code") or "") for company in companies}
+    return [
+        price
+        for price in latest_prices
+        if str(price.get("stock_code") or "") in company_stock_codes
+    ]
 
 
 def dedupe_companies(companies: list[Company], sort_by_name: bool = True) -> list[Company]:

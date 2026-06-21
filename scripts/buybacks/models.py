@@ -98,6 +98,14 @@ class PriceReaction:
     data_quality: DataQuality
 
 
+@dataclass(slots=True)
+class LatestPriceSnapshot:
+    stock_code: str
+    price_date: str
+    close: float
+    source: str
+
+
 def to_jsonable(value):
     if hasattr(value, "__dataclass_fields__"):
         return asdict(value)

@@ -5,6 +5,7 @@ import {
   dedupeHoldingTimeline,
   filterEvents,
   latestHoldingSnapshots,
+  latestPriceMap,
   marketOptions,
   returnDistribution,
   topHoldings
@@ -161,6 +162,19 @@ describe("holding snapshots", () => {
     });
 
     expect(dedupeHoldingTimeline([sparse, complete])).toEqual([complete]);
+  });
+});
+
+describe("latest prices", () => {
+  it("keeps the newest close for each stock", () => {
+    const prices = latestPriceMap([
+      { stock_code: "003540", price_date: "2026-06-18", close: 17450, source: "kis_proxy" },
+      { stock_code: "003540", price_date: "2026-06-19", close: 17800, source: "kis_proxy" },
+      { stock_code: "005930", price_date: "2026-06-19", close: 71200, source: "kis_proxy" }
+    ]);
+
+    expect(prices.get("003540")?.close).toBe(17800);
+    expect(prices.get("005930")?.close).toBe(71200);
   });
 });
 

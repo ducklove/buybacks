@@ -118,6 +118,7 @@ function App() {
             events={enrichedEvents}
             holdings={dataset.holdingSnapshots}
             priceReactions={dataset.priceReactions}
+            latestPrices={dataset.latestPrices}
             selectedStockCode={selectedStockCode}
             onSelectStock={setSelectedStockCode}
           />
