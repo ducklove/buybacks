@@ -50,7 +50,7 @@ describe("App", () => {
             holding_before_ratio_common: null,
             source: "MANUAL",
             rcept_no: null,
-            source_url: null,
+            source_url: "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260522000001",
             raw_report_name: null
           }
         ]);
@@ -103,7 +103,8 @@ describe("App", () => {
             stock_code: "005930",
             price_date: "2026-06-19",
             close: 110,
-            source: "fixture"
+            source: "fixture",
+            change_rate: 0.015
           }
         ]);
       }
@@ -124,8 +125,18 @@ describe("App", () => {
     expect(await screen.findByText("자사주 매입·처분·소각 분석")).toBeInTheDocument();
     expect(screen.getByText("이벤트 탐색기")).toBeInTheDocument();
     expect(screen.getAllByText("삼성전자").length).toBeGreaterThan(0);
+    expect(screen.getByText("기보유비율")).toBeInTheDocument();
     expect(screen.getByText("예정취득지분")).toBeInTheDocument();
     expect(screen.getAllByText("9.09%").length).toBeGreaterThan(0);
+    expect(screen.getByText("110원")).toBeInTheDocument();
+    expect(screen.getByText("+1.50%")).toBeInTheDocument();
+    expect(screen.getByText("공시 목록")).toBeInTheDocument();
     expect(screen.getByText(/예정주식수 보통 10 \/ 기타 3/)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "원문" })).toHaveAttribute(
+      "href",
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260522000001"
+    );
+    expect(screen.queryByText("최근 예정금액")).not.toBeInTheDocument();
+    expect(screen.queryByText("공시 후 가격 반응")).not.toBeInTheDocument();
   });
 });

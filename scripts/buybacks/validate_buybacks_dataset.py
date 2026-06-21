@@ -89,6 +89,9 @@ def validate_dataset(data_dir: Path) -> list[str]:
         close = price.get("close")
         if not isinstance(close, (int, float)) or close <= 0:
             errors.append(f"latest_prices[{index}] invalid close")
+        change_rate = price.get("change_rate")
+        if change_rate is not None and not isinstance(change_rate, (int, float)):
+            errors.append(f"latest_prices[{index}] invalid change_rate")
 
     expected_counts = {
         "companies_count": len(companies),

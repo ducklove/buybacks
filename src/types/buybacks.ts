@@ -98,6 +98,7 @@ export interface LatestPriceSnapshot {
   price_date: string;
   close: number;
   source: string;
+  change_rate?: number | null;
 }
 
 export interface DataStatus {

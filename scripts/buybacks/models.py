@@ -104,6 +104,7 @@ class LatestPriceSnapshot:
     price_date: str
     close: float
     source: str
+    change_rate: float | None = None
 
 
 def to_jsonable(value):

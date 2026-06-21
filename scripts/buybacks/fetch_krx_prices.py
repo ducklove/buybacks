@@ -176,11 +176,14 @@ def latest_price_snapshot(
     if not prices:
         return None
     latest = prices[-1]
+    previous = prices[-2] if len(prices) >= 2 else None
+    change_rate = latest.close / previous.close - 1 if previous and previous.close > 0 else None
     return LatestPriceSnapshot(
         stock_code=stock_code,
         price_date=latest.date,
         close=latest.close,
         source=source,
+        change_rate=change_rate,
     )
 
 

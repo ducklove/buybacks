@@ -74,7 +74,8 @@ describe("validateDataset", () => {
           stock_code: "005930",
           price_date: "2026-06-19",
           close: 110,
-          source: "fixture"
+          source: "fixture",
+          change_rate: 0.01
         }
       ],
       status: {

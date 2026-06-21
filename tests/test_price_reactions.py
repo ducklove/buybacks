@@ -105,3 +105,4 @@ def test_latest_price_snapshot_uses_latest_available_close():
     assert snapshot.stock_code == "003540"
     assert snapshot.price_date == "2026-06-19"
     assert snapshot.close == 17800
+    assert round(snapshot.change_rate or 0, 6) == round(17800 / 17450 - 1, 6)

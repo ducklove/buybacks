@@ -1,21 +1,13 @@
 import { useMemo, useState } from "react";
 import type { EnrichedEvent } from "../types/buybacks";
 import {
-  DATA_QUALITY_LABELS,
   EVENT_TYPE_LABELS,
-  dartUrl,
   formatKRW,
   formatMarketCapKRW,
   formatNumber,
-  formatPercent,
-  formatSignedPercent
+  formatPercent
 } from "../utils/format";
 import { marketCapFrom, plannedAcquisitionStake } from "../utils/marketCap";
-import {
-  displayReactionValue,
-  displayRelativeReaction,
-  displaySimpleReaction
-} from "../utils/priceReactions";
 
 interface EventTableProps {
   events: EnrichedEvent[];
@@ -23,7 +15,7 @@ interface EventTableProps {
   onSelectStock: (stockCode: string) => void;
 }
 
-type SortKey = "date" | "company" | "amount" | "stake" | "marketCap" | "reaction";
+type SortKey = "date" | "company" | "amount" | "stake" | "marketCap";
 
 export function EventTable({ events, selectedStockCode, onSelectStock }: EventTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>("date");
@@ -47,7 +39,7 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
       if (sortKey === "stake") {
         return direction * (plannedStakeValue(a) - plannedStakeValue(b));
       }
-      return direction * ((displayReactionValue(a.priceReaction) ?? -99) - (displayReactionValue(b.priceReaction) ?? -99));
+      return direction * a.disclosure_date.localeCompare(b.disclosure_date);
     });
     return sorted;
   }, [ascending, events, sortKey]);
@@ -85,23 +77,18 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                 예정금액
               </SortableHeader>
               <th>예정주식수</th>
-              <th>목적</th>
-              <th>보유비율</th>
-              <SortableHeader active={sortKey === "marketCap"} onClick={() => changeSort("marketCap")}>
-                시가총액
-              </SortableHeader>
               <SortableHeader active={sortKey === "stake"} onClick={() => changeSort("stake")}>
                 예정취득지분
               </SortableHeader>
-              <SortableHeader active={sortKey === "reaction"} onClick={() => changeSort("reaction")}>
-                가격반응
+              <th>목적</th>
+              <th>기보유비율</th>
+              <SortableHeader active={sortKey === "marketCap"} onClick={() => changeSort("marketCap")}>
+                시가총액
               </SortableHeader>
-              <th>DART</th>
             </tr>
           </thead>
           <tbody>
             {sortedEvents.map((event) => {
-              const url = event.source_url ?? dartUrl(event.rcept_no);
               return (
                 <tr
                   className={event.stock_code === selectedStockCode ? "selected-row" : undefined}
@@ -129,25 +116,13 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                   <td>
                     <ShareBreakdown event={event} />
                   </td>
-                  <td className="purpose-cell">{event.purpose ?? "-"}</td>
-                  <td>{formatPercent(event.holding?.treasury_ratio ?? event.holding_before_ratio_common)}</td>
-                  <td>
-                    <MarketCapCell event={event} />
-                  </td>
                   <td>
                     <PlannedStakeCell event={event} />
                   </td>
+                  <td className="purpose-cell">{event.purpose ?? "-"}</td>
+                  <td>{formatPercent(event.holding_before_ratio_common ?? event.holding?.treasury_ratio)}</td>
                   <td>
-                    <PriceReactionCell event={event} />
-                  </td>
-                  <td>
-                    {url ? (
-                      <a href={url} target="_blank" rel="noreferrer">
-                        원문
-                      </a>
-                    ) : (
-                      <span className="muted">없음</span>
-                    )}
+                    <MarketCapCell event={event} />
                   </td>
                 </tr>
               );
@@ -181,7 +156,6 @@ function PlannedStakeCell({ event }: { event: EnrichedEvent }) {
   return (
     <div className="stacked-value">
       <strong>{formatPercent(stake, 2)}</strong>
-      {stake !== null && <small>예정금액 / 시가총액</small>}
     </div>
   );
 }
@@ -191,34 +165,11 @@ function plannedStakeValue(event: EnrichedEvent) {
   return plannedAcquisitionStake(event.event_type, event.planned_amount_krw, marketCap.amount) ?? -1;
 }
 
-function PriceReactionCell({ event }: { event: EnrichedEvent }) {
-  const relative = displayRelativeReaction(event.priceReaction);
-  const simple = displaySimpleReaction(event.priceReaction);
-  return (
-    <div className="stacked-value reaction-value">
-      <strong>{formatSignedPercent(relative.value)}</strong>
-      <small>
-        {relative.label} / {DATA_QUALITY_LABELS[relative.quality]}
-      </small>
-      <small>{`\uB2E8\uC21C ${simple.label}: ${formatSignedPercent(simple.value)}`}</small>
-    </div>
-  );
-}
-
 function MarketCapCell({ event }: { event: EnrichedEvent }) {
   const marketCap = marketCapFrom(event.latestPrice ?? event.priceReaction, event.holding);
   return (
     <div className="stacked-value">
       <strong>{formatMarketCapKRW(marketCap.amount)}</strong>
-      {marketCap.amount !== null && marketCap.close !== null && marketCap.priceDate !== null ? (
-        <small>
-          {marketCap.priceDate} 종가 {formatNumber(marketCap.close)}원
-        </small>
-      ) : marketCap.close !== null && marketCap.issuedShares === null ? (
-        <small>발행주식수 없음</small>
-      ) : (
-        <small>가격 없음</small>
-      )}
     </div>
   );
 }

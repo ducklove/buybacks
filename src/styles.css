@@ -715,19 +715,48 @@ tbody tr:last-child td {
   padding: 16px 0;
 }
 
-.company-heading div {
+.company-heading > div:first-child {
   display: grid;
   gap: 5px;
+  min-width: 0;
 }
 
-.company-heading strong {
+.company-heading > div:first-child > strong {
   font-size: clamp(18px, 2.4vw, 24px);
   overflow-wrap: anywhere;
 }
 
-.company-heading span {
+.company-heading > div:first-child > span {
   color: var(--muted);
   font-size: 13px;
+}
+
+.company-price {
+  display: grid;
+  justify-items: end;
+  align-content: center;
+  gap: 3px;
+  min-width: 110px;
+  text-align: right;
+}
+
+.company-price span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.company-price strong {
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.company-price small {
+  color: var(--teal-strong);
+  font-size: 12px;
+  font-weight: 850;
 }
 
 .detail-metrics {
@@ -841,6 +870,63 @@ tbody tr:last-child td {
   color: var(--muted);
   font-size: 12px;
   font-weight: 750;
+}
+
+.disclosure-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.disclosure-list li {
+  display: grid;
+  grid-template-columns: minmax(118px, 0.8fr) minmax(0, 1.5fr) minmax(124px, 0.9fr) auto;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+
+.disclosure-meta {
+  display: grid;
+  gap: 6px;
+}
+
+.disclosure-meta time,
+.disclosure-reaction span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.disclosure-reaction {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.disclosure-reaction strong {
+  color: var(--teal-strong);
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.disclosure-reaction small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 760;
+  line-height: 1.35;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.source-link {
+  color: var(--teal-strong);
+  font-size: 12px;
+  font-weight: 850;
+  white-space: nowrap;
 }
 
 .reaction-list {
@@ -1016,7 +1102,18 @@ tbody tr:last-child td {
     flex-direction: column;
   }
 
-  .event-timeline li {
+  .company-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .company-price {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .event-timeline li,
+  .disclosure-list li {
     grid-template-columns: 1fr;
   }
 }

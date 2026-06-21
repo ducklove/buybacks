@@ -9,6 +9,7 @@ import type {
 import {
   DATA_QUALITY_LABELS,
   EVENT_TYPE_LABELS,
+  dartUrl,
   formatKRW,
   formatMarketCapKRW,
   formatNumber,
@@ -40,7 +41,10 @@ export function CompanyDetail({
 }: CompanyDetailProps) {
   const company = companies.find((item) => item.stock_code === selectedStockCode) ?? companies[0];
   const companyEvents = useMemo(
-    () => events.filter((event) => event.stock_code === company?.stock_code),
+    () =>
+      events
+        .filter((event) => event.stock_code === company?.stock_code)
+        .sort((a, b) => b.disclosure_date.localeCompare(a.disclosure_date)),
     [company?.stock_code, events]
   );
   const companyHoldings = useMemo(
@@ -100,6 +104,7 @@ export function CompanyDetail({
             {company.stock_code} · {company.market} · {company.sector ?? "업종 미상"}
           </span>
         </div>
+        <CurrentPrice latestPrice={latestPrice} />
       </div>
 
       <div className="detail-metrics">
@@ -114,10 +119,6 @@ export function CompanyDetail({
         <div>
           <span>발행주식수</span>
           <strong>{formatNumber(latestHolding?.issued_shares)}</strong>
-        </div>
-        <div>
-          <span>최근 예정금액</span>
-          <strong>{formatKRW(companyEvents[0]?.planned_amount_krw)}</strong>
         </div>
         <div>
           <span>시가총액</span>
@@ -157,19 +158,23 @@ export function CompanyDetail({
       </section>
 
       <section className="detail-section">
-        <h3>최근 이벤트</h3>
+        <h3>공시 목록</h3>
         {companyEvents.length > 0 ? (
-          <ol className="event-timeline">
-            {companyEvents.slice(0, 5).map((event) => (
+          <ol className="disclosure-list">
+            {companyEvents.map((event) => (
               <li key={event.event_id}>
-                <time>{event.disclosure_date}</time>
-                <span className={`event-chip event-${event.event_type}`}>
-                  {EVENT_TYPE_LABELS[event.event_type]}
-                </span>
+                <div className="disclosure-meta">
+                  <time>{event.disclosure_date}</time>
+                  <span className={`event-chip event-${event.event_type}`}>
+                    {EVENT_TYPE_LABELS[event.event_type]}
+                  </span>
+                </div>
                 <div className="event-timeline-copy">
                   <p>{event.purpose ?? event.raw_report_name ?? "목적 데이터 없음"}</p>
                   <EventDetailLines event={event} />
                 </div>
+                <DisclosureReaction event={event} />
+                <DisclosureSourceLink event={event} />
               </li>
             ))}
           </ol>
@@ -177,32 +182,51 @@ export function CompanyDetail({
           <p className="empty-copy">수집된 이벤트가 없습니다.</p>
         )}
       </section>
-
-      <section className="detail-section">
-        <h3>공시 후 가격 반응</h3>
-        {companyReactions.length > 0 ? (
-          <div className="reaction-list">
-            {companyReactions.map((reaction) => {
-              const relative = displayRelativeReaction(reaction);
-              const simple = displaySimpleReaction(reaction);
-              return (
-                <div key={reaction.event_id}>
-                  <span>{reaction.event_date}</span>
-                  <strong>{formatSignedPercent(relative.value)}</strong>
-                  <small>
-                    {relative.label} / {DATA_QUALITY_LABELS[relative.quality]}
-                    <br />
-                    {`\uB2E8\uC21C ${simple.label}: ${formatSignedPercent(simple.value)}`}
-                  </small>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <p className="empty-copy">가격 반응 데이터가 아직 없습니다.</p>
-        )}
-      </section>
     </section>
+  );
+}
+
+function CurrentPrice({ latestPrice }: { latestPrice: LatestPriceSnapshot | undefined }) {
+  return (
+    <div className="company-price">
+      <span>현재가</span>
+      <strong>{latestPrice ? `${formatNumber(latestPrice.close)}원` : "-"}</strong>
+      <small>{formatSignedPercent(latestPrice?.change_rate)}</small>
+    </div>
+  );
+}
+
+function DisclosureReaction({ event }: { event: EnrichedEvent }) {
+  if (!event.priceReaction) {
+    return (
+      <div className="disclosure-reaction">
+        <span>가격반응</span>
+        <strong>-</strong>
+      </div>
+    );
+  }
+  const relative = displayRelativeReaction(event.priceReaction);
+  const simple = displaySimpleReaction(event.priceReaction);
+  return (
+    <div className="disclosure-reaction">
+      <span>{relative.label}</span>
+      <strong>{formatSignedPercent(relative.value)}</strong>
+      <small>
+        {DATA_QUALITY_LABELS[relative.quality]} · 단순 {simple.label}: {formatSignedPercent(simple.value)}
+      </small>
+    </div>
+  );
+}
+
+function DisclosureSourceLink({ event }: { event: EnrichedEvent }) {
+  const url = event.source_url ?? dartUrl(event.rcept_no);
+  if (!url) {
+    return <span className="muted">원문 없음</span>;
+  }
+  return (
+    <a className="source-link" href={url} target="_blank" rel="noreferrer">
+      원문
+    </a>
   );
 }
 

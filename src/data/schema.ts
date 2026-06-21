@@ -90,6 +90,13 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
     if (typeof price.close !== "number" || price.close <= 0) {
       errors.push(`latestPrices[${index}] close must be positive`);
     }
+    if (
+      price.change_rate !== null &&
+      price.change_rate !== undefined &&
+      typeof price.change_rate !== "number"
+    ) {
+      errors.push(`latestPrices[${index}] change_rate must be numeric`);
+    }
   });
 
   if (dataset.status.companies_count !== dataset.companies.length) {
