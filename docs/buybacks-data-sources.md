@@ -14,7 +14,7 @@ OpenDART is the primary source for official disclosure metadata and structured t
 - Endpoint: `GET https://opendart.fss.or.kr/api/corpCode.xml`
 - Output: ZIP/XML with `corp_code`, `corp_name`, `corp_eng_name`, `stock_code`, `modify_date`.
 - Pipeline: `scripts/buybacks/fetch_corp_codes.py`
-- Use: map listed 6-digit `stock_code` to 8-digit OpenDART `corp_code`.
+- Use: map OpenDART `corp_code` to the representative listed `stock_code`. The parser accepts 6-character alphanumeric stock codes because some tradable preferred shares use codes such as `00680K`.
 
 ### Disclosure search
 
@@ -96,6 +96,25 @@ Endpoints used:
 - `GET /v1/indexes/{market}/history?start_date=YYYY-MM-DD&period=D`
 
 The pipeline maps KOSDAQ companies to `market=kosdaq`; all other companies use `market=kospi` for the benchmark return. If `KIS_PROXY_URL` is missing or a proxy request fails, price reaction rows remain present with `data_quality="missing"` and null return fields.
+
+## Current Listed Issue Master
+
+The holding-ratio leaderboard needs currently tradable issues, not just OpenDART stock-kind rows. OpenDART can report preferred or non-voting stock classes that do not have their own listed code. The live pipeline therefore fetches the Naver mobile stock market-value lists for KOSPI and KOSDAQ and keeps only domestic stock issues marked as trading.
+
+Endpoint pattern:
+
+- `GET https://m.stock.naver.com/api/stocks/marketValue/{market}?page={page}&pageSize=100`
+
+Fields used:
+
+- `itemCode`
+- `stockName`
+- `stockEndType`
+- `stockType`
+- `tradeStopType`
+- `stockExchangeType.nameEng`
+
+This source is used only to map DART holding rows to currently trading listed issue codes. It is not used for price-reaction calculations, which remain on `kis_proxy`.
 
 ## KRX Data Marketplace / KRX Open API
 

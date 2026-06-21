@@ -56,6 +56,7 @@ jobs:
           --stock-codes ALL
           --holding-stock-codes ALL
           --holding-source stock_totals
+          --listed-issue-source naver
           --report-codes 11011
           --max-companies 0
           --max-holding-companies 0

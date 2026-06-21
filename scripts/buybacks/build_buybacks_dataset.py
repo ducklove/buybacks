@@ -3,7 +3,9 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
+from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -16,12 +18,14 @@ if __package__ in {None, ""}:
         fetch_buyback_disclosures,
     )
     from scripts.buybacks.fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
+    from scripts.buybacks.fetch_listed_issues import ListedIssue, fetch_naver_listed_issues
     from scripts.buybacks.models import BuybackEvent, Company, PriceReaction, TreasuryHoldingSnapshot, to_jsonable
     from scripts.buybacks.parsers import market_from_corp_cls, normalize_date
 else:
     from .fetch_corp_codes import fetch_corp_codes
     from .fetch_dart_buybacks import collect_dart_dataset, collect_dart_holding_snapshots, fetch_buyback_disclosures
     from .fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
+    from .fetch_listed_issues import ListedIssue, fetch_naver_listed_issues
     from .models import BuybackEvent, Company, PriceReaction, TreasuryHoldingSnapshot, to_jsonable
     from .parsers import market_from_corp_cls, normalize_date
 
@@ -32,6 +36,7 @@ DATA_FILES = [
     "price_reactions.json",
 ]
 SUPPORTED_MARKETS = {"KOSPI", "KOSDAQ"}
+STOCK_CODE_PATTERN = re.compile(r"^[0-9A-Z]{6}$")
 
 
 def load_json(path: Path):
@@ -74,6 +79,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     raw_dir = Path(args.raw_dir)
     stock_codes = parse_stock_codes(args.stock_codes)
     holding_stock_codes = parse_holding_stock_codes(args.holding_stock_codes)
+    listed_issues = fetch_listed_issues_for_build(args, raw_dir, warnings)
 
     disclosure_start = args.start or rolling_start_yyyymmdd(args.end, 89)
     if days_between(disclosure_start, args.end) > 92:
@@ -184,9 +190,10 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         live_companies,
         events,
         holdings,
+        listed_issues,
     )
     warnings.append(
-        "Output universe restricted to KOSPI/KOSDAQ OpenDART market-classified companies with event or holding rows."
+        "Output universe restricted to currently trading KOSPI/KOSDAQ listed stock issues with event or holding rows."
     )
 
     price_reactions, price_warnings, price_source = build_price_reactions(args, events, live_companies)
@@ -205,6 +212,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
             f"OpenDART disclosure discovery window: {disclosure_start} to {args.end}.",
             f"OpenDART holding scan scope: {len(holding_companies)} companies.",
             f"OpenDART holding scan source: {args.holding_source}.",
+            f"Listed issue master source: {args.listed_issue_source}.",
             "Price reactions use kis_proxy when configured; otherwise they remain missing.",
         ],
     }
@@ -251,6 +259,12 @@ def main() -> None:
         default="auto",
         help="Price reaction source. auto uses KIS_PROXY_URL when present, otherwise missing.",
     )
+    parser.add_argument(
+        "--listed-issue-source",
+        choices=["naver", "none"],
+        default="naver",
+        help="Current listed issue master used to keep tradable KOSPI/KOSDAQ stock issues.",
+    )
     args = parser.parse_args()
 
     output_dir = Path(args.output)
@@ -269,7 +283,7 @@ def main() -> None:
 def parse_stock_codes(value: str) -> set[str] | None:
     if value.strip().upper() == "ALL":
         return None
-    return {part.strip() for part in value.split(",") if part.strip()}
+    return {part.strip().upper() for part in value.split(",") if part.strip()}
 
 
 def parse_holding_stock_codes(value: str) -> set[str] | None | str:
@@ -278,7 +292,7 @@ def parse_holding_stock_codes(value: str) -> set[str] | None | str:
         return None
     if normalized == "EVENTS":
         return "EVENTS"
-    return {part.strip() for part in value.split(",") if part.strip()}
+    return {part.strip().upper() for part in value.split(",") if part.strip()}
 
 
 def select_holding_companies(
@@ -288,10 +302,12 @@ def select_holding_companies(
     company_by_stock: dict[str, Company],
 ) -> list[Company]:
     if holding_stock_codes == "EVENTS":
-        return event_companies
+        return dedupe_companies_by_corp(event_companies)
     if holding_stock_codes is None:
-        return all_companies or event_companies
-    return [company_by_stock[code] for code in holding_stock_codes if code in company_by_stock]
+        return dedupe_companies_by_corp(all_companies or event_companies)
+    return dedupe_companies_by_corp(
+        [company_by_stock[code] for code in holding_stock_codes if code in company_by_stock]
+    )
 
 
 def companies_from_disclosures(disclosures: list[dict]) -> list[Company]:
@@ -299,8 +315,9 @@ def companies_from_disclosures(disclosures: list[dict]) -> list[Company]:
     for item in disclosures:
         stock_code = str(item.get("stock_code") or "").strip()
         corp_code = str(item.get("corp_code") or "").strip()
-        if len(stock_code) != 6 or not corp_code:
+        if not STOCK_CODE_PATTERN.fullmatch(stock_code.upper()) or not corp_code:
             continue
+        stock_code = stock_code.upper()
         market = market_from_corp_cls(item.get("corp_cls"))
         if market not in SUPPORTED_MARKETS:
             continue
@@ -346,11 +363,30 @@ def missing_price_reactions(events: list[BuybackEvent]) -> list[PriceReaction]:
     return [missing_reaction(event.event_id, event.stock_code, event.disclosure_date) for event in events]
 
 
+def fetch_listed_issues_for_build(
+    args: argparse.Namespace,
+    raw_dir: Path,
+    warnings: list[str],
+) -> list[ListedIssue]:
+    if args.listed_issue_source == "none":
+        warnings.append("Listed issue master disabled; falling back to OpenDART market classification.")
+        return []
+    print("fetching current KOSPI/KOSDAQ listed issue master...", flush=True)
+    issues = fetch_naver_listed_issues(output=raw_dir / "listed_issues_naver.json")
+    tradable = [issue for issue in issues if issue.is_trading and issue.market in SUPPORTED_MARKETS]
+    print(f"fetched {len(tradable)} currently trading listed issues", flush=True)
+    return tradable
+
+
 def filter_live_dataset_to_supported_markets(
     companies: list[Company],
     events: list[BuybackEvent],
     holdings: list[TreasuryHoldingSnapshot],
+    listed_issues: list[ListedIssue] | None = None,
 ) -> tuple[list[Company], list[BuybackEvent], list[TreasuryHoldingSnapshot]]:
+    if listed_issues:
+        return filter_live_dataset_to_listed_issues(companies, events, holdings, listed_issues)
+
     supported_stocks = {
         company.stock_code
         for company in companies
@@ -367,6 +403,146 @@ def filter_live_dataset_to_supported_markets(
         if company.market in SUPPORTED_MARKETS and company.stock_code in data_stocks
     ]
     return filtered_companies, filtered_events, filtered_holdings
+
+
+def filter_live_dataset_to_listed_issues(
+    companies: list[Company],
+    events: list[BuybackEvent],
+    holdings: list[TreasuryHoldingSnapshot],
+    listed_issues: list[ListedIssue],
+) -> tuple[list[Company], list[BuybackEvent], list[TreasuryHoldingSnapshot]]:
+    issue_by_code = {
+        issue.stock_code: issue
+        for issue in listed_issues
+        if issue.is_trading and issue.market in SUPPORTED_MARKETS
+    }
+    issues = list(issue_by_code.values())
+    company_by_stock = {company.stock_code: company for company in companies}
+    company_by_corp: dict[str, Company] = {}
+    for company in companies:
+        company_by_corp.setdefault(company.corp_code, company)
+
+    filtered_events = [event for event in events if event.stock_code in issue_by_code]
+    derived_companies: dict[str, Company] = {}
+    filtered_holdings: list[TreasuryHoldingSnapshot] = []
+
+    for holding in holdings:
+        source_company = company_by_stock.get(holding.stock_code) or company_by_corp.get(holding.corp_code)
+        issue = resolve_holding_issue(holding, source_company, issue_by_code, issues)
+        if issue is None:
+            continue
+        filtered_holdings.append(
+            replace(
+                holding,
+                stock_code=issue.stock_code,
+                corp_name=issue.issue_name,
+            )
+        )
+        if issue.stock_code not in company_by_stock:
+            derived_companies[issue.stock_code] = Company(
+                corp_code=holding.corp_code,
+                stock_code=issue.stock_code,
+                corp_name=issue.issue_name,
+                market=issue.market,
+                sector=source_company.sector if source_company else None,
+                last_updated=holding.as_of_date,
+            )
+
+    data_stocks = {event.stock_code for event in filtered_events} | {
+        holding.stock_code for holding in filtered_holdings
+    }
+    filtered_companies: list[Company] = []
+    seen: set[str] = set()
+    for company in companies:
+        issue = issue_by_code.get(company.stock_code)
+        if issue is None or company.stock_code not in data_stocks or company.stock_code in seen:
+            continue
+        filtered_companies.append(
+            replace(company, market=issue.market, corp_name=issue.issue_name or company.corp_name)
+        )
+        seen.add(company.stock_code)
+    for stock_code, company in sorted(derived_companies.items(), key=lambda item: item[1].corp_name):
+        if stock_code in data_stocks and stock_code not in seen:
+            filtered_companies.append(company)
+            seen.add(stock_code)
+
+    return filtered_companies, filtered_events, filtered_holdings
+
+
+def resolve_holding_issue(
+    holding: TreasuryHoldingSnapshot,
+    company: Company | None,
+    issue_by_code: dict[str, ListedIssue],
+    issues: list[ListedIssue],
+) -> ListedIssue | None:
+    base_issue = issue_by_code.get(holding.stock_code)
+    if is_common_holding_kind(holding.stock_kind):
+        return base_issue
+    if not is_preferred_or_nonvoting_holding_kind(holding.stock_kind):
+        return None
+
+    company_name = normalized_issue_name((company.corp_name if company else "") or holding.corp_name)
+    if not company_name:
+        return None
+    candidates = [
+        issue
+        for issue in issues
+        if issue.stock_code != holding.stock_code
+        and is_preferred_issue_for_company(issue.issue_name, company_name)
+    ]
+    if not candidates:
+        return None
+    if len(candidates) == 1:
+        return candidates[0]
+
+    scored = sorted(
+        ((preferred_issue_match_score(holding.stock_kind, issue.issue_name), issue) for issue in candidates),
+        key=lambda item: (item[0], item[1].issue_name),
+        reverse=True,
+    )
+    if scored[0][0] <= 0 or (len(scored) > 1 and scored[0][0] == scored[1][0]):
+        return None
+    return scored[0][1]
+
+
+def is_common_holding_kind(stock_kind: str) -> bool:
+    normalized = normalized_issue_name(stock_kind)
+    return "보통" in normalized or "common" in normalized
+
+
+def is_preferred_or_nonvoting_holding_kind(stock_kind: str) -> bool:
+    normalized = normalized_issue_name(stock_kind)
+    return any(keyword in normalized for keyword in ["우선", "preferred", "의결권"])
+
+
+def is_preferred_issue_for_company(issue_name: str, normalized_company_name: str) -> bool:
+    normalized = normalized_issue_name(issue_name)
+    if not normalized.startswith(normalized_company_name):
+        return False
+    suffix = normalized.removeprefix(normalized_company_name)
+    return suffix.startswith("우") or bool(re.match(r"^\d+우", suffix))
+
+
+def preferred_issue_match_score(stock_kind: str, issue_name: str) -> int:
+    kind = normalized_issue_name(stock_kind)
+    issue = normalized_issue_name(issue_name)
+    score = 0
+    for marker in ["1", "2", "3", "4", "5"]:
+        if marker in kind and f"{marker}우" in issue:
+            score += 5
+    if "전환" in kind and "전환" in issue:
+        score += 2
+    if "b" in kind and "b" in issue:
+        score += 1
+    if "우선" in kind and "우" in issue:
+        score += 1
+    if "의결권" in kind and "우" in issue:
+        score += 1
+    return score
+
+
+def normalized_issue_name(value: object) -> str:
+    return str(value or "").strip().replace(" ", "").lower()
 
 
 def filter_json_dataset_to_supported_markets(
@@ -412,6 +588,17 @@ def dedupe_companies(companies: list[Company], sort_by_name: bool = True) -> lis
         if company.stock_code in seen:
             continue
         seen.add(company.stock_code)
+        output.append(company)
+    return output
+
+
+def dedupe_companies_by_corp(companies: list[Company]) -> list[Company]:
+    seen: set[str] = set()
+    output: list[Company] = []
+    for company in companies:
+        if company.corp_code in seen:
+            continue
+        seen.add(company.corp_code)
         output.append(company)
     return output
 

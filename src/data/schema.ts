@@ -94,10 +94,9 @@ function validateCompany(company: Company, index: number, errors: string[]) {
   if (!company.corp_code || company.corp_code.length !== 8) {
     errors.push(`companies[${index}] corp_code must be 8 chars`);
   }
-  if (!/^\d{6}$/.test(company.stock_code)) {
-    errors.push(`companies[${index}] stock_code must be 6 digits`);
+  if (!/^[0-9A-Z]{6}$/.test(company.stock_code)) {
+    errors.push(`companies[${index}] stock_code must be 6 uppercase letters or digits`);
   }
   if (!company.corp_name) errors.push(`companies[${index}] missing corp_name`);
   if (!isMarket(company.market)) errors.push(`companies[${index}] invalid market`);
 }
-

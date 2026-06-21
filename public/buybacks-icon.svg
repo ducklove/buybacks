@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">value-invest buybacks</title>
+  <desc id="desc">Circular buyback arrow around treasury stock bars</desc>
+  <rect width="64" height="64" rx="14" fill="#0f3532"/>
+  <path d="M18 44h28" stroke="#dff8f4" stroke-width="4" stroke-linecap="round"/>
+  <path d="M22 37V27" stroke="#7ddfd5" stroke-width="5" stroke-linecap="round"/>
+  <path d="M32 37V20" stroke="#f2c25b" stroke-width="5" stroke-linecap="round"/>
+  <path d="M42 37V29" stroke="#f08a51" stroke-width="5" stroke-linecap="round"/>
+  <path
+    d="M48 24a18 18 0 0 0-30.1-6.8"
+    fill="none"
+    stroke="#dff8f4"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+  <path d="M17 17h10v10" fill="none" stroke="#dff8f4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path
+    d="M16 40a18 18 0 0 0 30.1 6.8"
+    fill="none"
+    stroke="#dff8f4"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+  <path d="M47 47H37V37" fill="none" stroke="#dff8f4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+STOCK_CODE = re.compile(r"^[0-9A-Z]{6}$")
 MARKETS = {"KOSPI", "KOSDAQ"}
 EVENT_TYPES = {
     "direct_acquisition",
@@ -40,7 +41,7 @@ def validate_dataset(data_dir: Path) -> list[str]:
         if company.get("market") not in MARKETS:
             errors.append(f"companies[{index}] invalid market")
         stock_code = company.get("stock_code")
-        if not re.fullmatch(r"\d{6}", str(stock_code or "")):
+        if not STOCK_CODE.fullmatch(str(stock_code or "")):
             errors.append(f"companies[{index}] invalid stock_code")
         if stock_code in stocks:
             errors.append(f"companies[{index}] duplicate stock_code {stock_code}")

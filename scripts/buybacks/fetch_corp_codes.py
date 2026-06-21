@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from io import BytesIO
 from pathlib import Path
@@ -19,6 +20,8 @@ else:
     from .models import Company, to_jsonable
     from .parsers import normalize_date
 
+STOCK_CODE_RE = re.compile(r"^[0-9A-Z]{6}$")
+
 
 def parse_corp_code_zip(payload: bytes) -> list[Company]:
     with ZipFile(BytesIO(payload)) as archive:
@@ -30,8 +33,8 @@ def parse_corp_code_zip(payload: bytes) -> list[Company]:
     root = ElementTree.fromstring(xml_payload)
     companies: list[Company] = []
     for item in root.findall("list"):
-        stock_code = text(item, "stock_code")
-        if not stock_code or len(stock_code) != 6 or not stock_code.isdigit():
+        stock_code = text(item, "stock_code").upper()
+        if not STOCK_CODE_RE.fullmatch(stock_code):
             continue
         companies.append(
             Company(

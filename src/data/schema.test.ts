@@ -13,6 +13,14 @@ describe("validateDataset", () => {
           market: "KOSPI",
           sector: null,
           last_updated: "2026-06-20"
+        },
+        {
+          corp_code: "00111722",
+          stock_code: "00680K",
+          corp_name: "미래에셋증권2우B",
+          market: "KOSPI",
+          sector: null,
+          last_updated: "2026-06-20"
         }
       ],
       events: [
@@ -65,7 +73,7 @@ describe("validateDataset", () => {
         generated_at: "2026-06-20T00:00:00+09:00",
         dart_available: true,
         krx_available: false,
-        companies_count: 1,
+        companies_count: 2,
         events_count: 1,
         holdings_count: 0,
         price_reactions_count: 1,
@@ -107,4 +115,3 @@ describe("validateDataset", () => {
     expect(validateDataset(dataset).length).toBeGreaterThan(0);
   });
 });
-

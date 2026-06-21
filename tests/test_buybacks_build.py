@@ -7,6 +7,7 @@ from scripts.buybacks.build_buybacks_dataset import (
     parse_stock_codes,
     select_holding_companies,
 )
+from scripts.buybacks.fetch_listed_issues import ListedIssue
 from scripts.buybacks.models import Company, TreasuryHoldingSnapshot
 
 
@@ -135,15 +136,20 @@ def test_select_holding_companies_can_limit_to_event_scope():
     assert selected == event_companies
 
 
-def holding(stock_code: str) -> TreasuryHoldingSnapshot:
+def holding(
+    stock_code: str,
+    stock_kind: str = "common",
+    corp_code: str = "00126380",
+    corp_name: str = "Company",
+) -> TreasuryHoldingSnapshot:
     return TreasuryHoldingSnapshot(
-        corp_code="00126380",
+        corp_code=corp_code,
         stock_code=stock_code,
-        corp_name="Company",
+        corp_name=corp_name,
         as_of_date="2025-12-31",
         report_year=2025,
         report_code="11011",
-        stock_kind="common",
+        stock_kind=stock_kind,
         beginning_qty=None,
         acquired_qty=None,
         disposed_qty=None,
@@ -168,11 +174,56 @@ def test_filter_live_dataset_keeps_supported_markets_with_data_only():
         companies,
         [],
         [holding("005930"), holding("137080"), holding("123456")],
+        [],
     )
 
     assert filtered_events == []
     assert [company.stock_code for company in filtered_companies] == ["005930", "137080"]
     assert [snapshot.stock_code for snapshot in filtered_holdings] == ["005930", "137080"]
+
+
+def test_filter_live_dataset_maps_tradable_preferred_holding_to_listed_issue_code():
+    companies = [
+        Company("00111722", "006800", "미래에셋증권", "KOSPI", None, "2026-06-17"),
+    ]
+    listed_issues = [
+        ListedIssue("006800", "미래에셋증권", "KOSPI", True),
+        ListedIssue("00680K", "미래에셋증권2우B", "KOSPI", True),
+    ]
+
+    filtered_companies, _, filtered_holdings = filter_live_dataset_to_supported_markets(
+        companies,
+        [],
+        [
+            holding("006800", "보통주", "00111722", "미래에셋증권"),
+            holding("006800", "우선주", "00111722", "미래에셋증권"),
+        ],
+        listed_issues,
+    )
+
+    assert [company.stock_code for company in filtered_companies] == ["006800", "00680K"]
+    assert [company.corp_name for company in filtered_companies] == ["미래에셋증권", "미래에셋증권2우B"]
+    assert [snapshot.stock_code for snapshot in filtered_holdings] == ["006800", "00680K"]
+    assert filtered_holdings[1].corp_name == "미래에셋증권2우B"
+
+
+def test_filter_live_dataset_does_not_match_other_company_preferred_by_short_prefix():
+    companies = [
+        Company("00120000", "003550", "LG", "KOSPI", None, "2026-06-17"),
+    ]
+    listed_issues = [
+        ListedIssue("003550", "LG", "KOSPI", True),
+        ListedIssue("066575", "LG전자우", "KOSPI", True),
+    ]
+
+    _, _, filtered_holdings = filter_live_dataset_to_supported_markets(
+        companies,
+        [],
+        [holding("003550", "우선주", "00120000", "LG")],
+        listed_issues,
+    )
+
+    assert filtered_holdings == []
 
 
 def test_filter_json_dataset_removes_unsupported_markets_and_orphan_reactions():
@@ -185,8 +236,8 @@ def test_filter_json_dataset_removes_unsupported_markets_and_orphan_reactions():
         {"event_id": "drop", "stock_code": "123456"},
     ]
     holdings = [
-        {"stock_code": "005930"},
-        {"stock_code": "123456"},
+        {"stock_code": "005930", "stock_kind": "보통주"},
+        {"stock_code": "123456", "stock_kind": "보통주"},
     ]
     reactions = [
         {"event_id": "keep"},
@@ -198,6 +249,6 @@ def test_filter_json_dataset_removes_unsupported_markets_and_orphan_reactions():
     assert filtered == (
         [{"stock_code": "005930", "market": "KOSPI"}],
         [{"event_id": "keep", "stock_code": "005930"}],
-        [{"stock_code": "005930"}],
+        [{"stock_code": "005930", "stock_kind": "보통주"}],
         [{"event_id": "keep"}],
     )

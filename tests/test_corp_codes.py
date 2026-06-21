@@ -11,7 +11,7 @@ def make_corp_code_zip(xml: str) -> bytes:
     return payload.getvalue()
 
 
-def test_parse_corp_code_zip_keeps_only_six_digit_listed_stock_codes():
+def test_parse_corp_code_zip_keeps_six_character_listed_stock_codes():
     payload = make_corp_code_zip(
         """
         <result>
@@ -23,8 +23,8 @@ def test_parse_corp_code_zip_keeps_only_six_digit_listed_stock_codes():
           </list>
           <list>
             <corp_code>99999999</corp_code>
-            <corp_name>Invalid Alpha Code</corp_name>
-            <stock_code>A00593</stock_code>
+            <corp_name>Mirae Asset Securities 2 Preferred B</corp_name>
+            <stock_code>00680K</stock_code>
             <modify_date>20260620</modify_date>
           </list>
           <list>
@@ -39,4 +39,4 @@ def test_parse_corp_code_zip_keeps_only_six_digit_listed_stock_codes():
 
     companies = parse_corp_code_zip(payload)
 
-    assert [company.stock_code for company in companies] == ["005930"]
+    assert [company.stock_code for company in companies] == ["005930", "00680K"]

@@ -20,9 +20,17 @@ export function Shell({ children }: ShellProps) {
     <div className="app-shell">
       <header className="topbar">
         <button className="brand" type="button" onClick={() => scrollToSection("dashboard")}>
-          <span>value-invest</span>
-          <span aria-hidden="true">/</span>
-          <strong>buybacks</strong>
+          <img
+            className="brand-icon"
+            src={`${import.meta.env.BASE_URL}buybacks-icon.svg`}
+            alt=""
+            aria-hidden="true"
+          />
+          <span className="brand-text">
+            <span>value-invest</span>
+            <span aria-hidden="true">/</span>
+            <strong>buybacks</strong>
+          </span>
         </button>
         <nav aria-label="Primary navigation">
           {navItems.map((item, index) => (
@@ -44,4 +52,3 @@ export function Shell({ children }: ShellProps) {
     </div>
   );
 }
-
