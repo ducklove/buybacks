@@ -1,14 +1,16 @@
 {
-  "generated_at": "2026-06-21T07:58:24.732646+00:00",
+  "generated_at": "2026-06-21T11:10:47.767845+00:00",
   "dart_available": true,
   "krx_available": false,
   "price_source": "kis_proxy",
+  "latest_price_source": "kis_proxy",
   "update_mode": "incremental",
-  "previous_generated_at": "2026-06-21T06:21:34.337184+00:00",
+  "previous_generated_at": "2026-06-21T07:58:24.732646+00:00",
   "companies_count": 2545,
   "events_count": 65,
   "holdings_count": 2568,
   "price_reactions_count": 65,
+  "latest_prices_count": 54,
   "warnings": [
     "Incremental update merged with the committed dataset instead of rebuilding the full universe.",
     "Holding snapshots are refreshed only for companies with incremental event disclosures; existing all-market snapshots are preserved.",
@@ -17,8 +19,6 @@
     "OpenDART holding scan source: stock_totals.",
     "Listed issue master source: naver.",
     "Price reactions use kis_proxy when configured; otherwise they remain missing.",
-    "Latest prices are stored separately from event reaction windows for market-cap display."
-  ],
-  "latest_price_source": "price_reaction",
-  "latest_prices_count": 52
+    "Latest prices use kis_proxy when configured; otherwise market caps remain missing."
+  ]
 }
