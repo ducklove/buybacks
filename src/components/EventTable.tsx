@@ -10,7 +10,7 @@ import {
   formatPercent,
   formatSignedPercent
 } from "../utils/format";
-import { marketCapFrom } from "../utils/marketCap";
+import { marketCapFrom, plannedAcquisitionStake } from "../utils/marketCap";
 import {
   displayReactionValue,
   displayRelativeReaction,
@@ -23,7 +23,7 @@ interface EventTableProps {
   onSelectStock: (stockCode: string) => void;
 }
 
-type SortKey = "date" | "company" | "amount" | "marketCap" | "reaction";
+type SortKey = "date" | "company" | "amount" | "stake" | "marketCap" | "reaction";
 
 export function EventTable({ events, selectedStockCode, onSelectStock }: EventTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>("date");
@@ -43,6 +43,9 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
           ((marketCapFrom(a.latestPrice ?? a.priceReaction, a.holding).amount ?? -1) -
             (marketCapFrom(b.latestPrice ?? b.priceReaction, b.holding).amount ?? -1))
         );
+      }
+      if (sortKey === "stake") {
+        return direction * (plannedStakeValue(a) - plannedStakeValue(b));
       }
       return direction * ((displayReactionValue(a.priceReaction) ?? -99) - (displayReactionValue(b.priceReaction) ?? -99));
     });
@@ -87,6 +90,9 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
               <SortableHeader active={sortKey === "marketCap"} onClick={() => changeSort("marketCap")}>
                 시가총액
               </SortableHeader>
+              <SortableHeader active={sortKey === "stake"} onClick={() => changeSort("stake")}>
+                예정취득지분
+              </SortableHeader>
               <SortableHeader active={sortKey === "reaction"} onClick={() => changeSort("reaction")}>
                 가격반응
               </SortableHeader>
@@ -129,6 +135,9 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                     <MarketCapCell event={event} />
                   </td>
                   <td>
+                    <PlannedStakeCell event={event} />
+                  </td>
+                  <td>
                     <PriceReactionCell event={event} />
                   </td>
                   <td>
@@ -151,16 +160,9 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
 }
 
 function AmountBreakdown({ event }: { event: EnrichedEvent }) {
-  const commonAmount = event.planned_amount_common_krw ?? event.planned_amount_krw;
-  const otherAmount = event.planned_amount_other_krw ?? null;
   return (
     <div className="stacked-value">
       <strong>{formatKRW(event.planned_amount_krw)}</strong>
-      {otherAmount !== null && (
-        <small>
-          보통 {formatKRW(commonAmount)} / 기타 {formatKRW(otherAmount)}
-        </small>
-      )}
     </div>
   );
 }
@@ -169,11 +171,24 @@ function ShareBreakdown({ event }: { event: EnrichedEvent }) {
   return (
     <div className="stacked-value">
       <strong>{formatNumber(event.planned_shares_common)}</strong>
-      {event.planned_shares_other !== null && (
-        <small>기타 {formatNumber(event.planned_shares_other)}</small>
-      )}
     </div>
   );
+}
+
+function PlannedStakeCell({ event }: { event: EnrichedEvent }) {
+  const marketCap = marketCapFrom(event.latestPrice ?? event.priceReaction, event.holding);
+  const stake = plannedAcquisitionStake(event.event_type, event.planned_amount_krw, marketCap.amount);
+  return (
+    <div className="stacked-value">
+      <strong>{formatPercent(stake, 2)}</strong>
+      {stake !== null && <small>예정금액 / 시가총액</small>}
+    </div>
+  );
+}
+
+function plannedStakeValue(event: EnrichedEvent) {
+  const marketCap = marketCapFrom(event.latestPrice ?? event.priceReaction, event.holding);
+  return plannedAcquisitionStake(event.event_type, event.planned_amount_krw, marketCap.amount) ?? -1;
 }
 
 function PriceReactionCell({ event }: { event: EnrichedEvent }) {

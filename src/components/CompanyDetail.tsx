@@ -15,7 +15,7 @@ import {
   formatPercent,
   formatSignedPercent
 } from "../utils/format";
-import { latestMarketCap } from "../utils/marketCap";
+import { latestMarketCap, marketCapFrom, plannedAcquisitionStake } from "../utils/marketCap";
 import { dedupeHoldingTimeline, latestPriceMap } from "../utils/metrics";
 import { displayRelativeReaction, displaySimpleReaction } from "../utils/priceReactions";
 
@@ -166,7 +166,10 @@ export function CompanyDetail({
                 <span className={`event-chip event-${event.event_type}`}>
                   {EVENT_TYPE_LABELS[event.event_type]}
                 </span>
-                <p>{event.purpose ?? event.raw_report_name ?? "목적 데이터 없음"}</p>
+                <div className="event-timeline-copy">
+                  <p>{event.purpose ?? event.raw_report_name ?? "목적 데이터 없음"}</p>
+                  <EventDetailLines event={event} />
+                </div>
               </li>
             ))}
           </ol>
@@ -212,6 +215,37 @@ function pickPrimaryHolding(
   }
   const latestSnapshots = snapshots.filter((snapshot) => snapshot.as_of_date === latestDate);
   return latestSnapshots.find(isCommonHolding) ?? latestSnapshots[latestSnapshots.length - 1];
+}
+
+function EventDetailLines({ event }: { event: EnrichedEvent }) {
+  const details = eventDetailLines(event);
+  if (details.length === 0) {
+    return null;
+  }
+  return <small>{details.join(" · ")}</small>;
+}
+
+function eventDetailLines(event: EnrichedEvent) {
+  const lines: string[] = [];
+  if (event.planned_amount_common_krw != null || event.planned_amount_other_krw != null) {
+    lines.push(
+      `예정금액 보통 ${formatKRW(event.planned_amount_common_krw ?? event.planned_amount_krw)} / 기타 ${formatKRW(
+        event.planned_amount_other_krw
+      )}`
+    );
+  }
+  if (event.planned_shares_other !== null) {
+    lines.push(
+      `예정주식수 보통 ${formatNumber(event.planned_shares_common)} / 기타 ${formatNumber(event.planned_shares_other)}`
+    );
+  }
+
+  const marketCap = marketCapFrom(event.latestPrice ?? event.priceReaction, event.holding);
+  const stake = plannedAcquisitionStake(event.event_type, event.planned_amount_krw, marketCap.amount);
+  if (stake !== null) {
+    lines.push(`예정취득지분 ${formatPercent(stake, 2)}`);
+  }
+  return lines;
 }
 
 function isCommonHolding(snapshot: TreasuryHoldingSnapshot) {

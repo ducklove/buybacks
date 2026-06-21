@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { latestMarketCap, marketCapFrom } from "./marketCap";
+import { latestMarketCap, marketCapFrom, plannedAcquisitionStake } from "./marketCap";
 import type { LatestPriceSnapshot, PriceReaction, TreasuryHoldingSnapshot } from "../types/buybacks";
 
 const holding: TreasuryHoldingSnapshot = {
@@ -72,5 +72,12 @@ describe("market cap utilities", () => {
   it("returns null when a price or share denominator is unavailable", () => {
     expect(marketCapFrom(undefined, holding).amount).toBeNull();
     expect(marketCapFrom(reaction, undefined).amount).toBeNull();
+  });
+
+  it("calculates planned acquisition stake for acquisition-like events only", () => {
+    expect(plannedAcquisitionStake("direct_acquisition", 100, 1000)).toBe(0.1);
+    expect(plannedAcquisitionStake("trust_contract_start", 25, 1000)).toBe(0.025);
+    expect(plannedAcquisitionStake("direct_disposition", 100, 1000)).toBeNull();
+    expect(plannedAcquisitionStake("direct_acquisition", 100, null)).toBeNull();
   });
 });

@@ -37,8 +37,10 @@ describe("App", () => {
             period_start: null,
             period_end: null,
             planned_shares_common: 10,
-            planned_shares_other: null,
+            planned_shares_other: 3,
             planned_amount_krw: 1000,
+            planned_amount_common_krw: 700,
+            planned_amount_other_krw: 300,
             actual_shares: null,
             actual_amount_krw: null,
             method: null,
@@ -122,5 +124,8 @@ describe("App", () => {
     expect(await screen.findByText("자사주 매입·처분·소각 분석")).toBeInTheDocument();
     expect(screen.getByText("이벤트 탐색기")).toBeInTheDocument();
     expect(screen.getAllByText("삼성전자").length).toBeGreaterThan(0);
+    expect(screen.getByText("예정취득지분")).toBeInTheDocument();
+    expect(screen.getAllByText("9.09%").length).toBeGreaterThan(0);
+    expect(screen.getByText(/예정주식수 보통 10 \/ 기타 3/)).toBeInTheDocument();
   });
 });
