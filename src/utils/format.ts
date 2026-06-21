@@ -31,19 +31,19 @@ export function formatNumber(value: number | null | undefined): string {
 export function formatKRW(value: number | null | undefined): string {
   if (value === null || value === undefined || Number.isNaN(value)) return "-";
   const abs = Math.abs(value);
-  if (abs >= 1_0000_0000_0000) return `${formatNumber(Math.round(value / 1_0000_0000_0000))}조원`;
-  if (abs >= 1_0000_0000) return `${formatNumber(Math.round(value / 1_0000_0000))}억원`;
-  return `${formatNumber(value)}원`;
+  if (abs >= 1_0000_0000_0000) return `${formatNumber(Math.round(value / 1_0000_0000_0000))}조`;
+  if (abs >= 1_0000_0000) return `${formatNumber(Math.round(value / 1_0000_0000))}억`;
+  return formatNumber(value);
 }
 
 export function formatMarketCapKRW(value: number | null | undefined): string {
   if (value === null || value === undefined || Number.isNaN(value)) return "-";
   const abs = Math.abs(value);
   if (abs >= 1_0000_0000_0000) {
-    return `${formatNumber(Math.round((value / 1_0000_0000_0000) * 10) / 10)}조원`;
+    return `${formatNumber(Math.round((value / 1_0000_0000_0000) * 10) / 10)}조`;
   }
-  if (abs >= 1_0000_0000) return `${formatNumber(Math.round(value / 1_0000_0000))}억원`;
-  return `${formatNumber(value)}원`;
+  if (abs >= 1_0000_0000) return `${formatNumber(Math.round(value / 1_0000_0000))}억`;
+  return formatNumber(value);
 }
 
 export function formatPercent(value: number | null | undefined, digits = 2): string {

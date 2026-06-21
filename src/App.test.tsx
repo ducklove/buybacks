@@ -128,8 +128,9 @@ describe("App", () => {
     expect(screen.getByText("기보유비율")).toBeInTheDocument();
     expect(screen.getByText("예정취득지분")).toBeInTheDocument();
     expect(screen.getAllByText("9.09%").length).toBeGreaterThan(0);
-    expect(screen.getByText("110원")).toBeInTheDocument();
-    expect(screen.getByText("+1.50%")).toBeInTheDocument();
+    expect(screen.getByText("110")).toBeInTheDocument();
+    expect(screen.getByText("△ +1.50%")).toBeInTheDocument();
+    expect(screen.queryByText("현재가")).not.toBeInTheDocument();
     expect(screen.getByText("공시 목록")).toBeInTheDocument();
     expect(screen.getByText(/예정주식수 보통 10 \/ 기타 3/)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "원문" })).toHaveAttribute(

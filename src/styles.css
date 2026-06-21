@@ -740,12 +740,6 @@ tbody tr:last-child td {
   text-align: right;
 }
 
-.company-price span {
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 800;
-}
-
 .company-price strong {
   color: var(--ink);
   font-size: 18px;
@@ -754,9 +748,24 @@ tbody tr:last-child td {
 }
 
 .company-price small {
-  color: var(--teal-strong);
   font-size: 12px;
   font-weight: 850;
+}
+
+.price-change-up {
+  color: #c8322b;
+}
+
+.price-change-down {
+  color: #1f67d8;
+}
+
+.price-change-flat {
+  color: var(--muted);
+}
+
+.limit-change {
+  font-weight: 900;
 }
 
 .detail-metrics {

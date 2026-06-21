@@ -123,15 +123,6 @@ export function CompanyDetail({
         <div>
           <span>시가총액</span>
           <strong>{formatMarketCapKRW(currentMarketCap.amount)}</strong>
-          {currentMarketCap.amount !== null && currentMarketCap.close !== null && currentMarketCap.priceDate !== null ? (
-            <small>
-              {currentMarketCap.priceDate} 종가 {formatNumber(currentMarketCap.close)}원
-            </small>
-          ) : currentMarketCap.close !== null && currentMarketCap.issuedShares === null ? (
-            <small>발행주식수 없음</small>
-          ) : (
-            <small>가격 없음</small>
-          )}
         </div>
       </div>
 
@@ -187,13 +178,32 @@ export function CompanyDetail({
 }
 
 function CurrentPrice({ latestPrice }: { latestPrice: LatestPriceSnapshot | undefined }) {
+  const priceChange = latestPriceChange(latestPrice?.change_rate);
   return (
     <div className="company-price">
-      <span>현재가</span>
-      <strong>{latestPrice ? `${formatNumber(latestPrice.close)}원` : "-"}</strong>
-      <small>{formatSignedPercent(latestPrice?.change_rate)}</small>
+      <strong>{formatNumber(latestPrice?.close)}</strong>
+      <small className={`price-change ${priceChange.className}`}>{priceChange.label}</small>
     </div>
   );
+}
+
+function latestPriceChange(value: number | null | undefined) {
+  if (value === null || value === undefined || Number.isNaN(value)) {
+    return { className: "price-change-flat", label: "-" };
+  }
+  if (value <= -0.3) {
+    return { className: "price-change-down limit-change", label: `▼ ${formatSignedPercent(value)}` };
+  }
+  if (value < 0) {
+    return { className: "price-change-down", label: `▽ ${formatSignedPercent(value)}` };
+  }
+  if (value >= 0.3) {
+    return { className: "price-change-up limit-change", label: `▲ ${formatSignedPercent(value)}` };
+  }
+  if (value > 0) {
+    return { className: "price-change-up", label: `△ ${formatSignedPercent(value)}` };
+  }
+  return { className: "price-change-flat", label: formatSignedPercent(value) };
 }
 
 function DisclosureReaction({ event }: { event: EnrichedEvent }) {
