@@ -14,20 +14,26 @@ import type { EnrichedEvent, EventType, PriceReaction, TreasuryHoldingSnapshot }
 const priceReaction = (
   event_id: string,
   return_20d: number | null,
-  abnormal_return_20d: number | null
+  abnormal_return_20d: number | null,
+  abnormal_return_5d: number | null = null,
+  abnormal_return_60d: number | null = null
 ): PriceReaction => ({
   event_id,
   stock_code: "005930",
   event_date: "2026-05-22",
   close_t0: 100,
   return_1d: null,
-  return_5d: null,
+  return_5d: abnormal_return_5d,
   return_20d,
-  return_60d: null,
+  return_60d: abnormal_return_60d,
   max_drawdown_20d: null,
   max_drawdown_60d: null,
+  market_return_5d: abnormal_return_5d !== null ? 0 : null,
+  abnormal_return_5d,
   market_return_20d: return_20d !== null && abnormal_return_20d !== null ? return_20d - abnormal_return_20d : null,
   abnormal_return_20d,
+  market_return_60d: abnormal_return_60d !== null ? 0 : null,
+  abnormal_return_60d,
   volume_change_20d: null,
   data_quality: "partial"
 });
@@ -161,8 +167,8 @@ describe("holding snapshots", () => {
 describe("return metrics", () => {
   it("uses index-relative returns for KPI averages and distribution buckets", () => {
     const reactions = [
-      priceReaction("positive-simple-negative-relative", 0.2, -0.06),
-      priceReaction("negative-simple-positive-relative", -0.2, 0.07)
+      priceReaction("positive-simple-negative-relative", 0.2, -0.06, 0.04, -0.12),
+      priceReaction("negative-simple-positive-relative", -0.2, 0.07, -0.02, 0.11)
     ];
     const kpis = buildKpis(
       [
@@ -183,6 +189,22 @@ describe("return metrics", () => {
       { label: "0~5%", value: 0 },
       { label: "5~10%", value: 1 },
       { label: "> 10%", value: 0 }
+    ]);
+    expect(returnDistribution(reactions, 5)).toEqual([
+      { label: "< -10%", value: 0 },
+      { label: "-10~-5%", value: 0 },
+      { label: "-5~0%", value: 1 },
+      { label: "0~5%", value: 1 },
+      { label: "5~10%", value: 0 },
+      { label: "> 10%", value: 0 }
+    ]);
+    expect(returnDistribution(reactions, 60)).toEqual([
+      { label: "< -10%", value: 1 },
+      { label: "-10~-5%", value: 0 },
+      { label: "-5~0%", value: 0 },
+      { label: "0~5%", value: 0 },
+      { label: "5~10%", value: 0 },
+      { label: "> 10%", value: 1 }
     ]);
   });
 

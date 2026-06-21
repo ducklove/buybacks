@@ -15,6 +15,8 @@ if __package__ in {None, ""}:
     from scripts.buybacks.fetch_dart_buybacks import (
         collect_dart_dataset,
         collect_dart_holding_snapshots,
+        dedupe_events,
+        dedupe_holdings,
         fetch_buyback_disclosures,
     )
     from scripts.buybacks.fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
@@ -23,7 +25,13 @@ if __package__ in {None, ""}:
     from scripts.buybacks.parsers import market_from_corp_cls, normalize_date
 else:
     from .fetch_corp_codes import fetch_corp_codes
-    from .fetch_dart_buybacks import collect_dart_dataset, collect_dart_holding_snapshots, fetch_buyback_disclosures
+    from .fetch_dart_buybacks import (
+        collect_dart_dataset,
+        collect_dart_holding_snapshots,
+        dedupe_events,
+        dedupe_holdings,
+        fetch_buyback_disclosures,
+    )
     from .fetch_krx_prices import calculate_kis_proxy_price_reactions, missing_reaction
     from .fetch_listed_issues import ListedIssue, fetch_naver_listed_issues
     from .models import BuybackEvent, Company, PriceReaction, TreasuryHoldingSnapshot, to_jsonable
@@ -224,12 +232,157 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     return status
 
 
+def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir: Path) -> dict:
+    if not existing_dataset_available(output_dir):
+        print("existing dataset is missing; running a full live build before incremental updates", flush=True)
+        return build_live_dataset(args, api_key, output_dir)
+
+    existing_companies = load_companies(output_dir / "companies.json")
+    existing_events = load_events(output_dir / "events.json")
+    existing_holdings = load_holdings(output_dir / "holding_snapshots.json")
+    existing_reactions = load_reactions(output_dir / "price_reactions.json")
+    existing_status = load_json(output_dir / "data_status.json")
+    raw_dir = Path(args.raw_dir)
+    warnings: list[str] = []
+    listed_issues = fetch_listed_issues_for_build(args, raw_dir, warnings)
+
+    disclosure_start = args.start or incremental_start_yyyymmdd(
+        existing_events,
+        args.end,
+        args.incremental_lookback_days,
+    )
+    if days_between(disclosure_start, args.end) > 92:
+        capped_start = rolling_start_yyyymmdd(args.end, 89)
+        warnings.append(
+            f"OpenDART list.json without corp_code is limited to about 3 months; "
+            f"incremental start capped from {disclosure_start} to {capped_start}."
+        )
+        disclosure_start = capped_start
+
+    disclosures, disclosure_warnings = fetch_buyback_disclosures(
+        api_key=api_key,
+        bgn_de=disclosure_start,
+        end_de=args.end,
+        raw_dir=raw_dir,
+        page_limit=args.discovery_page_limit,
+    )
+    print(
+        f"discovered {len(disclosures)} incremental buyback disclosure rows from "
+        f"{disclosure_start} to {args.end}",
+        flush=True,
+    )
+    warnings.extend(disclosure_warnings)
+
+    event_companies = companies_from_disclosures(disclosures)
+    years = [int(part) for part in args.years.split(",") if part]
+    report_codes = parse_report_codes(args.report_codes)
+    live_event_companies: list[Company] = []
+    new_events: list[BuybackEvent] = []
+    refreshed_holdings: list[TreasuryHoldingSnapshot] = []
+
+    if event_companies:
+        print(
+            f"collecting incremental structured OpenDART rows for {len(event_companies)} event companies",
+            flush=True,
+        )
+        live_event_companies, new_events, _, collection_warnings = collect_dart_dataset(
+            api_key=api_key,
+            companies=event_companies,
+            bgn_de=disclosure_start,
+            end_de=args.end,
+            years=years,
+            raw_dir=raw_dir,
+            disclosure_items=disclosures,
+            report_codes=report_codes,
+            include_holdings=False,
+        )
+        warnings.extend(collection_warnings)
+
+        print(
+            f"refreshing holding snapshots for {len(live_event_companies)} incremental event companies",
+            flush=True,
+        )
+        refreshed_holdings, holding_warnings = collect_dart_holding_snapshots(
+            api_key=api_key,
+            companies=live_event_companies,
+            years=years,
+            raw_dir=raw_dir,
+            report_codes=report_codes,
+            include_treasury_tables=args.holding_source == "treasury_tables",
+        )
+        warnings.extend(holding_warnings)
+
+    combined_companies = merge_companies(existing_companies, live_event_companies or event_companies)
+    combined_events = merge_events(existing_events, new_events)
+    combined_holdings = merge_holdings(existing_holdings, refreshed_holdings)
+    live_companies, events, holdings = filter_live_dataset_to_supported_markets(
+        combined_companies,
+        combined_events,
+        combined_holdings,
+        listed_issues,
+    )
+
+    new_event_ids = {event.event_id for event in new_events}
+    price_refresh_events = select_price_reaction_events(
+        events,
+        existing_reactions,
+        new_event_ids,
+        args.incremental_price_lookback_days,
+        args.end,
+    )
+    refreshed_reactions: list[PriceReaction] = []
+    price_source = str(existing_status.get("price_source") or "missing")
+    if price_refresh_events:
+        print(f"refreshing price reactions for {len(price_refresh_events)} incremental/recent events", flush=True)
+        refreshed_reactions, price_warnings, price_source = build_price_reactions(
+            args,
+            price_refresh_events,
+            live_companies,
+        )
+        warnings.extend(price_warnings)
+    price_reactions = merge_price_reactions(existing_reactions, refreshed_reactions, events)
+
+    status = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "dart_available": True,
+        "krx_available": False,
+        "price_source": price_source,
+        "update_mode": "incremental",
+        "previous_generated_at": existing_status.get("generated_at"),
+        "companies_count": len(live_companies),
+        "events_count": len(events),
+        "holdings_count": len(holdings),
+        "price_reactions_count": len(price_reactions),
+        "warnings": [
+            "Incremental update merged with the committed dataset instead of rebuilding the full universe.",
+            "Holding snapshots are refreshed only for companies with incremental event disclosures; existing all-market snapshots are preserved.",
+            *warnings,
+            f"OpenDART incremental disclosure window: {disclosure_start} to {args.end}.",
+            f"OpenDART incremental event company scope: {len(event_companies)} companies.",
+            f"OpenDART holding scan source: {args.holding_source}.",
+            f"Listed issue master source: {args.listed_issue_source}.",
+            "Price reactions use kis_proxy when configured; otherwise they remain missing.",
+        ],
+    }
+    write_json(output_dir / "companies.json", to_jsonable(live_companies))
+    write_json(output_dir / "events.json", to_jsonable(events))
+    write_json(output_dir / "holding_snapshots.json", to_jsonable(holdings))
+    write_json(output_dir / "price_reactions.json", to_jsonable(price_reactions))
+    write_json(output_dir / "data_status.json", status)
+    return status
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="public/data/buybacks")
     parser.add_argument("--fixture-dir", default="data/fixtures/buybacks")
     parser.add_argument("--raw-dir", default="data/raw/buybacks")
     parser.add_argument("--live-if-available", action="store_true")
+    parser.add_argument(
+        "--incremental",
+        action="store_true",
+        help="Merge recent live rows into the existing output dataset instead of rebuilding the full universe.",
+    )
     parser.add_argument(
         "--stock-codes",
         default="005930,000660,035420,051910,005380,035900",
@@ -254,6 +407,18 @@ def main() -> None:
     parser.add_argument("--max-holding-companies", type=int, default=0)
     parser.add_argument("--discovery-page-limit", type=int, default=3)
     parser.add_argument(
+        "--incremental-lookback-days",
+        type=int,
+        default=7,
+        help="Overlap window before the latest existing disclosure date when --incremental is used.",
+    )
+    parser.add_argument(
+        "--incremental-price-lookback-days",
+        type=int,
+        default=75,
+        help="Recent event window for refreshing incomplete kis_proxy price reactions.",
+    )
+    parser.add_argument(
         "--price-source",
         choices=["auto", "kis_proxy", "missing"],
         default="auto",
@@ -269,8 +434,13 @@ def main() -> None:
 
     output_dir = Path(args.output)
     api_key = os.environ.get("DART_API_KEY")
+    if args.incremental and not api_key:
+        raise SystemExit("DART_API_KEY is required for --incremental updates")
     if args.live_if_available and api_key:
-        status = build_live_dataset(args, api_key, output_dir)
+        if args.incremental:
+            status = build_incremental_dataset(args, api_key, output_dir)
+        else:
+            status = build_live_dataset(args, api_key, output_dir)
     else:
         status = copy_fixture_dataset(Path(args.fixture_dir), output_dir)
     print(
@@ -363,6 +533,112 @@ def missing_price_reactions(events: list[BuybackEvent]) -> list[PriceReaction]:
     return [missing_reaction(event.event_id, event.stock_code, event.disclosure_date) for event in events]
 
 
+def existing_dataset_available(output_dir: Path) -> bool:
+    return all((output_dir / name).exists() for name in [*DATA_FILES, "data_status.json"])
+
+
+def load_companies(path: Path) -> list[Company]:
+    return [Company(**item) for item in load_json(path)]
+
+
+def load_events(path: Path) -> list[BuybackEvent]:
+    return [BuybackEvent(**event_payload(item)) for item in load_json(path)]
+
+
+def load_holdings(path: Path) -> list[TreasuryHoldingSnapshot]:
+    return [TreasuryHoldingSnapshot(**item) for item in load_json(path)]
+
+
+def load_reactions(path: Path) -> list[PriceReaction]:
+    return [PriceReaction(**reaction_payload(item)) for item in load_json(path)]
+
+
+def event_payload(item: dict) -> dict:
+    payload = dict(item)
+    payload.setdefault("planned_amount_common_krw", None)
+    payload.setdefault("planned_amount_other_krw", None)
+    return payload
+
+
+def reaction_payload(item: dict) -> dict:
+    payload = dict(item)
+    payload.setdefault("market_return_5d", None)
+    payload.setdefault("abnormal_return_5d", None)
+    payload.setdefault("market_return_60d", None)
+    payload.setdefault("abnormal_return_60d", None)
+    return payload
+
+
+def merge_companies(existing: list[Company], incoming: list[Company]) -> list[Company]:
+    by_stock: dict[str, Company] = {}
+    for company in [*existing, *incoming]:
+        by_stock[company.stock_code] = company
+    return dedupe_companies(list(by_stock.values()), sort_by_name=True)
+
+
+def merge_events(existing: list[BuybackEvent], incoming: list[BuybackEvent]) -> list[BuybackEvent]:
+    return dedupe_events([*existing, *incoming])
+
+
+def merge_holdings(
+    existing: list[TreasuryHoldingSnapshot],
+    incoming: list[TreasuryHoldingSnapshot],
+) -> list[TreasuryHoldingSnapshot]:
+    return dedupe_holdings([*existing, *incoming])
+
+
+def merge_price_reactions(
+    existing: list[PriceReaction],
+    refreshed: list[PriceReaction],
+    events: list[BuybackEvent],
+) -> list[PriceReaction]:
+    event_ids = {event.event_id for event in events}
+    by_event = {reaction.event_id: reaction for reaction in existing if reaction.event_id in event_ids}
+    for reaction in refreshed:
+        if reaction.event_id in event_ids:
+            by_event[reaction.event_id] = reaction
+    for event in events:
+        if event.event_id not in by_event:
+            by_event[event.event_id] = missing_reaction(event.event_id, event.stock_code, event.disclosure_date)
+    return [
+        by_event[event.event_id]
+        for event in sorted(events, key=lambda item: (item.disclosure_date, item.event_id), reverse=True)
+    ]
+
+
+def select_price_reaction_events(
+    events: list[BuybackEvent],
+    existing_reactions: list[PriceReaction],
+    new_event_ids: set[str],
+    lookback_days: int,
+    end_yyyymmdd: str,
+) -> list[BuybackEvent]:
+    existing_by_event = {reaction.event_id: reaction for reaction in existing_reactions}
+    cutoff = datetime.strptime(end_yyyymmdd, "%Y%m%d").date() - timedelta(days=lookback_days)
+    selected: list[BuybackEvent] = []
+    for event in events:
+        reaction = existing_by_event.get(event.event_id)
+        disclosure_date = datetime.strptime(event.disclosure_date, "%Y-%m-%d").date()
+        if event.event_id in new_event_ids or reaction is None:
+            selected.append(event)
+        elif disclosure_date >= cutoff and (
+            reaction.data_quality != "complete" or has_missing_relative_window(reaction)
+        ):
+            selected.append(event)
+    return selected
+
+
+def has_missing_relative_window(reaction: PriceReaction) -> bool:
+    return reaction.abnormal_return_5d is None or reaction.abnormal_return_60d is None
+
+
+def incremental_start_yyyymmdd(events: list[BuybackEvent], end_yyyymmdd: str, lookback_days: int) -> str:
+    if not events:
+        return rolling_start_yyyymmdd(end_yyyymmdd, min(lookback_days, 89))
+    latest = max(datetime.strptime(event.disclosure_date, "%Y-%m-%d").date() for event in events)
+    return (latest - timedelta(days=lookback_days)).strftime("%Y%m%d")
+
+
 def fetch_listed_issues_for_build(
     args: argparse.Namespace,
     raw_dir: Path,
@@ -428,7 +704,10 @@ def filter_live_dataset_to_listed_issues(
 
     for holding in holdings:
         source_company = company_by_stock.get(holding.stock_code) or company_by_corp.get(holding.corp_code)
-        issue = resolve_holding_issue(holding, source_company, issue_by_code, issues)
+        primary_company = company_by_corp.get(holding.corp_code)
+        issue = issue_by_code.get(holding.stock_code) if is_already_mapped_issue(holding, primary_company, issue_by_code) else None
+        if issue is None:
+            issue = resolve_holding_issue(holding, source_company, issue_by_code, issues)
         if issue is None:
             continue
         filtered_holdings.append(
@@ -469,6 +748,18 @@ def filter_live_dataset_to_listed_issues(
     return filtered_companies, filtered_events, filtered_holdings
 
 
+def is_already_mapped_issue(
+    holding: TreasuryHoldingSnapshot,
+    primary_company: Company | None,
+    issue_by_code: dict[str, ListedIssue],
+) -> bool:
+    if holding.stock_code not in issue_by_code:
+        return False
+    if primary_company is None:
+        return not is_common_holding_kind(holding.stock_kind)
+    return holding.stock_code != primary_company.stock_code
+
+
 def resolve_holding_issue(
     holding: TreasuryHoldingSnapshot,
     company: Company | None,
@@ -480,6 +771,8 @@ def resolve_holding_issue(
         return base_issue
     if not is_preferred_or_nonvoting_holding_kind(holding.stock_kind):
         return None
+    if base_issue is not None and (company is None or holding.stock_code != company.stock_code):
+        return base_issue
 
     company_name = normalized_issue_name((company.corp_name if company else "") or holding.corp_name)
     if not company_name:

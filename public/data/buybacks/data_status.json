@@ -1,15 +1,18 @@
 {
-  "generated_at": "2026-06-21T03:42:22.535123+00:00",
-  "dart_available": false,
+  "generated_at": "2026-06-21T06:21:34.337184+00:00",
+  "dart_available": true,
   "krx_available": false,
-  "price_source": "fixture",
-  "companies_count": 6,
-  "events_count": 8,
-  "holdings_count": 6,
-  "price_reactions_count": 7,
+  "price_source": "kis_proxy",
+  "companies_count": 2546,
+  "events_count": 65,
+  "holdings_count": 2569,
+  "price_reactions_count": 65,
   "warnings": [
-    "Fixture data for development and static build verification only.",
-    "Set DART_API_KEY in local or GitHub Actions to collect live OpenDART data.",
-    "Set KIS_PROXY_URL to calculate price reactions from kis_proxy."
+    "Output universe restricted to currently trading KOSPI/KOSDAQ listed stock issues with event or holding rows.",
+    "OpenDART disclosure discovery window: 20260324 to 20260621.",
+    "OpenDART holding scan scope: 3971 companies.",
+    "OpenDART holding scan source: stock_totals.",
+    "Listed issue master source: naver.",
+    "Price reactions use kis_proxy when configured; otherwise they remain missing."
   ]
 }

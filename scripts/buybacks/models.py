@@ -88,8 +88,12 @@ class PriceReaction:
     return_60d: float | None
     max_drawdown_20d: float | None
     max_drawdown_60d: float | None
+    market_return_5d: float | None
+    abnormal_return_5d: float | None
     market_return_20d: float | None
     abnormal_return_20d: float | None
+    market_return_60d: float | None
+    abnormal_return_60d: float | None
     volume_change_20d: float | None
     data_quality: DataQuality
 

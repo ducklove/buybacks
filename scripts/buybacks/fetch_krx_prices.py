@@ -166,7 +166,9 @@ def calculate_price_reaction(
     return_60d = ret(60)
     max_drawdown_20d = max_drawdown(prices[start_index : start_index + 21], base.close)
     max_drawdown_60d = max_drawdown(prices[start_index : start_index + 61], base.close)
+    market_return_5d = calculate_market_return(market_prices, event_date_norm, 5)
     market_return_20d = calculate_market_return(market_prices, event_date_norm, 20)
+    market_return_60d = calculate_market_return(market_prices, event_date_norm, 60)
     volume_change_20d = volume_change(prices, start_index, 20)
     quality = price_data_quality(
         close_t0=base.close,
@@ -190,9 +192,17 @@ def calculate_price_reaction(
         return_60d=return_60d,
         max_drawdown_20d=max_drawdown_20d,
         max_drawdown_60d=max_drawdown_60d,
+        market_return_5d=market_return_5d,
+        abnormal_return_5d=return_5d - market_return_5d
+        if return_5d is not None and market_return_5d is not None
+        else None,
         market_return_20d=market_return_20d,
         abnormal_return_20d=return_20d - market_return_20d
         if return_20d is not None and market_return_20d is not None
+        else None,
+        market_return_60d=market_return_60d,
+        abnormal_return_60d=return_60d - market_return_60d
+        if return_60d is not None and market_return_60d is not None
         else None,
         volume_change_20d=volume_change_20d,
         data_quality=quality,  # type: ignore[arg-type]
@@ -321,8 +331,12 @@ def missing_reaction(event_id: str, stock_code: str, event_date: str) -> PriceRe
         return_60d=None,
         max_drawdown_20d=None,
         max_drawdown_60d=None,
+        market_return_5d=None,
+        abnormal_return_5d=None,
         market_return_20d=None,
         abnormal_return_20d=None,
+        market_return_60d=None,
+        abnormal_return_60d=None,
         volume_change_20d=None,
         data_quality="missing",
     )

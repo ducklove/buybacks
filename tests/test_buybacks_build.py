@@ -3,12 +3,15 @@ from scripts.buybacks.build_buybacks_dataset import (
     dedupe_companies,
     filter_json_dataset_to_supported_markets,
     filter_live_dataset_to_supported_markets,
+    incremental_start_yyyymmdd,
+    merge_price_reactions,
     parse_holding_stock_codes,
     parse_stock_codes,
     select_holding_companies,
+    select_price_reaction_events,
 )
 from scripts.buybacks.fetch_listed_issues import ListedIssue
-from scripts.buybacks.models import Company, TreasuryHoldingSnapshot
+from scripts.buybacks.models import BuybackEvent, Company, PriceReaction, TreasuryHoldingSnapshot
 
 
 def test_parse_stock_codes_all_uses_disclosure_only_mode():
@@ -162,6 +165,63 @@ def holding(
     )
 
 
+def event(
+    event_id: str,
+    disclosure_date: str,
+    stock_code: str = "005930",
+) -> BuybackEvent:
+    return BuybackEvent(
+        event_id=event_id,
+        corp_code="00126380",
+        stock_code=stock_code,
+        corp_name="Company",
+        event_type="direct_acquisition",
+        disclosure_date=disclosure_date,
+        decision_date=disclosure_date,
+        period_start=None,
+        period_end=None,
+        planned_shares_common=None,
+        planned_shares_other=None,
+        planned_amount_krw=None,
+        planned_amount_common_krw=None,
+        planned_amount_other_krw=None,
+        actual_shares=None,
+        actual_amount_krw=None,
+        method=None,
+        purpose=None,
+        broker=None,
+        holding_before_common=None,
+        holding_before_ratio_common=None,
+        source="DART",
+        rcept_no=None,
+        source_url=None,
+        raw_report_name=None,
+    )
+
+
+def reaction(event_id: str, event_date: str, quality: str = "partial") -> PriceReaction:
+    return PriceReaction(
+        event_id=event_id,
+        stock_code="005930",
+        event_date=event_date,
+        close_t0=100,
+        return_1d=0.01,
+        return_5d=None,
+        return_20d=None,
+        return_60d=0.05 if quality == "complete" else None,
+        max_drawdown_20d=None,
+        max_drawdown_60d=None,
+        market_return_5d=0.01 if quality == "complete" else None,
+        abnormal_return_5d=0.02 if quality == "complete" else None,
+        market_return_20d=None,
+        abnormal_return_20d=None,
+        market_return_60d=0.03 if quality == "complete" else None,
+        abnormal_return_60d=0.04 if quality == "complete" else None,
+        volume_change_20d=None,
+        data_quality=quality,  # type: ignore[arg-type]
+    )
+
+
 def test_filter_live_dataset_keeps_supported_markets_with_data_only():
     companies = [
         Company("00126380", "005930", "Samsung Electronics", "KOSPI", None, "2026-06-20"),
@@ -184,27 +244,26 @@ def test_filter_live_dataset_keeps_supported_markets_with_data_only():
 
 def test_filter_live_dataset_maps_tradable_preferred_holding_to_listed_issue_code():
     companies = [
-        Company("00111722", "006800", "미래에셋증권", "KOSPI", None, "2026-06-17"),
+        Company("00111722", "006800", "Mirae Asset Securities", "KOSPI", None, "2026-06-17"),
     ]
     listed_issues = [
-        ListedIssue("006800", "미래에셋증권", "KOSPI", True),
-        ListedIssue("00680K", "미래에셋증권2우B", "KOSPI", True),
+        ListedIssue("006800", "Mirae Asset Securities", "KOSPI", True),
+        ListedIssue("00680K", "Mirae Asset Securities우", "KOSPI", True),
     ]
 
     filtered_companies, _, filtered_holdings = filter_live_dataset_to_supported_markets(
         companies,
         [],
         [
-            holding("006800", "보통주", "00111722", "미래에셋증권"),
-            holding("006800", "우선주", "00111722", "미래에셋증권"),
+            holding("006800", "common", "00111722", "Mirae Asset Securities"),
+            holding("006800", "preferred", "00111722", "Mirae Asset Securities"),
         ],
         listed_issues,
     )
 
     assert [company.stock_code for company in filtered_companies] == ["006800", "00680K"]
-    assert [company.corp_name for company in filtered_companies] == ["미래에셋증권", "미래에셋증권2우B"]
     assert [snapshot.stock_code for snapshot in filtered_holdings] == ["006800", "00680K"]
-    assert filtered_holdings[1].corp_name == "미래에셋증권2우B"
+    assert filtered_holdings[1].corp_name == "Mirae Asset Securities우"
 
 
 def test_filter_live_dataset_does_not_match_other_company_preferred_by_short_prefix():
@@ -213,17 +272,82 @@ def test_filter_live_dataset_does_not_match_other_company_preferred_by_short_pre
     ]
     listed_issues = [
         ListedIssue("003550", "LG", "KOSPI", True),
-        ListedIssue("066575", "LG전자우", "KOSPI", True),
+        ListedIssue("066575", "LG Electronics우", "KOSPI", True),
     ]
 
     _, _, filtered_holdings = filter_live_dataset_to_supported_markets(
         companies,
         [],
-        [holding("003550", "우선주", "00120000", "LG")],
+        [holding("003550", "preferred", "00120000", "LG")],
         listed_issues,
     )
 
     assert filtered_holdings == []
+
+
+def test_filter_live_dataset_keeps_already_mapped_preferred_issue_code():
+    companies = [
+        Company("00111722", "006800", "Mirae Asset Securities", "KOSPI", None, "2026-06-17"),
+        Company("00111722", "00680K", "Mirae Asset Securities우", "KOSPI", None, "2026-06-17"),
+    ]
+    listed_issues = [
+        ListedIssue("006800", "Mirae Asset Securities", "KOSPI", True),
+        ListedIssue("00680K", "Mirae Asset Securities우", "KOSPI", True),
+    ]
+
+    filtered_companies, _, filtered_holdings = filter_live_dataset_to_supported_markets(
+        companies,
+        [],
+        [holding("00680K", "preferred", "00111722", "Mirae Asset Securities우")],
+        listed_issues,
+    )
+
+    assert [company.stock_code for company in filtered_companies] == ["00680K"]
+    assert [snapshot.stock_code for snapshot in filtered_holdings] == ["00680K"]
+
+
+def test_incremental_start_uses_latest_existing_event_with_overlap():
+    assert incremental_start_yyyymmdd(
+        [event("old", "2026-06-10"), event("new", "2026-06-20")],
+        "20260621",
+        7,
+    ) == "20260613"
+
+
+def test_select_price_reaction_events_refreshes_new_missing_and_recent_partial_only():
+    events = [
+        event("new", "2026-06-21"),
+        event("recent-partial", "2026-06-10"),
+        event("recent-complete", "2026-06-09"),
+        event("old-partial", "2026-01-01"),
+    ]
+    selected = select_price_reaction_events(
+        events,
+        [
+            reaction("recent-partial", "2026-06-10", "partial"),
+            reaction("recent-complete", "2026-06-09", "complete"),
+            reaction("old-partial", "2026-01-01", "partial"),
+        ],
+        {"new"},
+        30,
+        "20260621",
+    )
+
+    assert [item.event_id for item in selected] == ["new", "recent-partial"]
+
+
+def test_merge_price_reactions_replaces_refreshed_and_adds_missing_for_new_events():
+    events = [event("one", "2026-06-20"), event("two", "2026-06-19")]
+    merged = merge_price_reactions(
+        [reaction("one", "2026-06-20", "partial")],
+        [reaction("one", "2026-06-20", "complete")],
+        events,
+    )
+
+    assert [(item.event_id, item.data_quality) for item in merged] == [
+        ("one", "complete"),
+        ("two", "missing"),
+    ]
 
 
 def test_filter_json_dataset_removes_unsupported_markets_and_orphan_reactions():
@@ -236,8 +360,8 @@ def test_filter_json_dataset_removes_unsupported_markets_and_orphan_reactions():
         {"event_id": "drop", "stock_code": "123456"},
     ]
     holdings = [
-        {"stock_code": "005930", "stock_kind": "보통주"},
-        {"stock_code": "123456", "stock_kind": "보통주"},
+        {"stock_code": "005930", "stock_kind": "common"},
+        {"stock_code": "123456", "stock_kind": "common"},
     ]
     reactions = [
         {"event_id": "keep"},
@@ -249,6 +373,6 @@ def test_filter_json_dataset_removes_unsupported_markets_and_orphan_reactions():
     assert filtered == (
         [{"stock_code": "005930", "market": "KOSPI"}],
         [{"event_id": "keep", "stock_code": "005930"}],
-        [{"stock_code": "005930", "stock_kind": "보통주"}],
+        [{"stock_code": "005930", "stock_kind": "common"}],
         [{"event_id": "keep"}],
     )

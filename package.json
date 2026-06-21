@@ -10,7 +10,8 @@
     "test": "vitest run",
     "test:py": "python -m pytest",
     "validate:data": "python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks",
-    "build:data": "python scripts/buybacks/build_buybacks_dataset.py --output public/data/buybacks"
+    "build:data": "python scripts/buybacks/build_buybacks_dataset.py --output public/data/buybacks",
+    "update:data": "python scripts/buybacks/build_buybacks_dataset.py --live-if-available --incremental --output public/data/buybacks --stock-codes ALL --holding-stock-codes EVENTS --holding-source stock_totals --listed-issue-source naver --report-codes 11011"
   },
   "dependencies": {
     "react": "^19.0.0",

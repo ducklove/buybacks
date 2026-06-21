@@ -14,11 +14,15 @@ const reaction: PriceReaction = {
   return_1d: 0.01,
   return_5d: 0.03,
   return_20d: 0.05,
-  return_60d: null,
+  return_60d: 0.08,
   max_drawdown_20d: null,
   max_drawdown_60d: null,
+  market_return_5d: 0.01,
+  abnormal_return_5d: 0.02,
   market_return_20d: 0.02,
   abnormal_return_20d: 0.03,
+  market_return_60d: 0.03,
+  abnormal_return_60d: 0.05,
   volume_change_20d: null,
   data_quality: "partial"
 };
@@ -29,6 +33,14 @@ describe("price reaction display helpers", () => {
       label: "지수대비 +20D",
       value: 0.03
     });
+    expect(displayRelativeReaction(reaction, 5)).toMatchObject({
+      label: "지수대비 +5D",
+      value: 0.02
+    });
+    expect(displayRelativeReaction(reaction, 60)).toMatchObject({
+      label: "지수대비 +60D",
+      value: 0.05
+    });
     expect(displayReactionValue(reaction)).toBe(0.03);
   });
 
@@ -36,6 +48,10 @@ describe("price reaction display helpers", () => {
     expect(displaySimpleReaction(reaction)).toMatchObject({
       label: "+20D",
       value: 0.05
+    });
+    expect(displaySimpleReaction(reaction, 60)).toMatchObject({
+      label: "+60D",
+      value: 0.08
     });
   });
 });

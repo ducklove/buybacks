@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { EnrichedEvent, PriceReaction, TreasuryHoldingSnapshot } from "../types/buybacks";
 import { EVENT_TYPE_LABELS } from "../utils/format";
 import {
@@ -7,6 +8,7 @@ import {
   yearlyEventCounts,
   type ChartDatum
 } from "../utils/metrics";
+import type { ReturnWindow } from "../utils/priceReactions";
 
 interface DashboardChartsProps {
   events: EnrichedEvent[];
@@ -15,6 +17,8 @@ interface DashboardChartsProps {
 }
 
 export function DashboardCharts({ events, holdings, reactions }: DashboardChartsProps) {
+  const [returnWindow, setReturnWindow] = useState<ReturnWindow>(20);
+
   return (
     <section className="charts-grid" aria-label="대시보드 차트">
       <ChartPanel title="연도별 이벤트 건수" summary="공시일 기준 이벤트 수입니다.">
@@ -31,8 +35,12 @@ export function DashboardCharts({ events, holdings, reactions }: DashboardCharts
       <ChartPanel title="보유비율 상위 종목" summary="최근 정기보고서 기준 자기주식 보유비율입니다.">
         <HorizontalBars data={topHoldings(holdings, 8)} percent />
       </ChartPanel>
-      <ChartPanel title="+20D 지수대비 분포" summary="시장지수 대비 수익률이 있는 이벤트만 집계합니다.">
-        <VerticalBars data={returnDistribution(reactions)} compact />
+      <ChartPanel
+        title={`+${returnWindow}D 지수대비 분포`}
+        summary="시장지수 대비 수익률이 있는 이벤트만 집계합니다."
+        actions={<ReturnWindowToggle value={returnWindow} onChange={setReturnWindow} />}
+      >
+        <VerticalBars data={returnDistribution(reactions, returnWindow)} compact />
       </ChartPanel>
     </section>
   );
@@ -41,20 +49,49 @@ export function DashboardCharts({ events, holdings, reactions }: DashboardCharts
 function ChartPanel({
   title,
   summary,
+  actions,
   children
 }: {
   title: string;
   summary: string;
+  actions?: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
     <article className="chart-panel">
       <header>
-        <h2>{title}</h2>
+        <div className="chart-heading">
+          <h2>{title}</h2>
+          {actions}
+        </div>
         <p>{summary}</p>
       </header>
       {children}
     </article>
+  );
+}
+
+function ReturnWindowToggle({
+  value,
+  onChange
+}: {
+  value: ReturnWindow;
+  onChange: (value: ReturnWindow) => void;
+}) {
+  return (
+    <div className="period-toggle" aria-label="성과 기간">
+      {([5, 20, 60] satisfies ReturnWindow[]).map((window) => (
+        <button
+          aria-pressed={value === window}
+          className={value === window ? "active-period" : undefined}
+          key={window}
+          onClick={() => onChange(window)}
+          type="button"
+        >
+          +{window}D
+        </button>
+      ))}
+    </div>
   );
 }
 

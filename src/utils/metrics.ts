@@ -7,6 +7,7 @@ import type {
   PriceReaction,
   TreasuryHoldingSnapshot
 } from "../types/buybacks";
+import { relativeReturn, type ReturnWindow } from "./priceReactions";
 
 export interface KpiMetric {
   label: string;
@@ -235,7 +236,7 @@ function holdingSummary(holding: TreasuryHoldingSnapshot) {
     .join(" ");
 }
 
-export function returnDistribution(reactions: PriceReaction[]): ChartDatum[] {
+export function returnDistribution(reactions: PriceReaction[], window: ReturnWindow = 20): ChartDatum[] {
   const buckets = [
     { label: "< -10%", min: -Infinity, max: -0.1 },
     { label: "-10~-5%", min: -0.1, max: -0.05 },
@@ -247,10 +248,10 @@ export function returnDistribution(reactions: PriceReaction[]): ChartDatum[] {
   return buckets.map((bucket) => ({
     label: bucket.label,
     value: reactions.filter(
-      (reaction) =>
-        reaction.abnormal_return_20d !== null &&
-        reaction.abnormal_return_20d >= bucket.min &&
-        reaction.abnormal_return_20d < bucket.max
+      (reaction) => {
+        const value = relativeReturn(reaction, window);
+        return value !== null && value >= bucket.min && value < bucket.max;
+      }
     ).length
   }));
 }

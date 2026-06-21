@@ -395,6 +395,43 @@ a:focus-visible {
   letter-spacing: 0;
 }
 
+.chart-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.period-toggle {
+  display: inline-flex;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+}
+
+.period-toggle button {
+  min-width: 48px;
+  min-height: 30px;
+  border: 0;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  padding: 0 9px;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.period-toggle button:last-child {
+  border-right: 0;
+}
+
+.period-toggle button:hover,
+.period-toggle .active-period {
+  background: var(--teal-soft);
+  color: var(--teal-strong);
+}
+
 .vertical-bars {
   display: grid;
   grid-auto-flow: column;
@@ -957,6 +994,10 @@ tbody tr:last-child td {
   }
 
   .panel-header {
+    flex-direction: column;
+  }
+
+  .chart-heading {
     flex-direction: column;
   }
 

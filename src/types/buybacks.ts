@@ -83,8 +83,12 @@ export interface PriceReaction {
   return_60d: number | null;
   max_drawdown_20d: number | null;
   max_drawdown_60d: number | null;
+  market_return_5d?: number | null;
+  abnormal_return_5d?: number | null;
   market_return_20d: number | null;
   abnormal_return_20d: number | null;
+  market_return_60d?: number | null;
+  abnormal_return_60d?: number | null;
   volume_change_20d: number | null;
   data_quality: DataQuality;
 }

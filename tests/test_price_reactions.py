@@ -15,6 +15,10 @@ def make_prices(length=70):
     ]
 
 
+def make_market_prices():
+    return [PriceRow(date=row.date, close=200 + index, volume=None) for index, row in enumerate(make_prices(), start=1)]
+
+
 def test_calculate_price_reaction_uses_next_trading_day_as_t0():
     reaction = calculate_price_reaction(
         event_id="event-1",
@@ -26,6 +30,23 @@ def test_calculate_price_reaction_uses_next_trading_day_as_t0():
     assert round(reaction.return_1d or 0, 6) == round(112 / 111 - 1, 6)
     assert reaction.return_20d is not None
     assert reaction.data_quality == "complete"
+
+
+def test_calculate_price_reaction_calculates_market_relative_windows():
+    reaction = calculate_price_reaction(
+        event_id="event-market",
+        stock_code="005930",
+        event_date="2026-01-10",
+        stock_prices=make_prices(),
+        market_prices=make_market_prices(),
+    )
+
+    assert reaction.market_return_5d is not None
+    assert reaction.abnormal_return_5d is not None
+    assert reaction.market_return_20d is not None
+    assert reaction.abnormal_return_20d is not None
+    assert reaction.market_return_60d is not None
+    assert reaction.abnormal_return_60d is not None
 
 
 def test_calculate_price_reaction_marks_missing_without_future_prices():
