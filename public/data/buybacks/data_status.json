@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-21T11:10:47.767845+00:00",
+  "generated_at": "2026-06-21T13:00:00.152699+00:00",
   "dart_available": true,
   "krx_available": false,
   "price_source": "kis_proxy",
   "latest_price_source": "kis_proxy",
   "update_mode": "incremental",
-  "previous_generated_at": "2026-06-21T07:58:24.732646+00:00",
+  "previous_generated_at": "2026-06-21T11:10:47.767845+00:00",
   "companies_count": 2545,
   "events_count": 65,
   "holdings_count": 2568,

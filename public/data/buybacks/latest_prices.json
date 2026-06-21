@@ -3,324 +3,378 @@
     "stock_code": "001080",
     "price_date": "2026-06-19",
     "close": 4125.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.027122641509433998
   },
   {
     "stock_code": "001940",
     "price_date": "2026-06-19",
     "close": 24100.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.0020703933747412417
   },
   {
     "stock_code": "002030",
     "price_date": "2026-06-19",
     "close": 182500.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.027185501066098072
   },
   {
     "stock_code": "002170",
     "price_date": "2026-06-19",
     "close": 53900.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.007366482504604033
   },
   {
     "stock_code": "002700",
     "price_date": "2026-06-19",
     "close": 1167.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.04422604422604426
   },
   {
     "stock_code": "003540",
     "price_date": "2026-06-19",
     "close": 29200.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.01683501683501687
   },
   {
     "stock_code": "003850",
     "price_date": "2026-06-19",
     "close": 9090.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.009803921568627416
   },
   {
     "stock_code": "006800",
     "price_date": "2026-06-19",
     "close": 48750.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.038461538461538436
   },
   {
     "stock_code": "008470",
     "price_date": "2026-06-19",
     "close": 3085.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.04192546583850931
   },
   {
     "stock_code": "009240",
     "price_date": "2026-06-19",
     "close": 33300.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.01624815361890697
   },
   {
     "stock_code": "010400",
     "price_date": "2026-06-19",
     "close": 3760.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": 0.00939597315436247
   },
   {
     "stock_code": "016920",
     "price_date": "2026-06-19",
     "close": 891.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.04807692307692313
   },
   {
     "stock_code": "020400",
     "price_date": "2026-06-19",
     "close": 3080.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.09278350515463918
   },
   {
     "stock_code": "023160",
     "price_date": "2026-06-19",
     "close": 29150.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.04582651391162029
   },
   {
     "stock_code": "024090",
     "price_date": "2026-06-19",
     "close": 10850.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.010036496350364965
   },
   {
     "stock_code": "028100",
     "price_date": "2026-06-19",
     "close": 16280.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.013930950938824904
   },
   {
     "stock_code": "036120",
     "price_date": "2026-06-19",
     "close": 1557.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.0529197080291971
   },
   {
     "stock_code": "038540",
     "price_date": "2026-06-19",
     "close": 2065.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.03504672897196259
   },
   {
     "stock_code": "039290",
     "price_date": "2026-06-19",
     "close": 3370.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.0729023383768913
   },
   {
     "stock_code": "041460",
     "price_date": "2026-06-19",
     "close": 3365.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.016081871345029253
   },
   {
     "stock_code": "046390",
     "price_date": "2026-06-19",
     "close": 1526.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.21743589743589742
   },
   {
     "stock_code": "049070",
     "price_date": "2026-06-19",
     "close": 20200.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.0049261083743842304
   },
   {
     "stock_code": "049430",
     "price_date": "2026-06-19",
     "close": 19320.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": 0.0
   },
   {
     "stock_code": "051380",
     "price_date": "2026-06-19",
     "close": 1602.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.05038529934795499
   },
   {
     "stock_code": "053160",
     "price_date": "2026-06-19",
     "close": 9600.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": 0.014799154334038
   },
   {
     "stock_code": "054090",
     "price_date": "2026-06-19",
     "close": 895.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.015401540154015403
   },
   {
     "stock_code": "057540",
     "price_date": "2026-06-19",
     "close": 890.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.004474272930648726
   },
   {
     "stock_code": "069080",
     "price_date": "2026-06-19",
     "close": 11400.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": 0.0026385224274405594
   },
   {
     "stock_code": "079370",
     "price_date": "2026-06-19",
     "close": 11000.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.033391915641476255
   },
   {
     "stock_code": "096250",
     "price_date": "2026-06-19",
     "close": 6230.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.1659973226238286
   },
   {
     "stock_code": "096870",
     "price_date": "2026-06-19",
     "close": 1904.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": 0.08120386144236225
   },
   {
     "stock_code": "101970",
     "price_date": "2026-06-19",
     "close": 9150.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.05377456049638052
   },
   {
     "stock_code": "104700",
     "price_date": "2026-06-19",
     "close": 8920.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.0011198208286674616
   },
   {
     "stock_code": "114840",
     "price_date": "2026-06-19",
     "close": 8420.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.053932584269662964
   },
   {
     "stock_code": "137080",
     "price_date": "2026-06-19",
     "close": 5170.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.01147227533460804
   },
   {
     "stock_code": "143240",
     "price_date": "2026-06-19",
     "close": 16060.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.026666666666666616
   },
   {
     "stock_code": "197140",
     "price_date": "2026-06-19",
     "close": 2160.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.002309468822170868
   },
   {
     "stock_code": "205100",
     "price_date": "2026-06-19",
     "close": 1503.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.00988142292490124
   },
   {
     "stock_code": "209640",
     "price_date": "2026-06-19",
     "close": 4415.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.08307372793354106
   },
   {
     "stock_code": "222800",
     "price_date": "2026-06-19",
     "close": 124300.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.02509803921568632
   },
   {
     "stock_code": "224110",
     "price_date": "2026-06-19",
     "close": 7850.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": 0.01421188630490966
   },
   {
     "stock_code": "263750",
     "price_date": "2026-06-19",
     "close": 39450.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": 0.011538461538461497
   },
   {
     "stock_code": "263920",
     "price_date": "2026-06-19",
     "close": 3005.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.04146730462519932
   },
   {
     "stock_code": "267790",
     "price_date": "2026-06-19",
     "close": 3345.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": 0.0
   },
   {
     "stock_code": "306040",
     "price_date": "2026-06-19",
     "close": 1906.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.06108374384236448
   },
   {
     "stock_code": "310870",
     "price_date": "2026-06-19",
     "close": 1287.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.004640371229698403
   },
   {
     "stock_code": "316140",
     "price_date": "2026-06-19",
     "close": 31050.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.015847860538827252
   },
   {
     "stock_code": "318160",
     "price_date": "2026-06-19",
     "close": 5830.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.01851851851851849
   },
   {
     "stock_code": "362320",
     "price_date": "2026-06-19",
     "close": 4390.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.034103410341034146
   },
   {
     "stock_code": "388050",
     "price_date": "2026-06-19",
     "close": 8700.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.05639913232104121
   },
   {
     "stock_code": "403550",
     "price_date": "2026-06-19",
     "close": 11360.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": 0.014285714285714235
   },
   {
     "stock_code": "419540",
     "price_date": "2026-06-19",
     "close": 3180.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": 0.003154574132492094
   },
   {
     "stock_code": "432980",
     "price_date": "2026-06-19",
     "close": 3025.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.07633587786259544
   },
   {
     "stock_code": "473980",
     "price_date": "2026-06-19",
     "close": 11510.0,
-    "source": "kis_proxy"
+    "source": "kis_proxy",
+    "change_rate": -0.06270358306188928
   }
 ]
