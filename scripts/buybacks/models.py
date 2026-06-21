@@ -105,6 +105,9 @@ class LatestPriceSnapshot:
     close: float
     source: str
     change_rate: float | None = None
+    issued_shares: int | float | None = None
+    market_cap_krw: int | float | None = None
+    change_code: str | None = None
 
 
 def to_jsonable(value):

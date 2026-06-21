@@ -97,6 +97,27 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
     ) {
       errors.push(`latestPrices[${index}] change_rate must be numeric`);
     }
+    if (
+      price.issued_shares !== null &&
+      price.issued_shares !== undefined &&
+      (typeof price.issued_shares !== "number" || price.issued_shares <= 0)
+    ) {
+      errors.push(`latestPrices[${index}] issued_shares must be positive`);
+    }
+    if (
+      price.market_cap_krw !== null &&
+      price.market_cap_krw !== undefined &&
+      (typeof price.market_cap_krw !== "number" || price.market_cap_krw <= 0)
+    ) {
+      errors.push(`latestPrices[${index}] market_cap_krw must be positive`);
+    }
+    if (
+      price.change_code !== null &&
+      price.change_code !== undefined &&
+      typeof price.change_code !== "string"
+    ) {
+      errors.push(`latestPrices[${index}] change_code must be a string`);
+    }
   });
 
   if (dataset.status.companies_count !== dataset.companies.length) {

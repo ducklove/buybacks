@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type {
   Company,
   EnrichedEvent,
@@ -19,6 +19,7 @@ import {
 import { latestMarketCap, marketCapFrom, plannedAcquisitionStake } from "../utils/marketCap";
 import { dedupeHoldingTimeline, latestPriceMap } from "../utils/metrics";
 import { displayRelativeReaction, displaySimpleReaction } from "../utils/priceReactions";
+import { fetchNaverFinanceQuote } from "../data/realtimeQuotes";
 
 interface CompanyDetailProps {
   companies: Company[];
@@ -58,7 +59,12 @@ export function CompanyDetail({
     [company?.stock_code, priceReactions]
   );
   const latestPriceByStock = useMemo(() => latestPriceMap(latestPrices), [latestPrices]);
-  const latestPrice = company ? latestPriceByStock.get(company.stock_code) : undefined;
+  const [runtimePricesByStock, setRuntimePricesByStock] = useState<Record<string, LatestPriceSnapshot>>({});
+  const [priceLookupMisses, setPriceLookupMisses] = useState<Record<string, true>>({});
+  const [loadingPriceStockCode, setLoadingPriceStockCode] = useState<string | null>(null);
+  const staticLatestPrice = company ? latestPriceByStock.get(company.stock_code) : undefined;
+  const runtimeLatestPrice = company ? runtimePricesByStock[company.stock_code] : undefined;
+  const latestPrice = staticLatestPrice ?? runtimeLatestPrice;
   const latestHolding = useMemo(() => pickPrimaryHolding(companyHoldings), [companyHoldings]);
   const currentMarketCap = useMemo(
     () => latestMarketCap(latestPrice, companyReactions, latestHolding),
@@ -68,6 +74,44 @@ export function CompanyDetail({
     () => Math.max(...companyHoldings.map((snapshot) => snapshot.treasury_ratio ?? 0), 0.01),
     [companyHoldings]
   );
+
+  useEffect(() => {
+    const stockCode = company?.stock_code;
+    if (
+      !stockCode ||
+      staticLatestPrice ||
+      runtimePricesByStock[stockCode] ||
+      priceLookupMisses[stockCode]
+    ) {
+      return;
+    }
+
+    let cancelled = false;
+    setLoadingPriceStockCode(stockCode);
+    fetchNaverFinanceQuote(stockCode)
+      .then((snapshot) => {
+        if (cancelled) return;
+        if (snapshot) {
+          setRuntimePricesByStock((previous) => ({ ...previous, [stockCode]: snapshot }));
+        } else {
+          setPriceLookupMisses((previous) => ({ ...previous, [stockCode]: true }));
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setPriceLookupMisses((previous) => ({ ...previous, [stockCode]: true }));
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setLoadingPriceStockCode((current) => (current === stockCode ? null : current));
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [company?.stock_code, priceLookupMisses, runtimePricesByStock, staticLatestPrice]);
 
   if (!company) {
     return (
@@ -104,7 +148,10 @@ export function CompanyDetail({
             {company.stock_code} · {company.market} · {company.sector ?? "업종 미상"}
           </span>
         </div>
-        <CurrentPrice latestPrice={latestPrice} />
+        <CurrentPrice
+          latestPrice={latestPrice}
+          isLoading={loadingPriceStockCode === company.stock_code}
+        />
       </div>
 
       <div className="detail-metrics">
@@ -162,7 +209,7 @@ export function CompanyDetail({
                 </div>
                 <div className="event-timeline-copy">
                   <p>{event.purpose ?? event.raw_report_name ?? "목적 데이터 없음"}</p>
-                  <EventDetailLines event={event} />
+                  <EventDetailLines event={event} latestPrice={latestPrice} />
                 </div>
                 <DisclosureReaction event={event} />
                 <DisclosureSourceLink event={event} />
@@ -177,19 +224,34 @@ export function CompanyDetail({
   );
 }
 
-function CurrentPrice({ latestPrice }: { latestPrice: LatestPriceSnapshot | undefined }) {
-  const priceChange = latestPriceChange(latestPrice?.change_rate);
+function CurrentPrice({
+  latestPrice,
+  isLoading
+}: {
+  latestPrice: LatestPriceSnapshot | undefined;
+  isLoading: boolean;
+}) {
+  const priceChange = latestPriceChange(latestPrice?.change_rate, latestPrice?.change_code);
   return (
-    <div className="company-price">
-      <strong>{formatNumber(latestPrice?.close)}</strong>
-      <small className={`price-change ${priceChange.className}`}>{priceChange.label}</small>
+    <div className="company-price" aria-busy={isLoading}>
+      <strong>{isLoading && !latestPrice ? "..." : formatNumber(latestPrice?.close)}</strong>
+      <small className={`price-change ${priceChange.className}`}>
+        {isLoading && !latestPrice ? "" : priceChange.label}
+      </small>
     </div>
   );
 }
 
-function latestPriceChange(value: number | null | undefined) {
+function latestPriceChange(value: number | null | undefined, changeCode: string | null | undefined) {
   if (value === null || value === undefined || Number.isNaN(value)) {
     return { className: "price-change-flat", label: "-" };
+  }
+  const codeDisplay = priceChangeDisplayFromCode(changeCode);
+  if (codeDisplay) {
+    return {
+      className: codeDisplay.className,
+      label: codeDisplay.symbol ? `${codeDisplay.symbol} ${formatSignedPercent(value)}` : formatSignedPercent(value)
+    };
   }
   if (value <= -0.3) {
     return { className: "price-change-down limit-change", label: `▼ ${formatSignedPercent(value)}` };
@@ -204,6 +266,23 @@ function latestPriceChange(value: number | null | undefined) {
     return { className: "price-change-up", label: `△ ${formatSignedPercent(value)}` };
   }
   return { className: "price-change-flat", label: formatSignedPercent(value) };
+}
+
+function priceChangeDisplayFromCode(changeCode: string | null | undefined) {
+  switch (changeCode) {
+    case "1":
+      return { className: "price-change-up limit-change", symbol: "▲" };
+    case "2":
+      return { className: "price-change-up", symbol: "△" };
+    case "3":
+      return { className: "price-change-flat", symbol: "" };
+    case "4":
+      return { className: "price-change-down limit-change", symbol: "▼" };
+    case "5":
+      return { className: "price-change-down", symbol: "▽" };
+    default:
+      return null;
+  }
 }
 
 function DisclosureReaction({ event }: { event: EnrichedEvent }) {
@@ -251,15 +330,21 @@ function pickPrimaryHolding(
   return latestSnapshots.find(isCommonHolding) ?? latestSnapshots[latestSnapshots.length - 1];
 }
 
-function EventDetailLines({ event }: { event: EnrichedEvent }) {
-  const details = eventDetailLines(event);
+function EventDetailLines({
+  event,
+  latestPrice
+}: {
+  event: EnrichedEvent;
+  latestPrice: LatestPriceSnapshot | undefined;
+}) {
+  const details = eventDetailLines(event, latestPrice);
   if (details.length === 0) {
     return null;
   }
   return <small>{details.join(" · ")}</small>;
 }
 
-function eventDetailLines(event: EnrichedEvent) {
+function eventDetailLines(event: EnrichedEvent, latestPrice: LatestPriceSnapshot | undefined) {
   const lines: string[] = [];
   if (event.planned_amount_common_krw != null || event.planned_amount_other_krw != null) {
     lines.push(
@@ -274,7 +359,7 @@ function eventDetailLines(event: EnrichedEvent) {
     );
   }
 
-  const marketCap = marketCapFrom(event.latestPrice ?? event.priceReaction, event.holding);
+  const marketCap = marketCapFrom(latestPrice ?? event.latestPrice ?? event.priceReaction, event.holding);
   const stake = plannedAcquisitionStake(event.event_type, event.planned_amount_krw, marketCap.amount);
   if (stake !== null) {
     lines.push(`예정취득지분 ${formatPercent(stake, 2)}`);

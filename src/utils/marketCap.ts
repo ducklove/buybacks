@@ -17,9 +17,10 @@ export function marketCapFrom(
   holding: TreasuryHoldingSnapshot | undefined
 ): MarketCapSnapshot {
   const close = closeFrom(price);
-  const issuedShares = holding?.issued_shares ?? null;
+  const issuedShares = holding?.issued_shares ?? issuedSharesFrom(price);
+  const providedMarketCap = marketCapAmountFrom(price);
   return {
-    amount: close !== null && issuedShares !== null ? close * issuedShares : null,
+    amount: providedMarketCap ?? (close !== null && issuedShares !== null ? close * issuedShares : null),
     close,
     issuedShares,
     priceDate: priceDateFrom(price)
@@ -65,4 +66,18 @@ function priceDateFrom(price: LatestPriceSnapshot | PriceReaction | undefined) {
   if (!price) return null;
   if ("price_date" in price) return price.price_date;
   return price.event_date;
+}
+
+function issuedSharesFrom(price: LatestPriceSnapshot | PriceReaction | undefined) {
+  if (!price || !("issued_shares" in price)) return null;
+  return positiveNumber(price.issued_shares);
+}
+
+function marketCapAmountFrom(price: LatestPriceSnapshot | PriceReaction | undefined) {
+  if (!price || !("market_cap_krw" in price)) return null;
+  return positiveNumber(price.market_cap_krw);
+}
+
+function positiveNumber(value: number | null | undefined) {
+  return typeof value === "number" && Number.isFinite(value) && value > 0 ? value : null;
 }

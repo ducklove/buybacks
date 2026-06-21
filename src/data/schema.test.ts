@@ -75,7 +75,10 @@ describe("validateDataset", () => {
           price_date: "2026-06-19",
           close: 110,
           source: "fixture",
-          change_rate: 0.01
+          change_rate: 0.01,
+          issued_shares: 1000,
+          market_cap_krw: 110000,
+          change_code: "2"
         }
       ],
       status: {

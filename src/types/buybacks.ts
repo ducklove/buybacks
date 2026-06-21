@@ -99,6 +99,9 @@ export interface LatestPriceSnapshot {
   close: number;
   source: string;
   change_rate?: number | null;
+  issued_shares?: number | null;
+  market_cap_krw?: number | null;
+  change_code?: string | null;
 }
 
 export interface DataStatus {

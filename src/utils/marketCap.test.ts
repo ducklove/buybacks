@@ -69,6 +69,23 @@ describe("market cap utilities", () => {
     });
   });
 
+  it("uses market cap and issued shares carried by a latest price snapshot", () => {
+    expect(
+      marketCapFrom(
+        {
+          ...latestPrice,
+          issued_shares: 559_566_880,
+          market_cap_krw: 27_278_885_400_000
+        },
+        undefined
+      )
+    ).toMatchObject({
+      amount: 27_278_885_400_000,
+      close: 51_000,
+      issuedShares: 559_566_880
+    });
+  });
+
   it("returns null when a price or share denominator is unavailable", () => {
     expect(marketCapFrom(undefined, holding).amount).toBeNull();
     expect(marketCapFrom(reaction, undefined).amount).toBeNull();
