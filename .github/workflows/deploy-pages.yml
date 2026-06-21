@@ -51,6 +51,7 @@ jobs:
       - name: Build static site
         env:
           VITE_BASE_PATH: ./
+          VITE_KIS_PROXY_URL: ${{ secrets.KIS_PROXY_URL }}
         run: npm run build
 
       - name: Configure Pages
