@@ -135,8 +135,8 @@ describe("holding snapshots", () => {
 
     expect(latest).toHaveLength(2);
     expect(topHoldings(latest, 2).map((item) => item.label)).toEqual([
-      "Mirae Asset Securities 006800 1\uC6B0\uC120\uC8FC 2025-12-31",
-      "Mirae Asset Securities 006800 \uBCF4\uD1B5\uC8FC 2025-12-31"
+      "Mirae Asset Securities",
+      "Mirae Asset Securities"
     ]);
   });
 

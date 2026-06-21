@@ -224,7 +224,7 @@ export function topHoldings(holdings: TreasuryHoldingSnapshot[], limit = 10): Ch
     .sort((a, b) => (b.treasury_ratio ?? 0) - (a.treasury_ratio ?? 0))
     .slice(0, limit)
     .map((holding) => ({
-      label: holdingSummary(holding),
+      label: holding.corp_name,
       value: holding.treasury_ratio ?? 0
     }));
 }
