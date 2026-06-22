@@ -360,14 +360,6 @@
     "last_updated": "2024-09-27"
   },
   {
-    "corp_code": "01792791",
-    "stock_code": "469480",
-    "corp_name": "IBKS제24호스팩",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2024-02-01"
-  },
-  {
     "corp_code": "01949584",
     "stock_code": "0099X0",
     "corp_name": "IBKS제25호스팩",
@@ -4213,7 +4205,7 @@
     "corp_name": "비트컴퓨터",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2024-01-08"
+    "last_updated": "2026-06-22"
   },
   {
     "corp_code": "00351579",
@@ -8637,7 +8629,7 @@
     "corp_name": "원텍",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2022-08-19"
+    "last_updated": "2026-06-22"
   },
   {
     "corp_code": "00144012",
@@ -9550,14 +9542,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2025-08-04"
-  },
-  {
-    "corp_code": "01243161",
-    "stock_code": "277410",
-    "corp_name": "인산가",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-03-03"
   },
   {
     "corp_code": "00375931",
@@ -18069,7 +18053,7 @@
     "corp_name": "유니드비티플러스",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-03-17"
+    "last_updated": "2026-06-22"
   },
   {
     "corp_code": "00144252",
@@ -19037,7 +19021,7 @@
     "corp_name": "태원물산",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2022-12-09"
+    "last_updated": "2026-06-22"
   },
   {
     "corp_code": "00256955",

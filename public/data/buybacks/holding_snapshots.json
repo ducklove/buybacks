@@ -1746,24 +1746,6 @@
     "source_rcept_no": "20260617000355"
   },
   {
-    "corp_code": "01792791",
-    "stock_code": "469480",
-    "corp_name": "IBKS제24호스팩",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 4230000,
-    "treasury_ratio": null,
-    "floating_shares": 4230000,
-    "source_rcept_no": "20260310002005"
-  },
-  {
     "corp_code": "01787072",
     "stock_code": "468760",
     "corp_name": "유진스팩10호",
@@ -9880,24 +9862,6 @@
     "treasury_ratio": null,
     "floating_shares": 19399858,
     "source_rcept_no": "20260320000803"
-  },
-  {
-    "corp_code": "01243161",
-    "stock_code": "277410",
-    "corp_name": "인산가",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 663607,
-    "issued_shares": 38411505,
-    "treasury_ratio": 0.017276256163355225,
-    "floating_shares": 37747898,
-    "source_rcept_no": "20260316000847"
   },
   {
     "corp_code": "00616962",
