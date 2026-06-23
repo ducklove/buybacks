@@ -965,7 +965,7 @@
     "corp_name": "감성코퍼레이션",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2022-11-18"
+    "last_updated": "2026-06-23"
   },
   {
     "corp_code": "01032583",
@@ -1394,7 +1394,7 @@
   {
     "corp_code": "00542074",
     "stock_code": "091970",
-    "corp_name": "나노캠텍",
+    "corp_name": "LSK아이로봇",
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2023-10-06"
@@ -1693,7 +1693,7 @@
     "corp_name": "넵튠",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-04-07"
+    "last_updated": "2026-06-23"
   },
   {
     "corp_code": "00632845",
@@ -3861,7 +3861,7 @@
     "corp_name": "베셀",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-05-04"
+    "last_updated": "2026-06-23"
   },
   {
     "corp_code": "01453944",
@@ -7632,14 +7632,6 @@
     "last_updated": "2025-03-26"
   },
   {
-    "corp_code": "01397903",
-    "stock_code": "354200",
-    "corp_name": "엔젠바이오",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-07-01"
-  },
-  {
     "corp_code": "01592049",
     "stock_code": "455900",
     "corp_name": "엔젤로보틱스",
@@ -7941,7 +7933,7 @@
     "corp_name": "예선테크",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-03-12"
+    "last_updated": "2026-06-23"
   },
   {
     "corp_code": "00362858",
@@ -14925,7 +14917,7 @@
     "corp_name": "iM금융지주",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-04-15"
+    "last_updated": "2026-06-23"
   },
   {
     "corp_code": "00104768",
@@ -17901,7 +17893,7 @@
     "corp_name": "영화금속",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2022-12-05"
+    "last_updated": "2026-06-23"
   },
   {
     "corp_code": "00141529",

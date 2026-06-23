@@ -6210,24 +6210,6 @@
     "source_rcept_no": "20260318001072"
   },
   {
-    "corp_code": "01397903",
-    "stock_code": "354200",
-    "corp_name": "엔젠바이오",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 25038128,
-    "treasury_ratio": null,
-    "floating_shares": 25038128,
-    "source_rcept_no": "20260323001424"
-  },
-  {
     "corp_code": "01480568",
     "stock_code": "353810",
     "corp_name": "이지바이오",
@@ -21242,7 +21224,7 @@
   {
     "corp_code": "00542074",
     "stock_code": "091970",
-    "corp_name": "나노캠텍",
+    "corp_name": "LSK아이로봇",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
