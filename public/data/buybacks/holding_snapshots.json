@@ -12602,7 +12602,7 @@
   {
     "corp_code": "01090471",
     "stock_code": "222080",
-    "corp_name": "씨아이에스",
+    "corp_name": "SFA넥셀",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -26732,7 +26732,7 @@
   {
     "corp_code": "00358271",
     "stock_code": "056190",
-    "corp_name": "에스에프에이",
+    "corp_name": "SFA",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -37008,24 +37008,6 @@
     "source_rcept_no": "20260320001252"
   },
   {
-    "corp_code": "00118521",
-    "stock_code": "011000",
-    "corp_name": "진원생명과학",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 209464,
-    "issued_shares": 85409936,
-    "treasury_ratio": 0.002452454712060667,
-    "floating_shares": 85200472,
-    "source_rcept_no": "20260407003512"
-  },
-  {
     "corp_code": "00128980",
     "stock_code": "010960",
     "corp_name": "삼호개발",
@@ -39328,24 +39310,6 @@
     "treasury_ratio": 0.010543711001642036,
     "floating_shares": 15064472,
     "source_rcept_no": "20260319001328"
-  },
-  {
-    "corp_code": "00122825",
-    "stock_code": "006490",
-    "corp_name": "프리티",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 903885,
-    "issued_shares": 125886117,
-    "treasury_ratio": 0.007180180162360557,
-    "floating_shares": 124982232,
-    "source_rcept_no": "20260407003654"
   },
   {
     "corp_code": "00126362",
