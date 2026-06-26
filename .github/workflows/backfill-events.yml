@@ -108,12 +108,32 @@ jobs:
           fi
           git commit -m "Backfill buyback events ${BACKFILL_RUN_ID}"
           git push --set-upstream origin "$branch"
-          gh pr create \
+          manual_url="https://github.com/${GITHUB_REPOSITORY}/pull/new/${branch}"
+          if pr_url="$(gh pr create \
             --repo "$GITHUB_REPOSITORY" \
             --base master \
             --head "$branch" \
             --title "Backfill buyback events ${{ github.event.inputs.start }}-${{ github.event.inputs.end }}" \
-            --body-file PR_BODY.md
+            --body-file PR_BODY.md 2> pr-error.log)"; then
+            echo "Created pull request: $pr_url"
+            {
+              echo "### Backfill pull request created"
+              echo ""
+              echo "- Branch: \`$branch\`"
+              echo "- Pull request: $pr_url"
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            cat pr-error.log
+            echo "::warning::GitHub Actions could not create a pull request. The backfill branch was pushed; create the PR manually from $manual_url."
+            {
+              echo "### Backfill branch created"
+              echo ""
+              echo "- Branch: \`$branch\`"
+              echo "- Manual PR URL: $manual_url"
+              echo ""
+              echo "GitHub Actions could not create the PR because repository settings do not permit workflow tokens to create pull requests."
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Upload backfill run artifact
         if: always()
