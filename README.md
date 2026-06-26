@@ -1,4 +1,4 @@
-# value-invest / buybacks
+# Buybacks
 
 Static MVP for exploring Korean treasury stock acquisition, disposition, retirement, and holding data.
 
@@ -21,3 +21,5 @@ python -m pytest
 ## Automation
 
 GitHub Pages deployment and live data collection are separate. `Deploy Pages` runs on pushes to `master` and deploys the committed static JSON without calling DART or KIS. `Update buybacks data` runs daily at 05:30 KST, performs an incremental DART/KIS refresh against the committed dataset, commits JSON changes only when data changed, and deploys Pages from the updated static JSON in the same run.
+
+Historical event backfills run through the `Backfill buyback events` workflow. Provide a `start` and `end` date in `YYYYMMDD`; the collector splits the range into OpenDART-safe chunks, writes progress percentages to the Actions log and `data/backfills/<run_id>/status.json`, stores collected events in a temporary JSON table, then prepares a pull request with the merged dataset. Review the PR summary for duration, collected events, duplicate events, and new events; merge the PR to accept the backfill.

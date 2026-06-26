@@ -1,0 +1,123 @@
+name: Backfill buyback events
+
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: Backfill start date in YYYYMMDD.
+        required: true
+      end:
+        description: Backfill end date in YYYYMMDD.
+        required: true
+      run_id:
+        description: Optional run id. Defaults to start-end-timestamp.
+        required: false
+        default: ""
+      chunk_days:
+        description: Days per OpenDART discovery chunk. Keep <= 92.
+        required: false
+        default: "89"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: buybacks-event-backfill-${{ github.event.inputs.start }}-${{ github.event.inputs.end }}
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    env:
+      BACKFILL_RUN_ID: ${{ github.event.inputs.run_id || format('{0}-{1}-{2}', github.event.inputs.start, github.event.inputs.end, github.run_id) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install Python test tools
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Collect event backfill into temporary table
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: >
+          python scripts/buybacks/backfill_events.py collect
+          --start "${{ github.event.inputs.start }}"
+          --end "${{ github.event.inputs.end }}"
+          --run-id "$BACKFILL_RUN_ID"
+          --chunk-days "${{ github.event.inputs.chunk_days }}"
+          --backfill-dir data/backfills
+          --data-dir public/data/buybacks
+
+      - name: Merge temporary backfill into dataset on branch
+        run: >
+          python scripts/buybacks/backfill_events.py merge
+          --run-id "$BACKFILL_RUN_ID"
+          --backfill-dir data/backfills
+          --data-dir public/data/buybacks
+
+      - name: Validate merged dataset
+        run: python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
+
+      - name: Test Python pipeline
+        run: python -m pytest
+
+      - name: Prepare pull request body
+        shell: bash
+        run: |
+          python - <<'PY' > PR_BODY.md
+          import json
+          from pathlib import Path
+          status = json.loads(Path("data/backfills/${{ env.BACKFILL_RUN_ID }}/status.json").read_text(encoding="utf-8"))
+          body = "\n".join([
+              "Historical event backfill completed.",
+              "",
+              f"- Run id: `{status['run_id']}`",
+              f"- Period: `{status['start']}` to `{status['end']}`",
+              f"- Duration: `{status.get('duration_seconds')}` seconds",
+              f"- Collected events: `{status.get('events_count', 0)}`",
+              f"- New events: `{status.get('merge_new_events_count', status.get('new_events_count', 0))}`",
+              f"- Duplicate events: `{status.get('merge_duplicate_events_count', status.get('duplicate_events_count', 0))}`",
+              "",
+              "The PR contains the temporary backfill table under `data/backfills/` and the merged `public/data/buybacks` JSON. Merge this PR to accept the backfill.",
+          ])
+          print(body)
+          PY
+
+      - name: Create backfill pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          branch="backfill/events-${BACKFILL_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/backfills public/data/buybacks
+          if git diff --cached --quiet; then
+            echo "No backfill changes to commit."
+            exit 0
+          fi
+          git commit -m "Backfill buyback events ${BACKFILL_RUN_ID}"
+          git push --set-upstream origin "$branch"
+          gh pr create \
+            --repo "$GITHUB_REPOSITORY" \
+            --base master \
+            --head "$branch" \
+            --title "Backfill buyback events ${{ github.event.inputs.start }}-${{ github.event.inputs.end }}" \
+            --body-file PR_BODY.md
+
+      - name: Upload backfill run artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: buybacks-event-backfill-${{ env.BACKFILL_RUN_ID }}
+          path: data/backfills/${{ env.BACKFILL_RUN_ID }}
