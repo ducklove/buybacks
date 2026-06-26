@@ -3006,24 +3006,6 @@
     "source_rcept_no": "20260317000743"
   },
   {
-    "corp_code": "01693922",
-    "stock_code": "446840",
-    "corp_name": "지슨",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2596,
-    "issued_shares": 54823083,
-    "treasury_ratio": 4.7352316906365885e-05,
-    "floating_shares": 54820487,
-    "source_rcept_no": "20260319000737"
-  },
-  {
     "corp_code": "00923516",
     "stock_code": "446540",
     "corp_name": "메가터치",
@@ -26640,24 +26622,6 @@
     "source_rcept_no": "20260318001260"
   },
   {
-    "corp_code": "00412597",
-    "stock_code": "057050",
-    "corp_name": "현대홈쇼핑",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 792250,
-    "issued_shares": 12000000,
-    "treasury_ratio": 0.06602083333333333,
-    "floating_shares": 11207750,
-    "source_rcept_no": "20260316000819"
-  },
-  {
     "corp_code": "00307222",
     "stock_code": "057030",
     "corp_name": "YBM넷",
@@ -36324,24 +36288,6 @@
     "source_rcept_no": "20260319000395"
   },
   {
-    "corp_code": "00172291",
-    "stock_code": "012510",
-    "corp_name": "더존비즈온",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2354110,
-    "issued_shares": 30382784,
-    "treasury_ratio": 0.07748170806203934,
-    "floating_shares": 28028674,
-    "source_rcept_no": "20260318001198"
-  },
-  {
     "corp_code": "00126566",
     "stock_code": "012450",
     "corp_name": "한화에어로스페이스",
@@ -39219,24 +39165,6 @@
     "issued_shares": 567085734,
     "treasury_ratio": 0.23106889513111964,
     "floating_shares": 436049860,
-    "source_rcept_no": "20260515002972"
-  },
-  {
-    "corp_code": "00111722",
-    "stock_code": "00680K",
-    "corp_name": "미래에셋증권2우B",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "2우선주\n(미래에셋증권2우B)",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 1000000,
-    "issued_shares": 136678482,
-    "treasury_ratio": 0.007316440637671115,
-    "floating_shares": 135678482,
     "source_rcept_no": "20260515002972"
   },
   {
@@ -43000,24 +42928,6 @@
     "treasury_ratio": 0.0,
     "floating_shares": 96830132,
     "source_rcept_no": "20260318001554"
-  },
-  {
-    "corp_code": "00137809",
-    "stock_code": "001770",
-    "corp_name": "SHD",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 1214878,
-    "treasury_ratio": null,
-    "floating_shares": 1214878,
-    "source_rcept_no": "20260318000401"
   },
   {
     "corp_code": "00162416",
