@@ -171,7 +171,7 @@ export function buildKpis(events: EnrichedEvent[], holdings: TreasuryHoldingSnap
   const dispositions = recent.filter((event) => event.event_type === "direct_disposition").length;
   const retirements = recent.filter((event) => event.event_type === "retirement").length;
   const topHolding = [...holdings]
-    .filter((holding) => holding.treasury_ratio !== null)
+    .filter((holding) => holding.treasury_ratio !== null && isCommonHoldingKind(holding))
     .sort((a, b) => (b.treasury_ratio ?? 0) - (a.treasury_ratio ?? 0))[0];
   const averageAbnormalReturn20d = average(
     events
@@ -216,12 +216,14 @@ export function buildKpis(events: EnrichedEvent[], holdings: TreasuryHoldingSnap
   ];
 }
 
-export function yearlyEventCounts(events: EnrichedEvent[]): ChartDatum[] {
+export function monthlyAcquisitionCounts(events: EnrichedEvent[]): ChartDatum[] {
   const counts = new Map<string, number>();
-  events.forEach((event) => {
-    const year = event.disclosure_date.slice(0, 4);
-    counts.set(year, (counts.get(year) ?? 0) + 1);
-  });
+  events
+    .filter((event) => acquisitionTypes.has(event.event_type))
+    .forEach((event) => {
+      const month = event.disclosure_date.slice(0, 7);
+      counts.set(month, (counts.get(month) ?? 0) + 1);
+    });
   return Array.from(counts, ([label, value]) => ({ label, value })).sort((a, b) =>
     a.label.localeCompare(b.label)
   );
@@ -237,7 +239,7 @@ export function eventTypeCounts(events: EnrichedEvent[]): ChartDatum[] {
 
 export function topHoldings(holdings: TreasuryHoldingSnapshot[], limit = 10): ChartDatum[] {
   return [...holdings]
-    .filter((holding) => holding.treasury_ratio !== null)
+    .filter((holding) => holding.treasury_ratio !== null && isCommonHoldingKind(holding))
     .sort((a, b) => (b.treasury_ratio ?? 0) - (a.treasury_ratio ?? 0))
     .slice(0, limit)
     .map((holding) => ({
@@ -250,6 +252,11 @@ function holdingSummary(holding: TreasuryHoldingSnapshot) {
   return [holding.corp_name, holding.stock_code, holding.stock_kind, holding.as_of_date]
     .filter(Boolean)
     .join(" ");
+}
+
+function isCommonHoldingKind(holding: TreasuryHoldingSnapshot) {
+  const stockKind = holding.stock_kind.toLowerCase();
+  return stockKind.includes("\uBCF4\uD1B5") || stockKind.includes("common");
 }
 
 export function returnDistribution(reactions: PriceReaction[], window: ReturnWindow = 20): ChartDatum[] {

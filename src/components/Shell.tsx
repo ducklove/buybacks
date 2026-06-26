@@ -27,9 +27,7 @@ export function Shell({ children }: ShellProps) {
             aria-hidden="true"
           />
           <span className="brand-text">
-            <span>value-invest</span>
-            <span aria-hidden="true">/</span>
-            <strong>buybacks</strong>
+            <strong>Buybacks</strong>
           </span>
         </button>
         <nav aria-label="Primary navigation">

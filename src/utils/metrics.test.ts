@@ -7,6 +7,7 @@ import {
   latestHoldingSnapshots,
   latestPriceMap,
   marketOptions,
+  monthlyAcquisitionCounts,
   returnDistribution,
   topHoldings
 } from "./metrics";
@@ -141,10 +142,7 @@ describe("holding snapshots", () => {
     const latest = latestHoldingSnapshots(snapshots);
 
     expect(latest).toHaveLength(2);
-    expect(topHoldings(latest, 2).map((item) => item.label)).toEqual([
-      "Mirae Asset Securities",
-      "Mirae Asset Securities"
-    ]);
+    expect(topHoldings(latest, 2).map((item) => item.label)).toEqual(["Mirae Asset Securities"]);
   });
 
   it("deduplicates same-date timeline rows by stock kind and keeps richer rows", () => {
@@ -162,6 +160,31 @@ describe("holding snapshots", () => {
     });
 
     expect(dedupeHoldingTimeline([sparse, complete])).toEqual([complete]);
+  });
+});
+
+describe("event count charts", () => {
+  it("counts only direct acquisitions and trust starts by disclosure month", () => {
+    expect(
+      monthlyAcquisitionCounts([
+        event("direct-1", "direct_acquisition"),
+        {
+          ...event("trust-1", "trust_contract_start"),
+          disclosure_date: "2026-05-29"
+        },
+        {
+          ...event("direct-2", "direct_acquisition"),
+          disclosure_date: "2026-06-03"
+        },
+        {
+          ...event("disposition-1", "direct_disposition"),
+          disclosure_date: "2026-06-04"
+        }
+      ])
+    ).toEqual([
+      { label: "2026-05", value: 2 },
+      { label: "2026-06", value: 1 }
+    ]);
   });
 });
 
