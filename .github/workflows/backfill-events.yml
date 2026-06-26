@@ -101,7 +101,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
-          git add data/backfills public/data/buybacks
+          git add \
+            "data/backfills/${BACKFILL_RUN_ID}/companies.json" \
+            "data/backfills/${BACKFILL_RUN_ID}/disclosures.json" \
+            "data/backfills/${BACKFILL_RUN_ID}/events.json" \
+            "data/backfills/${BACKFILL_RUN_ID}/status.json" \
+            public/data/buybacks
           if git diff --cached --quiet; then
             echo "No backfill changes to commit."
             exit 0
