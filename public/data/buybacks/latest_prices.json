@@ -1,5 +1,125 @@
 [
   {
+    "stock_code": "000140",
+    "price_date": "2026-06-26",
+    "close": 7500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.01832460732984298,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "000150",
+    "price_date": "2026-06-26",
+    "close": 1442000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04376657824933683,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "000270",
+    "price_date": "2026-06-26",
+    "close": 135300.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03010752688172047,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "000320",
+    "price_date": "2026-06-26",
+    "close": 15670.0,
+    "source": "kis_proxy",
+    "change_rate": -0.021847690387016283,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "000490",
+    "price_date": "2026-06-26",
+    "close": 6920.0,
+    "source": "kis_proxy",
+    "change_rate": -0.019830028328611915,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "000520",
+    "price_date": "2026-06-26",
+    "close": 5970.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03864734299516903,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "000590",
+    "price_date": "2026-06-26",
+    "close": 67100.0,
+    "source": "kis_proxy",
+    "change_rate": -0.020437956204379604,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "000640",
+    "price_date": "2026-06-26",
+    "close": 75800.0,
+    "source": "kis_proxy",
+    "change_rate": -0.016861219195849597,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "000660",
+    "price_date": "2026-06-26",
+    "close": 2673000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.08364758313335618,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "000880",
+    "price_date": "2026-06-26",
+    "close": 100900.0,
+    "source": "kis_proxy",
+    "change_rate": -0.055243445692883864,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "000890",
+    "price_date": "2026-06-26",
+    "close": 2325.0,
+    "source": "kis_proxy",
+    "change_rate": -0.15913200723327303,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "000990",
+    "price_date": "2026-06-26",
+    "close": 158300.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0018987341772152,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "001080",
     "price_date": "2026-06-26",
     "close": 3820.0,
@@ -10,11 +130,61 @@
     "change_code": null
   },
   {
+    "stock_code": "001390",
+    "price_date": "2026-06-26",
+    "close": 3890.0,
+    "source": "kis_proxy",
+    "change_rate": -0.031133250311332517,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "001420",
     "price_date": "2026-06-26",
     "close": 2525.0,
     "source": "kis_proxy",
     "change_rate": -0.009803921568627416,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "001450",
+    "price_date": "2026-06-26",
+    "close": 34400.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04311543810848406,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "001460",
+    "price_date": "2026-06-26",
+    "close": 31750.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03201219512195119,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "001510",
+    "price_date": "2026-06-26",
+    "close": 2395.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06627680311890838,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "001740",
+    "price_date": "2026-06-26",
+    "close": 9710.0,
+    "source": "kis_proxy",
+    "change_rate": -0.10092592592592597,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -50,11 +220,131 @@
     "change_code": null
   },
   {
+    "stock_code": "002200",
+    "price_date": "2026-06-26",
+    "close": 2235.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0022421524663676085,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "002220",
+    "price_date": "2026-06-26",
+    "close": 4330.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07181136120042875,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "002310",
+    "price_date": "2026-06-26",
+    "close": 7330.0,
+    "source": "kis_proxy",
+    "change_rate": -0.016107382550335614,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "002350",
+    "price_date": "2026-06-26",
+    "close": 6350.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0078125,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "002360",
+    "price_date": "2026-06-26",
+    "close": 1617.0,
+    "source": "kis_proxy",
+    "change_rate": -0.025903614457831292,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "002700",
     "price_date": "2026-06-26",
     "close": 1016.0,
     "source": "kis_proxy",
     "change_rate": -0.028680688336520044,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "002790",
+    "price_date": "2026-06-26",
+    "close": 20450.0,
+    "source": "kis_proxy",
+    "change_rate": -0.01918465227817745,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "002810",
+    "price_date": "2026-06-26",
+    "close": 18920.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0015831134564643357,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "002840",
+    "price_date": "2026-06-26",
+    "close": 112400.0,
+    "source": "kis_proxy",
+    "change_rate": -0.007067137809187329,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "002990",
+    "price_date": "2026-06-26",
+    "close": 6630.0,
+    "source": "kis_proxy",
+    "change_rate": 0.30000000000000004,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "003010",
+    "price_date": "2026-06-26",
+    "close": 4080.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05005820721769494,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "003090",
+    "price_date": "2026-06-26",
+    "close": 15850.0,
+    "source": "kis_proxy",
+    "change_rate": -0.043452021726010814,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "003200",
+    "price_date": "2026-06-26",
+    "close": 10750.0,
+    "source": "kis_proxy",
+    "change_rate": 0.13157894736842102,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -70,11 +360,191 @@
     "change_code": null
   },
   {
+    "stock_code": "003610",
+    "price_date": "2026-06-26",
+    "close": 5060.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "003850",
     "price_date": "2026-06-26",
     "close": 8120.0,
     "source": "kis_proxy",
     "change_rate": -0.028708133971291905,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "003920",
+    "price_date": "2026-06-26",
+    "close": 40600.0,
+    "source": "kis_proxy",
+    "change_rate": 0.004950495049504955,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "004080",
+    "price_date": "2026-06-26",
+    "close": 13880.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0007209805335255393,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "004150",
+    "price_date": "2026-06-26",
+    "close": 2980.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02931596091205213,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "004270",
+    "price_date": "2026-06-26",
+    "close": 6670.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "004310",
+    "price_date": "2026-06-26",
+    "close": 6050.0,
+    "source": "kis_proxy",
+    "change_rate": -0.09701492537313428,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "004780",
+    "price_date": "2026-06-26",
+    "close": 3700.0,
+    "source": "kis_proxy",
+    "change_rate": -0.012016021361815787,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "004910",
+    "price_date": "2026-06-26",
+    "close": 3240.0,
+    "source": "kis_proxy",
+    "change_rate": -0.018181818181818188,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "004920",
+    "price_date": "2026-06-26",
+    "close": 943.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "005290",
+    "price_date": "2026-06-26",
+    "close": 55000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.028268551236749095,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "005380",
+    "price_date": "2026-06-26",
+    "close": 480500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04473161033797213,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "005440",
+    "price_date": "2026-06-26",
+    "close": 15080.0,
+    "source": "kis_proxy",
+    "change_rate": 0.016172506738544534,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "005680",
+    "price_date": "2026-06-26",
+    "close": 14370.0,
+    "source": "kis_proxy",
+    "change_rate": -0.006224066390041472,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "005810",
+    "price_date": "2026-06-26",
+    "close": 34500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.008620689655172376,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "005930",
+    "price_date": "2026-06-26",
+    "close": 339500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05299860529986056,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "006050",
+    "price_date": "2026-06-26",
+    "close": 506.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04708097928436916,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "006120",
+    "price_date": "2026-06-26",
+    "close": 51100.0,
+    "source": "kis_proxy",
+    "change_rate": 0.03128153380423804,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "006200",
+    "price_date": "2026-06-26",
+    "close": 2150.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -90,11 +560,31 @@
     "change_code": null
   },
   {
+    "stock_code": "006980",
+    "price_date": "2026-06-26",
+    "close": 15780.0,
+    "source": "kis_proxy",
+    "change_rate": -0.00189753320683117,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "007980",
     "price_date": "2026-06-26",
     "close": 1632.0,
     "source": "kis_proxy",
     "change_rate": -0.022754491017964118,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "008060",
+    "price_date": "2026-06-26",
+    "close": 16200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0024630541871921707,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -110,11 +600,131 @@
     "change_code": null
   },
   {
+    "stock_code": "008700",
+    "price_date": "2026-06-26",
+    "close": 1162.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "008870",
+    "price_date": "2026-06-26",
+    "close": 38300.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03282828282828287,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "008930",
+    "price_date": "2026-06-26",
+    "close": 26100.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04395604395604391,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "009140",
+    "price_date": "2026-06-26",
+    "close": 22300.0,
+    "source": "kis_proxy",
+    "change_rate": 0.013636363636363669,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "009240",
     "price_date": "2026-06-26",
     "close": 31550.0,
     "source": "kis_proxy",
     "change_rate": -0.027734976887519247,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "009270",
+    "price_date": "2026-06-26",
+    "close": 996.0,
+    "source": "kis_proxy",
+    "change_rate": -0.030185004868549137,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "009290",
+    "price_date": "2026-06-26",
+    "close": 5270.0,
+    "source": "kis_proxy",
+    "change_rate": -0.027675276752767486,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "009420",
+    "price_date": "2026-06-26",
+    "close": 57800.0,
+    "source": "kis_proxy",
+    "change_rate": -0.00857632933104635,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "009460",
+    "price_date": "2026-06-26",
+    "close": 2580.0,
+    "source": "kis_proxy",
+    "change_rate": 0.013752455795677854,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "009830",
+    "price_date": "2026-06-26",
+    "close": 30650.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07401812688821752,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "010060",
+    "price_date": "2026-06-26",
+    "close": 194000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.08056872037914697,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "010120",
+    "price_date": "2026-06-26",
+    "close": 203000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0730593607305936,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "010240",
+    "price_date": "2026-06-26",
+    "close": 5200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.015151515151515138,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -130,11 +740,181 @@
     "change_code": null
   },
   {
+    "stock_code": "010470",
+    "price_date": "2026-06-26",
+    "close": 4445.0,
+    "source": "kis_proxy",
+    "change_rate": -0.012222222222222245,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "011040",
+    "price_date": "2026-06-26",
+    "close": 4720.0,
+    "source": "kis_proxy",
+    "change_rate": -0.028806584362139898,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "011320",
+    "price_date": "2026-06-26",
+    "close": 3610.0,
+    "source": "kis_proxy",
+    "change_rate": -0.023004059539918797,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "011560",
+    "price_date": "2026-06-26",
+    "close": 21350.0,
+    "source": "kis_proxy",
+    "change_rate": 0.019093078758949833,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "011780",
+    "price_date": "2026-06-26",
+    "close": 113900.0,
+    "source": "kis_proxy",
+    "change_rate": -0.020636285468615623,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "012280",
     "price_date": "2026-06-26",
     "close": 789.0,
     "source": "kis_proxy",
     "change_rate": 0.0,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "012330",
+    "price_date": "2026-06-26",
+    "close": 486500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.051656920077972734,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "012610",
+    "price_date": "2026-06-26",
+    "close": 3345.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03183791606367581,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "012700",
+    "price_date": "2026-06-26",
+    "close": 2750.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "013120",
+    "price_date": "2026-06-26",
+    "close": 2155.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0023255813953488857,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "013990",
+    "price_date": "2026-06-26",
+    "close": 3240.0,
+    "source": "kis_proxy",
+    "change_rate": -0.041420118343195256,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "014570",
+    "price_date": "2026-06-26",
+    "close": 3155.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02018633540372672,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "014680",
+    "price_date": "2026-06-26",
+    "close": 260000.0,
+    "source": "kis_proxy",
+    "change_rate": 0.011673151750972721,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "014910",
+    "price_date": "2026-06-26",
+    "close": 2520.0,
+    "source": "kis_proxy",
+    "change_rate": 0.07462686567164178,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "016100",
+    "price_date": "2026-06-26",
+    "close": 728.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07964601769911506,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "016380",
+    "price_date": "2026-06-26",
+    "close": 5050.0,
+    "source": "kis_proxy",
+    "change_rate": -0.030710172744721653,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "016610",
+    "price_date": "2026-06-26",
+    "close": 8870.0,
+    "source": "kis_proxy",
+    "change_rate": -0.044181034482758674,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "016880",
+    "price_date": "2026-06-26",
+    "close": 1787.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06684073107049604,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -150,6 +930,86 @@
     "change_code": null
   },
   {
+    "stock_code": "017180",
+    "price_date": "2026-06-26",
+    "close": 1197.0,
+    "source": "kis_proxy",
+    "change_rate": -0.007462686567164201,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "017250",
+    "price_date": "2026-06-26",
+    "close": 968.0,
+    "source": "kis_proxy",
+    "change_rate": -0.025176233635448186,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "017390",
+    "price_date": "2026-06-26",
+    "close": 52400.0,
+    "source": "kis_proxy",
+    "change_rate": 0.003831417624521105,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "017670",
+    "price_date": "2026-06-26",
+    "close": 90600.0,
+    "source": "kis_proxy",
+    "change_rate": -0.008752735229759279,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "018670",
+    "price_date": "2026-06-26",
+    "close": 203000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.002457002457002422,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "018700",
+    "price_date": "2026-06-26",
+    "close": 879.0,
+    "source": "kis_proxy",
+    "change_rate": -0.021158129175946505,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "019170",
+    "price_date": "2026-06-26",
+    "close": 8000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.024390243902439046,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "019680",
+    "price_date": "2026-06-26",
+    "close": 846.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03314285714285714,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "020120",
     "price_date": "2026-06-26",
     "close": 3080.0,
@@ -160,11 +1020,31 @@
     "change_code": null
   },
   {
+    "stock_code": "020180",
+    "price_date": "2026-06-26",
+    "close": 917.0,
+    "source": "kis_proxy",
+    "change_rate": -0.025504782146652527,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "020400",
     "price_date": "2026-06-26",
     "close": 3005.0,
     "source": "kis_proxy",
     "change_rate": -0.05946791862284817,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "021240",
+    "price_date": "2026-06-26",
+    "close": 85700.0,
+    "source": "kis_proxy",
+    "change_rate": -0.014942528735632177,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -190,11 +1070,91 @@
     "change_code": null
   },
   {
+    "stock_code": "023450",
+    "price_date": "2026-06-26",
+    "close": 28750.0,
+    "source": "kis_proxy",
+    "change_rate": -0.018771331058020424,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "024060",
+    "price_date": "2026-06-26",
+    "close": 9200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.043659043659043606,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "024090",
     "price_date": "2026-06-26",
     "close": 10550.0,
     "source": "kis_proxy",
     "change_rate": -0.010318949343339545,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "024880",
+    "price_date": "2026-06-26",
+    "close": 3685.0,
+    "source": "kis_proxy",
+    "change_rate": -0.01733333333333331,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "025770",
+    "price_date": "2026-06-26",
+    "close": 7120.0,
+    "source": "kis_proxy",
+    "change_rate": -0.023319615912208547,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "025860",
+    "price_date": "2026-06-26",
+    "close": 5620.0,
+    "source": "kis_proxy",
+    "change_rate": -0.015761821366024553,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "025980",
+    "price_date": "2026-06-26",
+    "close": 3920.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04390243902439028,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "026040",
+    "price_date": "2026-06-26",
+    "close": 1750.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03314917127071826,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "026890",
+    "price_date": "2026-06-26",
+    "close": 6400.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04477611940298509,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -210,11 +1170,91 @@
     "change_code": null
   },
   {
+    "stock_code": "029460",
+    "price_date": "2026-06-26",
+    "close": 28950.0,
+    "source": "kis_proxy",
+    "change_rate": -0.011945392491467532,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "029530",
+    "price_date": "2026-06-26",
+    "close": 39100.0,
+    "source": "kis_proxy",
+    "change_rate": -0.015113350125944613,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "030200",
+    "price_date": "2026-06-26",
+    "close": 52200.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0038461538461538325,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "030210",
+    "price_date": "2026-06-26",
+    "close": 3190.0,
+    "source": "kis_proxy",
+    "change_rate": -0.028919330289193357,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "030520",
+    "price_date": "2026-06-26",
+    "close": 16550.0,
+    "source": "kis_proxy",
+    "change_rate": -0.018968583283936025,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "030610",
+    "price_date": "2026-06-26",
+    "close": 9260.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04634397528321321,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "031510",
     "price_date": "2026-06-26",
     "close": 986.0,
     "source": "kis_proxy",
     "change_rate": 0.020703933747411973,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "032080",
+    "price_date": "2026-06-26",
+    "close": 1078.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "032640",
+    "price_date": "2026-06-26",
+    "close": 14220.0,
+    "source": "kis_proxy",
+    "change_rate": 0.01498929336188426,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -230,11 +1270,151 @@
     "change_code": null
   },
   {
+    "stock_code": "033310",
+    "price_date": "2026-06-26",
+    "close": 1279.0,
+    "source": "kis_proxy",
+    "change_rate": 0.02566158781074579,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "033500",
+    "price_date": "2026-06-26",
+    "close": 16200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05207723815096543,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "033560",
+    "price_date": "2026-06-26",
+    "close": 3945.0,
+    "source": "kis_proxy",
+    "change_rate": 0.031372549019607954,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "033780",
+    "price_date": "2026-06-26",
+    "close": 167400.0,
+    "source": "kis_proxy",
+    "change_rate": -0.018181818181818188,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "033920",
+    "price_date": "2026-06-26",
+    "close": 7370.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "034020",
+    "price_date": "2026-06-26",
+    "close": 81100.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07630979498861046,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "034310",
+    "price_date": "2026-06-26",
+    "close": 10810.0,
+    "source": "kis_proxy",
+    "change_rate": -0.01188299817184646,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "034730",
+    "price_date": "2026-06-26",
+    "close": 815000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05011655011655014,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "034830",
+    "price_date": "2026-06-26",
+    "close": 1066.0,
+    "source": "kis_proxy",
+    "change_rate": -0.026484018264840148,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "035080",
+    "price_date": "2026-06-26",
+    "close": 7680.0,
+    "source": "kis_proxy",
+    "change_rate": -0.01538461538461533,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "035150",
+    "price_date": "2026-06-26",
+    "close": 9200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.019189765458422214,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "035200",
     "price_date": "2026-06-26",
     "close": 2760.0,
     "source": "kis_proxy",
     "change_rate": 0.0036363636363636598,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "035420",
+    "price_date": "2026-06-26",
+    "close": 196400.0,
+    "source": "kis_proxy",
+    "change_rate": -0.016524787180771106,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "035720",
+    "price_date": "2026-06-26",
+    "close": 33150.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03211678832116793,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "035760",
+    "price_date": "2026-06-26",
+    "close": 30500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.022435897435897467,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -250,11 +1430,101 @@
     "change_code": null
   },
   {
+    "stock_code": "036220",
+    "price_date": "2026-06-26",
+    "close": 5390.0,
+    "source": "kis_proxy",
+    "change_rate": -0.046017699115044275,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "036570",
+    "price_date": "2026-06-26",
+    "close": 238000.0,
+    "source": "kis_proxy",
+    "change_rate": 0.014925373134328401,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "036620",
     "price_date": "2026-06-26",
     "close": 3590.0,
     "source": "kis_proxy",
     "change_rate": -0.04521276595744683,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "036630",
+    "price_date": "2026-06-26",
+    "close": 5680.0,
+    "source": "kis_proxy",
+    "change_rate": -0.09409888357256779,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "036800",
+    "price_date": "2026-06-26",
+    "close": 28000.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0017889087656528524,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "036810",
+    "price_date": "2026-06-26",
+    "close": 24250.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05458089668615984,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "036830",
+    "price_date": "2026-06-26",
+    "close": 35600.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06561679790026242,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "037350",
+    "price_date": "2026-06-26",
+    "close": 8810.0,
+    "source": "kis_proxy",
+    "change_rate": -0.013437849944008984,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "037440",
+    "price_date": "2026-06-26",
+    "close": 3560.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05444887118193886,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "037460",
+    "price_date": "2026-06-26",
+    "close": 33000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.026548672566371723,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -270,6 +1540,16 @@
     "change_code": null
   },
   {
+    "stock_code": "038680",
+    "price_date": "2026-06-26",
+    "close": 2875.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04485049833887045,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "039290",
     "price_date": "2026-06-26",
     "close": 3540.0,
@@ -280,11 +1560,171 @@
     "change_code": null
   },
   {
+    "stock_code": "039420",
+    "price_date": "2026-06-26",
+    "close": 2475.0,
+    "source": "kis_proxy",
+    "change_rate": 0.002024291497975783,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "039440",
+    "price_date": "2026-06-26",
+    "close": 24950.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06378986866791747,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "039490",
+    "price_date": "2026-06-26",
+    "close": 306500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.09185185185185185,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "039840",
+    "price_date": "2026-06-26",
+    "close": 11950.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03473344103392573,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "040160",
+    "price_date": "2026-06-26",
+    "close": 7410.0,
+    "source": "kis_proxy",
+    "change_rate": -0.1104441776710684,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "041460",
     "price_date": "2026-06-26",
     "close": 3275.0,
     "source": "kis_proxy",
     "change_rate": -0.03249630723781394,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "041830",
+    "price_date": "2026-06-26",
+    "close": 45150.0,
+    "source": "kis_proxy",
+    "change_rate": -0.059374999999999956,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "042000",
+    "price_date": "2026-06-26",
+    "close": 16620.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02521994134897365,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "042420",
+    "price_date": "2026-06-26",
+    "close": 19220.0,
+    "source": "kis_proxy",
+    "change_rate": -0.027819929185634806,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "042500",
+    "price_date": "2026-06-26",
+    "close": 3820.0,
+    "source": "kis_proxy",
+    "change_rate": -0.026751592356687892,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "042600",
+    "price_date": "2026-06-26",
+    "close": 9880.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05994291151284492,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "042660",
+    "price_date": "2026-06-26",
+    "close": 98000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07196969696969702,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "043360",
+    "price_date": "2026-06-26",
+    "close": 2010.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06728538283062646,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "044340",
+    "price_date": "2026-06-26",
+    "close": 3135.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05714285714285716,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "045100",
+    "price_date": "2026-06-26",
+    "close": 27100.0,
+    "source": "kis_proxy",
+    "change_rate": -0.033868092691622054,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "045340",
+    "price_date": "2026-06-26",
+    "close": 5650.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05518394648829428,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "045390",
+    "price_date": "2026-06-26",
+    "close": 2650.0,
+    "source": "kis_proxy",
+    "change_rate": -0.036363636363636376,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -310,6 +1750,36 @@
     "change_code": null
   },
   {
+    "stock_code": "048470",
+    "price_date": "2026-06-26",
+    "close": 2415.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07471264367816088,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "048530",
+    "price_date": "2026-06-26",
+    "close": 2365.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0797665369649806,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "048910",
+    "price_date": "2026-06-26",
+    "close": 4190.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0367816091954023,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "049070",
     "price_date": "2026-06-26",
     "close": 16770.0,
@@ -330,11 +1800,61 @@
     "change_code": null
   },
   {
+    "stock_code": "049520",
+    "price_date": "2026-06-26",
+    "close": 3510.0,
+    "source": "kis_proxy",
+    "change_rate": -0.026352288488210807,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "049720",
+    "price_date": "2026-06-26",
+    "close": 9500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.007314524555903867,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "050890",
+    "price_date": "2026-06-26",
+    "close": 10700.0,
+    "source": "kis_proxy",
+    "change_rate": -0.027272727272727226,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "051360",
+    "price_date": "2026-06-26",
+    "close": 16090.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "051380",
     "price_date": "2026-06-26",
     "close": 1520.0,
     "source": "kis_proxy",
     "change_rate": -0.02564102564102566,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "052300",
+    "price_date": "2026-06-26",
+    "close": 1232.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06311787072243347,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -360,6 +1880,16 @@
     "change_code": null
   },
   {
+    "stock_code": "053300",
+    "price_date": "2026-06-26",
+    "close": 4145.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0525714285714286,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "053580",
     "price_date": "2026-06-26",
     "close": 5900.0,
@@ -370,11 +1900,51 @@
     "change_code": null
   },
   {
+    "stock_code": "053690",
+    "price_date": "2026-06-26",
+    "close": 16140.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04042806183115344,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "054090",
     "price_date": "2026-06-26",
     "close": 901.0,
     "source": "kis_proxy",
     "change_rate": -0.04656084656084658,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "054620",
+    "price_date": "2026-06-26",
+    "close": 3860.0,
+    "source": "kis_proxy",
+    "change_rate": 0.05177111716621252,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "054950",
+    "price_date": "2026-06-26",
+    "close": 20000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03147699757869249,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "055550",
+    "price_date": "2026-06-26",
+    "close": 91600.0,
+    "source": "kis_proxy",
+    "change_rate": -0.030687830687830653,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -400,11 +1970,201 @@
     "change_code": null
   },
   {
+    "stock_code": "058650",
+    "price_date": "2026-06-26",
+    "close": 110500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03493449781659386,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "058730",
+    "price_date": "2026-06-26",
+    "close": 3435.0,
+    "source": "kis_proxy",
+    "change_rate": -0.1632155907429963,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "059210",
+    "price_date": "2026-06-26",
+    "close": 3720.0,
+    "source": "kis_proxy",
+    "change_rate": 0.03765690376569042,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "060260",
+    "price_date": "2026-06-26",
+    "close": 1549.0,
+    "source": "kis_proxy",
+    "change_rate": 0.07569444444444451,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "060380",
+    "price_date": "2026-06-26",
+    "close": 1249.0,
+    "source": "kis_proxy",
+    "change_rate": 0.009700889248181133,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "060720",
     "price_date": "2026-06-26",
     "close": 9880.0,
     "source": "kis_proxy",
     "change_rate": -0.04541062801932372,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "060850",
+    "price_date": "2026-06-26",
+    "close": 5010.0,
+    "source": "kis_proxy",
+    "change_rate": -0.023391812865497075,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "060980",
+    "price_date": "2026-06-26",
+    "close": 38950.0,
+    "source": "kis_proxy",
+    "change_rate": -0.008905852417302795,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "061090",
+    "price_date": "2026-06-26",
+    "close": 27650.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03321678321678323,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "063440",
+    "price_date": "2026-06-26",
+    "close": 1027.0,
+    "source": "kis_proxy",
+    "change_rate": -0.016283524904214586,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "064480",
+    "price_date": "2026-06-26",
+    "close": 2770.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0146520146520146,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "065370",
+    "price_date": "2026-06-26",
+    "close": 2785.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07321131447587359,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "065510",
+    "price_date": "2026-06-26",
+    "close": 6680.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02196193265007318,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "065710",
+    "price_date": "2026-06-26",
+    "close": 47000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.015706806282722474,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "066570",
+    "price_date": "2026-06-26",
+    "close": 195900.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03497536945812807,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "066970",
+    "price_date": "2026-06-26",
+    "close": 98900.0,
+    "source": "kis_proxy",
+    "change_rate": -0.08256029684601118,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "067080",
+    "price_date": "2026-06-26",
+    "close": 8770.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07293868921775903,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "067160",
+    "price_date": "2026-06-26",
+    "close": 46250.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0064446831364124435,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "067830",
+    "price_date": "2026-06-26",
+    "close": 2185.0,
+    "source": "kis_proxy",
+    "change_rate": 0.002293577981651307,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "067920",
+    "price_date": "2026-06-26",
+    "close": 4650.0,
+    "source": "kis_proxy",
+    "change_rate": -0.015873015873015928,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -420,11 +2180,91 @@
     "change_code": null
   },
   {
+    "stock_code": "068270",
+    "price_date": "2026-06-26",
+    "close": 165900.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04159445407279028,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "068290",
+    "price_date": "2026-06-26",
+    "close": 6070.0,
+    "source": "kis_proxy",
+    "change_rate": -0.006546644844517169,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "068790",
+    "price_date": "2026-06-26",
+    "close": 4670.0,
+    "source": "kis_proxy",
+    "change_rate": 0.05536723163841817,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "068930",
+    "price_date": "2026-06-26",
+    "close": 7030.0,
+    "source": "kis_proxy",
+    "change_rate": -0.016783216783216814,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "069080",
     "price_date": "2026-06-26",
     "close": 11330.0,
     "source": "kis_proxy",
     "change_rate": 0.0017683465959328348,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "069960",
+    "price_date": "2026-06-26",
+    "close": 200500.0,
+    "source": "kis_proxy",
+    "change_rate": 0.025575447570332477,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "078150",
+    "price_date": "2026-06-26",
+    "close": 2200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04761904761904767,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "078350",
+    "price_date": "2026-06-26",
+    "close": 21000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06666666666666665,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "078520",
+    "price_date": "2026-06-26",
+    "close": 9200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05641025641025643,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -440,11 +2280,291 @@
     "change_code": null
   },
   {
+    "stock_code": "080010",
+    "price_date": "2026-06-26",
+    "close": 6650.0,
+    "source": "kis_proxy",
+    "change_rate": 0.004531722054380571,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "080160",
+    "price_date": "2026-06-26",
+    "close": 8090.0,
+    "source": "kis_proxy",
+    "change_rate": -0.009791921664626724,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "080580",
+    "price_date": "2026-06-26",
+    "close": 13650.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05076495132127956,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "081150",
+    "price_date": "2026-06-26",
+    "close": 2455.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03913894324853229,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "081660",
+    "price_date": "2026-06-26",
+    "close": 38800.0,
+    "source": "kis_proxy",
+    "change_rate": -0.015228426395939132,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "082800",
+    "price_date": "2026-06-26",
+    "close": 2490.0,
+    "source": "kis_proxy",
+    "change_rate": -0.062146892655367214,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "082920",
     "price_date": "2026-06-26",
     "close": 36950.0,
     "source": "kis_proxy",
     "change_rate": -0.050128534704370176,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "083930",
+    "price_date": "2026-06-26",
+    "close": 10800.0,
+    "source": "kis_proxy",
+    "change_rate": -0.027027027027026973,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "084010",
+    "price_date": "2026-06-26",
+    "close": 7600.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03430749682337997,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "084370",
+    "price_date": "2026-06-26",
+    "close": 172600.0,
+    "source": "kis_proxy",
+    "change_rate": 0.06150061500615012,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "084440",
+    "price_date": "2026-06-26",
+    "close": 848.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0035502958579882726,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "084730",
+    "price_date": "2026-06-26",
+    "close": 5830.0,
+    "source": "kis_proxy",
+    "change_rate": -0.026711185308848084,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "084870",
+    "price_date": "2026-06-26",
+    "close": 1815.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0038419319429198184,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "085620",
+    "price_date": "2026-06-26",
+    "close": 20700.0,
+    "source": "kis_proxy",
+    "change_rate": -0.08203991130820398,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "086790",
+    "price_date": "2026-06-26",
+    "close": 109700.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03771929824561404,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "086900",
+    "price_date": "2026-06-26",
+    "close": 74000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05972045743329102,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "089600",
+    "price_date": "2026-06-26",
+    "close": 9240.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04643962848297212,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "089850",
+    "price_date": "2026-06-26",
+    "close": 3825.0,
+    "source": "kis_proxy",
+    "change_rate": -0.059040590405904037,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "089890",
+    "price_date": "2026-06-26",
+    "close": 27900.0,
+    "source": "kis_proxy",
+    "change_rate": -0.044520547945205435,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "090430",
+    "price_date": "2026-06-26",
+    "close": 97000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.007164790174002067,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "093050",
+    "price_date": "2026-06-26",
+    "close": 20700.0,
+    "source": "kis_proxy",
+    "change_rate": -0.014285714285714235,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "093320",
+    "price_date": "2026-06-26",
+    "close": 100600.0,
+    "source": "kis_proxy",
+    "change_rate": -0.09369369369369374,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "093380",
+    "price_date": "2026-06-26",
+    "close": 2185.0,
+    "source": "kis_proxy",
+    "change_rate": -0.028888888888888853,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "093520",
+    "price_date": "2026-06-26",
+    "close": 16460.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03176470588235292,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "094820",
+    "price_date": "2026-06-26",
+    "close": 11220.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04995766299745974,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "094840",
+    "price_date": "2026-06-26",
+    "close": 11660.0,
+    "source": "kis_proxy",
+    "change_rate": -0.022632020117351215,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "095500",
+    "price_date": "2026-06-26",
+    "close": 6650.0,
+    "source": "kis_proxy",
+    "change_rate": -0.09523809523809523,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "095660",
+    "price_date": "2026-06-26",
+    "close": 16350.0,
+    "source": "kis_proxy",
+    "change_rate": -0.015060240963855387,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "096240",
+    "price_date": "2026-06-26",
+    "close": 8930.0,
+    "source": "kis_proxy",
+    "change_rate": -0.004459308807134854,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -460,11 +2580,91 @@
     "change_code": null
   },
   {
+    "stock_code": "096530",
+    "price_date": "2026-06-26",
+    "close": 28000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03945111492281306,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "096870",
     "price_date": "2026-06-26",
     "close": 2150.0,
     "source": "kis_proxy",
     "change_rate": 0.03864734299516903,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "097520",
+    "price_date": "2026-06-26",
+    "close": 18450.0,
+    "source": "kis_proxy",
+    "change_rate": -0.040561622464898583,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "098460",
+    "price_date": "2026-06-26",
+    "close": 29550.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03431372549019607,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "098660",
+    "price_date": "2026-06-26",
+    "close": 1572.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04146341463414638,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "100030",
+    "price_date": "2026-06-26",
+    "close": 15870.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02218114602587795,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "100120",
+    "price_date": "2026-06-26",
+    "close": 21900.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0331125827814569,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "101670",
+    "price_date": "2026-06-26",
+    "close": 1055.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0786026200873362,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "101930",
+    "price_date": "2026-06-26",
+    "close": 6980.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03324099722991691,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -480,6 +2680,16 @@
     "change_code": null
   },
   {
+    "stock_code": "102120",
+    "price_date": "2026-06-26",
+    "close": 8120.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05691056910569103,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "104700",
     "price_date": "2026-06-26",
     "close": 8810.0,
@@ -490,11 +2700,91 @@
     "change_code": null
   },
   {
+    "stock_code": "105560",
+    "price_date": "2026-06-26",
+    "close": 149300.0,
+    "source": "kis_proxy",
+    "change_rate": -0.017116524028966462,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "108380",
     "price_date": "2026-06-26",
     "close": 15920.0,
     "source": "kis_proxy",
     "change_rate": -0.061873895109015864,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "108490",
+    "price_date": "2026-06-26",
+    "close": 232000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.09375,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "110790",
+    "price_date": "2026-06-26",
+    "close": 2895.0,
+    "source": "kis_proxy",
+    "change_rate": -0.005154639175257714,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "110990",
+    "price_date": "2026-06-26",
+    "close": 17900.0,
+    "source": "kis_proxy",
+    "change_rate": -0.01756311745334793,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "111110",
+    "price_date": "2026-06-26",
+    "close": 6170.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02681388012618302,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "112610",
+    "price_date": "2026-06-26",
+    "close": 38500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0767386091127098,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "114450",
+    "price_date": "2026-06-26",
+    "close": 1727.0,
+    "source": "kis_proxy",
+    "change_rate": -0.036809815950920255,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "114810",
+    "price_date": "2026-06-26",
+    "close": 12920.0,
+    "source": "kis_proxy",
+    "change_rate": -0.027108433734939763,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -520,11 +2810,271 @@
     "change_code": null
   },
   {
+    "stock_code": "117670",
+    "price_date": "2026-06-26",
+    "close": 9040.0,
+    "source": "kis_proxy",
+    "change_rate": -0.017391304347826098,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "118990",
+    "price_date": "2026-06-26",
+    "close": 5230.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05081669691470059,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "119610",
+    "price_date": "2026-06-26",
+    "close": 15820.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0025220680958385477,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "119850",
+    "price_date": "2026-06-26",
+    "close": 19110.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02994923857868015,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "120030",
+    "price_date": "2026-06-26",
+    "close": 85100.0,
+    "source": "kis_proxy",
+    "change_rate": -0.01504629629629628,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "121600",
+    "price_date": "2026-06-26",
+    "close": 46100.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05629477993858756,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "121850",
+    "price_date": "2026-06-26",
+    "close": 1251.0,
+    "source": "kis_proxy",
+    "change_rate": -0.16600000000000004,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "122310",
+    "price_date": "2026-06-26",
+    "close": 3200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.033232628398791486,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "122990",
+    "price_date": "2026-06-26",
+    "close": 6150.0,
+    "source": "kis_proxy",
+    "change_rate": -0.026898734177215222,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "123410",
+    "price_date": "2026-06-26",
+    "close": 4950.0,
+    "source": "kis_proxy",
+    "change_rate": -0.017857142857142905,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "123860",
+    "price_date": "2026-06-26",
+    "close": 15300.0,
+    "source": "kis_proxy",
+    "change_rate": 0.003278688524590123,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "124560",
+    "price_date": "2026-06-26",
+    "close": 1775.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0633245382585752,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "126340",
+    "price_date": "2026-06-26",
+    "close": 80200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.13203463203463206,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "126560",
+    "price_date": "2026-06-26",
+    "close": 2945.0,
+    "source": "kis_proxy",
+    "change_rate": 0.012027491408934665,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "126730",
+    "price_date": "2026-06-26",
+    "close": 14600.0,
+    "source": "kis_proxy",
+    "change_rate": -0.09541511771995048,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "127710",
+    "price_date": "2026-06-26",
+    "close": 799.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "128820",
+    "price_date": "2026-06-26",
+    "close": 4225.0,
+    "source": "kis_proxy",
+    "change_rate": -0.050561797752809,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "128940",
+    "price_date": "2026-06-26",
+    "close": 366000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07106598984771573,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "129260",
+    "price_date": "2026-06-26",
+    "close": 1906.0,
+    "source": "kis_proxy",
+    "change_rate": -0.017525773195876337,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "130740",
+    "price_date": "2026-06-26",
+    "close": 1826.0,
+    "source": "kis_proxy",
+    "change_rate": 0.04761904761904767,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "131030",
+    "price_date": "2026-06-26",
+    "close": 5560.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02626970227670755,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "131090",
+    "price_date": "2026-06-26",
+    "close": 3490.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04120879120879117,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "131370",
+    "price_date": "2026-06-26",
+    "close": 1285.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07018813314037631,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "131970",
+    "price_date": "2026-06-26",
+    "close": 115700.0,
+    "source": "kis_proxy",
+    "change_rate": -0.030176026823134916,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "134060",
     "price_date": "2026-06-26",
     "close": 4635.0,
     "source": "kis_proxy",
     "change_rate": 0.059428571428571386,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "134580",
+    "price_date": "2026-06-26",
+    "close": 930.0,
+    "source": "kis_proxy",
+    "change_rate": -0.11596958174904948,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "136540",
+    "price_date": "2026-06-26",
+    "close": 10180.0,
+    "source": "kis_proxy",
+    "change_rate": 0.010923535253227312,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -540,11 +3090,91 @@
     "change_code": null
   },
   {
+    "stock_code": "137950",
+    "price_date": "2026-06-26",
+    "close": 2505.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06355140186915886,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "138040",
+    "price_date": "2026-06-26",
+    "close": 100600.0,
+    "source": "kis_proxy",
+    "change_rate": -0.017578125,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "138930",
+    "price_date": "2026-06-26",
+    "close": 15880.0,
+    "source": "kis_proxy",
+    "change_rate": -0.025766871165644134,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "139130",
     "price_date": "2026-06-26",
     "close": 15830.0,
     "source": "kis_proxy",
     "change_rate": -0.004402515723270439,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "139480",
+    "price_date": "2026-06-26",
+    "close": 79500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.013647642679900707,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "139990",
+    "price_date": "2026-06-26",
+    "close": 1980.0,
+    "source": "kis_proxy",
+    "change_rate": -0.014925373134328401,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "140070",
+    "price_date": "2026-06-26",
+    "close": 1532.0,
+    "source": "kis_proxy",
+    "change_rate": -0.024824952259707156,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "140670",
+    "price_date": "2026-06-26",
+    "close": 9820.0,
+    "source": "kis_proxy",
+    "change_rate": -0.047526673132880726,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "140860",
+    "price_date": "2026-06-26",
+    "close": 241500.0,
+    "source": "kis_proxy",
+    "change_rate": 0.010460251046025215,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -560,6 +3190,36 @@
     "change_code": null
   },
   {
+    "stock_code": "144960",
+    "price_date": "2026-06-26",
+    "close": 7070.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0070224719101124045,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "145720",
+    "price_date": "2026-06-26",
+    "close": 38300.0,
+    "source": "kis_proxy",
+    "change_rate": -0.041301627033792254,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "148930",
+    "price_date": "2026-06-26",
+    "close": 2935.0,
+    "source": "kis_proxy",
+    "change_rate": -0.021666666666666612,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "150900",
     "price_date": "2026-06-26",
     "close": 2820.0,
@@ -570,11 +3230,221 @@
     "change_code": null
   },
   {
+    "stock_code": "153490",
+    "price_date": "2026-06-26",
+    "close": 511.0,
+    "source": "kis_proxy",
+    "change_rate": -0.019193857965451033,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "158430",
+    "price_date": "2026-06-26",
+    "close": 3960.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07692307692307687,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "159010",
+    "price_date": "2026-06-26",
+    "close": 19100.0,
+    "source": "kis_proxy",
+    "change_rate": 0.10404624277456653,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "159580",
+    "price_date": "2026-06-26",
+    "close": 2030.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04694835680751175,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "161000",
+    "price_date": "2026-06-26",
+    "close": 9200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05544147843942504,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "168360",
+    "price_date": "2026-06-26",
+    "close": 18140.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05075876504447929,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "170790",
+    "price_date": "2026-06-26",
+    "close": 7360.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06953223767383054,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "170900",
+    "price_date": "2026-06-26",
+    "close": 32000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04477611940298509,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "175330",
+    "price_date": "2026-06-26",
+    "close": 22850.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03586497890295359,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "177350",
     "price_date": "2026-06-26",
     "close": 713.0,
     "source": "kis_proxy",
     "change_rate": 0.09692307692307689,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "177830",
+    "price_date": "2026-06-26",
+    "close": 2410.0,
+    "source": "kis_proxy",
+    "change_rate": -0.010266940451745366,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "181710",
+    "price_date": "2026-06-26",
+    "close": 32300.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04296296296296298,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "182360",
+    "price_date": "2026-06-26",
+    "close": 5260.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04537205081669693,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "183190",
+    "price_date": "2026-06-26",
+    "close": 8660.0,
+    "source": "kis_proxy",
+    "change_rate": -0.015909090909090873,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "183300",
+    "price_date": "2026-06-26",
+    "close": 88400.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04017372421281218,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "188040",
+    "price_date": "2026-06-26",
+    "close": 4465.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0011210762331839152,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "189300",
+    "price_date": "2026-06-26",
+    "close": 70300.0,
+    "source": "kis_proxy",
+    "change_rate": -0.08344198174706652,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "189980",
+    "price_date": "2026-06-26",
+    "close": 1024.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0019493177387914784,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "192080",
+    "price_date": "2026-06-26",
+    "close": 60000.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0016694490818029983,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "192250",
+    "price_date": "2026-06-26",
+    "close": 7180.0,
+    "source": "kis_proxy",
+    "change_rate": -0.008287292817679592,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "192390",
+    "price_date": "2026-06-26",
+    "close": 1596.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03913305237808551,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "192440",
+    "price_date": "2026-06-26",
+    "close": 27750.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03812824956672445,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -610,6 +3480,36 @@
     "change_code": null
   },
   {
+    "stock_code": "206640",
+    "price_date": "2026-06-26",
+    "close": 9960.0,
+    "source": "kis_proxy",
+    "change_rate": 0.010141987829614507,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "206650",
+    "price_date": "2026-06-26",
+    "close": 8230.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05293440736478716,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "208350",
+    "price_date": "2026-06-26",
+    "close": 2705.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0036832412523020164,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "209640",
     "price_date": "2026-06-26",
     "close": 4005.0,
@@ -620,11 +3520,71 @@
     "change_code": null
   },
   {
+    "stock_code": "211270",
+    "price_date": "2026-06-26",
+    "close": 8210.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07126696832579182,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "214150",
+    "price_date": "2026-06-26",
+    "close": 45200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.029001074113856107,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "215090",
+    "price_date": "2026-06-26",
+    "close": 1212.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0619195046439629,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "215480",
+    "price_date": "2026-06-26",
+    "close": 2280.0,
+    "source": "kis_proxy",
+    "change_rate": 0.00219780219780219,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "217270",
     "price_date": "2026-06-26",
     "close": 2175.0,
     "source": "kis_proxy",
     "change_rate": -0.07446808510638303,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "217500",
+    "price_date": "2026-06-26",
+    "close": 1414.0,
+    "source": "kis_proxy",
+    "change_rate": -0.051006711409395944,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "217820",
+    "price_date": "2026-06-26",
+    "close": 1778.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0399568034557235,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -650,6 +3610,106 @@
     "change_code": null
   },
   {
+    "stock_code": "225220",
+    "price_date": "2026-06-26",
+    "close": 1116.0,
+    "source": "kis_proxy",
+    "change_rate": 0.013623978201634968,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "226340",
+    "price_date": "2026-06-26",
+    "close": 1883.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06318407960199002,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "228760",
+    "price_date": "2026-06-26",
+    "close": 10280.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04549675023212629,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "232680",
+    "price_date": "2026-06-26",
+    "close": 9910.0,
+    "source": "kis_proxy",
+    "change_rate": -0.021717670286278357,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "234340",
+    "price_date": "2026-06-26",
+    "close": 18400.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06598984771573602,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "236200",
+    "price_date": "2026-06-26",
+    "close": 39500.0,
+    "source": "kis_proxy",
+    "change_rate": -0.028290282902828978,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "237880",
+    "price_date": "2026-06-26",
+    "close": 9040.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04033970276008492,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "238120",
+    "price_date": "2026-06-26",
+    "close": 3060.0,
+    "source": "kis_proxy",
+    "change_rate": -0.004878048780487809,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "241560",
+    "price_date": "2026-06-26",
+    "close": 60100.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "241770",
+    "price_date": "2026-06-26",
+    "close": 42400.0,
+    "source": "kis_proxy",
+    "change_rate": -0.025287356321839094,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "250930",
     "price_date": "2026-06-26",
     "close": 333.0,
@@ -665,6 +3725,76 @@
     "close": 35150.0,
     "source": "kis_proxy",
     "change_rate": -0.023611111111111138,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "251370",
+    "price_date": "2026-06-26",
+    "close": 10000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.08592321755027421,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "252990",
+    "price_date": "2026-06-26",
+    "close": 11890.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06818181818181823,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "253450",
+    "price_date": "2026-06-26",
+    "close": 19760.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03137254901960784,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "257720",
+    "price_date": "2026-06-26",
+    "close": 30400.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05443234836702959,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "259960",
+    "price_date": "2026-06-26",
+    "close": 204000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.019230769230769273,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "262840",
+    "price_date": "2026-06-26",
+    "close": 2745.0,
+    "source": "kis_proxy",
+    "change_rate": -0.019642857142857184,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "263720",
+    "price_date": "2026-06-26",
+    "close": 6720.0,
+    "source": "kis_proxy",
+    "change_rate": -0.040000000000000036,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -690,11 +3820,131 @@
     "change_code": null
   },
   {
+    "stock_code": "265520",
+    "price_date": "2026-06-26",
+    "close": 20000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.017199017199017175,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "265560",
+    "price_date": "2026-06-26",
+    "close": 6180.0,
+    "source": "kis_proxy",
+    "change_rate": -0.023696682464455,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "267270",
+    "price_date": "2026-06-26",
+    "close": 110200.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04340277777777779,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "267790",
     "price_date": "2026-06-26",
     "close": 3105.0,
     "source": "kis_proxy",
     "change_rate": -0.040185471406491535,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "271980",
+    "price_date": "2026-06-26",
+    "close": 9840.0,
+    "source": "kis_proxy",
+    "change_rate": 0.007164790174001956,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "272110",
+    "price_date": "2026-06-26",
+    "close": 28100.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02768166089965396,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "273060",
+    "price_date": "2026-06-26",
+    "close": 874.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05206073752711493,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "275630",
+    "price_date": "2026-06-26",
+    "close": 2555.0,
+    "source": "kis_proxy",
+    "change_rate": -0.11896551724137927,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "277070",
+    "price_date": "2026-06-26",
+    "close": 3055.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07564296520423597,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "277880",
+    "price_date": "2026-06-26",
+    "close": 3115.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06596701649175407,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "278650",
+    "price_date": "2026-06-26",
+    "close": 2510.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04743833017077803,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "281820",
+    "price_date": "2026-06-26",
+    "close": 82700.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0684754521963824,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "282720",
+    "price_date": "2026-06-26",
+    "close": 6950.0,
+    "source": "kis_proxy",
+    "change_rate": -0.10090556274256146,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -710,11 +3960,141 @@
     "change_code": null
   },
   {
+    "stock_code": "285490",
+    "price_date": "2026-06-26",
+    "close": 11610.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03249999999999997,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "290740",
+    "price_date": "2026-06-26",
+    "close": 9000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.01098901098901095,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "293480",
+    "price_date": "2026-06-26",
+    "close": 8250.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02941176470588236,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "294570",
+    "price_date": "2026-06-26",
+    "close": 17910.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05488126649076519,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "296640",
+    "price_date": "2026-06-26",
+    "close": 5050.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03441682600382412,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "297570",
+    "price_date": "2026-06-26",
+    "close": 1067.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05323868677905941,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "298050",
+    "price_date": "2026-06-26",
+    "close": 157600.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0540216086434574,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "302430",
+    "price_date": "2026-06-26",
+    "close": 5890.0,
+    "source": "kis_proxy",
+    "change_rate": -0.018333333333333313,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "302440",
+    "price_date": "2026-06-26",
+    "close": 34950.0,
+    "source": "kis_proxy",
+    "change_rate": -0.055405405405405395,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "302550",
+    "price_date": "2026-06-26",
+    "close": 2530.0,
+    "source": "kis_proxy",
+    "change_rate": 0.01200000000000001,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "306040",
     "price_date": "2026-06-26",
     "close": 1630.0,
     "source": "kis_proxy",
     "change_rate": -0.04117647058823526,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "306620",
+    "price_date": "2026-06-26",
+    "close": 2540.0,
+    "source": "kis_proxy",
+    "change_rate": 0.03673469387755102,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "307950",
+    "price_date": "2026-06-26",
+    "close": 507000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0714285714285714,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "310200",
+    "price_date": "2026-06-26",
+    "close": 1990.0,
+    "source": "kis_proxy",
+    "change_rate": 0.004036326942482349,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -740,6 +4120,26 @@
     "change_code": null
   },
   {
+    "stock_code": "317120",
+    "price_date": "2026-06-26",
+    "close": 1358.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07240437158469948,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "318020",
+    "price_date": "2026-06-26",
+    "close": 1916.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0395989974937343,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "318160",
     "price_date": "2026-06-26",
     "close": 5440.0,
@@ -750,11 +4150,171 @@
     "change_code": null
   },
   {
+    "stock_code": "328380",
+    "price_date": "2026-06-26",
+    "close": 2580.0,
+    "source": "kis_proxy",
+    "change_rate": -0.017142857142857126,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "331520",
+    "price_date": "2026-06-26",
+    "close": 1608.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02604482132041186,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "332290",
+    "price_date": "2026-06-26",
+    "close": 900.0,
+    "source": "kis_proxy",
+    "change_rate": -0.019607843137254943,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "332570",
+    "price_date": "2026-06-26",
+    "close": 5390.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04262877442273538,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "336260",
+    "price_date": "2026-06-26",
+    "close": 51800.0,
+    "source": "kis_proxy",
+    "change_rate": -0.10069444444444442,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "336570",
     "price_date": "2026-06-26",
     "close": 5320.0,
     "source": "kis_proxy",
     "change_rate": -0.029197080291970767,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "337930",
+    "price_date": "2026-06-26",
+    "close": 2905.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04754098360655734,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "339770",
+    "price_date": "2026-06-26",
+    "close": 3645.0,
+    "source": "kis_proxy",
+    "change_rate": -0.018842530282637937,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "344860",
+    "price_date": "2026-06-26",
+    "close": 1206.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07586206896551728,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "347700",
+    "price_date": "2026-06-26",
+    "close": 17300.0,
+    "source": "kis_proxy",
+    "change_rate": -0.08755274261603374,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "348030",
+    "price_date": "2026-06-26",
+    "close": 2595.0,
+    "source": "kis_proxy",
+    "change_rate": 0.08125000000000004,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "348210",
+    "price_date": "2026-06-26",
+    "close": 43800.0,
+    "source": "kis_proxy",
+    "change_rate": -0.027746947835738056,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "352480",
+    "price_date": "2026-06-26",
+    "close": 20600.0,
+    "source": "kis_proxy",
+    "change_rate": -0.028301886792452824,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "352820",
+    "price_date": "2026-06-26",
+    "close": 177800.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05274374001065529,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "353190",
+    "price_date": "2026-06-26",
+    "close": 2785.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04948805460750849,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "357230",
+    "price_date": "2026-06-26",
+    "close": 1963.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04009779951100245,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "360350",
+    "price_date": "2026-06-26",
+    "close": 6620.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02215657311669128,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -780,11 +4340,81 @@
     "change_code": null
   },
   {
+    "stock_code": "368600",
+    "price_date": "2026-06-26",
+    "close": 512.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07078039927404722,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "373160",
+    "price_date": "2026-06-26",
+    "close": 2915.0,
+    "source": "kis_proxy",
+    "change_rate": -0.020168067226890796,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "377740",
+    "price_date": "2026-06-26",
+    "close": 4365.0,
+    "source": "kis_proxy",
+    "change_rate": -0.016891891891891886,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "382480",
+    "price_date": "2026-06-26",
+    "close": 1642.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05141536683997694,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "382900",
+    "price_date": "2026-06-26",
+    "close": 21650.0,
+    "source": "kis_proxy",
+    "change_rate": -0.11991869918699183,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "388050",
     "price_date": "2026-06-26",
     "close": 7200.0,
     "source": "kis_proxy",
     "change_rate": -0.07573812580231065,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "402340",
+    "price_date": "2026-06-26",
+    "close": 1720000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.09426013691416535,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "403490",
+    "price_date": "2026-06-26",
+    "close": 550.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04679376083188913,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -810,11 +4440,41 @@
     "change_code": null
   },
   {
+    "stock_code": "407400",
+    "price_date": "2026-06-26",
+    "close": 1944.0,
+    "source": "kis_proxy",
+    "change_rate": -0.026539809714571816,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "408900",
+    "price_date": "2026-06-26",
+    "close": 1049.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0608773500447628,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "417840",
     "price_date": "2026-06-26",
     "close": 13440.0,
     "source": "kis_proxy",
     "change_rate": -0.06079664570230603,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "419120",
+    "price_date": "2026-06-26",
+    "close": 2490.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04597701149425293,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -830,11 +4490,51 @@
     "change_code": null
   },
   {
+    "stock_code": "425040",
+    "price_date": "2026-06-26",
+    "close": 11550.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06929895245769546,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "425420",
+    "price_date": "2026-06-26",
+    "close": 41650.0,
+    "source": "kis_proxy",
+    "change_rate": -0.033642691415313175,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "432980",
     "price_date": "2026-06-26",
     "close": 2835.0,
     "source": "kis_proxy",
     "change_rate": -0.027444253859348233,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "434480",
+    "price_date": "2026-06-26",
+    "close": 2120.0,
+    "source": "kis_proxy",
+    "change_rate": -0.02304147465437789,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "437730",
+    "price_date": "2026-06-26",
+    "close": 32550.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07396870554765289,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -850,11 +4550,81 @@
     "change_code": null
   },
   {
+    "stock_code": "439260",
+    "price_date": "2026-06-26",
+    "close": 49800.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07089552238805974,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "439580",
+    "price_date": "2026-06-26",
+    "close": 1917.0,
+    "source": "kis_proxy",
+    "change_rate": 0.007886435331230235,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "446070",
     "price_date": "2026-06-26",
     "close": 3280.0,
     "source": "kis_proxy",
     "change_rate": 0.03144654088050314,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "450330",
+    "price_date": "2026-06-26",
+    "close": 4725.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03076923076923077,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "451760",
+    "price_date": "2026-06-26",
+    "close": 8900.0,
+    "source": "kis_proxy",
+    "change_rate": -0.0871794871794872,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "453340",
+    "price_date": "2026-06-26",
+    "close": 16340.0,
+    "source": "kis_proxy",
+    "change_rate": -0.003658536585365857,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "453860",
+    "price_date": "2026-06-26",
+    "close": 9600.0,
+    "source": "kis_proxy",
+    "change_rate": -0.026369168356997985,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "456040",
+    "price_date": "2026-06-26",
+    "close": 81800.0,
+    "source": "kis_proxy",
+    "change_rate": -0.08089887640449434,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -870,11 +4640,151 @@
     "change_code": null
   },
   {
+    "stock_code": "459550",
+    "price_date": "2026-06-26",
+    "close": 1182.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06413301662707838,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "462310",
+    "price_date": "2026-06-26",
+    "close": 3125.0,
+    "source": "kis_proxy",
+    "change_rate": -0.06296851574212892,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "462860",
+    "price_date": "2026-06-26",
+    "close": 1977.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03560975609756101,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "462870",
+    "price_date": "2026-06-26",
+    "close": 31000.0,
+    "source": "kis_proxy",
+    "change_rate": -0.054878048780487854,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "465480",
+    "price_date": "2026-06-26",
+    "close": 3300.0,
+    "source": "kis_proxy",
+    "change_rate": -0.07821229050279332,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "471820",
+    "price_date": "2026-06-26",
+    "close": 4340.0,
+    "source": "kis_proxy",
+    "change_rate": -0.008000000000000007,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "472850",
+    "price_date": "2026-06-26",
+    "close": 3910.0,
+    "source": "kis_proxy",
+    "change_rate": -0.050970873786407744,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
     "stock_code": "473980",
     "price_date": "2026-06-26",
     "close": 9460.0,
     "source": "kis_proxy",
     "change_rate": -0.06706114398422092,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "475660",
+    "price_date": "2026-06-26",
+    "close": 3530.0,
+    "source": "kis_proxy",
+    "change_rate": 0.033674963396779,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "480370",
+    "price_date": "2026-06-26",
+    "close": 1203.0,
+    "source": "kis_proxy",
+    "change_rate": -0.04523809523809519,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "483650",
+    "price_date": "2026-06-26",
+    "close": 237500.0,
+    "source": "kis_proxy",
+    "change_rate": 0.0237068965517242,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "487570",
+    "price_date": "2026-06-26",
+    "close": 44150.0,
+    "source": "kis_proxy",
+    "change_rate": -0.05053763440860215,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "489460",
+    "price_date": "2026-06-26",
+    "close": 5870.0,
+    "source": "kis_proxy",
+    "change_rate": -0.03770491803278686,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "950170",
+    "price_date": "2026-06-26",
+    "close": 4715.0,
+    "source": "kis_proxy",
+    "change_rate": -0.021784232365145262,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "950190",
+    "price_date": "2026-06-26",
+    "close": 9150.0,
+    "source": "kis_proxy",
+    "change_rate": -0.015069967707212029,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
