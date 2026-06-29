@@ -406,8 +406,8 @@ def main() -> None:
     collect_parser.add_argument("--backfill-dir", default="data/backfills")
     collect_parser.add_argument("--data-dir", default="public/data/buybacks")
     collect_parser.add_argument("--raw-dir", default="")
-    collect_parser.add_argument("--chunk-days", type=int, default=89)
-    collect_parser.add_argument("--page-limit", type=int, default=20)
+    collect_parser.add_argument("--chunk-days", type=int, default=14)
+    collect_parser.add_argument("--page-limit", type=int, default=50)
     collect_parser.add_argument("--report-codes", default="11011")
     collect_parser.set_defaults(func=collect_backfill)
 

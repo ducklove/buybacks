@@ -16,7 +16,11 @@ on:
       chunk_days:
         description: Days per OpenDART discovery chunk. Keep <= 92.
         required: false
-        default: "89"
+        default: "14"
+      page_limit:
+        description: Max OpenDART disclosure pages to scan per disclosure type and chunk.
+        required: false
+        default: "50"
 
 permissions:
   contents: write
@@ -54,6 +58,7 @@ jobs:
           --end "${{ github.event.inputs.end }}"
           --run-id "$BACKFILL_RUN_ID"
           --chunk-days "${{ github.event.inputs.chunk_days }}"
+          --page-limit "${{ github.event.inputs.page_limit }}"
           --backfill-dir data/backfills
           --data-dir public/data/buybacks
 

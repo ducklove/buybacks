@@ -458,7 +458,7 @@ def main() -> None:
     parser.add_argument("--report-codes", default="11011")
     parser.add_argument("--max-companies", type=int, default=12)
     parser.add_argument("--max-holding-companies", type=int, default=0)
-    parser.add_argument("--discovery-page-limit", type=int, default=20)
+    parser.add_argument("--discovery-page-limit", type=int, default=50)
     parser.add_argument(
         "--incremental-lookback-days",
         type=int,
