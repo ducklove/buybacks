@@ -166,11 +166,12 @@ function HoldingBeforeCell({ event }: { event: EnrichedEvent }) {
   if (event.holding_before_ratio_common !== null) {
     return <>{formatPercent(event.holding_before_ratio_common)}</>;
   }
-  if (event.event_type === "retirement" && event.planned_share_ratio_common != null) {
+  if (event.holding?.treasury_ratio !== null && event.holding?.treasury_ratio !== undefined) {
     return (
-      <span title="소각 예정주식은 기취득 자기주식이므로 예정지분 이상 보유한 것으로 표시합니다.">
-        ≥ {formatPercent(event.planned_share_ratio_common, 2)}
-      </span>
+      <div className="stacked-value" title="정기보고서 기준 보유비율입니다. 공시일 직전 보유비율과 다를 수 있습니다.">
+        <span>{formatPercent(event.holding.treasury_ratio)}</span>
+        <small>{event.holding.as_of_date}</small>
+      </div>
     );
   }
   return <>-</>;
