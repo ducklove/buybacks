@@ -100,16 +100,24 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                 종목
               </SortableHeader>
               <th>유형</th>
-              <SortableHeader active={sortKey === "amount"} onClick={() => changeSort("amount")}>
+              <SortableHeader
+                active={sortKey === "amount"}
+                className="numeric-cell"
+                onClick={() => changeSort("amount")}
+              >
                 예정금액
               </SortableHeader>
-              <th>예정주식수</th>
+              <th className="numeric-cell">예정주식수</th>
               <SortableHeader active={sortKey === "stake"} onClick={() => changeSort("stake")}>
                 예정지분
               </SortableHeader>
               <th>목적</th>
               <th>기보유비율</th>
-              <SortableHeader active={sortKey === "marketCap"} onClick={() => changeSort("marketCap")}>
+              <SortableHeader
+                active={sortKey === "marketCap"}
+                className="numeric-cell"
+                onClick={() => changeSort("marketCap")}
+              >
                 시가총액
               </SortableHeader>
             </tr>
@@ -137,10 +145,10 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                       {EVENT_TYPE_LABELS[event.event_type]}
                     </span>
                   </td>
-                  <td>
+                  <td className="numeric-cell">
                     <AmountBreakdown event={event} />
                   </td>
-                  <td>
+                  <td className="numeric-cell">
                     <ShareBreakdown event={event} />
                   </td>
                   <td>
@@ -150,7 +158,7 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                   <td>
                     <HoldingBeforeCell event={event} />
                   </td>
-                  <td>
+                  <td className="numeric-cell">
                     <MarketCapCell event={event} />
                   </td>
                 </tr>
@@ -299,14 +307,16 @@ function MarketCapCell({ event }: { event: EnrichedEvent }) {
 function SortableHeader({
   children,
   active,
+  className,
   onClick
 }: {
   children: React.ReactNode;
   active: boolean;
+  className?: string;
   onClick: () => void;
 }) {
   return (
-    <th>
+    <th className={className}>
       <button className={active ? "sort-button active-sort" : "sort-button"} type="button" onClick={onClick}>
         {children}
       </button>

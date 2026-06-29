@@ -30,10 +30,7 @@ export function formatNumber(value: number | null | undefined): string {
 
 export function formatKRW(value: number | null | undefined): string {
   if (value === null || value === undefined || Number.isNaN(value)) return "-";
-  const abs = Math.abs(value);
-  if (abs >= 1_0000_0000_0000) return `${formatNumber(Math.round(value / 1_0000_0000_0000))}조`;
-  if (abs >= 1_0000_0000) return `${formatNumber(Math.round(value / 1_0000_0000))}억`;
-  return formatNumber(value);
+  return `${formatDecimal(value / 1_0000_0000, 2)}억`;
 }
 
 export function formatMarketCapKRW(value: number | null | undefined): string {
@@ -55,6 +52,12 @@ export function formatSignedPercent(value: number | null | undefined, digits = 2
   if (value === null || value === undefined || Number.isNaN(value)) return "-";
   const percent = value * 100;
   return `${percent > 0 ? "+" : ""}${percent.toFixed(digits)}%`;
+}
+
+function formatDecimal(value: number, maximumFractionDigits: number): string {
+  return new Intl.NumberFormat("ko-KR", {
+    maximumFractionDigits
+  }).format(value);
 }
 
 export function dartUrl(rceptNo: string | null): string | null {

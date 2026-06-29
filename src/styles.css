@@ -600,6 +600,19 @@ th {
   font-weight: 850;
 }
 
+.numeric-cell {
+  text-align: right;
+}
+
+.numeric-cell .stacked-value {
+  justify-items: end;
+}
+
+.numeric-cell .sort-button {
+  width: 100%;
+  text-align: right;
+}
+
 tbody tr:hover,
 .selected-row {
   background: #eef8f7;
