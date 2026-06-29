@@ -27936,24 +27936,6 @@
     "source_rcept_no": "20260319001060"
   },
   {
-    "corp_code": "00390365",
-    "stock_code": "051360",
-    "corp_name": "토비스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 779797,
-    "issued_shares": 15827058,
-    "treasury_ratio": 0.04926986430453468,
-    "floating_shares": 15047261,
-    "source_rcept_no": "20260323000304"
-  },
-  {
     "corp_code": "00389110",
     "stock_code": "051160",
     "corp_name": "지어소프트",
@@ -35912,7 +35894,7 @@
   {
     "corp_code": "00151605",
     "stock_code": "013720",
-    "corp_name": "THE CUBE&",
+    "corp_name": "청보",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -39165,6 +39147,24 @@
     "issued_shares": 567085734,
     "treasury_ratio": 0.23106889513111964,
     "floating_shares": 436049860,
+    "source_rcept_no": "20260515002972"
+  },
+  {
+    "corp_code": "00111722",
+    "stock_code": "00680K",
+    "corp_name": "미래에셋증권2우B",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "2우선주\n(미래에셋증권2우B)",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 1000000,
+    "issued_shares": 136678482,
+    "treasury_ratio": 0.007316440637671115,
+    "floating_shares": 135678482,
     "source_rcept_no": "20260515002972"
   },
   {
@@ -43954,24 +43954,6 @@
     "treasury_ratio": null,
     "floating_shares": 13000000,
     "source_rcept_no": "20260318001400"
-  },
-  {
-    "corp_code": "00166519",
-    "stock_code": "000850",
-    "corp_name": "화천기공",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 2200000,
-    "treasury_ratio": null,
-    "floating_shares": 2200000,
-    "source_rcept_no": "20260318000857"
   },
   {
     "corp_code": "00139214",
