@@ -61,6 +61,7 @@ BUYBACK_REPORT_KEYWORDS = [
     "자기주식취득결정",
     "자기주식처분결정",
 ]
+BUYBACK_DISCLOSURE_TYPES = ["B", "I"]
 
 
 def collect_dart_dataset(
@@ -248,39 +249,43 @@ def fetch_buyback_disclosures(
     end_de: str,
     raw_dir: Path | None = None,
     page_limit: int = 20,
+    disclosure_types: Iterable[str] | None = None,
 ) -> tuple[list[dict], list[str]]:
     client = OpenDartClient(api_key, raw_dir=raw_dir)
     disclosures: list[dict] = []
     warnings: list[str] = []
-    page_no = 1
-    while page_no <= page_limit:
-        try:
-            data = client.request_json(
-                "list.json",
-                {
-                    "bgn_de": bgn_de,
-                    "end_de": end_de,
-                    "last_reprt_at": "Y",
-                    "pblntf_ty": "B",
-                    "sort": "date",
-                    "sort_mth": "desc",
-                    "page_no": str(page_no),
-                    "page_count": "100",
-                },
-            )
-        except OpenDartNoData:
-            break
-        except Exception as exc:  # noqa: BLE001
-            warnings.append(f"OpenDART disclosure search failed on page {page_no}: {exc}")
-            break
+    for disclosure_type in list(disclosure_types or BUYBACK_DISCLOSURE_TYPES):
+        page_no = 1
+        while page_no <= page_limit:
+            try:
+                data = client.request_json(
+                    "list.json",
+                    {
+                        "bgn_de": bgn_de,
+                        "end_de": end_de,
+                        "last_reprt_at": "Y",
+                        "pblntf_ty": disclosure_type,
+                        "sort": "date",
+                        "sort_mth": "desc",
+                        "page_no": str(page_no),
+                        "page_count": "100",
+                    },
+                )
+            except OpenDartNoData:
+                break
+            except Exception as exc:  # noqa: BLE001
+                warnings.append(
+                    f"OpenDART disclosure search failed for pblntf_ty={disclosure_type} page {page_no}: {exc}"
+                )
+                break
 
-        page_rows = [item for item in data.get("list", []) if is_buyback_report(item.get("report_nm"))]
-        disclosures.extend(page_rows)
+            page_rows = [item for item in data.get("list", []) if is_buyback_report(item.get("report_nm"))]
+            disclosures.extend(page_rows)
 
-        total_page = int(parse_number(data.get("total_page")) or 1)
-        if page_no >= total_page:
-            break
-        page_no += 1
+            total_page = int(parse_number(data.get("total_page")) or 1)
+            if page_no >= total_page:
+                break
+            page_no += 1
 
     return dedupe_disclosures(disclosures), warnings
 

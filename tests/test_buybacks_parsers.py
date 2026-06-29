@@ -1,12 +1,14 @@
 from scripts.buybacks.fetch_dart_buybacks import (
     collect_company_holding_snapshots,
     dedupe_holdings,
+    fetch_buyback_disclosures,
     normalize_decision_event,
     normalize_disclosure_events,
     normalize_holding_rows,
     normalize_holding_snapshot,
     normalize_stock_total_snapshots,
 )
+import scripts.buybacks.fetch_dart_buybacks as dart_buybacks
 from scripts.buybacks.models import Company
 from scripts.buybacks.parsers import classify_event_type, normalize_date, parse_number, parse_ratio_percent
 
@@ -38,6 +40,46 @@ def test_classify_event_type():
     assert classify_event_type("자기주식취득 신탁계약 체결 결정") == "trust_contract_start"
     assert classify_event_type("자기주식취득 신탁계약 해지 결정") == "trust_contract_end"
     assert classify_event_type("주식소각결정") == "retirement"
+
+
+def test_fetch_buyback_disclosures_includes_exchange_retirement_reports(monkeypatch, tmp_path):
+    calls = []
+
+    class FakeClient:
+        def __init__(self, api_key, raw_dir=None):
+            pass
+
+        def request_json(self, endpoint, params):
+            calls.append(params["pblntf_ty"])
+            if params["pblntf_ty"] == "I":
+                return {
+                    "total_page": "1",
+                    "list": [
+                        {
+                            "corp_code": "00110893",
+                            "corp_name": "대신증권",
+                            "stock_code": "003540",
+                            "corp_cls": "Y",
+                            "report_nm": "주식소각결정",
+                            "rcept_no": "20260619800826",
+                            "rcept_dt": "20260619",
+                        }
+                    ],
+                }
+            return {"total_page": "1", "list": []}
+
+    monkeypatch.setattr(dart_buybacks, "OpenDartClient", FakeClient)
+
+    disclosures, warnings = fetch_buyback_disclosures(
+        api_key="fixture",
+        bgn_de="20260601",
+        end_de="20260630",
+        raw_dir=tmp_path,
+    )
+
+    assert warnings == []
+    assert calls == ["B", "I"]
+    assert [item["rcept_no"] for item in disclosures] == ["20260619800826"]
 
 
 def test_normalize_dart_acquisition_response_fixture():
