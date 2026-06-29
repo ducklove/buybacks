@@ -120,7 +120,9 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                     <PlannedStakeCell event={event} />
                   </td>
                   <td className="purpose-cell">{event.purpose ?? "-"}</td>
-                  <td>{formatPercent(event.holding_before_ratio_common)}</td>
+                  <td>
+                    <HoldingBeforeCell event={event} />
+                  </td>
                   <td>
                     <MarketCapCell event={event} />
                   </td>
@@ -158,6 +160,20 @@ function PlannedStakeCell({ event }: { event: EnrichedEvent }) {
       <strong>{formatPercent(stake, 2)}</strong>
     </div>
   );
+}
+
+function HoldingBeforeCell({ event }: { event: EnrichedEvent }) {
+  if (event.holding_before_ratio_common !== null) {
+    return <>{formatPercent(event.holding_before_ratio_common)}</>;
+  }
+  if (event.event_type === "retirement" && event.planned_share_ratio_common != null) {
+    return (
+      <span title="소각 예정주식은 기취득 자기주식이므로 예정지분 이상 보유한 것으로 표시합니다.">
+        ≥ {formatPercent(event.planned_share_ratio_common, 2)}
+      </span>
+    );
+  }
+  return <>-</>;
 }
 
 function plannedStakeValue(event: EnrichedEvent) {

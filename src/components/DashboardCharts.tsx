@@ -3,7 +3,7 @@ import type { EnrichedEvent, PriceReaction, TreasuryHoldingSnapshot } from "../t
 import { EVENT_TYPE_LABELS } from "../utils/format";
 import {
   eventTypeCounts,
-  monthlyAcquisitionCounts,
+  monthlyEventCounts,
   returnDistribution,
   topHoldings,
   type ChartDatum
@@ -21,8 +21,8 @@ export function DashboardCharts({ events, holdings, reactions }: DashboardCharts
 
   return (
     <section className="charts-grid" aria-label="대시보드 차트">
-      <ChartPanel title="월별 취득건수" summary="직접취득과 신탁체결 공시 수입니다.">
-        <VerticalBars data={monthlyAcquisitionCounts(events)} />
+      <ChartPanel title="월별 추이" summary="현재 필터에 포함된 공시 이벤트 월별 건수입니다.">
+        <VerticalBars data={monthlyEventCounts(events)} />
       </ChartPanel>
       <ChartPanel title="이벤트 유형 분포" summary="현재 필터에 포함된 이벤트 유형 비중입니다.">
         <DistributionList

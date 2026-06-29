@@ -7,7 +7,7 @@ import {
   latestHoldingSnapshots,
   latestPriceMap,
   marketOptions,
-  monthlyAcquisitionCounts,
+  monthlyEventCounts,
   returnDistribution,
   topHoldings
 } from "./metrics";
@@ -164,9 +164,9 @@ describe("holding snapshots", () => {
 });
 
 describe("event count charts", () => {
-  it("counts only direct acquisitions and trust starts by disclosure month", () => {
+  it("counts every filtered event by disclosure month", () => {
     expect(
-      monthlyAcquisitionCounts([
+      monthlyEventCounts([
         event("direct-1", "direct_acquisition"),
         {
           ...event("trust-1", "trust_contract_start"),
@@ -183,7 +183,7 @@ describe("event count charts", () => {
       ])
     ).toEqual([
       { label: "2026-05", value: 2 },
-      { label: "2026-06", value: 1 }
+      { label: "2026-06", value: 2 }
     ]);
   });
 });

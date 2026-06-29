@@ -39,8 +39,8 @@ export function Methodology({ status }: MethodologyProps) {
       </div>
       {status.warnings.length > 0 && (
         <ul className="warning-list" aria-label="Data warnings">
-          {status.warnings.map((warning) => (
-            <li key={warning}>{warning}</li>
+          {status.warnings.map((warning, index) => (
+            <li key={`${index}-${warning}`}>{warning}</li>
           ))}
         </ul>
       )}

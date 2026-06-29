@@ -216,14 +216,12 @@ export function buildKpis(events: EnrichedEvent[], holdings: TreasuryHoldingSnap
   ];
 }
 
-export function monthlyAcquisitionCounts(events: EnrichedEvent[]): ChartDatum[] {
+export function monthlyEventCounts(events: EnrichedEvent[]): ChartDatum[] {
   const counts = new Map<string, number>();
-  events
-    .filter((event) => acquisitionTypes.has(event.event_type))
-    .forEach((event) => {
-      const month = event.disclosure_date.slice(0, 7);
-      counts.set(month, (counts.get(month) ?? 0) + 1);
-    });
+  events.forEach((event) => {
+    const month = event.disclosure_date.slice(0, 7);
+    counts.set(month, (counts.get(month) ?? 0) + 1);
+  });
   return Array.from(counts, ([label, value]) => ({ label, value })).sort((a, b) =>
     a.label.localeCompare(b.label)
   );
