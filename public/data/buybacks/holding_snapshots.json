@@ -39150,24 +39150,6 @@
     "source_rcept_no": "20260515002972"
   },
   {
-    "corp_code": "00111722",
-    "stock_code": "00680K",
-    "corp_name": "미래에셋증권2우B",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "2우선주\n(미래에셋증권2우B)",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 1000000,
-    "issued_shares": 136678482,
-    "treasury_ratio": 0.007316440637671115,
-    "floating_shares": 135678482,
-    "source_rcept_no": "20260515002972"
-  },
-  {
     "corp_code": "00130383",
     "stock_code": "006730",
     "corp_name": "서부T&D",
