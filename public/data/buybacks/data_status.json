@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-29T05:49:25.209083+00:00",
+  "generated_at": "2026-06-29T06:53:39.338977+00:00",
   "dart_available": true,
   "krx_available": false,
   "price_source": "kis_proxy",
   "latest_price_source": "kis_proxy",
   "update_mode": "backfill_merge",
-  "previous_generated_at": "2026-06-29T05:31:21.023554+00:00",
+  "previous_generated_at": "2026-06-29T05:49:25.209083+00:00",
   "companies_count": 2546,
   "events_count": 782,
   "holdings_count": 2556,
@@ -21,9 +21,11 @@
     "Price reactions use kis_proxy when configured; otherwise they remain missing.",
     "Latest prices use kis_proxy when configured; otherwise market caps remain missing.",
     "Backfill run 20260101-20260629-refresh merged 60 new events and skipped 721 duplicates.",
+    "Backfilled historical price reactions are initialized as missing until price enrichment is run.",
+    "Backfill run 2026-full-retirement-details-20260629 merged 0 new events and skipped 781 duplicates.",
     "Backfilled historical price reactions are initialized as missing until price enrichment is run."
   ],
-  "last_backfill_run_id": "20260101-20260629-refresh",
-  "last_backfill_new_events_count": 60,
-  "last_backfill_duplicate_events_count": 721
+  "last_backfill_run_id": "2026-full-retirement-details-20260629",
+  "last_backfill_new_events_count": 0,
+  "last_backfill_duplicate_events_count": 781
 }
