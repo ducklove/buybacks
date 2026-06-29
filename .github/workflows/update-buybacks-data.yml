@@ -63,7 +63,7 @@ jobs:
           --report-codes 11011
           --max-companies 0
           --max-holding-companies 0
-          --discovery-page-limit 3
+          --discovery-page-limit 20
           --incremental-lookback-days "$LOOKBACK_DAYS"
           --incremental-price-lookback-days "$PRICE_LOOKBACK_DAYS"
 
