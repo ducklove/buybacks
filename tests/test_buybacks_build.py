@@ -187,6 +187,8 @@ def event(
         planned_amount_krw=None,
         planned_amount_common_krw=None,
         planned_amount_other_krw=None,
+        planned_share_ratio_common=None,
+        planned_share_ratio_other=None,
         actual_shares=None,
         actual_amount_krw=None,
         method=None,

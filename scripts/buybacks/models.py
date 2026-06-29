@@ -43,6 +43,8 @@ class BuybackEvent:
     planned_amount_krw: int | float | None
     planned_amount_common_krw: int | float | None
     planned_amount_other_krw: int | float | None
+    planned_share_ratio_common: float | None
+    planned_share_ratio_other: float | None
     actual_shares: int | float | None
     actual_amount_krw: int | float | None
     method: str | None

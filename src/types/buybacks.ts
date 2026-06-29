@@ -40,6 +40,8 @@ export interface BuybackEvent {
   planned_amount_krw: number | null;
   planned_amount_common_krw?: number | null;
   planned_amount_other_krw?: number | null;
+  planned_share_ratio_common?: number | null;
+  planned_share_ratio_other?: number | null;
   actual_shares: number | null;
   actual_amount_krw: number | null;
   method: string | null;

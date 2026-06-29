@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { latestMarketCap, marketCapFrom, plannedAcquisitionStake } from "./marketCap";
-import type { LatestPriceSnapshot, PriceReaction, TreasuryHoldingSnapshot } from "../types/buybacks";
+import { latestMarketCap, marketCapFrom, plannedAcquisitionStake, plannedEventStake } from "./marketCap";
+import type { BuybackEvent, LatestPriceSnapshot, PriceReaction, TreasuryHoldingSnapshot } from "../types/buybacks";
 
 const holding: TreasuryHoldingSnapshot = {
   corp_code: "00111722",
@@ -96,5 +96,37 @@ describe("market cap utilities", () => {
     expect(plannedAcquisitionStake("trust_contract_start", 25, 1000)).toBe(0.025);
     expect(plannedAcquisitionStake("direct_disposition", 100, 1000)).toBeNull();
     expect(plannedAcquisitionStake("direct_acquisition", 100, null)).toBeNull();
+  });
+
+  it("uses planned share ratio for retirement event stake", () => {
+    const event: BuybackEvent = {
+      event_id: "event-1",
+      corp_code: "00110893",
+      stock_code: "003540",
+      corp_name: "Daishin Securities",
+      event_type: "retirement",
+      disclosure_date: "2026-06-19",
+      decision_date: null,
+      period_start: null,
+      period_end: null,
+      planned_shares_common: 1_553_637,
+      planned_shares_other: 1_005_000,
+      planned_amount_krw: 66_496_435_400,
+      planned_share_ratio_common: 0.031564,
+      planned_share_ratio_other: 0.024707,
+      actual_shares: null,
+      actual_amount_krw: null,
+      method: null,
+      purpose: null,
+      broker: null,
+      holding_before_common: null,
+      holding_before_ratio_common: null,
+      source: "DART",
+      rcept_no: "20260619800826",
+      source_url: null,
+      raw_report_name: null
+    };
+
+    expect(plannedEventStake(event, null)).toBe(0.031564);
   });
 });

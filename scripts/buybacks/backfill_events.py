@@ -356,6 +356,8 @@ def event_payload(item: dict) -> dict:
     payload = dict(item)
     payload.setdefault("planned_amount_common_krw", None)
     payload.setdefault("planned_amount_other_krw", None)
+    payload.setdefault("planned_share_ratio_common", None)
+    payload.setdefault("planned_share_ratio_other", None)
     return payload
 
 

@@ -7,7 +7,7 @@ import {
   formatNumber,
   formatPercent
 } from "../utils/format";
-import { marketCapFrom, plannedAcquisitionStake } from "../utils/marketCap";
+import { marketCapFrom, plannedEventStake } from "../utils/marketCap";
 
 interface EventTableProps {
   events: EnrichedEvent[];
@@ -78,7 +78,7 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
               </SortableHeader>
               <th>예정주식수</th>
               <SortableHeader active={sortKey === "stake"} onClick={() => changeSort("stake")}>
-                예정취득지분
+                예정지분
               </SortableHeader>
               <th>목적</th>
               <th>기보유비율</th>
@@ -152,7 +152,7 @@ function ShareBreakdown({ event }: { event: EnrichedEvent }) {
 
 function PlannedStakeCell({ event }: { event: EnrichedEvent }) {
   const marketCap = marketCapFrom(event.latestPrice ?? event.priceReaction, event.holding);
-  const stake = plannedAcquisitionStake(event.event_type, event.planned_amount_krw, marketCap.amount);
+  const stake = plannedEventStake(event, marketCap.amount);
   return (
     <div className="stacked-value">
       <strong>{formatPercent(stake, 2)}</strong>
@@ -162,7 +162,7 @@ function PlannedStakeCell({ event }: { event: EnrichedEvent }) {
 
 function plannedStakeValue(event: EnrichedEvent) {
   const marketCap = marketCapFrom(event.latestPrice ?? event.priceReaction, event.holding);
-  return plannedAcquisitionStake(event.event_type, event.planned_amount_krw, marketCap.amount) ?? -1;
+  return plannedEventStake(event, marketCap.amount) ?? -1;
 }
 
 function MarketCapCell({ event }: { event: EnrichedEvent }) {

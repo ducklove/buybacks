@@ -1,5 +1,6 @@
 from scripts.buybacks.fetch_dart_buybacks import (
     collect_company_holding_snapshots,
+    dedupe_events,
     dedupe_holdings,
     fetch_buyback_disclosures,
     normalize_decision_event,
@@ -7,6 +8,7 @@ from scripts.buybacks.fetch_dart_buybacks import (
     normalize_holding_rows,
     normalize_holding_snapshot,
     normalize_stock_total_snapshots,
+    parse_retirement_details_from_html,
 )
 import scripts.buybacks.fetch_dart_buybacks as dart_buybacks
 from scripts.buybacks.models import Company
@@ -184,10 +186,87 @@ def test_normalize_disclosure_event_adds_retirement_metadata_when_structured_row
         ],
         "005930",
         existing_rcept_nos=set(),
+        retirement_details_by_rcept_no={
+            "20260601000001": {
+                "planned_shares_common": 1_553_637,
+                "planned_shares_other": 1_005_000,
+                "planned_amount_krw": 66_496_435_400,
+                "planned_share_ratio_common": 0.031564,
+                "planned_share_ratio_other": 0.024707,
+                "decision_date": "2026-06-01",
+                "period_end": "2026-06-10",
+                "method": "기취득 자기주식",
+            }
+        },
     )
     assert len(events) == 1
     assert events[0].event_type == "retirement"
+    assert events[0].planned_shares_common == 1_553_637
+    assert events[0].planned_shares_other == 1_005_000
+    assert events[0].planned_amount_krw == 66_496_435_400
+    assert events[0].planned_share_ratio_common == 0.031564
     assert events[0].source_url.endswith("20260601000001")
+
+
+def test_parse_retirement_details_from_viewer_html_extracts_shares_amount_and_ratios():
+    html = """
+    <table>
+      <tr><td>1. 소각할 주식의 종류와 수</td><td>보통주식 (주)</td><td>1,553,637</td></tr>
+      <tr><td></td><td>종류주식 (주)</td><td>1,005,000</td></tr>
+      <tr><td>2. 발행주식 총수</td><td>보통주식 (주)</td><td>49,219,763</td></tr>
+      <tr><td></td><td>종류주식 (주)</td><td>40,675,895</td></tr>
+      <tr><td>4. 소각예정금액(원)</td><td>66,496,435,400</td></tr>
+      <tr><td>6. 소각할 주식의 취득방법</td><td>기취득 자기주식</td></tr>
+      <tr><td>7. 소각 예정일</td><td>2026-06-29</td></tr>
+      <tr><td>9. 이사회결의일(결정일)</td><td>2026-06-19</td></tr>
+    </table>
+    """
+
+    details = parse_retirement_details_from_html(html)
+
+    assert details["planned_shares_common"] == 1_553_637
+    assert details["planned_shares_other"] == 1_005_000
+    assert details["planned_amount_krw"] == 66_496_435_400
+    assert details["planned_share_ratio_common"] == 1_553_637 / 49_219_763
+    assert details["planned_share_ratio_other"] == 1_005_000 / 40_675_895
+    assert details["decision_date"] == "2026-06-19"
+    assert details["period_end"] == "2026-06-29"
+    assert details["method"] == "기취득 자기주식"
+
+
+def test_dedupe_events_prefers_more_complete_duplicate():
+    sparse = normalize_disclosure_events(
+        [
+            {
+                "rcept_no": "20260601000001",
+                "rcept_dt": "20260601",
+                "corp_code": "00126380",
+                "corp_name": "삼성전자",
+                "report_nm": "주식소각결정",
+            }
+        ],
+        "005930",
+        existing_rcept_nos=set(),
+    )[0]
+    detailed = normalize_disclosure_events(
+        [
+            {
+                "rcept_no": "20260601000001",
+                "rcept_dt": "20260601",
+                "corp_code": "00126380",
+                "corp_name": "삼성전자",
+                "report_nm": "주식소각결정",
+            }
+        ],
+        "005930",
+        existing_rcept_nos=set(),
+        retirement_details_by_rcept_no={"20260601000001": {"planned_shares_common": 100}},
+    )[0]
+
+    events = dedupe_events([sparse, detailed])
+
+    assert len(events) == 1
+    assert events[0].planned_shares_common == 100
 
 
 def test_normalize_holding_rows_merges_stock_total_denominator():

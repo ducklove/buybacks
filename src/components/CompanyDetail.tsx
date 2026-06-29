@@ -16,7 +16,7 @@ import {
   formatPercent,
   formatSignedPercent
 } from "../utils/format";
-import { latestMarketCap, marketCapFrom, plannedAcquisitionStake } from "../utils/marketCap";
+import { latestMarketCap, marketCapFrom, plannedEventStake } from "../utils/marketCap";
 import { dedupeHoldingTimeline, latestPriceMap } from "../utils/metrics";
 import { displayRelativeReaction, displaySimpleReaction } from "../utils/priceReactions";
 import { fetchNaverFinanceQuote } from "../data/realtimeQuotes";
@@ -360,9 +360,12 @@ function eventDetailLines(event: EnrichedEvent, latestPrice: LatestPriceSnapshot
   }
 
   const marketCap = marketCapFrom(latestPrice ?? event.latestPrice ?? event.priceReaction, event.holding);
-  const stake = plannedAcquisitionStake(event.event_type, event.planned_amount_krw, marketCap.amount);
+  const stake = plannedEventStake(event, marketCap.amount);
   if (stake !== null) {
-    lines.push(`예정취득지분 ${formatPercent(stake, 2)}`);
+    lines.push(`${event.event_type === "retirement" ? "소각지분" : "예정취득지분"} ${formatPercent(stake, 2)}`);
+  }
+  if (event.event_type === "retirement" && event.planned_share_ratio_other != null) {
+    lines.push(`종류주식 소각지분 ${formatPercent(event.planned_share_ratio_other, 2)}`);
   }
   return lines;
 }

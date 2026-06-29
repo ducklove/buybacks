@@ -1,4 +1,5 @@
 import type {
+  BuybackEvent,
   EventType,
   LatestPriceSnapshot,
   PriceReaction,
@@ -50,6 +51,13 @@ export function plannedAcquisitionStake(
     return null;
   }
   return plannedAmount / marketCap;
+}
+
+export function plannedEventStake(event: BuybackEvent, marketCap: number | null | undefined): number | null {
+  if (event.event_type === "retirement") {
+    return event.planned_share_ratio_common ?? null;
+  }
+  return plannedAcquisitionStake(event.event_type, event.planned_amount_krw, marketCap);
 }
 
 export function isAcquisitionPlanEvent(eventType: EventType) {

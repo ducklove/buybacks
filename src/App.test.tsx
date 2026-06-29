@@ -41,6 +41,8 @@ describe("App", () => {
             planned_amount_krw: 1000,
             planned_amount_common_krw: 700,
             planned_amount_other_krw: 300,
+            planned_share_ratio_common: null,
+            planned_share_ratio_other: null,
             actual_shares: null,
             actual_amount_krw: null,
             method: null,
@@ -126,7 +128,7 @@ describe("App", () => {
     expect(screen.getByText("이벤트 탐색기")).toBeInTheDocument();
     expect(screen.getAllByText("삼성전자").length).toBeGreaterThan(0);
     expect(screen.getByText("기보유비율")).toBeInTheDocument();
-    expect(screen.getByText("예정취득지분")).toBeInTheDocument();
+    expect(screen.getByText("예정지분")).toBeInTheDocument();
     expect(screen.getAllByText("9.09%").length).toBeGreaterThan(0);
     expect(screen.getByText("110")).toBeInTheDocument();
     expect(screen.getByText("△ +1.50%")).toBeInTheDocument();

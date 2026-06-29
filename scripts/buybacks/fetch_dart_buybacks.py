@@ -4,10 +4,15 @@ import argparse
 import json
 import logging
 import os
+import re
 import sys
 from datetime import date, datetime
+from html import unescape
 from pathlib import Path
 from typing import Iterable
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
 if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parents[2]))
@@ -62,6 +67,8 @@ BUYBACK_REPORT_KEYWORDS = [
     "자기주식처분결정",
 ]
 BUYBACK_DISCLOSURE_TYPES = ["B", "I"]
+DART_MAIN_URL = "https://dart.fss.or.kr/dsaf001/main.do"
+DART_VIEWER_URL = "https://dart.fss.or.kr/report/viewer.do"
 
 
 def collect_dart_dataset(
@@ -120,6 +127,11 @@ def collect_dart_dataset(
                 disclosures_by_corp.get(company.corp_code, []),
                 company.stock_code,
                 existing_rcept_nos={event.rcept_no for event in events if event.rcept_no},
+                retirement_details_by_rcept_no=collect_retirement_details(
+                    disclosures_by_corp.get(company.corp_code, []),
+                    raw_dir=raw_dir,
+                    warnings=warnings,
+                ),
             )
         )
 
@@ -355,6 +367,8 @@ def normalize_decision_event(item: dict, stock_code: str, endpoint: str) -> Buyb
         planned_amount_krw=planned_amount_krw,
         planned_amount_common_krw=planned_amount_common_krw,
         planned_amount_other_krw=planned_amount_other_krw,
+        planned_share_ratio_common=None,
+        planned_share_ratio_other=None,
         actual_shares=None,
         actual_amount_krw=None,
         method=method,
@@ -465,6 +479,7 @@ def normalize_disclosure_events(
     items: list[dict],
     stock_code: str,
     existing_rcept_nos: set[str | None],
+    retirement_details_by_rcept_no: dict[str, dict] | None = None,
 ) -> list[BuybackEvent]:
     events: list[BuybackEvent] = []
     for item in items:
@@ -475,6 +490,7 @@ def normalize_disclosure_events(
         event_type = classify_event_type(report_name)
         if event_type == "unknown":
             continue
+        details = (retirement_details_by_rcept_no or {}).get(str(rcept_no or ""), {})
         disclosure_date = normalize_date(item.get("rcept_dt")) or receipt_date_from_no(rcept_no) or date.today().isoformat()
         events.append(
             BuybackEvent(
@@ -484,19 +500,21 @@ def normalize_disclosure_events(
                 corp_name=item.get("corp_name", ""),
                 event_type=event_type,
                 disclosure_date=disclosure_date,
-                decision_date=None,
-                period_start=None,
-                period_end=None,
-                planned_shares_common=None,
-                planned_shares_other=None,
-                planned_amount_krw=None,
-                planned_amount_common_krw=None,
-                planned_amount_other_krw=None,
+                decision_date=details.get("decision_date"),
+                period_start=details.get("period_start"),
+                period_end=details.get("period_end"),
+                planned_shares_common=details.get("planned_shares_common"),
+                planned_shares_other=details.get("planned_shares_other"),
+                planned_amount_krw=details.get("planned_amount_krw"),
+                planned_amount_common_krw=details.get("planned_amount_common_krw"),
+                planned_amount_other_krw=details.get("planned_amount_other_krw"),
+                planned_share_ratio_common=details.get("planned_share_ratio_common"),
+                planned_share_ratio_other=details.get("planned_share_ratio_other"),
                 actual_shares=None,
                 actual_amount_krw=None,
-                method=None,
-                purpose=None,
-                broker=None,
+                method=details.get("method"),
+                purpose=details.get("purpose"),
+                broker=details.get("broker"),
                 holding_before_common=None,
                 holding_before_ratio_common=None,
                 source="DART",
@@ -506,6 +524,153 @@ def normalize_disclosure_events(
             )
         )
     return events
+
+
+def collect_retirement_details(
+    disclosures: list[dict],
+    raw_dir: Path | None = None,
+    warnings: list[str] | None = None,
+) -> dict[str, dict]:
+    details: dict[str, dict] = {}
+    for item in disclosures:
+        if classify_event_type(item.get("report_nm")) != "retirement":
+            continue
+        rcept_no = str(item.get("rcept_no") or "")
+        if not rcept_no:
+            continue
+        try:
+            html = fetch_dart_viewer_html(rcept_no, raw_dir=raw_dir)
+        except Exception as exc:  # noqa: BLE001 - keep collection resilient.
+            warning = f"{rcept_no} retirement detail fetch failed: {exc}"
+            LOGGER.warning(warning)
+            if warnings is not None:
+                warnings.append(warning)
+            continue
+        parsed = parse_retirement_details_from_html(html)
+        if parsed:
+            details[rcept_no] = parsed
+    return details
+
+
+def fetch_dart_viewer_html(rcept_no: str, raw_dir: Path | None = None) -> str:
+    cache_path = raw_dir / "dart_viewers" / f"{rcept_no}.html" if raw_dir else None
+    if cache_path and cache_path.exists():
+        return cache_path.read_text(encoding="utf-8")
+
+    main_html = decode_html(fetch_url(f"{DART_MAIN_URL}?{urlencode({'rcpNo': rcept_no})}"))
+    match = re.search(
+        r"viewDoc\(\s*['\"](?P<rcp_no>\d+)['\"]\s*,\s*['\"](?P<dcm_no>\d+)['\"]\s*,\s*['\"](?P<ele_id>\d+)['\"]\s*,\s*['\"](?P<offset>\d+)['\"]\s*,\s*['\"](?P<length>\d+)['\"]\s*,\s*['\"](?P<dtd>[^'\"]+)['\"]",
+        main_html,
+    )
+    if not match:
+        raise ValueError("DART viewer metadata not found")
+
+    params = {
+        "rcpNo": match.group("rcp_no"),
+        "dcmNo": match.group("dcm_no"),
+        "eleId": match.group("ele_id"),
+        "offset": match.group("offset"),
+        "length": match.group("length"),
+        "dtd": match.group("dtd"),
+    }
+    html = decode_html(fetch_url(f"{DART_VIEWER_URL}?{urlencode(params)}"))
+    if cache_path:
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        cache_path.write_text(html, encoding="utf-8")
+    return html
+
+
+def fetch_url(url: str) -> bytes:
+    request = Request(url, headers={"User-Agent": "value-invest-buybacks/0.1"})
+    try:
+        with urlopen(request, timeout=12) as response:
+            return response.read()
+    except (HTTPError, URLError, TimeoutError) as exc:
+        raise RuntimeError(f"DART HTML request failed: {exc}") from exc
+
+
+def decode_html(raw: bytes) -> str:
+    for encoding in ["utf-8", "euc-kr", "cp949"]:
+        try:
+            return raw.decode(encoding)
+        except UnicodeDecodeError:
+            continue
+    return raw.decode("utf-8", "replace")
+
+
+def parse_retirement_details_from_html(html: str) -> dict:
+    text = html_to_text(html)
+    planned_common = number_after(
+        text,
+        r"소각할\s*주식의\s*종류와\s*수\s*보통주식\s*\(주\)",
+    )
+    planned_other = number_after(
+        text,
+        r"소각할\s*주식의\s*종류와\s*수.*?(?:종류|기타)주식\s*\(주\)",
+    )
+    issued_common = number_after(
+        text,
+        r"발행주식\s*총수\s*보통주식\s*\(주\)",
+    )
+    issued_other = number_after(
+        text,
+        r"발행주식\s*총수.*?(?:종류|기타)주식\s*\(주\)",
+    )
+    planned_amount = number_after(text, r"소각예정금액\s*\(원\)")
+    decision_date = date_after(text, r"이사회결의일\s*\(결정일\)")
+    retirement_date = date_after(text, r"소각\s*예정일")
+
+    details = {
+        "planned_shares_common": as_int(planned_common),
+        "planned_shares_other": as_int(planned_other),
+        "planned_amount_krw": as_int(planned_amount),
+        "planned_amount_common_krw": None,
+        "planned_amount_other_krw": None,
+        "planned_share_ratio_common": safe_ratio(planned_common, issued_common),
+        "planned_share_ratio_other": safe_ratio(planned_other, issued_other),
+        "decision_date": decision_date,
+        "period_start": None,
+        "period_end": retirement_date,
+        "method": meaningful_text(text_between(text, r"소각할\s*주식의\s*취득방법", r"\s*\d+\.\s*소각\s*예정일")),
+        "purpose": meaningful_text(text_between(text, r"소각\s*목적", r"\s*\d+\.")),
+        "broker": meaningful_text(
+            text_between(text, r"자기주식\s*취득\s*위탁\s*투자중개업자", r"\s*\d+\.\s*이사회결의일")
+        ),
+    }
+    return {key: value for key, value in details.items() if value not in [None, ""]}
+
+
+def html_to_text(html: str) -> str:
+    html = re.sub(r"(?i)<br\s*/?>", " ", html)
+    text = re.sub(r"<[^>]+>", " ", html)
+    return re.sub(r"\s+", " ", unescape(text).replace("\xa0", " ")).strip()
+
+
+def number_after(text: str, label_pattern: str) -> int | float | None:
+    match = re.search(label_pattern + r"\s*([△()0-9,\.\-]+)", text, flags=re.DOTALL)
+    return parse_number(match.group(1)) if match else None
+
+
+def date_after(text: str, label_pattern: str) -> str | None:
+    match = re.search(label_pattern + r"\s*([0-9]{4}[.\-/년\s]+[0-9]{1,2}[.\-/월\s]+[0-9]{1,2})", text)
+    return normalize_date(match.group(1)) if match else None
+
+
+def text_between(text: str, start_pattern: str, end_pattern: str) -> str | None:
+    match = re.search(start_pattern + r"\s*(.*?)" + end_pattern, text, flags=re.DOTALL)
+    return clean_text(match.group(1)) if match else None
+
+
+def meaningful_text(value: str | None) -> str | None:
+    if value in {None, "-", "--"}:
+        return None
+    return value
+
+
+def safe_ratio(numerator: int | float | None, denominator: int | float | None) -> float | None:
+    if numerator is None or denominator is None or denominator <= 0:
+        return None
+    return float(numerator) / float(denominator)
 
 
 def select_holding_rows(rows: list[dict]) -> list[dict]:
@@ -562,7 +727,11 @@ def dedupe_disclosures(items: list[dict]) -> list[dict]:
 def dedupe_events(events: list[BuybackEvent]) -> list[BuybackEvent]:
     seen: set[str] = set()
     output: list[BuybackEvent] = []
-    for event in sorted(events, key=lambda item: (item.disclosure_date, item.event_id), reverse=True):
+    for event in sorted(
+        events,
+        key=lambda item: (item.disclosure_date, item.event_id, event_detail_score(item)),
+        reverse=True,
+    ):
         key = event.rcept_no or event.event_id
         typed_key = f"{key}:{event.event_type}"
         if typed_key in seen:
@@ -570,6 +739,29 @@ def dedupe_events(events: list[BuybackEvent]) -> list[BuybackEvent]:
         seen.add(typed_key)
         output.append(event)
     return output
+
+
+def event_detail_score(event: BuybackEvent) -> int:
+    fields = [
+        event.decision_date,
+        event.period_start,
+        event.period_end,
+        event.planned_shares_common,
+        event.planned_shares_other,
+        event.planned_amount_krw,
+        event.planned_amount_common_krw,
+        event.planned_amount_other_krw,
+        event.planned_share_ratio_common,
+        event.planned_share_ratio_other,
+        event.actual_shares,
+        event.actual_amount_krw,
+        event.method,
+        event.purpose,
+        event.broker,
+        event.holding_before_common,
+        event.holding_before_ratio_common,
+    ]
+    return sum(1 for value in fields if value not in [None, ""])
 
 
 def dedupe_holdings(snapshots: list[TreasuryHoldingSnapshot]) -> list[TreasuryHoldingSnapshot]:
