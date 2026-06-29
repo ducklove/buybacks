@@ -203,7 +203,15 @@ def event(
     )
 
 
-def reaction(event_id: str, event_date: str, quality: str = "partial") -> PriceReaction:
+def reaction(
+    event_id: str,
+    event_date: str,
+    quality: str = "partial",
+    abnormal_return_20d: float | None = None,
+) -> PriceReaction:
+    resolved_abnormal_return_20d = (
+        0.03 if quality == "complete" and abnormal_return_20d is None else abnormal_return_20d
+    )
     return PriceReaction(
         event_id=event_id,
         stock_code="005930",
@@ -218,7 +226,7 @@ def reaction(event_id: str, event_date: str, quality: str = "partial") -> PriceR
         market_return_5d=0.01 if quality == "complete" else None,
         abnormal_return_5d=0.02 if quality == "complete" else None,
         market_return_20d=None,
-        abnormal_return_20d=None,
+        abnormal_return_20d=resolved_abnormal_return_20d,
         market_return_60d=0.03 if quality == "complete" else None,
         abnormal_return_60d=0.04 if quality == "complete" else None,
         volume_change_20d=None,
@@ -322,6 +330,7 @@ def test_select_price_reaction_events_refreshes_new_missing_and_recent_partial_o
     events = [
         event("new", "2026-06-21"),
         event("recent-partial", "2026-06-10"),
+        event("recent-missing-20d", "2026-06-08"),
         event("recent-complete", "2026-06-09"),
         event("old-partial", "2026-01-01"),
     ]
@@ -329,6 +338,7 @@ def test_select_price_reaction_events_refreshes_new_missing_and_recent_partial_o
         events,
         [
             reaction("recent-partial", "2026-06-10", "partial"),
+            reaction("recent-missing-20d", "2026-06-08", "partial"),
             reaction("recent-complete", "2026-06-09", "complete"),
             reaction("old-partial", "2026-01-01", "partial"),
         ],
@@ -337,7 +347,7 @@ def test_select_price_reaction_events_refreshes_new_missing_and_recent_partial_o
         "20260621",
     )
 
-    assert [item.event_id for item in selected] == ["new", "recent-partial"]
+    assert [item.event_id for item in selected] == ["new", "recent-partial", "recent-missing-20d"]
 
 
 def test_merge_price_reactions_replaces_refreshed_and_adds_missing_for_new_events():

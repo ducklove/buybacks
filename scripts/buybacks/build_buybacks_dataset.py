@@ -748,7 +748,11 @@ def select_price_reaction_events(
 
 
 def has_missing_relative_window(reaction: PriceReaction) -> bool:
-    return reaction.abnormal_return_5d is None or reaction.abnormal_return_60d is None
+    return (
+        reaction.abnormal_return_5d is None
+        or reaction.abnormal_return_20d is None
+        or reaction.abnormal_return_60d is None
+    )
 
 
 def incremental_start_yyyymmdd(events: list[BuybackEvent], end_yyyymmdd: str, lookback_days: int) -> str:
