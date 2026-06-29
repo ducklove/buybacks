@@ -120,7 +120,7 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                     <PlannedStakeCell event={event} />
                   </td>
                   <td className="purpose-cell">{event.purpose ?? "-"}</td>
-                  <td>{formatPercent(event.holding_before_ratio_common ?? event.holding?.treasury_ratio)}</td>
+                  <td>{formatPercent(event.holding_before_ratio_common)}</td>
                   <td>
                     <MarketCapCell event={event} />
                   </td>
