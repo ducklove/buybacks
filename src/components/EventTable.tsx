@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { EnrichedEvent } from "../types/buybacks";
 import {
   EVENT_TYPE_LABELS,
@@ -16,10 +16,13 @@ interface EventTableProps {
 }
 
 type SortKey = "date" | "company" | "amount" | "stake" | "marketCap";
+const PAGE_SIZE_OPTIONS = [25, 50, 100] as const;
 
 export function EventTable({ events, selectedStockCode, onSelectStock }: EventTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>("date");
   const [ascending, setAscending] = useState(false);
+  const [pageSize, setPageSize] = useState<(typeof PAGE_SIZE_OPTIONS)[number]>(25);
+  const [page, setPage] = useState(1);
 
   const sortedEvents = useMemo(() => {
     const sorted = [...events].sort((a, b) => {
@@ -44,7 +47,24 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
     return sorted;
   }, [ascending, events, sortKey]);
 
+  const pageCount = Math.max(1, Math.ceil(sortedEvents.length / pageSize));
+  const clampedPage = Math.min(page, pageCount);
+  const startIndex = sortedEvents.length === 0 ? 0 : (clampedPage - 1) * pageSize;
+  const endIndex = Math.min(startIndex + pageSize, sortedEvents.length);
+  const visibleEvents = sortedEvents.slice(startIndex, endIndex);
+
+  useEffect(() => {
+    setPage(1);
+  }, [events]);
+
+  useEffect(() => {
+    if (page > pageCount) {
+      setPage(pageCount);
+    }
+  }, [page, pageCount]);
+
   const changeSort = (next: SortKey) => {
+    setPage(1);
     if (next === sortKey) {
       setAscending((value) => !value);
     } else {
@@ -52,6 +72,13 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
       setAscending(false);
     }
   };
+
+  const changePageSize = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setPageSize(Number(event.target.value) as (typeof PAGE_SIZE_OPTIONS)[number]);
+    setPage(1);
+  };
+
+  const pageNumbers = paginationWindow(clampedPage, pageCount);
 
   return (
     <section className="table-panel" id="events">
@@ -88,7 +115,7 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
             </tr>
           </thead>
           <tbody>
-            {sortedEvents.map((event) => {
+            {visibleEvents.map((event) => {
               return (
                 <tr
                   className={event.stock_code === selectedStockCode ? "selected-row" : undefined}
@@ -129,11 +156,89 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                 </tr>
               );
             })}
+            {visibleEvents.length === 0 ? (
+              <tr>
+                <td className="empty-table-cell" colSpan={9}>
+                  표시할 이벤트가 없습니다.
+                </td>
+              </tr>
+            ) : null}
           </tbody>
         </table>
       </div>
+      <div className="table-pagination" aria-label="이벤트 탐색기 페이지">
+        <div className="pagination-summary">
+          {sortedEvents.length === 0 ? "0건" : `${startIndex + 1}-${endIndex} / ${sortedEvents.length}건`}
+        </div>
+        <label className="page-size-control">
+          페이지당
+          <select value={pageSize} onChange={changePageSize}>
+            {PAGE_SIZE_OPTIONS.map((option) => (
+              <option key={option} value={option}>
+                {option}건
+              </option>
+            ))}
+          </select>
+        </label>
+        <div className="pagination-actions">
+          <button
+            aria-label="첫 페이지"
+            className="page-button"
+            disabled={clampedPage === 1}
+            type="button"
+            onClick={() => setPage(1)}
+          >
+            처음
+          </button>
+          <button
+            aria-label="이전 페이지"
+            className="page-button"
+            disabled={clampedPage === 1}
+            type="button"
+            onClick={() => setPage((value) => Math.max(1, value - 1))}
+          >
+            이전
+          </button>
+          {pageNumbers.map((pageNumber) => (
+            <button
+              aria-current={pageNumber === clampedPage ? "page" : undefined}
+              aria-label={`${pageNumber} 페이지`}
+              className={pageNumber === clampedPage ? "page-button active-page" : "page-button"}
+              key={pageNumber}
+              type="button"
+              onClick={() => setPage(pageNumber)}
+            >
+              {pageNumber}
+            </button>
+          ))}
+          <button
+            aria-label="다음 페이지"
+            className="page-button"
+            disabled={clampedPage === pageCount}
+            type="button"
+            onClick={() => setPage((value) => Math.min(pageCount, value + 1))}
+          >
+            다음
+          </button>
+          <button
+            aria-label="마지막 페이지"
+            className="page-button"
+            disabled={clampedPage === pageCount}
+            type="button"
+            onClick={() => setPage(pageCount)}
+          >
+            끝
+          </button>
+        </div>
+      </div>
     </section>
   );
+}
+
+function paginationWindow(currentPage: number, pageCount: number) {
+  const start = Math.max(1, Math.min(currentPage - 2, pageCount - 4));
+  const end = Math.min(pageCount, start + 4);
+  return Array.from({ length: end - start + 1 }, (_, index) => start + index);
 }
 
 function AmountBreakdown({ event }: { event: EnrichedEvent }) {
