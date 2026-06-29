@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-06-29T05:31:21.023554+00:00",
+  "generated_at": "2026-06-29T05:49:25.209083+00:00",
   "dart_available": true,
   "krx_available": false,
   "price_source": "kis_proxy",
   "latest_price_source": "kis_proxy",
-  "update_mode": "incremental",
-  "previous_generated_at": "2026-06-28T21:44:35.759658+00:00",
+  "update_mode": "backfill_merge",
+  "previous_generated_at": "2026-06-29T05:31:21.023554+00:00",
   "companies_count": 2546,
-  "events_count": 722,
+  "events_count": 782,
   "holdings_count": 2556,
-  "price_reactions_count": 722,
+  "price_reactions_count": 782,
   "latest_prices_count": 480,
   "warnings": [
     "Incremental update merged with the committed dataset instead of rebuilding the full universe.",
@@ -19,6 +19,11 @@
     "OpenDART holding scan source: stock_totals.",
     "Listed issue master source: naver.",
     "Price reactions use kis_proxy when configured; otherwise they remain missing.",
-    "Latest prices use kis_proxy when configured; otherwise market caps remain missing."
-  ]
+    "Latest prices use kis_proxy when configured; otherwise market caps remain missing.",
+    "Backfill run 20260101-20260629-refresh merged 60 new events and skipped 721 duplicates.",
+    "Backfilled historical price reactions are initialized as missing until price enrichment is run."
+  ],
+  "last_backfill_run_id": "20260101-20260629-refresh",
+  "last_backfill_new_events_count": 60,
+  "last_backfill_duplicate_events_count": 721
 }
