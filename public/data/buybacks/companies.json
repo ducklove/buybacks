@@ -1104,14 +1104,6 @@
     "last_updated": "2026-04-03"
   },
   {
-    "corp_code": "01307335",
-    "stock_code": "366030",
-    "corp_name": "나인앤컴퍼니",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-06-05"
-  },
-  {
     "corp_code": "00186452",
     "stock_code": "029480",
     "corp_name": "광무",
@@ -1494,6 +1486,14 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2026-06-02"
+  },
+  {
+    "corp_code": "01307335",
+    "stock_code": "366030",
+    "corp_name": "나인앤컴퍼니",
+    "market": "KOSDAQ",
+    "sector": null,
+    "last_updated": "2026-06-05"
   },
   {
     "corp_code": "01208849",
@@ -9080,14 +9080,6 @@
     "last_updated": "2022-12-07"
   },
   {
-    "corp_code": "01787072",
-    "stock_code": "468760",
-    "corp_name": "유진스팩10호",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2024-02-29"
-  },
-  {
     "corp_code": "01854392",
     "stock_code": "488060",
     "corp_name": "유진스팩11호",
@@ -11174,14 +11166,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2023-02-17"
-  },
-  {
-    "corp_code": "01357765",
-    "stock_code": "348080",
-    "corp_name": "큐라티스",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2024-12-17"
   },
   {
     "corp_code": "00356802",

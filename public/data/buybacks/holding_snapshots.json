@@ -1746,24 +1746,6 @@
     "source_rcept_no": "20260617000355"
   },
   {
-    "corp_code": "01787072",
-    "stock_code": "468760",
-    "corp_name": "유진스팩10호",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 4240000,
-    "treasury_ratio": null,
-    "floating_shares": 4240000,
-    "source_rcept_no": "20260316000180"
-  },
-  {
     "corp_code": "01688568",
     "stock_code": "468530",
     "corp_name": "프로티나",
@@ -6550,24 +6532,6 @@
     "treasury_ratio": null,
     "floating_shares": 19418889,
     "source_rcept_no": "20260319000024"
-  },
-  {
-    "corp_code": "01357765",
-    "stock_code": "348080",
-    "corp_name": "큐라티스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 81786794,
-    "treasury_ratio": null,
-    "floating_shares": 81786794,
-    "source_rcept_no": "20260323000808"
   },
   {
     "corp_code": "01210190",
@@ -41886,24 +41850,6 @@
     "source_rcept_no": "20260323001556"
   },
   {
-    "corp_code": "00152880",
-    "stock_code": "003075",
-    "corp_name": "코오롱글로벌우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 12360,
-    "issued_shares": 740737,
-    "treasury_ratio": 0.016686084264725537,
-    "floating_shares": 728377,
-    "source_rcept_no": "20260323001556"
-  },
-  {
     "corp_code": "00101044",
     "stock_code": "003060",
     "corp_name": "에이프로젠바이오로직스",
@@ -42729,24 +42675,6 @@
     "issued_shares": 12907680,
     "treasury_ratio": 0.0006547264884161988,
     "floating_shares": 12899229,
-    "source_rcept_no": "20260323001718"
-  },
-  {
-    "corp_code": "00152862",
-    "stock_code": "002025",
-    "corp_name": "코오롱우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2716,
-    "issued_shares": 1160437,
-    "treasury_ratio": 0.0023404975884085046,
-    "floating_shares": 1157721,
     "source_rcept_no": "20260323001718"
   },
   {
