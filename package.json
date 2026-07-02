@@ -9,6 +9,9 @@
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "test:py": "python -m pytest",
+    "lint": "eslint src",
+    "format": "prettier --write src",
+    "format:check": "prettier --check src",
     "validate:data": "python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks",
     "build:data": "python scripts/buybacks/build_buybacks_dataset.py --output public/data/buybacks",
     "update:data": "python scripts/buybacks/build_buybacks_dataset.py --live-if-available --incremental --output public/data/buybacks --stock-codes ALL --holding-stock-codes EVENTS --holding-source stock_totals --listed-issue-source naver --report-codes 11011"
@@ -18,14 +21,20 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@types/node": "^26.0.0",
     "@types/react": "^19.0.4",
     "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react": "^4.7.0",
+    "eslint": "^10.6.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.7.0",
     "jsdom": "^25.0.1",
+    "prettier": "^3.9.4",
     "typescript": "^5.7.3",
+    "typescript-eslint": "^8.62.1",
     "vite": "^6.4.3",
     "vitest": "^3.2.6"
   }

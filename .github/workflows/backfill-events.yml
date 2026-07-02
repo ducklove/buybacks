@@ -151,3 +151,25 @@ jobs:
         with:
           name: buybacks-event-backfill-${{ env.BACKFILL_RUN_ID }}
           path: data/backfills/${{ env.BACKFILL_RUN_ID }}
+
+      - name: Notify value-invest on failure
+        if: failure()
+        env:
+          NOTIFY_URL: ${{ secrets.VALUE_INVEST_NOTIFY_URL }}
+          NOTIFY_TOKEN: ${{ secrets.VALUE_INVEST_INTERNAL_TOKEN }}
+          WORKFLOW_NAME: ${{ github.workflow }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ -z "$NOTIFY_URL" ] || [ -z "$NOTIFY_TOKEN" ]; then
+            echo "VALUE_INVEST_NOTIFY_URL or VALUE_INVEST_INTERNAL_TOKEN not set, skipping notification."
+            exit 0
+          fi
+          body=$(jq -n \
+            --arg title "$WORKFLOW_NAME failed" \
+            --arg text "Workflow run: $RUN_URL" \
+            --arg source "buybacks" \
+            '{title: $title, text: $text, source: $source}')
+          curl -sf -X POST "$NOTIFY_URL/api/internal/notify" \
+            -H "Content-Type: application/json" \
+            -H "X-Internal-Token: $NOTIFY_TOKEN" \
+            -d "$body"

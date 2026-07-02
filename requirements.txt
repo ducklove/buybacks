@@ -1,0 +1,4 @@
+# Python 3.12+
+# The data pipeline (scripts/buybacks/) uses only the standard library.
+# pytest is required to run the Python test suite (tests/).
+pytest>=8

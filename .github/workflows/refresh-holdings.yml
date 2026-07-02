@@ -1,18 +1,9 @@
-name: Update buybacks data
+name: Refresh holdings
 
 on:
   workflow_dispatch:
-    inputs:
-      lookback_days:
-        description: Days to overlap before the latest committed disclosure date.
-        required: false
-        default: "7"
-      price_lookback_days:
-        description: Recent event window for refreshing incomplete price reactions.
-        required: false
-        default: "75"
   schedule:
-    - cron: "30 20 * * *"
+    - cron: "30 19 1 * *"
 
 permissions:
   contents: write
@@ -24,11 +15,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  update:
+  refresh:
     runs-on: ubuntu-latest
-    env:
-      LOOKBACK_DAYS: ${{ github.event.inputs.lookback_days || '7' }}
-      PRICE_LOOKBACK_DAYS: ${{ github.event.inputs.price_lookback_days || '75' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -43,29 +31,30 @@ jobs:
       - name: Install Python test tools
         run: python -m pip install --upgrade pip pytest
 
-      - name: Incrementally update buybacks data
-        timeout-minutes: 25
+      - name: Refresh full holdings snapshot
+        timeout-minutes: 90
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
           DART_RETRIES: "3"
           DART_TIMEOUT_SECONDS: "30"
           KIS_PROXY_URL: ${{ secrets.KIS_PROXY_URL }}
           KIS_PROXY_TOKEN: ${{ secrets.KIS_PROXY_TOKEN }}
+        # --incremental keeps events.json merge-based (no loss of history older
+        # than the ~89-day discovery window) while --holding-stock-codes ALL
+        # rescans holding snapshots for every listed company.
         run: >
           python scripts/buybacks/build_buybacks_dataset.py
           --live-if-available
           --incremental
           --output public/data/buybacks
           --stock-codes ALL
-          --holding-stock-codes EVENTS
+          --holding-stock-codes ALL
           --holding-source stock_totals
           --listed-issue-source naver
           --report-codes 11011
           --max-companies 0
           --max-holding-companies 0
           --discovery-page-limit 50
-          --incremental-lookback-days "$LOOKBACK_DAYS"
-          --incremental-price-lookback-days "$PRICE_LOOKBACK_DAYS"
 
       - name: Validate data
         run: python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
@@ -83,7 +72,7 @@ jobs:
             echo "No buybacks data changes to commit."
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
-            git commit -m "Update buybacks data"
+            git commit -m "Refresh full holdings snapshot"
             git pull --rebase origin master
             git push
             echo "changed=true" >> "$GITHUB_OUTPUT"
