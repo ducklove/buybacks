@@ -12,7 +12,14 @@ from scripts.buybacks.fetch_dart_buybacks import (
 )
 import scripts.buybacks.fetch_dart_buybacks as dart_buybacks
 from scripts.buybacks.models import Company
-from scripts.buybacks.parsers import classify_event_type, normalize_date, parse_number, parse_ratio_percent
+from scripts.buybacks.parsers import (
+    KST,
+    classify_event_type,
+    kst_today,
+    normalize_date,
+    parse_number,
+    parse_ratio_percent,
+)
 
 
 def test_parse_number_handles_commas_missing_and_negative_markers():
@@ -34,6 +41,22 @@ def test_normalize_date_variants():
 def test_parse_ratio_percent_converts_percent_to_ratio():
     assert parse_ratio_percent("2.48") == 0.0248
     assert parse_ratio_percent("-") is None
+
+
+def test_kst_is_utc_plus_nine():
+    from datetime import datetime, timedelta
+
+    assert KST.utcoffset(datetime(2026, 7, 3, 12, 0)) == timedelta(hours=9)
+
+
+def test_kst_today_matches_utc_shifted_by_nine_hours():
+    from datetime import datetime, timedelta, timezone
+
+    before = (datetime.now(timezone.utc) + timedelta(hours=9)).date()
+    today = kst_today()
+    after = (datetime.now(timezone.utc) + timedelta(hours=9)).date()
+
+    assert before <= today <= after
 
 
 def test_classify_event_type():

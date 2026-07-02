@@ -1,13 +1,30 @@
 from __future__ import annotations
 
 import re
-from datetime import date, datetime
+from datetime import date, datetime, timedelta, timezone
 from typing import Any
 
 from .models import EventType, Market
 
 MISSING_VALUES = {"", "-", "－", "—", "N/A", "n/a", "nan", "NaN", "해당사항없음", "해당사항 없음"}
 DATE_RE = re.compile(r"(\d{4})[.\-/년\s]*(\d{1,2})[.\-/월\s]*(\d{1,2})")
+
+try:  # pragma: no cover - exercised implicitly on hosts with tzdata.
+    from zoneinfo import ZoneInfo
+
+    KST = ZoneInfo("Asia/Seoul")
+except Exception:  # noqa: BLE001 - Windows without the tzdata package cannot load IANA zones.
+    KST = timezone(timedelta(hours=9), "KST")
+
+
+def kst_now() -> datetime:
+    """Current time in Asia/Seoul; DART disclosure dates are Korea-local."""
+    return datetime.now(KST)
+
+
+def kst_today() -> date:
+    """Today's date in Asia/Seoul, used for disclosure-date fallbacks and CLI defaults."""
+    return kst_now().date()
 
 
 def parse_number(value: Any) -> int | float | None:

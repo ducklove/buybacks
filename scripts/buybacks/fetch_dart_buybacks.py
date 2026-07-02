@@ -19,9 +19,11 @@ if __package__ in {None, ""}:
     from scripts.buybacks.dart_client import OpenDartClient, OpenDartNoData
     from scripts.buybacks.models import BuybackEvent, Company, TreasuryHoldingSnapshot, to_jsonable
     from scripts.buybacks.parsers import (
+        MISSING_VALUES,
         classify_event_type,
         dart_source_url,
         event_id,
+        kst_today,
         market_from_corp_cls,
         normalize_date,
         parse_number,
@@ -31,9 +33,11 @@ else:
     from .dart_client import OpenDartClient, OpenDartNoData
     from .models import BuybackEvent, Company, TreasuryHoldingSnapshot, to_jsonable
     from .parsers import (
+        MISSING_VALUES,
         classify_event_type,
         dart_source_url,
         event_id,
+        kst_today,
         market_from_corp_cls,
         normalize_date,
         parse_number,
@@ -69,6 +73,155 @@ BUYBACK_REPORT_KEYWORDS = [
 BUYBACK_DISCLOSURE_TYPES = ["B", "I"]
 DART_MAIN_URL = "https://dart.fss.or.kr/dsaf001/main.do"
 DART_VIEWER_URL = "https://dart.fss.or.kr/report/viewer.do"
+
+# Maps logical field names to ordered OpenDART response field-name candidates.
+# All DART field access for normalized outputs goes through get_aliased() so a
+# DART schema rename only requires adding a candidate here instead of touching
+# every normalizer. Order matters: the first present (non-placeholder) value wins.
+FIELD_ALIASES: dict[str, tuple[str, ...]] = {
+    # Shared disclosure metadata.
+    "disclosure_date": ("rcept_dt",),
+    "decision_date": ("bdtm", "decide_dt", "bddd"),
+    "broker": ("cs_iv_bk",),
+    "holding_before_common": ("aq_wtn_div_ostk", "dp_bf_ostk"),
+    "holding_before_ratio_common": ("aq_wtn_div_ostk_rt", "dp_bf_ostk_rt"),
+    # Direct acquisition decisions (tsstkAqDecsn).
+    "acq_planned_shares_common": ("aqpln_stk_ostk",),
+    "acq_planned_shares_other": ("aqpln_stk_estk",),
+    "acq_planned_amount_common_krw": ("aqpln_prc_ostk",),
+    "acq_planned_amount_other_krw": ("aqpln_prc_estk",),
+    "acq_period_start": ("aqexpd_bgd",),
+    "acq_period_end": ("aqexpd_edd",),
+    "acq_method": ("aq_mth",),
+    "acq_purpose": ("aq_pp",),
+    # Direct disposition decisions (tsstkDpDecsn).
+    "disp_planned_shares_common": ("dppln_stk_ostk",),
+    "disp_planned_shares_other": ("dppln_stk_estk",),
+    "disp_planned_amount_common_krw": ("dppln_prc_ostk",),
+    "disp_planned_amount_other_krw": ("dppln_prc_estk",),
+    "disp_period_start": ("dpprpd_bgd", "dpprd_bgd"),
+    "disp_period_end": ("dpprpd_edd", "dpprd_edd"),
+    "disp_method": ("dp_mth",),
+    "disp_purpose": ("dp_pp",),
+    "disp_qty_market": ("dp_m_mkt",),
+    "disp_qty_after_hours": ("dp_m_ovtm",),
+    "disp_qty_otc": ("dp_m_otc",),
+    "disp_qty_other": ("dp_m_etc",),
+    # Trust contract decisions (tsstkAqTrctrCnsDecsn / tsstkAqTrctrCcDecsn).
+    "trust_amount_krw": ("ctr_prc", "ctr_prc_bfcc", "trctr_prc"),
+    "trust_period_start": ("ctr_pd_bgd", "ctr_pd_bfcc_bgd", "trctr_bgd"),
+    "trust_period_end": ("ctr_pd_edd", "ctr_pd_bfcc_edd", "trctr_edd"),
+    "trust_purpose": ("ctr_pp", "trctr_pp", "cc_pp"),
+    "trust_broker": ("ctr_cns_int", "cc_int", "trustee", "cs_iv_bk"),
+    # Treasury acquisition/disposition table (tesstkAcqsDspsSttus).
+    "holding_stock_kind": ("stock_knd",),
+    "holding_beginning_qty": ("bsis_qy",),
+    "holding_acquired_qty": ("change_qy_acqs",),
+    "holding_disposed_qty": ("change_qy_dsps",),
+    "holding_retired_qty": ("change_qy_incnr",),
+    "holding_ending_qty": ("trmend_qy",),
+    "holding_issued_shares": ("isu_stock_totqy", "istc_totqy"),
+    "settlement_date": ("stlm_dt",),
+    # Stock totals table (stockTotqySttus).
+    "stock_total_kind": ("se",),
+    "stock_total_issued_shares": ("istc_totqy", "now_to_isu_stock_totqy"),
+    "stock_total_treasury_qty": ("tesstk_co",),
+    "stock_total_floating_shares": ("distb_stock_co",),
+}
+
+# Records whose core logical fields are all null beyond this ratio trigger a
+# warning: a silent DART response format change should surface in data_status.
+CORE_NULL_RATIO_THRESHOLD = 0.5
+CORE_EVENT_FIELDS = (
+    "planned_shares_common",
+    "planned_shares_other",
+    "planned_amount_krw",
+    "planned_amount_common_krw",
+    "planned_amount_other_krw",
+)
+CORE_HOLDING_FIELDS = ("ending_qty", "issued_shares")
+
+
+def is_missing_field_value(value: object) -> bool:
+    if value is None:
+        return True
+    return isinstance(value, str) and value.strip() in MISSING_VALUES
+
+
+def get_aliased(item: dict | None, logical_name: str) -> object | None:
+    """Return the first present value for a logical field via FIELD_ALIASES.
+
+    Placeholder values ("-", empty strings, N/A markers) fall through to the
+    next candidate so legacy field names still get a chance to fill the value.
+    Unknown logical names raise KeyError to catch typos early.
+    """
+    candidates = FIELD_ALIASES[logical_name]
+    if not item:
+        return None
+    for field in candidates:
+        value = item.get(field)
+        if is_missing_field_value(value):
+            continue
+        return value
+    return None
+
+
+def first_present(*values: object | None) -> object | None:
+    return next((value for value in values if not is_missing_field_value(value)), None)
+
+
+def core_field_coverage_warnings(
+    events: Iterable[BuybackEvent],
+    holdings: Iterable[TreasuryHoldingSnapshot],
+    threshold: float = CORE_NULL_RATIO_THRESHOLD,
+) -> list[str]:
+    """Warn when too many collected records have every core logical field null.
+
+    Catches silent OpenDART response format changes (field renames) that would
+    otherwise produce structurally valid but empty records.
+    """
+    warnings: list[str] = []
+    decision_events = [event for event in events if event.event_type in DECISION_ENDPOINTS.values()]
+    event_warning = all_null_ratio_warning(
+        decision_events,
+        CORE_EVENT_FIELDS,
+        threshold,
+        "decision events have all planned share/amount fields null",
+    )
+    if event_warning:
+        warnings.append(event_warning)
+    holding_warning = all_null_ratio_warning(
+        list(holdings),
+        CORE_HOLDING_FIELDS,
+        threshold,
+        "holding snapshots have both ending_qty and issued_shares null",
+    )
+    if holding_warning:
+        warnings.append(holding_warning)
+    for warning in warnings:
+        LOGGER.warning(warning)
+    return warnings
+
+
+def all_null_ratio_warning(
+    records: list,
+    fields: tuple[str, ...],
+    threshold: float,
+    description: str,
+) -> str | None:
+    total = len(records)
+    if total == 0:
+        return None
+    null_count = sum(
+        1 for record in records if all(getattr(record, field) is None for field in fields)
+    )
+    ratio = null_count / total
+    if ratio < threshold:
+        return None
+    return (
+        f"{null_count}/{total} ({ratio:.0%}) {description}; "
+        "OpenDART response field names may have changed (check FIELD_ALIASES)."
+    )
 
 
 def collect_dart_dataset(
@@ -135,7 +288,10 @@ def collect_dart_dataset(
             )
         )
 
-    return hydrated_companies, dedupe_events(events), dedupe_holdings(holdings), warnings
+    deduped_events = dedupe_events(events)
+    deduped_holdings = dedupe_holdings(holdings)
+    warnings.extend(core_field_coverage_warnings(deduped_events, deduped_holdings))
+    return hydrated_companies, deduped_events, deduped_holdings, warnings
 
 
 def collect_dart_holding_snapshots(
@@ -155,7 +311,7 @@ def collect_dart_holding_snapshots(
 
     for index, company in enumerate(company_list, start=1):
         if index == 1 or index % 100 == 0 or index == len(company_list):
-            print(f"collecting holding snapshots {index}/{len(company_list)}", flush=True)
+            LOGGER.info("collecting holding snapshots %d/%d", index, len(company_list))
         company_holdings, holding_warnings = collect_company_holding_snapshots(
             client,
             company,
@@ -166,7 +322,9 @@ def collect_dart_holding_snapshots(
         holdings.extend(company_holdings)
         warnings.extend(holding_warnings)
 
-    return dedupe_holdings(holdings), warnings
+    deduped_holdings = dedupe_holdings(holdings)
+    warnings.extend(core_field_coverage_warnings([], deduped_holdings))
+    return deduped_holdings, warnings
 
 
 def collect_company_holding_snapshots(
@@ -306,51 +464,51 @@ def normalize_decision_event(item: dict, stock_code: str, endpoint: str) -> Buyb
     event_type = DECISION_ENDPOINTS[endpoint]
     rcept_no = item.get("rcept_no")
     disclosure_date = (
-        normalize_date(item.get("rcept_dt"))
+        normalize_date(get_aliased(item, "disclosure_date"))
         or receipt_date_from_no(rcept_no)
         or normalize_date(item.get("bddd"))
-        or date.today().isoformat()
+        or kst_today().isoformat()  # Disclosure dates are Korea-local, so fall back to KST today.
     )
 
     if event_type == "direct_acquisition":
-        planned_shares_common = parse_number(item.get("aqpln_stk_ostk"))
-        planned_shares_other = parse_number(item.get("aqpln_stk_estk"))
-        planned_amount_common_krw = parse_number(item.get("aqpln_prc_ostk"))
-        planned_amount_other_krw = parse_number(item.get("aqpln_prc_estk"))
+        planned_shares_common = parse_number(get_aliased(item, "acq_planned_shares_common"))
+        planned_shares_other = parse_number(get_aliased(item, "acq_planned_shares_other"))
+        planned_amount_common_krw = parse_number(get_aliased(item, "acq_planned_amount_common_krw"))
+        planned_amount_other_krw = parse_number(get_aliased(item, "acq_planned_amount_other_krw"))
         planned_amount_krw = sum_optional(planned_amount_common_krw, planned_amount_other_krw)
-        period_start = normalize_date(item.get("aqexpd_bgd"))
-        period_end = normalize_date(item.get("aqexpd_edd"))
-        method = clean_text(item.get("aq_mth"))
-        purpose = clean_text(item.get("aq_pp"))
-        broker = clean_text(item.get("cs_iv_bk"))
-        holding_before_common = parse_number(item.get("aq_wtn_div_ostk"))
-        holding_before_ratio_common = parse_ratio_percent(item.get("aq_wtn_div_ostk_rt"))
+        period_start = normalize_date(get_aliased(item, "acq_period_start"))
+        period_end = normalize_date(get_aliased(item, "acq_period_end"))
+        method = clean_text(get_aliased(item, "acq_method"))
+        purpose = clean_text(get_aliased(item, "acq_purpose"))
+        broker = clean_text(get_aliased(item, "broker"))
+        holding_before_common = parse_number(get_aliased(item, "holding_before_common"))
+        holding_before_ratio_common = parse_ratio_percent(get_aliased(item, "holding_before_ratio_common"))
     elif event_type == "direct_disposition":
-        planned_shares_common = parse_number(item.get("dppln_stk_ostk"))
-        planned_shares_other = parse_number(item.get("dppln_stk_estk"))
-        planned_amount_common_krw = parse_number(item.get("dppln_prc_ostk"))
-        planned_amount_other_krw = parse_number(item.get("dppln_prc_estk"))
+        planned_shares_common = parse_number(get_aliased(item, "disp_planned_shares_common"))
+        planned_shares_other = parse_number(get_aliased(item, "disp_planned_shares_other"))
+        planned_amount_common_krw = parse_number(get_aliased(item, "disp_planned_amount_common_krw"))
+        planned_amount_other_krw = parse_number(get_aliased(item, "disp_planned_amount_other_krw"))
         planned_amount_krw = sum_optional(planned_amount_common_krw, planned_amount_other_krw)
-        period_start = normalize_date(item.get("dpprpd_bgd") or item.get("dpprd_bgd"))
-        period_end = normalize_date(item.get("dpprpd_edd") or item.get("dpprd_edd"))
+        period_start = normalize_date(get_aliased(item, "disp_period_start"))
+        period_end = normalize_date(get_aliased(item, "disp_period_end"))
         method = disposition_method(item)
-        purpose = clean_text(item.get("dp_pp"))
-        broker = clean_text(item.get("cs_iv_bk"))
-        holding_before_common = parse_number(item.get("aq_wtn_div_ostk") or item.get("dp_bf_ostk"))
-        holding_before_ratio_common = parse_ratio_percent(item.get("aq_wtn_div_ostk_rt") or item.get("dp_bf_ostk_rt"))
+        purpose = clean_text(get_aliased(item, "disp_purpose"))
+        broker = clean_text(get_aliased(item, "broker"))
+        holding_before_common = parse_number(get_aliased(item, "holding_before_common"))
+        holding_before_ratio_common = parse_ratio_percent(get_aliased(item, "holding_before_ratio_common"))
     else:
         planned_shares_common = None
         planned_shares_other = None
-        planned_amount_krw = parse_number(item.get("ctr_prc") or item.get("ctr_prc_bfcc") or item.get("trctr_prc"))
+        planned_amount_krw = parse_number(get_aliased(item, "trust_amount_krw"))
         planned_amount_common_krw = planned_amount_krw
         planned_amount_other_krw = None
-        period_start = normalize_date(item.get("ctr_pd_bgd") or item.get("ctr_pd_bfcc_bgd") or item.get("trctr_bgd"))
-        period_end = normalize_date(item.get("ctr_pd_edd") or item.get("ctr_pd_bfcc_edd") or item.get("trctr_edd"))
+        period_start = normalize_date(get_aliased(item, "trust_period_start"))
+        period_end = normalize_date(get_aliased(item, "trust_period_end"))
         method = "자기주식취득 신탁계약"
-        purpose = clean_text(item.get("ctr_pp") or item.get("trctr_pp") or item.get("cc_pp"))
-        broker = clean_text(item.get("ctr_cns_int") or item.get("cc_int") or item.get("trustee") or item.get("cs_iv_bk"))
-        holding_before_common = parse_number(item.get("aq_wtn_div_ostk"))
-        holding_before_ratio_common = parse_ratio_percent(item.get("aq_wtn_div_ostk_rt"))
+        purpose = clean_text(get_aliased(item, "trust_purpose"))
+        broker = clean_text(get_aliased(item, "trust_broker"))
+        holding_before_common = parse_number(get_aliased(item, "holding_before_common"))
+        holding_before_ratio_common = parse_ratio_percent(get_aliased(item, "holding_before_ratio_common"))
 
     return BuybackEvent(
         event_id=event_id("DART", rcept_no, stock_code, event_type, disclosure_date),
@@ -359,7 +517,7 @@ def normalize_decision_event(item: dict, stock_code: str, endpoint: str) -> Buyb
         corp_name=item.get("corp_name", ""),
         event_type=event_type,  # type: ignore[arg-type]
         disclosure_date=disclosure_date,
-        decision_date=normalize_date(item.get("bdtm") or item.get("decide_dt") or item.get("bddd")),
+        decision_date=normalize_date(get_aliased(item, "decision_date")),
         period_start=period_start,
         period_end=period_end,
         planned_shares_common=planned_shares_common,
@@ -390,33 +548,34 @@ def normalize_holding_snapshot(
     report_code: str,
     stock_total: dict | None = None,
 ) -> TreasuryHoldingSnapshot:
-    ending_qty = parse_number(item.get("trmend_qy"))
+    ending_qty = parse_number(get_aliased(item, "holding_ending_qty"))
     issued_shares = parse_number(
-        item.get("isu_stock_totqy")
-        or item.get("istc_totqy")
-        or (stock_total or {}).get("istc_totqy")
-        or (stock_total or {}).get("now_to_isu_stock_totqy")
+        first_present(
+            get_aliased(item, "holding_issued_shares"),
+            get_aliased(stock_total, "stock_total_issued_shares"),
+        )
     )
     if ending_qty is None:
-        ending_qty = parse_number((stock_total or {}).get("tesstk_co"))
+        ending_qty = parse_number(get_aliased(stock_total, "stock_total_treasury_qty"))
     if issued_shares is None:
-        issued_shares = parse_number((stock_total or {}).get("distb_stock_co"))
+        issued_shares = parse_number(get_aliased(stock_total, "stock_total_floating_shares"))
     floating_shares = int(issued_shares - ending_qty) if issued_shares is not None and ending_qty is not None else None
-    if (stock_total or {}).get("distb_stock_co") is not None:
-        floating_shares = as_int(parse_number((stock_total or {}).get("distb_stock_co")))
+    stock_total_floating = parse_number(get_aliased(stock_total, "stock_total_floating_shares"))
+    if stock_total_floating is not None:
+        floating_shares = as_int(stock_total_floating)
     treasury_ratio = float(ending_qty) / float(issued_shares) if issued_shares and ending_qty is not None else None
     return TreasuryHoldingSnapshot(
         corp_code=item.get("corp_code", ""),
         stock_code=stock_code,
         corp_name=item.get("corp_name", ""),
-        as_of_date=normalize_date(item.get("stlm_dt")) or f"{report_year}-12-31",
+        as_of_date=normalize_date(get_aliased(item, "settlement_date")) or f"{report_year}-12-31",
         report_year=report_year,
         report_code=report_code,
-        stock_kind=clean_stock_kind(item.get("stock_knd")),
-        beginning_qty=as_int(parse_number(item.get("bsis_qy"))),
-        acquired_qty=as_int(parse_number(item.get("change_qy_acqs"))),
-        disposed_qty=as_int(parse_number(item.get("change_qy_dsps"))),
-        retired_qty=as_int(parse_number(item.get("change_qy_incnr"))),
+        stock_kind=clean_stock_kind(get_aliased(item, "holding_stock_kind")),
+        beginning_qty=as_int(parse_number(get_aliased(item, "holding_beginning_qty"))),
+        acquired_qty=as_int(parse_number(get_aliased(item, "holding_acquired_qty"))),
+        disposed_qty=as_int(parse_number(get_aliased(item, "holding_disposed_qty"))),
+        retired_qty=as_int(parse_number(get_aliased(item, "holding_retired_qty"))),
         ending_qty=as_int(ending_qty),
         issued_shares=as_int(issued_shares),
         treasury_ratio=treasury_ratio,
@@ -448,8 +607,8 @@ def normalize_stock_total_snapshots(
 ) -> list[TreasuryHoldingSnapshot]:
     snapshots: list[TreasuryHoldingSnapshot] = []
     for item in select_stock_total_rows(stock_totals):
-        ending_qty = parse_number(item.get("tesstk_co"))
-        issued_shares = parse_number(item.get("istc_totqy"))
+        ending_qty = parse_number(get_aliased(item, "stock_total_treasury_qty"))
+        issued_shares = parse_number(get_aliased(item, "stock_total_issued_shares"))
         if ending_qty is None and issued_shares is None:
             continue
         snapshots.append(
@@ -457,10 +616,10 @@ def normalize_stock_total_snapshots(
                 corp_code=item.get("corp_code", ""),
                 stock_code=stock_code,
                 corp_name=item.get("corp_name", ""),
-                as_of_date=normalize_date(item.get("stlm_dt")) or f"{report_year}-12-31",
+                as_of_date=normalize_date(get_aliased(item, "settlement_date")) or f"{report_year}-12-31",
                 report_year=report_year,
                 report_code=report_code,
-                stock_kind=item.get("se") or "보통주",
+                stock_kind=str(get_aliased(item, "stock_total_kind") or "보통주"),
                 beginning_qty=None,
                 acquired_qty=None,
                 disposed_qty=None,
@@ -468,7 +627,7 @@ def normalize_stock_total_snapshots(
                 ending_qty=as_int(ending_qty),
                 issued_shares=as_int(issued_shares),
                 treasury_ratio=float(ending_qty) / float(issued_shares) if issued_shares and ending_qty is not None else None,
-                floating_shares=as_int(parse_number(item.get("distb_stock_co"))),
+                floating_shares=as_int(parse_number(get_aliased(item, "stock_total_floating_shares"))),
                 source_rcept_no=item.get("rcept_no"),
             )
         )
@@ -491,7 +650,12 @@ def normalize_disclosure_events(
         if event_type == "unknown":
             continue
         details = (retirement_details_by_rcept_no or {}).get(str(rcept_no or ""), {})
-        disclosure_date = normalize_date(item.get("rcept_dt")) or receipt_date_from_no(rcept_no) or date.today().isoformat()
+        # Disclosure dates are Korea-local, so the last-resort fallback uses KST today.
+        disclosure_date = (
+            normalize_date(get_aliased(item, "disclosure_date"))
+            or receipt_date_from_no(rcept_no)
+            or kst_today().isoformat()
+        )
         events.append(
             BuybackEvent(
                 event_id=event_id("DART", rcept_no, stock_code, event_type, disclosure_date),
@@ -867,16 +1031,16 @@ def holding_fact_key(
 def disposition_method(item: dict) -> str | None:
     parts = []
     labels = [
-        ("시장매도", "dp_m_mkt"),
-        ("시간외대량매매", "dp_m_ovtm"),
-        ("장외처분", "dp_m_otc"),
-        ("기타", "dp_m_etc"),
+        ("시장매도", "disp_qty_market"),
+        ("시간외대량매매", "disp_qty_after_hours"),
+        ("장외처분", "disp_qty_otc"),
+        ("기타", "disp_qty_other"),
     ]
-    for label, key in labels:
-        amount = parse_number(item.get(key))
+    for label, logical_name in labels:
+        amount = parse_number(get_aliased(item, logical_name))
         if amount:
             parts.append(f"{label} {as_int(amount):,}주")
-    return ", ".join(parts) if parts else clean_text(item.get("dp_mth"))
+    return ", ".join(parts) if parts else clean_text(get_aliased(item, "disp_method"))
 
 
 def apply_market_from_item(company: Company, item: dict) -> None:
@@ -912,8 +1076,8 @@ def main() -> None:
     parser.add_argument("--companies", type=Path, default=Path("data/fixtures/buybacks/companies.json"))
     parser.add_argument("--output", type=Path, default=Path("data/raw/buybacks/dart_buybacks.json"))
     parser.add_argument("--start", default="20250101")
-    parser.add_argument("--end", default=date.today().strftime("%Y%m%d"))
-    parser.add_argument("--years", default=str(date.today().year - 1))
+    parser.add_argument("--end", default=kst_today().strftime("%Y%m%d"))
+    parser.add_argument("--years", default=str(kst_today().year - 1))
     args = parser.parse_args()
     api_key = os.environ.get("DART_API_KEY")
     if not api_key:
@@ -926,5 +1090,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO, stream=sys.stdout, format="%(message)s")
     main()

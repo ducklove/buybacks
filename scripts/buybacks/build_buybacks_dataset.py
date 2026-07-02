@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import os
 import re
 import sys
@@ -33,7 +34,7 @@ if __package__ in {None, ""}:
         TreasuryHoldingSnapshot,
         to_jsonable,
     )
-    from scripts.buybacks.parsers import market_from_corp_cls, normalize_date
+    from scripts.buybacks.parsers import kst_today, market_from_corp_cls, normalize_date
 else:
     from .fetch_corp_codes import fetch_corp_codes
     from .fetch_dart_buybacks import (
@@ -50,7 +51,9 @@ else:
     )
     from .fetch_listed_issues import ListedIssue, fetch_naver_listed_issues
     from .models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction, TreasuryHoldingSnapshot, to_jsonable
-    from .parsers import market_from_corp_cls, normalize_date
+    from .parsers import kst_today, market_from_corp_cls, normalize_date
+
+LOGGER = logging.getLogger(__name__)
 
 DATA_FILES = [
     "companies.json",
@@ -78,7 +81,7 @@ def write_json(path: Path, payload) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def copy_fixture_dataset(fixture_dir: Path, output_dir: Path) -> dict:
+def copy_fixture_dataset(fixture_dir: Path, output_dir: Path, extra_warnings: list[str] | None = None) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
     companies, events, holdings, reactions = filter_json_dataset_to_supported_markets(
         load_json(fixture_dir / "companies.json"),
@@ -94,7 +97,11 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path) -> dict:
     write_json(output_dir / "price_reactions.json", reactions)
     write_json(output_dir / "latest_prices.json", latest_prices)
     status = load_json(fixture_dir / "data_status.json")
+    # generated_at is intentionally UTC; business dates elsewhere use KST (Asia/Seoul).
     status["generated_at"] = datetime.now(timezone.utc).isoformat()
+    # Keep the frontend-compatible "warnings": string[] shape and carry over any
+    # warnings collected before falling back to fixture data.
+    status["warnings"] = [*status.get("warnings", []), *(extra_warnings or [])]
     status["dart_available"] = False
     status["krx_available"] = False
     status["price_source"] = "fixture"
@@ -131,9 +138,11 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         raw_dir=raw_dir,
         page_limit=args.discovery_page_limit,
     )
-    print(
-        f"discovered {len(disclosures)} buyback disclosure rows from {disclosure_start} to {args.end}",
-        flush=True,
+    LOGGER.info(
+        "discovered %d buyback disclosure rows from %s to %s",
+        len(disclosures),
+        disclosure_start,
+        args.end,
     )
     warnings.extend(disclosure_warnings)
 
@@ -142,7 +151,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     company_by_stock: dict[str, Company] = {}
     needs_corp_master = stock_codes is not None or holding_stock_codes != "EVENTS"
     if needs_corp_master:
-        print("fetching OpenDART corp code master...", flush=True)
+        LOGGER.info("fetching OpenDART corp code master...")
         all_companies = fetch_corp_codes(api_key, raw_dir / "corp_codes.json")
         company_by_corp = {company.corp_code: company for company in all_companies}
         company_by_stock = {company.stock_code: company for company in all_companies}
@@ -170,10 +179,11 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
 
     years = [int(part) for part in args.years.split(",") if part]
     report_codes = parse_report_codes(args.report_codes)
-    print(
-        f"collecting structured OpenDART rows for {len(event_companies)} event companies, "
-        f"years={','.join(str(year) for year in years)}, report_codes={args.report_codes}",
-        flush=True,
+    LOGGER.info(
+        "collecting structured OpenDART rows for %d event companies, years=%s, report_codes=%s",
+        len(event_companies),
+        ",".join(str(year) for year in years),
+        args.report_codes,
     )
     live_event_companies, events, _, collection_warnings = collect_dart_dataset(
         api_key=api_key,
@@ -200,10 +210,11 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         )
         holding_companies = holding_companies[: args.max_holding_companies]
 
-    print(
-        f"collecting OpenDART holding snapshots for {len(holding_companies)} companies, "
-        f"years={','.join(str(year) for year in years)}, report_codes={args.report_codes}",
-        flush=True,
+    LOGGER.info(
+        "collecting OpenDART holding snapshots for %d companies, years=%s, report_codes=%s",
+        len(holding_companies),
+        ",".join(str(year) for year in years),
+        args.report_codes,
     )
     holdings, holding_warnings = collect_dart_holding_snapshots(
         api_key=api_key,
@@ -218,7 +229,8 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     live_companies = dedupe_companies([*holding_companies, *live_event_companies], sort_by_name=True)
     if not events and not holdings:
         warnings.append("OpenDART returned no live buyback rows for candidate companies; fixture data kept.")
-        return copy_fixture_dataset(fixture_dir, output_dir)
+        # Pass accumulated warnings along so they still reach data_status.json.
+        return copy_fixture_dataset(fixture_dir, output_dir, extra_warnings=warnings)
 
     live_companies, events, holdings = filter_live_dataset_to_supported_markets(
         live_companies,
@@ -238,6 +250,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     )
     warnings.extend(latest_price_warnings)
     status = {
+        # generated_at is intentionally UTC; business dates elsewhere use KST (Asia/Seoul).
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "dart_available": True,
         "krx_available": False,
@@ -269,7 +282,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
 
 def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir: Path) -> dict:
     if not existing_dataset_available(output_dir):
-        print("existing dataset is missing; running a full live build before incremental updates", flush=True)
+        LOGGER.info("existing dataset is missing; running a full live build before incremental updates")
         return build_live_dataset(args, api_key, output_dir)
 
     existing_companies = load_companies(output_dir / "companies.json")
@@ -302,24 +315,26 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
         raw_dir=raw_dir,
         page_limit=args.discovery_page_limit,
     )
-    print(
-        f"discovered {len(disclosures)} incremental buyback disclosure rows from "
-        f"{disclosure_start} to {args.end}",
-        flush=True,
+    LOGGER.info(
+        "discovered %d incremental buyback disclosure rows from %s to %s",
+        len(disclosures),
+        disclosure_start,
+        args.end,
     )
     warnings.extend(disclosure_warnings)
 
     event_companies = companies_from_disclosures(disclosures)
     years = [int(part) for part in args.years.split(",") if part]
     report_codes = parse_report_codes(args.report_codes)
+    holding_stock_codes = parse_holding_stock_codes(args.holding_stock_codes)
     live_event_companies: list[Company] = []
     new_events: list[BuybackEvent] = []
     refreshed_holdings: list[TreasuryHoldingSnapshot] = []
 
     if event_companies:
-        print(
-            f"collecting incremental structured OpenDART rows for {len(event_companies)} event companies",
-            flush=True,
+        LOGGER.info(
+            "collecting incremental structured OpenDART rows for %d event companies",
+            len(event_companies),
         )
         live_event_companies, new_events, _, collection_warnings = collect_dart_dataset(
             api_key=api_key,
@@ -334,13 +349,23 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
         )
         warnings.extend(collection_warnings)
 
-        print(
-            f"refreshing holding snapshots for {len(live_event_companies)} incremental event companies",
-            flush=True,
+    holding_companies = select_incremental_holding_companies(
+        args,
+        api_key,
+        holding_stock_codes,
+        live_event_companies,
+        raw_dir,
+        warnings,
+    )
+    if holding_companies:
+        LOGGER.info(
+            "refreshing holding snapshots for %d companies (holding scope: %s)",
+            len(holding_companies),
+            args.holding_stock_codes,
         )
         refreshed_holdings, holding_warnings = collect_dart_holding_snapshots(
             api_key=api_key,
-            companies=live_event_companies,
+            companies=holding_companies,
             years=years,
             raw_dir=raw_dir,
             report_codes=report_codes,
@@ -348,7 +373,12 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
         )
         warnings.extend(holding_warnings)
 
-    combined_companies = merge_companies(existing_companies, live_event_companies or event_companies)
+    # Scanned holding companies join the merge (lowest precedence) so all-market
+    # scans can introduce holding-only companies; events stay incrementally merged.
+    combined_companies = merge_companies(
+        merge_companies(holding_companies, existing_companies),
+        live_event_companies or event_companies,
+    )
     combined_events = merge_events(existing_events, new_events)
     combined_holdings = merge_holdings(existing_holdings, refreshed_holdings)
     live_companies, events, holdings = filter_live_dataset_to_supported_markets(
@@ -369,7 +399,7 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
     refreshed_reactions: list[PriceReaction] = []
     price_source = str(existing_status.get("price_source") or "missing")
     if price_refresh_events:
-        print(f"refreshing price reactions for {len(price_refresh_events)} incremental/recent events", flush=True)
+        LOGGER.info("refreshing price reactions for %d incremental/recent events", len(price_refresh_events))
         refreshed_reactions, price_warnings, price_source = build_price_reactions(
             args,
             price_refresh_events,
@@ -390,6 +420,7 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
     latest_prices = merge_latest_prices(existing_latest_prices, refreshed_latest_prices, live_companies)
 
     status = {
+        # generated_at is intentionally UTC; business dates elsewhere use KST (Asia/Seoul).
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "dart_available": True,
         "krx_available": False,
@@ -406,10 +437,11 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
         "latest_prices_count": len(latest_prices),
         "warnings": [
             "Incremental update merged with the committed dataset instead of rebuilding the full universe.",
-            "Holding snapshots are refreshed only for companies with incremental event disclosures; existing all-market snapshots are preserved.",
+            incremental_holding_scope_note(holding_stock_codes, args.holding_stock_codes),
             *warnings,
             f"OpenDART incremental disclosure window: {disclosure_start} to {args.end}.",
             f"OpenDART incremental event company scope: {len(event_companies)} companies.",
+            f"OpenDART incremental holding scan scope: {len(holding_companies)} companies.",
             f"OpenDART holding scan source: {args.holding_source}.",
             f"Listed issue master source: {args.listed_issue_source}.",
             "Price reactions use kis_proxy when configured; otherwise they remain missing.",
@@ -453,7 +485,8 @@ def main() -> None:
         help="stock_totals stores total and treasury share counts with fewer DART requests.",
     )
     parser.add_argument("--start", default="")
-    parser.add_argument("--end", default=datetime.now().strftime("%Y%m%d"))
+    # Disclosure windows follow Korean market dates, so the default end is KST today.
+    parser.add_argument("--end", default=kst_today().strftime("%Y%m%d"))
     parser.add_argument("--years", default=default_report_years())
     parser.add_argument("--report-codes", default="11011")
     parser.add_argument("--max-companies", type=int, default=12)
@@ -489,7 +522,15 @@ def main() -> None:
         default="naver",
         help="Current listed issue master used to keep tradable KOSPI/KOSDAQ stock issues.",
     )
+    parser.add_argument(
+        "--log-level",
+        default="INFO",
+        type=str.upper,
+        choices=["DEBUG", "INFO", "WARNING", "ERROR"],
+        help="Logging verbosity for pipeline progress output (stdout).",
+    )
     args = parser.parse_args()
+    configure_logging(args.log_level)
 
     output_dir = Path(args.output)
     api_key = os.environ.get("DART_API_KEY")
@@ -502,10 +543,24 @@ def main() -> None:
             status = build_live_dataset(args, api_key, output_dir)
     else:
         status = copy_fixture_dataset(Path(args.fixture_dir), output_dir)
-    print(
-        "generated buybacks dataset: "
-        f"{status['companies_count']} companies, {status['events_count']} events, "
-        f"{status['holdings_count']} holdings"
+    LOGGER.info(
+        "generated buybacks dataset: %d companies, %d events, %d holdings",
+        status["companies_count"],
+        status["events_count"],
+        status["holdings_count"],
+    )
+
+
+def configure_logging(level_name: str = "INFO") -> None:
+    """Route pipeline progress output through logging on stdout.
+
+    The message format stays bare so GitHub Actions logs keep the exact
+    human-readable lines that print() used to emit.
+    """
+    logging.basicConfig(
+        level=getattr(logging, level_name.upper(), logging.INFO),
+        stream=sys.stdout,
+        format="%(message)s",
     )
 
 
@@ -536,6 +591,53 @@ def select_holding_companies(
         return dedupe_companies_by_corp(all_companies or event_companies)
     return dedupe_companies_by_corp(
         [company_by_stock[code] for code in holding_stock_codes if code in company_by_stock]
+    )
+
+
+def select_incremental_holding_companies(
+    args: argparse.Namespace,
+    api_key: str,
+    holding_stock_codes: set[str] | None | str,
+    live_event_companies: list[Company],
+    raw_dir: Path,
+    warnings: list[str],
+) -> list[Company]:
+    """Resolve the incremental holding-scan scope from --holding-stock-codes.
+
+    EVENTS keeps the historical incremental behavior (only companies with fresh
+    event disclosures). ALL or explicit stock codes fetch the corp code master
+    so full-universe holding refreshes can run without abandoning the
+    incremental (merge-based) event path.
+    """
+    if holding_stock_codes == "EVENTS":
+        holding_companies = select_holding_companies("EVENTS", None, live_event_companies, {})
+    else:
+        LOGGER.info("fetching OpenDART corp code master for the incremental holding scan...")
+        all_companies = fetch_corp_codes(api_key, raw_dir / "corp_codes.json")
+        company_by_stock = {company.stock_code: company for company in all_companies}
+        holding_companies = select_holding_companies(
+            holding_stock_codes,
+            all_companies,
+            live_event_companies,
+            company_by_stock,
+        )
+    if args.max_holding_companies and len(holding_companies) > args.max_holding_companies:
+        warnings.append(
+            f"Holding company list truncated from {len(holding_companies)} to {args.max_holding_companies}."
+        )
+        holding_companies = holding_companies[: args.max_holding_companies]
+    return holding_companies
+
+
+def incremental_holding_scope_note(holding_stock_codes: set[str] | None | str, raw_value: str) -> str:
+    if holding_stock_codes == "EVENTS":
+        return (
+            "Holding snapshots are refreshed only for companies with incremental event disclosures; "
+            "existing all-market snapshots are preserved."
+        )
+    return (
+        f"Holding snapshots are refreshed for the {raw_value.strip().upper()} holding scope and merged "
+        "with existing snapshots; events remain incrementally merged."
     )
 
 
@@ -573,7 +675,7 @@ def build_price_reactions(
 
     kis_proxy_url = os.environ.get("KIS_PROXY_URL", "").strip()
     if kis_proxy_url:
-        print("collecting price reactions from kis_proxy...", flush=True)
+        LOGGER.info("collecting price reactions from kis_proxy...")
         reactions, warnings = calculate_kis_proxy_price_reactions(
             events,
             companies,
@@ -600,7 +702,7 @@ def build_latest_prices(
 
     kis_proxy_url = os.environ.get("KIS_PROXY_URL", "").strip()
     if kis_proxy_url:
-        print(f"collecting latest prices from kis_proxy for {len(codes)} stocks...", flush=True)
+        LOGGER.info("collecting latest prices from kis_proxy for %d stocks...", len(codes))
         snapshots, warnings = calculate_kis_proxy_latest_prices(
             codes,
             base_url=kis_proxy_url,
@@ -678,7 +780,10 @@ def merge_holdings(
     existing: list[TreasuryHoldingSnapshot],
     incoming: list[TreasuryHoldingSnapshot],
 ) -> list[TreasuryHoldingSnapshot]:
-    return dedupe_holdings([*existing, *incoming])
+    # Incoming (freshly scanned) snapshots go first: dedupe_holdings keeps the
+    # first record among identical dedupe keys (stock, date, year, report, kind),
+    # so a refresh can correct values on rows that already exist.
+    return dedupe_holdings([*incoming, *existing])
 
 
 def merge_price_reactions(
@@ -770,10 +875,10 @@ def fetch_listed_issues_for_build(
     if args.listed_issue_source == "none":
         warnings.append("Listed issue master disabled; falling back to OpenDART market classification.")
         return []
-    print("fetching current KOSPI/KOSDAQ listed issue master...", flush=True)
+    LOGGER.info("fetching current KOSPI/KOSDAQ listed issue master...")
     issues = fetch_naver_listed_issues(output=raw_dir / "listed_issues_naver.json")
     tradable = [issue for issue in issues if issue.is_trading and issue.market in SUPPORTED_MARKETS]
-    print(f"fetched {len(tradable)} currently trading listed issues", flush=True)
+    LOGGER.info("fetched %d currently trading listed issues", len(tradable))
     return tradable
 
 
@@ -1055,8 +1160,8 @@ def dedupe_companies_by_corp(companies: list[Company]) -> list[Company]:
 
 
 def default_report_years() -> str:
-    now = datetime.now()
-    return str(now.year - 1)
+    # Report years follow the Korean disclosure calendar.
+    return str(kst_today().year - 1)
 
 
 def parse_report_codes(value: str) -> list[str]:

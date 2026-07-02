@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import os
 import sys
 import time
@@ -53,6 +54,8 @@ else:
     from .models import BuybackEvent, Company, PriceReaction, to_jsonable
 
 
+LOGGER = logging.getLogger(__name__)
+
 BACKFILL_VERSION = 1
 DATE_FORMAT = "%Y%m%d"
 
@@ -102,7 +105,7 @@ def collect_backfill(args: argparse.Namespace) -> dict[str, Any]:
         report_codes = parse_report_codes(args.report_codes)
 
         for index, chunk in enumerate(chunks, start=1):
-            print(f"collecting backfill chunk {index}/{len(chunks)}: {chunk.start}..{chunk.end}", flush=True)
+            LOGGER.info("collecting backfill chunk %d/%d: %s..%s", index, len(chunks), chunk.start, chunk.end)
             disclosures, disclosure_warnings = fetch_buyback_disclosures(
                 api_key=api_key,
                 bgn_de=chunk.start,
@@ -138,7 +141,7 @@ def collect_backfill(args: argparse.Namespace) -> dict[str, Any]:
                 all_events.extend(events)
 
             progress = round(index / len(chunks) * 100, 2)
-            print(f"backfill progress {progress:.2f}%", flush=True)
+            LOGGER.info("backfill progress %.2f%%", progress)
             write_status(
                 status_path,
                 run_status(
@@ -180,10 +183,12 @@ def collect_backfill(args: argparse.Namespace) -> dict[str, Any]:
         write_json(run_dir / "events.json", to_jsonable(events))
         write_json(run_dir / "disclosures.json", all_disclosures)
         write_status(status_path, status)
-        print(
-            f"backfill completed in {duration_seconds}s: "
-            f"{len(events)} collected, {new_count} new, {duplicate_count} duplicate",
-            flush=True,
+        LOGGER.info(
+            "backfill completed in %ss: %d collected, %d new, %d duplicate",
+            duration_seconds,
+            len(events),
+            new_count,
+            duplicate_count,
         )
         return status
     except Exception as exc:  # noqa: BLE001 - status file must capture collector failure.
@@ -265,7 +270,7 @@ def merge_backfill(args: argparse.Namespace) -> dict[str, Any]:
         "merge_duplicate_events_count": duplicate_count,
     }
     write_status(status_path, merged_run_status)
-    print(f"merged backfill {args.run_id}: {new_count} new, {duplicate_count} duplicate", flush=True)
+    LOGGER.info("merged backfill %s: %d new, %d duplicate", args.run_id, new_count, duplicate_count)
     return merged_run_status
 
 
@@ -419,8 +424,10 @@ def main() -> None:
 
     args = parser.parse_args()
     status = args.func(args)
+    # The final status JSON stays on plain stdout as machine-readable output.
     print(json.dumps(status, ensure_ascii=False, indent=2), flush=True)
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, stream=sys.stdout, format="%(message)s")
     main()

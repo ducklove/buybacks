@@ -21,6 +21,8 @@ EVENT_TYPES = {
 }
 SOURCES = {"DART", "KRX", "MANUAL", "DERIVED"}
 QUALITIES = {"complete", "partial", "missing"}
+HOLDING_FLOW_FIELDS = ("beginning_qty", "acquired_qty", "disposed_qty", "retired_qty", "ending_qty")
+MAX_PRINTED_WARNINGS = 50
 
 
 def load(path: Path) -> Any:
@@ -33,7 +35,13 @@ def load_optional(path: Path, fallback: Any) -> Any:
     return load(path)
 
 
-def validate_dataset(data_dir: Path) -> list[str]:
+def validate_dataset(data_dir: Path) -> tuple[list[str], list[str]]:
+    """Validate the built dataset.
+
+    Returns (errors, warnings). Errors are structural problems that must fail
+    CI. Warnings are data-quality findings (e.g. holding flow mismatches that
+    exist in the DART source itself) and must not break the build.
+    """
     errors: list[str] = []
     companies = load(data_dir / "companies.json")
     events = load(data_dir / "events.json")
@@ -104,20 +112,52 @@ def validate_dataset(data_dir: Path) -> list[str]:
     for key, expected in expected_counts.items():
         if status.get(key) != expected:
             errors.append(f"data_status.{key}={status.get(key)} expected {expected}")
-    return errors
+
+    warnings = holding_flow_warnings(holdings)
+    return errors, warnings
+
+
+def holding_flow_warnings(holdings: list[dict]) -> list[str]:
+    """Report snapshots where beginning + acquired - disposed - retired != ending.
+
+    Only snapshots with every flow field present and numeric are checked. The
+    DART source data itself is occasionally inconsistent, so violations are
+    reported as warnings and must never fail validation.
+    """
+    warnings: list[str] = []
+    for index, snapshot in enumerate(holdings):
+        values = [snapshot.get(field) for field in HOLDING_FLOW_FIELDS]
+        if any(value is None or isinstance(value, bool) or not isinstance(value, (int, float)) for value in values):
+            continue
+        beginning, acquired, disposed, retired, ending = values
+        expected = beginning + acquired - disposed - retired
+        if expected != ending:
+            warnings.append(
+                f"holding_snapshots[{index}] {snapshot.get('stock_code')} {snapshot.get('as_of_date')} "
+                f"({snapshot.get('report_code')}, {snapshot.get('stock_kind') or 'unknown kind'}) flow mismatch: "
+                f"beginning+acquired-disposed-retired={expected:,} but ending_qty={ending:,} "
+                f"(diff {ending - expected:+,})"
+            )
+    return warnings
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("data_dir", type=Path, nargs="?", default=Path("public/data/buybacks"))
     args = parser.parse_args()
-    errors = validate_dataset(args.data_dir)
+    errors, warnings = validate_dataset(args.data_dir)
+    if warnings:
+        print(f"Dataset validation warnings ({len(warnings)}, non-blocking):")
+        for warning in warnings[:MAX_PRINTED_WARNINGS]:
+            print(f"- {warning}")
+        if len(warnings) > MAX_PRINTED_WARNINGS:
+            print(f"- ... and {len(warnings) - MAX_PRINTED_WARNINGS} more warnings")
     if errors:
         print("Dataset validation failed:")
         for error in errors:
             print(f"- {error}")
         sys.exit(1)
-    print(f"Dataset validation passed for {args.data_dir}")
+    print(f"Dataset validation passed for {args.data_dir} ({len(warnings)} warnings)")
 
 
 if __name__ == "__main__":

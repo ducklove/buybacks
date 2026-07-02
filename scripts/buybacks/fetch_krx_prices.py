@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import os
 import sys
 from dataclasses import dataclass
@@ -14,10 +15,12 @@ from urllib.request import Request, urlopen
 if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parents[2]))
     from scripts.buybacks.models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction
-    from scripts.buybacks.parsers import normalize_date, parse_number
+    from scripts.buybacks.parsers import kst_today, normalize_date, parse_number
 else:
     from .models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction
-    from .parsers import normalize_date, parse_number
+    from .parsers import kst_today, normalize_date, parse_number
+
+LOGGER = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -147,7 +150,7 @@ def calculate_kis_proxy_latest_prices(
     as_of: date | None = None,
 ) -> tuple[list[LatestPriceSnapshot], list[str]]:
     client = KISProxyPriceClient(base_url=base_url, token=token)
-    end_date = as_of or date.today()
+    end_date = as_of or kst_today()  # Korean trading dates, so "today" is KST.
     start_date = end_date - timedelta(days=lookback_days)
     snapshots: list[LatestPriceSnapshot] = []
     warnings: list[str] = []
@@ -333,7 +336,7 @@ def calculate_market_return(
 def price_window(events: list[BuybackEvent]) -> tuple[date, date]:
     dates = [parse_iso_date(event.disclosure_date) for event in events]
     start_date = min(dates) - timedelta(days=10)
-    end_date = min(max(dates) + timedelta(days=140), date.today())
+    end_date = min(max(dates) + timedelta(days=140), kst_today())  # Korean trading dates, so "today" is KST.
     return start_date, end_date
 
 
@@ -398,12 +401,13 @@ def main() -> None:
     if not os.environ.get("KIS_PROXY_URL"):
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(args.fixtures.read_text(encoding="utf-8"), encoding="utf-8")
-        print("KIS_PROXY_URL not set; copied fixture price reactions")
+        LOGGER.info("KIS_PROXY_URL not set; copied fixture price reactions")
         return
-    print("Use build_buybacks_dataset.py to calculate event-specific reactions from kis_proxy.")
+    LOGGER.info("Use build_buybacks_dataset.py to calculate event-specific reactions from kis_proxy.")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(args.fixtures.read_text(encoding="utf-8"), encoding="utf-8")
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, stream=sys.stdout, format="%(message)s")
     main()
