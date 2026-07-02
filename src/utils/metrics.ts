@@ -35,7 +35,9 @@ export const DEFAULT_FILTERS: Filters = {
 export function enrichEvents(dataset: BuybacksDataset): EnrichedEvent[] {
   const companyByStock = new Map(dataset.companies.map((company) => [company.stock_code, company]));
   const latestHoldingByStock = latestHoldingMap(dataset.holdingSnapshots);
-  const reactionByEvent = new Map(dataset.priceReactions.map((reaction) => [reaction.event_id, reaction]));
+  const reactionByEvent = new Map(
+    dataset.priceReactions.map((reaction) => [reaction.event_id, reaction])
+  );
   const latestPriceByStock = latestPriceMap(dataset.latestPrices);
 
   return dataset.events.map((event) => ({
@@ -47,9 +49,7 @@ export function enrichEvents(dataset: BuybacksDataset): EnrichedEvent[] {
   }));
 }
 
-export function latestPriceMap(
-  prices: LatestPriceSnapshot[]
-): Map<string, LatestPriceSnapshot> {
+export function latestPriceMap(prices: LatestPriceSnapshot[]): Map<string, LatestPriceSnapshot> {
   const byStock = new Map<string, LatestPriceSnapshot>();
   prices.forEach((price) => {
     const previous = byStock.get(price.stock_code);
@@ -69,7 +69,8 @@ export function latestHoldingMap(
     if (
       !previous ||
       previous.as_of_date < snapshot.as_of_date ||
-      (previous.as_of_date === snapshot.as_of_date && holdingKindPriority(snapshot) > holdingKindPriority(previous))
+      (previous.as_of_date === snapshot.as_of_date &&
+        holdingKindPriority(snapshot) > holdingKindPriority(previous))
     ) {
       byStock.set(snapshot.stock_code, snapshot);
     }
@@ -145,10 +146,15 @@ export function filterEvents(events: EnrichedEvent[], filters: Filters): Enriche
 }
 
 export function availableYears(events: EnrichedEvent[]): string[] {
-  return Array.from(new Set(events.map((event) => event.disclosure_date.slice(0, 4)))).sort().reverse();
+  return Array.from(new Set(events.map((event) => event.disclosure_date.slice(0, 4))))
+    .sort()
+    .reverse();
 }
 
-export function buildKpis(events: EnrichedEvent[], holdings: TreasuryHoldingSnapshot[]): KpiMetric[] {
+export function buildKpis(
+  events: EnrichedEvent[],
+  holdings: TreasuryHoldingSnapshot[]
+): KpiMetric[] {
   const cutoff = new Date();
   cutoff.setMonth(cutoff.getMonth() - KPI_LOOKBACK_MONTHS);
   const recent = events.filter((event) => new Date(event.disclosure_date) >= cutoff);
@@ -237,7 +243,10 @@ function holdingSummary(holding: TreasuryHoldingSnapshot) {
     .join(" ");
 }
 
-export function returnDistribution(reactions: PriceReaction[], window: ReturnWindow = 20): ChartDatum[] {
+export function returnDistribution(
+  reactions: PriceReaction[],
+  window: ReturnWindow = 20
+): ChartDatum[] {
   const buckets = [
     { label: "< -10%", min: -Infinity, max: -0.1 },
     { label: "-10~-5%", min: -0.1, max: -0.05 },
@@ -248,12 +257,10 @@ export function returnDistribution(reactions: PriceReaction[], window: ReturnWin
   ];
   return buckets.map((bucket) => ({
     label: bucket.label,
-    value: reactions.filter(
-      (reaction) => {
-        const value = relativeReturn(reaction, window);
-        return value !== null && value >= bucket.min && value < bucket.max;
-      }
-    ).length
+    value: reactions.filter((reaction) => {
+      const value = relativeReturn(reaction, window);
+      return value !== null && value >= bucket.min && value < bucket.max;
+    }).length
   }));
 }
 

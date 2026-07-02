@@ -39,9 +39,7 @@ export function displaySimpleReaction(
   ];
   const available = candidates.find(
     (candidate) =>
-      candidate.value !== null &&
-      candidate.value !== undefined &&
-      !Number.isNaN(candidate.value)
+      candidate.value !== null && candidate.value !== undefined && !Number.isNaN(candidate.value)
   );
   if (available) {
     return { ...available, quality: reaction.data_quality };

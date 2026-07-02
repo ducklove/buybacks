@@ -25,8 +25,8 @@ export function Methodology({ status }: MethodologyProps) {
         <article>
           <h3>kis_proxy</h3>
           <p>
-            수익률 산출을 위한 일별 주가·지수 데이터를 제공합니다. 프록시를 사용할 수 없는 경우
-            가격 반응 지표는 비공식 대체값으로 채우지 않고 null로 남겨둡니다.
+            수익률 산출을 위한 일별 주가·지수 데이터를 제공합니다. 프록시를 사용할 수 없는 경우 가격
+            반응 지표는 비공식 대체값으로 채우지 않고 null로 남겨둡니다.
           </p>
         </article>
         <article>

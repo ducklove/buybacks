@@ -54,7 +54,8 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
       errors.push(`events[${index}] unknown stock_code ${event.stock_code}`);
     }
     if (!isEventType(event.event_type)) errors.push(`events[${index}] invalid event_type`);
-    if (!ISO_DATE.test(event.disclosure_date)) errors.push(`events[${index}] invalid disclosure_date`);
+    if (!ISO_DATE.test(event.disclosure_date))
+      errors.push(`events[${index}] invalid disclosure_date`);
     if (!isSource(event.source)) errors.push(`events[${index}] invalid source`);
   });
 
@@ -62,7 +63,8 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
     if (!companyCodes.has(snapshot.stock_code)) {
       errors.push(`holdingSnapshots[${index}] unknown stock_code ${snapshot.stock_code}`);
     }
-    if (!ISO_DATE.test(snapshot.as_of_date)) errors.push(`holdingSnapshots[${index}] invalid as_of_date`);
+    if (!ISO_DATE.test(snapshot.as_of_date))
+      errors.push(`holdingSnapshots[${index}] invalid as_of_date`);
     if (
       snapshot.treasury_ratio !== null &&
       (snapshot.treasury_ratio < 0 || snapshot.treasury_ratio > 1)

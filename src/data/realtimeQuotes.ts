@@ -103,7 +103,11 @@ function naverFinanceProxyBaseUrl() {
   if (!baseUrl) {
     return null;
   }
-  if (typeof window !== "undefined" && window.location.protocol === "https:" && baseUrl.startsWith("http://")) {
+  if (
+    typeof window !== "undefined" &&
+    window.location.protocol === "https:" &&
+    baseUrl.startsWith("http://")
+  ) {
     return null;
   }
   return baseUrl;

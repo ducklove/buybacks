@@ -192,7 +192,9 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
       </div>
       <div className="table-pagination" aria-label="이벤트 탐색기 페이지">
         <div className="pagination-summary">
-          {sortedEvents.length === 0 ? "0건" : `${startIndex + 1}-${endIndex} / ${sortedEvents.length}건`}
+          {sortedEvents.length === 0
+            ? "0건"
+            : `${startIndex + 1}-${endIndex} / ${sortedEvents.length}건`}
         </div>
         <label className="page-size-control">
           페이지당
@@ -298,7 +300,10 @@ function HoldingBeforeCell({ event }: { event: EnrichedEvent }) {
   }
   if (event.holding?.treasury_ratio !== null && event.holding?.treasury_ratio !== undefined) {
     return (
-      <div className="stacked-value" title="정기보고서 기준 보유비율입니다. 공시일 직전 보유비율과 다를 수 있습니다.">
+      <div
+        className="stacked-value"
+        title="정기보고서 기준 보유비율입니다. 공시일 직전 보유비율과 다를 수 있습니다."
+      >
         <span>{formatPercent(event.holding.treasury_ratio)}</span>
         <small>{event.holding.as_of_date}</small>
       </div>
@@ -337,7 +342,11 @@ function SortableHeader({
   const ariaSort = active ? (ascending ? "ascending" : "descending") : "none";
   return (
     <th className={className} aria-sort={ariaSort}>
-      <button className={active ? "sort-button active-sort" : "sort-button"} type="button" onClick={onClick}>
+      <button
+        className={active ? "sort-button active-sort" : "sort-button"}
+        type="button"
+        onClick={onClick}
+      >
         {children}
         <span aria-hidden="true" className="sort-indicator">
           {active ? (ascending ? "↑" : "↓") : ""}

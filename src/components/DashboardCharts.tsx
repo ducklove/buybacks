@@ -32,7 +32,10 @@ export function DashboardCharts({ events, holdings, reactions }: DashboardCharts
           }))}
         />
       </ChartPanel>
-      <ChartPanel title="보유비율 상위 종목" summary="최근 정기보고서 기준 자기주식 보유비율입니다.">
+      <ChartPanel
+        title="보유비율 상위 종목"
+        summary="최근 정기보고서 기준 자기주식 보유비율입니다."
+      >
         <HorizontalBars data={topHoldings(holdings, 8)} percent />
       </ChartPanel>
       <ChartPanel

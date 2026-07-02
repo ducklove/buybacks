@@ -1,6 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { latestMarketCap, marketCapFrom, plannedAcquisitionStake, plannedEventStake } from "./marketCap";
-import type { BuybackEvent, LatestPriceSnapshot, PriceReaction, TreasuryHoldingSnapshot } from "../types/buybacks";
+import {
+  latestMarketCap,
+  marketCapFrom,
+  plannedAcquisitionStake,
+  plannedEventStake
+} from "./marketCap";
+import type {
+  BuybackEvent,
+  LatestPriceSnapshot,
+  PriceReaction,
+  TreasuryHoldingSnapshot
+} from "../types/buybacks";
 
 const holding: TreasuryHoldingSnapshot = {
   corp_code: "00111722",
@@ -58,7 +68,9 @@ describe("market cap utilities", () => {
   it("uses the latest reaction with a close", () => {
     const stale = { ...reaction, event_id: "old", event_date: "2026-06-10", close_t0: 49_000 };
     const missing = { ...reaction, event_id: "newer", event_date: "2026-06-18", close_t0: null };
-    expect(latestMarketCap(undefined, [stale, missing, reaction], holding).amount).toBe(50_700 * 567_085_734);
+    expect(latestMarketCap(undefined, [stale, missing, reaction], holding).amount).toBe(
+      50_700 * 567_085_734
+    );
   });
 
   it("prefers latest prices over event reaction closes", () => {

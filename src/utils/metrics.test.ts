@@ -11,7 +11,12 @@ import {
   returnDistribution,
   topHoldings
 } from "./metrics";
-import type { EnrichedEvent, EventType, PriceReaction, TreasuryHoldingSnapshot } from "../types/buybacks";
+import type {
+  EnrichedEvent,
+  EventType,
+  PriceReaction,
+  TreasuryHoldingSnapshot
+} from "../types/buybacks";
 
 const priceReaction = (
   event_id: string,
@@ -32,7 +37,8 @@ const priceReaction = (
   max_drawdown_60d: null,
   market_return_5d: abnormal_return_5d !== null ? 0 : null,
   abnormal_return_5d,
-  market_return_20d: return_20d !== null && abnormal_return_20d !== null ? return_20d - abnormal_return_20d : null,
+  market_return_20d:
+    return_20d !== null && abnormal_return_20d !== null ? return_20d - abnormal_return_20d : null,
   abnormal_return_20d,
   market_return_60d: abnormal_return_60d !== null ? 0 : null,
   abnormal_return_60d,

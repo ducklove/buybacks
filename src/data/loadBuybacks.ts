@@ -46,14 +46,15 @@ async function fetchOptionalJson<T>(fileName: string, fallback: T): Promise<T> {
 }
 
 export async function loadBuybacksDataset(): Promise<BuybacksDataset> {
-  const [companies, events, holdingSnapshots, priceReactions, latestPrices, status] = await Promise.all([
-    fetchJson<Company[]>("companies.json"),
-    fetchJson<BuybackEvent[]>("events.json"),
-    fetchJson<TreasuryHoldingSnapshot[]>("holding_snapshots.json"),
-    fetchJson<PriceReaction[]>("price_reactions.json"),
-    fetchOptionalJson<LatestPriceSnapshot[]>("latest_prices.json", []),
-    fetchJson<DataStatus>("data_status.json")
-  ]);
+  const [companies, events, holdingSnapshots, priceReactions, latestPrices, status] =
+    await Promise.all([
+      fetchJson<Company[]>("companies.json"),
+      fetchJson<BuybackEvent[]>("events.json"),
+      fetchJson<TreasuryHoldingSnapshot[]>("holding_snapshots.json"),
+      fetchJson<PriceReaction[]>("price_reactions.json"),
+      fetchOptionalJson<LatestPriceSnapshot[]>("latest_prices.json", []),
+      fetchJson<DataStatus>("data_status.json")
+    ]);
 
   const dataset: BuybacksDataset = {
     companies,

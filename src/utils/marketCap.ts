@@ -21,7 +21,8 @@ export function marketCapFrom(
   const issuedShares = holding?.issued_shares ?? issuedSharesFrom(price);
   const providedMarketCap = marketCapAmountFrom(price);
   return {
-    amount: providedMarketCap ?? (close !== null && issuedShares !== null ? close * issuedShares : null),
+    amount:
+      providedMarketCap ?? (close !== null && issuedShares !== null ? close * issuedShares : null),
     close,
     issuedShares,
     priceDate: priceDateFrom(price)
@@ -53,7 +54,10 @@ export function plannedAcquisitionStake(
   return plannedAmount / marketCap;
 }
 
-export function plannedEventStake(event: BuybackEvent, marketCap: number | null | undefined): number | null {
+export function plannedEventStake(
+  event: BuybackEvent,
+  marketCap: number | null | undefined
+): number | null {
   if (event.event_type === "retirement") {
     return event.planned_share_ratio_common ?? null;
   }

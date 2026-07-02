@@ -51,8 +51,9 @@ export const CompanyDetail = memo(function CompanyDetail({
   );
   const companyHoldings = useMemo(
     () =>
-      dedupeHoldingTimeline(holdings.filter((snapshot) => snapshot.stock_code === company?.stock_code))
-        .sort((a, b) => a.as_of_date.localeCompare(b.as_of_date)),
+      dedupeHoldingTimeline(
+        holdings.filter((snapshot) => snapshot.stock_code === company?.stock_code)
+      ).sort((a, b) => a.as_of_date.localeCompare(b.as_of_date)),
     [company?.stock_code, holdings]
   );
   const companyReactions = useMemo(
@@ -60,7 +61,9 @@ export const CompanyDetail = memo(function CompanyDetail({
     [company?.stock_code, priceReactions]
   );
   const latestPriceByStock = useMemo(() => latestPriceMap(latestPrices), [latestPrices]);
-  const [runtimePricesByStock, setRuntimePricesByStock] = useState<Record<string, LatestPriceSnapshot>>({});
+  const [runtimePricesByStock, setRuntimePricesByStock] = useState<
+    Record<string, LatestPriceSnapshot>
+  >({});
   const [priceLookupMisses, setPriceLookupMisses] = useState<Record<string, true>>({});
   const staticLatestPrice = company ? latestPriceByStock.get(company.stock_code) : undefined;
   const runtimeLatestPrice = company ? runtimePricesByStock[company.stock_code] : undefined;
@@ -129,7 +132,10 @@ export const CompanyDetail = memo(function CompanyDetail({
         </div>
         <label className="compact-select">
           종목
-          <select value={company.stock_code} onChange={(event) => onSelectStock(event.target.value)}>
+          <select
+            value={company.stock_code}
+            onChange={(event) => onSelectStock(event.target.value)}
+          >
             {companies.map((item) => (
               <option value={item.stock_code} key={item.stock_code}>
                 {item.corp_name} {item.stock_code}
@@ -240,7 +246,10 @@ function CurrentPrice({
   );
 }
 
-function latestPriceChange(value: number | null | undefined, changeCode: string | null | undefined) {
+function latestPriceChange(
+  value: number | null | undefined,
+  changeCode: string | null | undefined
+) {
   if (value === null || value === undefined || Number.isNaN(value)) {
     return { className: "price-change-flat", label: "-" };
   }
@@ -248,11 +257,16 @@ function latestPriceChange(value: number | null | undefined, changeCode: string 
   if (codeDisplay) {
     return {
       className: codeDisplay.className,
-      label: codeDisplay.symbol ? `${codeDisplay.symbol} ${formatSignedPercent(value)}` : formatSignedPercent(value)
+      label: codeDisplay.symbol
+        ? `${codeDisplay.symbol} ${formatSignedPercent(value)}`
+        : formatSignedPercent(value)
     };
   }
   if (value <= -0.3) {
-    return { className: "price-change-down limit-change", label: `▼ ${formatSignedPercent(value)}` };
+    return {
+      className: "price-change-down limit-change",
+      label: `▼ ${formatSignedPercent(value)}`
+    };
   }
   if (value < 0) {
     return { className: "price-change-down", label: `▽ ${formatSignedPercent(value)}` };
@@ -299,13 +313,18 @@ const DisclosureReaction = memo(function DisclosureReaction({ event }: { event: 
       <span>{relative.label}</span>
       <strong>{formatSignedPercent(relative.value)}</strong>
       <small>
-        {DATA_QUALITY_LABELS[relative.quality]} · 단순 {simple.label}: {formatSignedPercent(simple.value)}
+        {DATA_QUALITY_LABELS[relative.quality]} · 단순 {simple.label}:{" "}
+        {formatSignedPercent(simple.value)}
       </small>
     </div>
   );
 });
 
-const DisclosureSourceLink = memo(function DisclosureSourceLink({ event }: { event: EnrichedEvent }) {
+const DisclosureSourceLink = memo(function DisclosureSourceLink({
+  event
+}: {
+  event: EnrichedEvent;
+}) {
   const url = event.source_url ?? dartUrl(event.rcept_no);
   if (!url) {
     return <span className="muted">원문 없음</span>;
@@ -357,10 +376,15 @@ function eventDetailLines(event: EnrichedEvent, latestPrice: LatestPriceSnapshot
     );
   }
 
-  const marketCap = marketCapFrom(latestPrice ?? event.latestPrice ?? event.priceReaction, event.holding);
+  const marketCap = marketCapFrom(
+    latestPrice ?? event.latestPrice ?? event.priceReaction,
+    event.holding
+  );
   const stake = plannedEventStake(event, marketCap.amount);
   if (stake !== null) {
-    lines.push(`${event.event_type === "retirement" ? "소각지분" : "예정취득지분"} ${formatPercent(stake, 2)}`);
+    lines.push(
+      `${event.event_type === "retirement" ? "소각지분" : "예정취득지분"} ${formatPercent(stake, 2)}`
+    );
   }
   if (event.event_type === "retirement" && event.planned_share_ratio_other != null) {
     lines.push(`종류주식 소각지분 ${formatPercent(event.planned_share_ratio_other, 2)}`);
@@ -369,7 +393,9 @@ function eventDetailLines(event: EnrichedEvent, latestPrice: LatestPriceSnapshot
 }
 
 function formatHoldingLabel(snapshot: TreasuryHoldingSnapshot) {
-  return snapshot.stock_kind ? `${snapshot.as_of_date} ${snapshot.stock_kind}` : snapshot.as_of_date;
+  return snapshot.stock_kind
+    ? `${snapshot.as_of_date} ${snapshot.stock_kind}`
+    : snapshot.as_of_date;
 }
 
 function holdingBarWidth(ratio: number | null, maxRatio: number) {

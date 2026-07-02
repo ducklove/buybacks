@@ -16,9 +16,7 @@ export function FilterBar({ filters, years, onChange }: FilterBarProps) {
     const selected = filters.eventTypes.includes(type);
     setFilter(
       "eventTypes",
-      selected
-        ? filters.eventTypes.filter((item) => item !== type)
-        : [...filters.eventTypes, type]
+      selected ? filters.eventTypes.filter((item) => item !== type) : [...filters.eventTypes, type]
     );
   };
   const eventTypeSummary =
@@ -62,7 +60,11 @@ export function FilterBar({ filters, years, onChange }: FilterBarProps) {
             onChange={(event) => setFilter("search", event.target.value)}
           />
         </label>
-        <button className="secondary-button" type="button" onClick={() => onChange(DEFAULT_FILTERS)}>
+        <button
+          className="secondary-button"
+          type="button"
+          onClick={() => onChange(DEFAULT_FILTERS)}
+        >
           초기화
         </button>
         <div className="event-type-filter">
