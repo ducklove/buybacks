@@ -14240,7 +14240,7 @@
   {
     "corp_code": "00620558",
     "stock_code": "195990",
-    "corp_name": "에이비프로바이오",
+    "corp_name": "루트K",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -34254,6 +34254,24 @@
     "source_rcept_no": "20260609000080"
   },
   {
+    "corp_code": "00108913",
+    "stock_code": "019685",
+    "corp_name": "대교우B",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 5652913,
+    "issued_shares": 19426990,
+    "treasury_ratio": 0.29098244246792737,
+    "floating_shares": 13774077,
+    "source_rcept_no": "20260609000080"
+  },
+  {
     "corp_code": "00159731",
     "stock_code": "019660",
     "corp_name": "글로본",
@@ -40338,24 +40356,6 @@
     "source_rcept_no": "20260326000328"
   },
   {
-    "corp_code": "00109514",
-    "stock_code": "004870",
-    "corp_name": "티웨이홀딩스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 509,
-    "issued_shares": 113163494,
-    "treasury_ratio": 4.497916969583849e-06,
-    "floating_shares": 113162985,
-    "source_rcept_no": "20260323001343"
-  },
-  {
     "corp_code": "00118266",
     "stock_code": "004840",
     "corp_name": "DRB동일",
@@ -41850,6 +41850,24 @@
     "source_rcept_no": "20260323001556"
   },
   {
+    "corp_code": "00152880",
+    "stock_code": "003075",
+    "corp_name": "코오롱글로벌우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 12360,
+    "issued_shares": 740737,
+    "treasury_ratio": 0.016686084264725537,
+    "floating_shares": 728377,
+    "source_rcept_no": "20260323001556"
+  },
+  {
     "corp_code": "00101044",
     "stock_code": "003060",
     "corp_name": "에이프로젠바이오로직스",
@@ -41920,24 +41938,6 @@
     "treasury_ratio": null,
     "floating_shares": 98664671,
     "source_rcept_no": "20260316001273"
-  },
-  {
-    "corp_code": "00106313",
-    "stock_code": "002995",
-    "corp_name": "금호건설우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2437,
-    "issued_shares": 292266,
-    "treasury_ratio": 0.008338294567277754,
-    "floating_shares": 289829,
-    "source_rcept_no": "20260318001135"
   },
   {
     "corp_code": "00106313",
@@ -42675,6 +42675,24 @@
     "issued_shares": 12907680,
     "treasury_ratio": 0.0006547264884161988,
     "floating_shares": 12899229,
+    "source_rcept_no": "20260323001718"
+  },
+  {
+    "corp_code": "00152862",
+    "stock_code": "002025",
+    "corp_name": "코오롱우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 2716,
+    "issued_shares": 1160437,
+    "treasury_ratio": 0.0023404975884085046,
+    "floating_shares": 1157721,
     "source_rcept_no": "20260323001718"
   },
   {
