@@ -1,3 +1,4 @@
+import { KRW_EOK, KRW_JO } from "../constants";
 import type { DataQuality, EventType, Market } from "../types/buybacks";
 
 export const EVENT_TYPE_LABELS: Record<EventType, string> = {
@@ -30,16 +31,16 @@ export function formatNumber(value: number | null | undefined): string {
 
 export function formatKRW(value: number | null | undefined): string {
   if (value === null || value === undefined || Number.isNaN(value)) return "-";
-  return `${formatDecimal(value / 1_0000_0000, 2)}억`;
+  return `${formatDecimal(value / KRW_EOK, 2)}억`;
 }
 
 export function formatMarketCapKRW(value: number | null | undefined): string {
   if (value === null || value === undefined || Number.isNaN(value)) return "-";
   const abs = Math.abs(value);
-  if (abs >= 1_0000_0000_0000) {
-    return `${formatNumber(Math.round((value / 1_0000_0000_0000) * 10) / 10)}조`;
+  if (abs >= KRW_JO) {
+    return `${formatNumber(Math.round((value / KRW_JO) * 10) / 10)}조`;
   }
-  if (abs >= 1_0000_0000) return `${formatNumber(Math.round(value / 1_0000_0000))}억`;
+  if (abs >= KRW_EOK) return `${formatNumber(Math.round(value / KRW_EOK))}억`;
   return formatNumber(value);
 }
 

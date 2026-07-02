@@ -13,11 +13,11 @@ export function displayRelativeReaction(
   window: ReturnWindow = 20
 ): DisplayReaction {
   if (!reaction) {
-    return { label: `\uC9C0\uC218\uB300\uBE44 +${window}D`, value: null, quality: "missing" };
+    return { label: `지수대비 +${window}D`, value: null, quality: "missing" };
   }
 
   return {
-    label: `\uC9C0\uC218\uB300\uBE44 +${window}D`,
+    label: `지수대비 +${window}D`,
     value: relativeReturn(reaction, window),
     quality: reaction.data_quality
   };

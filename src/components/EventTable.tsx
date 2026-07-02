@@ -1,4 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import {
+  DEFAULT_TABLE_PAGE_SIZE,
+  PAGINATION_WINDOW_SIZE,
+  TABLE_PAGE_SIZE_OPTIONS,
+  type TablePageSize
+} from "../constants";
 import type { EnrichedEvent } from "../types/buybacks";
 import {
   EVENT_TYPE_LABELS,
@@ -16,13 +22,18 @@ interface EventTableProps {
 }
 
 type SortKey = "date" | "company" | "amount" | "stake" | "marketCap";
-const PAGE_SIZE_OPTIONS = [25, 50, 100] as const;
 
 export function EventTable({ events, selectedStockCode, onSelectStock }: EventTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>("date");
   const [ascending, setAscending] = useState(false);
-  const [pageSize, setPageSize] = useState<(typeof PAGE_SIZE_OPTIONS)[number]>(25);
+  const [pageSize, setPageSize] = useState<TablePageSize>(DEFAULT_TABLE_PAGE_SIZE);
   const [page, setPage] = useState(1);
+  const [lastEvents, setLastEvents] = useState(events);
+
+  if (events !== lastEvents) {
+    setLastEvents(events);
+    setPage(1);
+  }
 
   const sortedEvents = useMemo(() => {
     const sorted = [...events].sort((a, b) => {
@@ -53,16 +64,6 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
   const endIndex = Math.min(startIndex + pageSize, sortedEvents.length);
   const visibleEvents = sortedEvents.slice(startIndex, endIndex);
 
-  useEffect(() => {
-    setPage(1);
-  }, [events]);
-
-  useEffect(() => {
-    if (page > pageCount) {
-      setPage(pageCount);
-    }
-  }, [page, pageCount]);
-
   const changeSort = (next: SortKey) => {
     setPage(1);
     if (next === sortKey) {
@@ -74,7 +75,7 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
   };
 
   const changePageSize = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setPageSize(Number(event.target.value) as (typeof PAGE_SIZE_OPTIONS)[number]);
+    setPageSize(Number(event.target.value) as TablePageSize);
     setPage(1);
   };
 
@@ -93,28 +94,43 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
         <table>
           <thead>
             <tr>
-              <SortableHeader active={sortKey === "date"} onClick={() => changeSort("date")}>
+              <SortableHeader
+                active={sortKey === "date"}
+                ascending={ascending}
+                onClick={() => changeSort("date")}
+              >
                 공시일
               </SortableHeader>
-              <SortableHeader active={sortKey === "company"} onClick={() => changeSort("company")}>
+              <SortableHeader
+                active={sortKey === "company"}
+                ascending={ascending}
+                onClick={() => changeSort("company")}
+              >
                 종목
               </SortableHeader>
               <th>유형</th>
               <SortableHeader
                 active={sortKey === "amount"}
+                ascending={ascending}
                 className="numeric-cell"
                 onClick={() => changeSort("amount")}
               >
                 예정금액
               </SortableHeader>
-              <th className="numeric-cell">예정주식수</th>
-              <SortableHeader active={sortKey === "stake"} onClick={() => changeSort("stake")}>
+              <th className="numeric-cell col-optional">예정주식수</th>
+              <SortableHeader
+                active={sortKey === "stake"}
+                ascending={ascending}
+                className="col-optional"
+                onClick={() => changeSort("stake")}
+              >
                 예정지분
               </SortableHeader>
-              <th>목적</th>
-              <th>기보유비율</th>
+              <th className="col-optional">목적</th>
+              <th className="col-optional">기보유비율</th>
               <SortableHeader
                 active={sortKey === "marketCap"}
+                ascending={ascending}
                 className="numeric-cell"
                 onClick={() => changeSort("marketCap")}
               >
@@ -148,14 +164,14 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                   <td className="numeric-cell">
                     <AmountBreakdown event={event} />
                   </td>
-                  <td className="numeric-cell">
+                  <td className="numeric-cell col-optional">
                     <ShareBreakdown event={event} />
                   </td>
-                  <td>
+                  <td className="col-optional">
                     <PlannedStakeCell event={event} />
                   </td>
-                  <td className="purpose-cell">{event.purpose ?? "-"}</td>
-                  <td>
+                  <td className="purpose-cell col-optional">{event.purpose ?? "-"}</td>
+                  <td className="col-optional">
                     <HoldingBeforeCell event={event} />
                   </td>
                   <td className="numeric-cell">
@@ -181,7 +197,7 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
         <label className="page-size-control">
           페이지당
           <select value={pageSize} onChange={changePageSize}>
-            {PAGE_SIZE_OPTIONS.map((option) => (
+            {TABLE_PAGE_SIZE_OPTIONS.map((option) => (
               <option key={option} value={option}>
                 {option}건
               </option>
@@ -203,7 +219,7 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
             className="page-button"
             disabled={clampedPage === 1}
             type="button"
-            onClick={() => setPage((value) => Math.max(1, value - 1))}
+            onClick={() => setPage(Math.max(1, clampedPage - 1))}
           >
             이전
           </button>
@@ -224,7 +240,7 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
             className="page-button"
             disabled={clampedPage === pageCount}
             type="button"
-            onClick={() => setPage((value) => Math.min(pageCount, value + 1))}
+            onClick={() => setPage(Math.min(pageCount, clampedPage + 1))}
           >
             다음
           </button>
@@ -244,8 +260,9 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
 }
 
 function paginationWindow(currentPage: number, pageCount: number) {
-  const start = Math.max(1, Math.min(currentPage - 2, pageCount - 4));
-  const end = Math.min(pageCount, start + 4);
+  const half = Math.floor(PAGINATION_WINDOW_SIZE / 2);
+  const start = Math.max(1, Math.min(currentPage - half, pageCount - (PAGINATION_WINDOW_SIZE - 1)));
+  const end = Math.min(pageCount, start + PAGINATION_WINDOW_SIZE - 1);
   return Array.from({ length: end - start + 1 }, (_, index) => start + index);
 }
 
@@ -307,18 +324,24 @@ function MarketCapCell({ event }: { event: EnrichedEvent }) {
 function SortableHeader({
   children,
   active,
+  ascending,
   className,
   onClick
 }: {
   children: React.ReactNode;
   active: boolean;
+  ascending: boolean;
   className?: string;
   onClick: () => void;
 }) {
+  const ariaSort = active ? (ascending ? "ascending" : "descending") : "none";
   return (
-    <th className={className}>
+    <th className={className} aria-sort={ariaSort}>
       <button className={active ? "sort-button active-sort" : "sort-button"} type="button" onClick={onClick}>
         {children}
+        <span aria-hidden="true" className="sort-indicator">
+          {active ? (ascending ? "↑" : "↓") : ""}
+        </span>
       </button>
     </th>
   );

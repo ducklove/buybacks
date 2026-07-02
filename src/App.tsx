@@ -9,20 +9,27 @@ import { Methodology } from "./components/Methodology";
 import { Shell } from "./components/Shell";
 import { loadBuybacksDataset } from "./data/loadBuybacks";
 import {
-  DEFAULT_FILTERS,
   availableYears,
   buildKpis,
   enrichEvents,
   filterEvents,
   latestHoldingSnapshots
 } from "./utils/metrics";
+import { parseAppStateFromSearch, serializeAppState } from "./utils/urlState";
 import type { BuybacksDataset, Filters } from "./types/buybacks";
 
+function currentLocationSearch() {
+  return typeof window === "undefined" ? "" : window.location.search;
+}
+
 function App() {
+  const [initialUrlState] = useState(() => parseAppStateFromSearch(currentLocationSearch()));
   const [dataset, setDataset] = useState<BuybacksDataset | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
-  const [selectedStockCode, setSelectedStockCode] = useState<string>("005930");
+  const [filters, setFilters] = useState<Filters>(initialUrlState.filters);
+  const [selectedStockCode, setSelectedStockCode] = useState<string>(
+    initialUrlState.selectedStockCode ?? ""
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -30,7 +37,11 @@ function App() {
       .then((loaded) => {
         if (cancelled) return;
         setDataset(loaded);
-        setSelectedStockCode(loaded.companies[0]?.stock_code ?? "");
+        setSelectedStockCode((current) =>
+          current && loaded.companies.some((company) => company.stock_code === current)
+            ? current
+            : loaded.companies[0]?.stock_code ?? ""
+        );
       })
       .catch((err: unknown) => {
         if (!cancelled) setError(err instanceof Error ? err.message : String(err));
@@ -39,6 +50,18 @@ function App() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (!dataset || typeof window === "undefined") return;
+    const nextSearch = serializeAppState(
+      filters,
+      selectedStockCode,
+      dataset.companies[0]?.stock_code ?? ""
+    );
+    const { pathname, search, hash } = window.location;
+    if (nextSearch === search) return;
+    window.history.replaceState(window.history.state, "", `${pathname}${nextSearch}${hash}`);
+  }, [dataset, filters, selectedStockCode]);
 
   const enrichedEvents = useMemo(() => (dataset ? enrichEvents(dataset) : []), [dataset]);
   const filteredEvents = useMemo(
@@ -63,7 +86,18 @@ function App() {
         <main className="app-main">
           <section className="empty-state" role="alert">
             <h1>데이터를 불러오지 못했습니다</h1>
-            <p>{error}</p>
+            <p>
+              네트워크 연결을 확인한 뒤 다시 시도해 주세요. 문제가 계속되면 데이터 파이프라인
+              점검이 필요할 수 있습니다.
+            </p>
+            <p className="muted">{error}</p>
+            <button
+              className="secondary-button"
+              type="button"
+              onClick={() => window.location.reload()}
+            >
+              다시 시도
+            </button>
           </section>
         </main>
       </Shell>

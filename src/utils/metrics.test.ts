@@ -134,9 +134,9 @@ describe("filterEvents", () => {
 describe("holding snapshots", () => {
   it("keeps the latest common and preferred holdings separately", () => {
     const snapshots = [
-      holding("\uBCF4\uD1B5\uC8FC", 0.12, { as_of_date: "2024-12-31" }),
-      holding("\uBCF4\uD1B5\uC8FC", 0.23),
-      holding("1\uC6B0\uC120\uC8FC", 0.3)
+      holding("보통주", 0.12, { as_of_date: "2024-12-31" }),
+      holding("보통주", 0.23),
+      holding("1우선주", 0.3)
     ];
 
     const latest = latestHoldingSnapshots(snapshots);
@@ -146,13 +146,13 @@ describe("holding snapshots", () => {
   });
 
   it("deduplicates same-date timeline rows by stock kind and keeps richer rows", () => {
-    const sparse = holding("\uBCF4\uD1B5\uC8FC", null, {
+    const sparse = holding("보통주", null, {
       ending_qty: null,
       issued_shares: 1000,
       floating_shares: 1000,
       report_code: "11014"
     });
-    const complete = holding("\uBCF4\uD1B5\uC8FC", 0.23, {
+    const complete = holding("보통주", 0.23, {
       ending_qty: 230,
       issued_shares: 1000,
       floating_shares: 770,

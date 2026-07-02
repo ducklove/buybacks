@@ -8,6 +8,8 @@ import type {
   PriceReaction,
   TreasuryHoldingSnapshot
 } from "../types/buybacks";
+import { KPI_LOOKBACK_MONTHS } from "../constants";
+import { holdingKindKey, holdingKindPriority, isCommonHoldingKind } from "./holdings";
 import { relativeReturn, type ReturnWindow } from "./priceReactions";
 
 export interface KpiMetric {
@@ -103,23 +105,6 @@ export function dedupeHoldingTimeline(
   return Array.from(byDateKind.values());
 }
 
-function holdingKindPriority(snapshot: TreasuryHoldingSnapshot) {
-  const stockKind = snapshot.stock_kind.toLowerCase();
-  if (stockKind.includes("\uBCF4\uD1B5") || stockKind.includes("common")) return 3;
-  if (stockKind.includes("\uC6B0\uC120") || stockKind.includes("preferred")) return 2;
-  return 1;
-}
-
-function holdingKindKey(snapshot: TreasuryHoldingSnapshot) {
-  const stockKind = snapshot.stock_kind.trim().replace(/\s+/g, "").toLowerCase();
-  if (!stockKind) return "unknown";
-  if (stockKind.includes("\uBCF4\uD1B5") || stockKind.includes("common")) return "common";
-  if (stockKind.includes("\uC6B0\uC120") || stockKind.includes("preferred")) {
-    return `preferred:${stockKind}`;
-  }
-  return stockKind;
-}
-
 function isBetterHoldingSnapshot(
   candidate: TreasuryHoldingSnapshot,
   previous: TreasuryHoldingSnapshot
@@ -165,7 +150,7 @@ export function availableYears(events: EnrichedEvent[]): string[] {
 
 export function buildKpis(events: EnrichedEvent[], holdings: TreasuryHoldingSnapshot[]): KpiMetric[] {
   const cutoff = new Date();
-  cutoff.setFullYear(cutoff.getFullYear() - 1);
+  cutoff.setMonth(cutoff.getMonth() - KPI_LOOKBACK_MONTHS);
   const recent = events.filter((event) => new Date(event.disclosure_date) >= cutoff);
   const acquisitions = recent.filter((event) => acquisitionTypes.has(event.event_type)).length;
   const dispositions = recent.filter((event) => event.event_type === "direct_disposition").length;
@@ -181,19 +166,19 @@ export function buildKpis(events: EnrichedEvent[], holdings: TreasuryHoldingSnap
 
   return [
     {
-      label: "최근 12개월 취득 결정",
+      label: `최근 ${KPI_LOOKBACK_MONTHS}개월 취득 결정`,
       value: `${acquisitions}건`,
       detail: "직접취득 및 신탁체결 포함",
       tone: "teal"
     },
     {
-      label: "최근 12개월 처분 결정",
+      label: `최근 ${KPI_LOOKBACK_MONTHS}개월 처분 결정`,
       value: `${dispositions}건`,
       detail: "직접처분 공시 기준",
       tone: "amber"
     },
     {
-      label: "최근 12개월 소각 이벤트",
+      label: `최근 ${KPI_LOOKBACK_MONTHS}개월 소각 이벤트`,
       value: `${retirements}건`,
       detail: "소각 또는 소각결정 기준",
       tone: "green"
@@ -250,11 +235,6 @@ function holdingSummary(holding: TreasuryHoldingSnapshot) {
   return [holding.corp_name, holding.stock_code, holding.stock_kind, holding.as_of_date]
     .filter(Boolean)
     .join(" ");
-}
-
-function isCommonHoldingKind(holding: TreasuryHoldingSnapshot) {
-  const stockKind = holding.stock_kind.toLowerCase();
-  return stockKind.includes("\uBCF4\uD1B5") || stockKind.includes("common");
 }
 
 export function returnDistribution(reactions: PriceReaction[], window: ReturnWindow = 20): ChartDatum[] {

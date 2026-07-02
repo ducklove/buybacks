@@ -1,6 +1,5 @@
 import type { LatestPriceSnapshot } from "../types/buybacks";
 
-const DEFAULT_PROXY_BASE_URL = "http://cantabile.tplinkdns.com:3288";
 const STOCK_CODE_PATTERN = /^[0-9A-Z]{6}$/;
 const UPPER_LIMIT_CODE = "1";
 const UP_CODE = "2";
@@ -93,10 +92,14 @@ export function quoteToLatestPriceSnapshot(
   };
 }
 
+/**
+ * 실시간 시세 프록시 주소. VITE_NAVERFINANCE_PROXY_URL 또는 VITE_KIS_PROXY_URL
+ * 환경변수로만 설정되며, 값이 없으면 null을 반환해 실시간 시세 기능을 조용히 비활성화합니다.
+ */
 function naverFinanceProxyBaseUrl() {
   const configuredUrl =
-    import.meta.env.VITE_NAVERFINANCE_PROXY_URL ?? import.meta.env.VITE_KIS_PROXY_URL;
-  const baseUrl = String(configuredUrl || DEFAULT_PROXY_BASE_URL).trim().replace(/\/+$/, "");
+    import.meta.env.VITE_NAVERFINANCE_PROXY_URL ?? import.meta.env.VITE_KIS_PROXY_URL ?? "";
+  const baseUrl = String(configuredUrl).trim().replace(/\/+$/, "");
   if (!baseUrl) {
     return null;
   }

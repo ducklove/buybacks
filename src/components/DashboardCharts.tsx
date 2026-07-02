@@ -99,15 +99,18 @@ function VerticalBars({ data, compact = false }: { data: ChartDatum[]; compact?:
   const max = Math.max(...data.map((item) => item.value), 1);
   return (
     <div className={compact ? "vertical-bars compact-bars" : "vertical-bars"}>
-      {data.map((item) => (
-        <div className="bar-column" key={item.label}>
-          <div className="bar-value">{item.value}</div>
-          <div className="bar-track" aria-hidden="true">
-            <span style={{ height: `${(item.value / max) * 100}%` }} />
+      {data.map((item) => {
+        const title = `${item.label}: ${item.value}건`;
+        return (
+          <div className="bar-column" key={item.label} title={title}>
+            <div className="bar-value">{item.value}</div>
+            <div className="bar-track" aria-hidden="true">
+              <span style={{ height: `${(item.value / max) * 100}%` }} />
+            </div>
+            <span className="bar-label">{item.label}</span>
           </div>
-          <span className="bar-label">{item.label}</span>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -116,15 +119,18 @@ function HorizontalBars({ data, percent = false }: { data: ChartDatum[]; percent
   const max = Math.max(...data.map((item) => item.value), 0.01);
   return (
     <div className="horizontal-bars">
-      {data.map((item) => (
-        <div className="hbar-row" key={item.label}>
-          <span>{item.label}</span>
-          <div className="hbar-track" aria-hidden="true">
-            <i style={{ width: `${(item.value / max) * 100}%` }} />
+      {data.map((item) => {
+        const displayValue = percent ? `${(item.value * 100).toFixed(2)}%` : String(item.value);
+        return (
+          <div className="hbar-row" key={item.label} title={`${item.label}: ${displayValue}`}>
+            <span>{item.label}</span>
+            <div className="hbar-track" aria-hidden="true">
+              <i style={{ width: `${(item.value / max) * 100}%` }} />
+            </div>
+            <strong>{displayValue}</strong>
           </div>
-          <strong>{percent ? `${(item.value * 100).toFixed(2)}%` : item.value}</strong>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

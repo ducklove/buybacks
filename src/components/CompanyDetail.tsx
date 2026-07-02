@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import type {
   Company,
   EnrichedEvent,
@@ -16,6 +16,7 @@ import {
   formatPercent,
   formatSignedPercent
 } from "../utils/format";
+import { isCommonHoldingKind } from "../utils/holdings";
 import { latestMarketCap, marketCapFrom, plannedEventStake } from "../utils/marketCap";
 import { dedupeHoldingTimeline, latestPriceMap } from "../utils/metrics";
 import { displayRelativeReaction, displaySimpleReaction } from "../utils/priceReactions";
@@ -31,7 +32,7 @@ interface CompanyDetailProps {
   onSelectStock: (stockCode: string) => void;
 }
 
-export function CompanyDetail({
+export const CompanyDetail = memo(function CompanyDetail({
   companies,
   events,
   holdings,
@@ -61,10 +62,13 @@ export function CompanyDetail({
   const latestPriceByStock = useMemo(() => latestPriceMap(latestPrices), [latestPrices]);
   const [runtimePricesByStock, setRuntimePricesByStock] = useState<Record<string, LatestPriceSnapshot>>({});
   const [priceLookupMisses, setPriceLookupMisses] = useState<Record<string, true>>({});
-  const [loadingPriceStockCode, setLoadingPriceStockCode] = useState<string | null>(null);
   const staticLatestPrice = company ? latestPriceByStock.get(company.stock_code) : undefined;
   const runtimeLatestPrice = company ? runtimePricesByStock[company.stock_code] : undefined;
   const latestPrice = staticLatestPrice ?? runtimeLatestPrice;
+  const loadingPriceStockCode =
+    company && !staticLatestPrice && !runtimeLatestPrice && !priceLookupMisses[company.stock_code]
+      ? company.stock_code
+      : null;
   const latestHolding = useMemo(() => pickPrimaryHolding(companyHoldings), [companyHoldings]);
   const currentMarketCap = useMemo(
     () => latestMarketCap(latestPrice, companyReactions, latestHolding),
@@ -87,7 +91,6 @@ export function CompanyDetail({
     }
 
     let cancelled = false;
-    setLoadingPriceStockCode(stockCode);
     fetchNaverFinanceQuote(stockCode)
       .then((snapshot) => {
         if (cancelled) return;
@@ -100,11 +103,6 @@ export function CompanyDetail({
       .catch(() => {
         if (!cancelled) {
           setPriceLookupMisses((previous) => ({ ...previous, [stockCode]: true }));
-        }
-      })
-      .finally(() => {
-        if (!cancelled) {
-          setLoadingPriceStockCode((current) => (current === stockCode ? null : current));
         }
       });
 
@@ -222,7 +220,7 @@ export function CompanyDetail({
       </section>
     </section>
   );
-}
+});
 
 function CurrentPrice({
   latestPrice,
@@ -285,7 +283,7 @@ function priceChangeDisplayFromCode(changeCode: string | null | undefined) {
   }
 }
 
-function DisclosureReaction({ event }: { event: EnrichedEvent }) {
+const DisclosureReaction = memo(function DisclosureReaction({ event }: { event: EnrichedEvent }) {
   if (!event.priceReaction) {
     return (
       <div className="disclosure-reaction">
@@ -305,9 +303,9 @@ function DisclosureReaction({ event }: { event: EnrichedEvent }) {
       </small>
     </div>
   );
-}
+});
 
-function DisclosureSourceLink({ event }: { event: EnrichedEvent }) {
+const DisclosureSourceLink = memo(function DisclosureSourceLink({ event }: { event: EnrichedEvent }) {
   const url = event.source_url ?? dartUrl(event.rcept_no);
   if (!url) {
     return <span className="muted">원문 없음</span>;
@@ -317,7 +315,7 @@ function DisclosureSourceLink({ event }: { event: EnrichedEvent }) {
       원문
     </a>
   );
-}
+});
 
 function pickPrimaryHolding(
   snapshots: TreasuryHoldingSnapshot[]
@@ -327,10 +325,10 @@ function pickPrimaryHolding(
     return undefined;
   }
   const latestSnapshots = snapshots.filter((snapshot) => snapshot.as_of_date === latestDate);
-  return latestSnapshots.find(isCommonHolding) ?? latestSnapshots[latestSnapshots.length - 1];
+  return latestSnapshots.find(isCommonHoldingKind) ?? latestSnapshots[latestSnapshots.length - 1];
 }
 
-function EventDetailLines({
+const EventDetailLines = memo(function EventDetailLines({
   event,
   latestPrice
 }: {
@@ -342,7 +340,7 @@ function EventDetailLines({
     return null;
   }
   return <small>{details.join(" · ")}</small>;
-}
+});
 
 function eventDetailLines(event: EnrichedEvent, latestPrice: LatestPriceSnapshot | undefined) {
   const lines: string[] = [];
@@ -368,11 +366,6 @@ function eventDetailLines(event: EnrichedEvent, latestPrice: LatestPriceSnapshot
     lines.push(`종류주식 소각지분 ${formatPercent(event.planned_share_ratio_other, 2)}`);
   }
   return lines;
-}
-
-function isCommonHolding(snapshot: TreasuryHoldingSnapshot) {
-  const stockKind = snapshot.stock_kind.toLowerCase();
-  return stockKind.includes("\uBCF4\uD1B5") || stockKind.includes("common");
 }
 
 function formatHoldingLabel(snapshot: TreasuryHoldingSnapshot) {
