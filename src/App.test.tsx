@@ -110,6 +110,13 @@ describe("App", () => {
           }
         ]);
       }
+      if (url.endsWith("executions.json")) {
+        return Promise.resolve({
+          ok: false,
+          status: 404,
+          json: () => Promise.resolve(null)
+        } as Response);
+      }
       return okResponse({
         generated_at: "2026-06-20T00:00:00+09:00",
         dart_available: false,
@@ -141,5 +148,148 @@ describe("App", () => {
     );
     expect(screen.queryByText("최근 예정금액")).not.toBeInTheDocument();
     expect(screen.queryByText("공시 후 가격 반응")).not.toBeInTheDocument();
+  });
+
+  it("shows execution completion rate, status badge, and unlinked reports when executions.json is present", async () => {
+    vi.stubGlobal("fetch", (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.endsWith("companies.json")) {
+        return okResponse([
+          {
+            corp_code: "00126380",
+            stock_code: "005930",
+            corp_name: "삼성전자",
+            market: "KOSPI",
+            sector: "반도체",
+            last_updated: "2026-06-20"
+          }
+        ]);
+      }
+      if (url.endsWith("events.json")) {
+        return okResponse([
+          {
+            event_id: "event-1",
+            corp_code: "00126380",
+            stock_code: "005930",
+            corp_name: "삼성전자",
+            event_type: "direct_acquisition",
+            disclosure_date: "2026-05-22",
+            decision_date: "2026-05-22",
+            period_start: "2026-05-23",
+            period_end: "2026-08-22",
+            planned_shares_common: 12500000,
+            planned_shares_other: null,
+            planned_amount_krw: 1000000000000,
+            actual_shares: null,
+            actual_amount_krw: null,
+            method: null,
+            purpose: "주주가치 제고",
+            broker: null,
+            holding_before_common: null,
+            holding_before_ratio_common: null,
+            source: "MANUAL",
+            rcept_no: null,
+            source_url: null,
+            raw_report_name: null
+          }
+        ]);
+      }
+      if (url.endsWith("holding_snapshots.json")) {
+        return okResponse([]);
+      }
+      if (url.endsWith("price_reactions.json")) {
+        return okResponse([]);
+      }
+      if (url.endsWith("latest_prices.json")) {
+        return Promise.resolve({
+          ok: false,
+          status: 404,
+          json: () => Promise.resolve(null)
+        } as Response);
+      }
+      if (url.endsWith("executions.json")) {
+        return okResponse([
+          {
+            execution_id: "exec-1",
+            corp_code: "00126380",
+            stock_code: "005930",
+            corp_name: "삼성전자",
+            execution_type: "acquisition_result",
+            disclosure_date: "2026-08-25",
+            origin_report_date: "2026-05-22",
+            period_start: "2026-05-23",
+            period_end: "2026-08-22",
+            ordered_shares: 13100000,
+            actual_shares: 12480000,
+            actual_amount_krw: 998400000000,
+            avg_price_krw: 80000,
+            planned_amount_krw: 1000000000000,
+            planned_shares: null,
+            shortfall: false,
+            shortfall_reason: null,
+            holding_after_qty: 160480000,
+            holding_after_ratio: 0.0269,
+            trust_contract_amount_krw: null,
+            trust_progress_ratio: null,
+            as_of_date: "2026-08-25",
+            linked_event_id: "event-1",
+            link_method: "report_date",
+            source: "DART",
+            rcept_no: "20260825000101",
+            source_url: "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260825000101",
+            raw_report_name: "자기주식취득결과보고서"
+          },
+          {
+            execution_id: "exec-2",
+            corp_code: "00126380",
+            stock_code: "005930",
+            corp_name: "삼성전자",
+            execution_type: "acquisition_result",
+            disclosure_date: "2026-04-13",
+            origin_report_date: "2026-01-09",
+            period_start: "2026-01-12",
+            period_end: "2026-04-10",
+            ordered_shares: 1250000,
+            actual_shares: 1180000,
+            actual_amount_krw: 236590000000,
+            avg_price_krw: 200500,
+            planned_amount_krw: 240000000000,
+            planned_shares: null,
+            shortfall: true,
+            shortfall_reason: "취득기간 중 주가 상승으로 취득예정금액에 미달",
+            holding_after_qty: 4680000,
+            holding_after_ratio: 0.0064,
+            trust_contract_amount_krw: null,
+            trust_progress_ratio: null,
+            as_of_date: "2026-04-13",
+            linked_event_id: null,
+            link_method: "unlinked",
+            source: "DART",
+            rcept_no: "20260413000404",
+            source_url: "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260413000404",
+            raw_report_name: "[기재정정]자기주식취득결과보고서"
+          }
+        ]);
+      }
+      return okResponse({
+        generated_at: "2026-06-20T00:00:00+09:00",
+        dart_available: false,
+        krx_available: false,
+        companies_count: 1,
+        events_count: 1,
+        holdings_count: 0,
+        price_reactions_count: 0,
+        latest_prices_count: 0,
+        warnings: []
+      });
+    });
+
+    render(<App />);
+    expect(await screen.findByText("이벤트 탐색기")).toBeInTheDocument();
+    expect(screen.getByText("이행률")).toBeInTheDocument();
+    expect(screen.getAllByText("99.8%").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("완료").length).toBeGreaterThan(0);
+    expect(screen.getByText("미연결 결과보고서")).toBeInTheDocument();
+    expect(screen.getByText("미달")).toBeInTheDocument();
   });
 });

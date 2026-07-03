@@ -10,11 +10,19 @@ export const EVENT_TYPES = [
 ] as const;
 export const DATA_QUALITIES = ["complete", "partial", "missing"] as const;
 export const SOURCES = ["DART", "KRX", "MANUAL", "DERIVED"] as const;
+export const EXECUTION_TYPES = [
+  "acquisition_result",
+  "disposition_result",
+  "trust_status"
+] as const;
+export const LINK_METHODS = ["report_date", "period_overlap", "unlinked"] as const;
 
 export type Market = (typeof MARKETS)[number];
 export type EventType = (typeof EVENT_TYPES)[number];
 export type DataQuality = (typeof DATA_QUALITIES)[number];
 export type Source = (typeof SOURCES)[number];
+export type ExecutionType = (typeof EXECUTION_TYPES)[number];
+export type LinkMethod = (typeof LINK_METHODS)[number];
 
 export interface Company {
   corp_code: string;
@@ -49,6 +57,37 @@ export interface BuybackEvent {
   broker: string | null;
   holding_before_common: number | null;
   holding_before_ratio_common: number | null;
+  source: Source;
+  rcept_no: string | null;
+  source_url: string | null;
+  raw_report_name: string | null;
+}
+
+export interface BuybackExecution {
+  execution_id: string;
+  corp_code: string;
+  stock_code: string;
+  corp_name: string;
+  execution_type: ExecutionType;
+  disclosure_date: string;
+  origin_report_date: string | null;
+  period_start: string | null;
+  period_end: string | null;
+  ordered_shares: number | null;
+  actual_shares: number | null;
+  actual_amount_krw: number | null;
+  avg_price_krw: number | null;
+  planned_amount_krw: number | null;
+  planned_shares: number | null;
+  shortfall: boolean | null;
+  shortfall_reason: string | null;
+  holding_after_qty: number | null;
+  holding_after_ratio: number | null;
+  trust_contract_amount_krw: number | null;
+  trust_progress_ratio: number | null;
+  as_of_date: string;
+  linked_event_id: string | null;
+  link_method: LinkMethod;
   source: Source;
   rcept_no: string | null;
   source_url: string | null;
@@ -126,6 +165,7 @@ export interface BuybacksDataset {
   holdingSnapshots: TreasuryHoldingSnapshot[];
   priceReactions: PriceReaction[];
   latestPrices: LatestPriceSnapshot[];
+  executions: BuybackExecution[];
   status: DataStatus;
 }
 
@@ -141,4 +181,5 @@ export interface EnrichedEvent extends BuybackEvent {
   holding?: TreasuryHoldingSnapshot;
   priceReaction?: PriceReaction;
   latestPrice?: LatestPriceSnapshot;
+  execution?: BuybackExecution;
 }

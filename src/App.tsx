@@ -156,6 +156,7 @@ function App() {
             holdings={dataset.holdingSnapshots}
             priceReactions={dataset.priceReactions}
             latestPrices={dataset.latestPrices}
+            executions={dataset.executions}
             selectedStockCode={selectedStockCode}
             onSelectStock={setSelectedStockCode}
           />

@@ -1,11 +1,13 @@
 import { memo, useEffect, useMemo, useState } from "react";
 import type {
+  BuybackExecution,
   Company,
   EnrichedEvent,
   LatestPriceSnapshot,
   PriceReaction,
   TreasuryHoldingSnapshot
 } from "../types/buybacks";
+import { completionRate, executionStatus, unlinkedExecutionsForStock } from "../utils/executions";
 import {
   DATA_QUALITY_LABELS,
   EVENT_TYPE_LABELS,
@@ -28,6 +30,7 @@ interface CompanyDetailProps {
   holdings: TreasuryHoldingSnapshot[];
   priceReactions: PriceReaction[];
   latestPrices: LatestPriceSnapshot[];
+  executions: BuybackExecution[];
   selectedStockCode: string;
   onSelectStock: (stockCode: string) => void;
 }
@@ -38,6 +41,7 @@ export const CompanyDetail = memo(function CompanyDetail({
   holdings,
   priceReactions,
   latestPrices,
+  executions,
   selectedStockCode,
   onSelectStock
 }: CompanyDetailProps) {
@@ -59,6 +63,15 @@ export const CompanyDetail = memo(function CompanyDetail({
   const companyReactions = useMemo(
     () => priceReactions.filter((reaction) => reaction.stock_code === company?.stock_code),
     [company?.stock_code, priceReactions]
+  );
+  const companyUnlinkedExecutions = useMemo(
+    () =>
+      company
+        ? [...unlinkedExecutionsForStock(executions, company.stock_code)].sort((a, b) =>
+            b.disclosure_date.localeCompare(a.disclosure_date)
+          )
+        : [],
+    [company, executions]
   );
   const latestPriceByStock = useMemo(() => latestPriceMap(latestPrices), [latestPrices]);
   const [runtimePricesByStock, setRuntimePricesByStock] = useState<
@@ -214,6 +227,7 @@ export const CompanyDetail = memo(function CompanyDetail({
                 <div className="event-timeline-copy">
                   <p>{event.purpose ?? event.raw_report_name ?? "목적 데이터 없음"}</p>
                   <EventDetailLines event={event} latestPrice={latestPrice} />
+                  <ExecutionSummary event={event} />
                 </div>
                 <DisclosureReaction event={event} />
                 <DisclosureSourceLink event={event} />
@@ -224,6 +238,8 @@ export const CompanyDetail = memo(function CompanyDetail({
           <p className="empty-copy">수집된 이벤트가 없습니다.</p>
         )}
       </section>
+
+      <UnlinkedExecutionsSection executions={companyUnlinkedExecutions} />
     </section>
   );
 });
@@ -391,6 +407,145 @@ function eventDetailLines(event: EnrichedEvent, latestPrice: LatestPriceSnapshot
   }
   return lines;
 }
+
+const ExecutionSummary = memo(function ExecutionSummary({ event }: { event: EnrichedEvent }) {
+  const execution = event.execution;
+  if (!execution) {
+    return null;
+  }
+
+  const { status, reason } = executionStatus(execution);
+  const url = execution.source_url ?? dartUrl(execution.rcept_no);
+
+  if (execution.execution_type === "trust_status") {
+    const rate = completionRate(event, execution);
+    return (
+      <div className="execution-progress">
+        <div className="disclosure-meta">
+          <span>신탁 이행 현황</span>
+          {status ? (
+            <span
+              className={`status-badge status-${statusClassName(status)}`}
+              title={status === "미달" ? (reason ?? undefined) : undefined}
+            >
+              {status}
+            </span>
+          ) : null}
+        </div>
+        <meter max={1} min={0} value={rate ?? 0}>
+          {formatPercent(rate)}
+        </meter>
+        <small>
+          누적 {formatNumber(execution.actual_shares)}주 · {formatKRW(execution.actual_amount_krw)}
+          원 · 진행률 {formatPercent(rate)} · 기준일 {execution.as_of_date}
+          {url ? (
+            <>
+              {" · "}
+              <a className="source-link" href={url} target="_blank" rel="noreferrer">
+                원문
+              </a>
+            </>
+          ) : null}
+        </small>
+      </div>
+    );
+  }
+
+  const rate = completionRate(event, execution);
+  return (
+    <div
+      className="execution-summary"
+      title={status === "미달" ? (reason ?? undefined) : undefined}
+    >
+      <span>
+        실제 {execution.execution_type === "disposition_result" ? "처분" : "취득"}{" "}
+        <strong>{formatNumber(execution.actual_shares)}주</strong> ·{" "}
+        <strong>{formatKRW(execution.actual_amount_krw)}</strong> · 이행률{" "}
+        <strong>{formatPercent(rate)}</strong>
+        {status ? (
+          <span className={`status-badge status-${statusClassName(status)}`}> {status}</span>
+        ) : null}
+      </span>
+      {url ? (
+        <a className="source-link" href={url} target="_blank" rel="noreferrer">
+          결과보고서 원문
+        </a>
+      ) : null}
+    </div>
+  );
+});
+
+function statusClassName(status: "완료" | "미달" | "진행중") {
+  if (status === "완료") return "complete";
+  if (status === "미달") return "shortfall";
+  return "in-progress";
+}
+
+const UnlinkedExecutionsSection = memo(function UnlinkedExecutionsSection({
+  executions
+}: {
+  executions: BuybackExecution[];
+}) {
+  if (executions.length === 0) {
+    return null;
+  }
+  return (
+    <section className="detail-section unlinked-executions">
+      <h3>미연결 결과보고서</h3>
+      <p className="empty-copy">
+        이벤트 공시와 자동으로 연결되지 않은 이행 결과보고서입니다. 종목코드로만 매칭되어 있습니다.
+      </p>
+      <ol className="disclosure-list">
+        {executions.map((execution) => {
+          const url = execution.source_url ?? dartUrl(execution.rcept_no);
+          const { status, reason } = executionStatus(execution);
+          return (
+            <li key={execution.execution_id}>
+              <div className="disclosure-meta">
+                <time>{execution.disclosure_date}</time>
+                <span className="event-chip">
+                  {EXECUTION_TYPE_LABELS[execution.execution_type]}
+                </span>
+              </div>
+              <div className="event-timeline-copy">
+                <p>{execution.raw_report_name ?? "결과보고서"}</p>
+                <small>
+                  실제 {formatNumber(execution.actual_shares)}주 ·{" "}
+                  {formatKRW(execution.actual_amount_krw)}원
+                  {status ? (
+                    <>
+                      {" · "}
+                      <span
+                        className={`status-badge status-${statusClassName(status)}`}
+                        title={status === "미달" ? (reason ?? undefined) : undefined}
+                      >
+                        {status}
+                      </span>
+                    </>
+                  ) : null}
+                </small>
+              </div>
+              <span className="muted">기준일 {execution.as_of_date}</span>
+              {url ? (
+                <a className="source-link" href={url} target="_blank" rel="noreferrer">
+                  원문
+                </a>
+              ) : (
+                <span className="muted">원문 없음</span>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  );
+});
+
+const EXECUTION_TYPE_LABELS: Record<BuybackExecution["execution_type"], string> = {
+  acquisition_result: "취득결과",
+  disposition_result: "처분결과",
+  trust_status: "신탁현황"
+};
 
 function formatHoldingLabel(snapshot: TreasuryHoldingSnapshot) {
   return snapshot.stock_kind

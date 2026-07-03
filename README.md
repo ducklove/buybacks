@@ -53,6 +53,14 @@ Example: `?market=KOSDAQ&types=direct_acquisition,retirement&year=2025&search=�
 
 Invalid or malformed values (wrong market name, non-4-digit year, malformed stock code, unknown event type) silently fall back to their defaults instead of erroring, and the URL is rewritten to drop parameters that match the default state.
 
+### Execution / completion tracking
+
+When `public/data/buybacks/executions.json` is present, the dashboard joins buyback execution reports (acquisition/disposition result reports and trust-contract status reports) onto their linked events via `linked_event_id`. `executions.json` is optional: a missing file (404) falls back to an empty list, and the UI renders exactly as it does today (the completion column shows `-`).
+
+Each event can have zero or many linked executions (trust contracts report status quarterly); the dashboard picks one representative execution per event — the latest `as_of_date` for trust status reports (trust progress is cumulative, so rows are never summed) and the latest `disclosure_date` otherwise (so a later correction report supersedes the original). The completion rate prefers actual/planned **share count**, falls back to actual/planned **amount** (event-level planned amount first, then the execution's own), and uses `trust_progress_ratio` directly for trust contracts. Status is "완료" (complete) when `shortfall` is `false`, "미달" (shortfall, with the reason shown in a tooltip) when `shortfall` is `true`, "진행중" (in progress) for trust status reports, and no badge when the result report hasn't arrived yet or the execution can't be linked.
+
+The event table's sortable "이행률" (completion rate) column and the company detail panel's per-event execution summary (actual shares/amount, completion rate, and — for trust contracts — a progress meter with as-of date) both use this join. Execution reports that could not be linked to a known event (`link_method: "unlinked"`) are never shown on the event table; they appear only in a separate "미연결 결과보고서" subsection of the company detail panel, matched by stock code.
+
 ### Local realtime price proxy
 
 The static dataset (`public/data/buybacks/latest_prices.json`) is enough to run the dashboard locally. To also see realtime price polling in `CompanyDetail`, set `VITE_KIS_PROXY_URL` (or `VITE_NAVERFINANCE_PROXY_URL`, which takes priority) in a local `.env` file to a running `kis_proxy`/Naver Finance proxy instance — see `.env.example`. When neither variable is set, the dashboard silently skips realtime polling and shows only the static latest close.

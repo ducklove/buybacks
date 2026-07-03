@@ -1,12 +1,16 @@
 import {
   DATA_QUALITIES,
   EVENT_TYPES,
+  EXECUTION_TYPES,
+  LINK_METHODS,
   MARKETS,
   SOURCES,
   type BuybacksDataset,
   type Company,
   type DataQuality,
   type EventType,
+  type ExecutionType,
+  type LinkMethod,
   type Market,
   type Source
 } from "../types/buybacks";
@@ -31,6 +35,14 @@ export function isSource(value: unknown): value is Source {
 
 export function isDataQuality(value: unknown): value is DataQuality {
   return isOneOf(value, DATA_QUALITIES);
+}
+
+export function isExecutionType(value: unknown): value is ExecutionType {
+  return isOneOf(value, EXECUTION_TYPES);
+}
+
+export function isLinkMethod(value: unknown): value is LinkMethod {
+  return isOneOf(value, LINK_METHODS);
 }
 
 export function validateDataset(dataset: BuybacksDataset): string[] {
@@ -119,6 +131,35 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
       typeof price.change_code !== "string"
     ) {
       errors.push(`latestPrices[${index}] change_code must be a string`);
+    }
+  });
+
+  const executionIds = new Set<string>();
+  dataset.executions.forEach((execution, index) => {
+    if (!execution.execution_id) {
+      errors.push(`executions[${index}] missing execution_id`);
+    }
+    if (executionIds.has(execution.execution_id)) {
+      errors.push(`executions[${index}] duplicate execution_id`);
+    }
+    executionIds.add(execution.execution_id);
+    if (!execution.stock_code) {
+      errors.push(`executions[${index}] missing stock_code`);
+    }
+    if (!isExecutionType(execution.execution_type)) {
+      errors.push(`executions[${index}] invalid execution_type`);
+    }
+    if (!ISO_DATE.test(execution.disclosure_date)) {
+      errors.push(`executions[${index}] invalid disclosure_date`);
+    }
+    if (!ISO_DATE.test(execution.as_of_date)) {
+      errors.push(`executions[${index}] invalid as_of_date`);
+    }
+    if (!isLinkMethod(execution.link_method)) {
+      errors.push(`executions[${index}] invalid link_method`);
+    }
+    if (execution.linked_event_id !== null && !eventIds.has(execution.linked_event_id)) {
+      errors.push(`executions[${index}] unknown linked_event_id ${execution.linked_event_id}`);
     }
   });
 

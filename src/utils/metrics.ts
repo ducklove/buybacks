@@ -9,6 +9,7 @@ import type {
   TreasuryHoldingSnapshot
 } from "../types/buybacks";
 import { KPI_LOOKBACK_MONTHS } from "../constants";
+import { mapExecutionsByEvent } from "./executions";
 import { holdingKindKey, holdingKindPriority, isCommonHoldingKind } from "./holdings";
 import { relativeReturn, type ReturnWindow } from "./priceReactions";
 
@@ -39,13 +40,15 @@ export function enrichEvents(dataset: BuybacksDataset): EnrichedEvent[] {
     dataset.priceReactions.map((reaction) => [reaction.event_id, reaction])
   );
   const latestPriceByStock = latestPriceMap(dataset.latestPrices);
+  const executionByEvent = mapExecutionsByEvent(dataset.executions);
 
   return dataset.events.map((event) => ({
     ...event,
     company: companyByStock.get(event.stock_code),
     holding: latestHoldingByStock.get(event.stock_code),
     priceReaction: reactionByEvent.get(event.event_id),
-    latestPrice: latestPriceByStock.get(event.stock_code)
+    latestPrice: latestPriceByStock.get(event.stock_code),
+    execution: executionByEvent.get(event.event_id)
   }));
 }
 

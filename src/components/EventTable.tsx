@@ -6,6 +6,7 @@ import {
   type TablePageSize
 } from "../constants";
 import type { EnrichedEvent } from "../types/buybacks";
+import { completionRate, executionStatus } from "../utils/executions";
 import {
   EVENT_TYPE_LABELS,
   formatKRW,
@@ -21,7 +22,7 @@ interface EventTableProps {
   onSelectStock: (stockCode: string) => void;
 }
 
-type SortKey = "date" | "company" | "amount" | "stake" | "marketCap";
+type SortKey = "date" | "company" | "amount" | "stake" | "marketCap" | "completion";
 
 export function EventTable({ events, selectedStockCode, onSelectStock }: EventTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>("date");
@@ -52,6 +53,9 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
       }
       if (sortKey === "stake") {
         return direction * (plannedStakeValue(a) - plannedStakeValue(b));
+      }
+      if (sortKey === "completion") {
+        return direction * (completionRateValue(a) - completionRateValue(b));
       }
       return direction * a.disclosure_date.localeCompare(b.disclosure_date);
     });
@@ -136,6 +140,14 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
               >
                 시가총액
               </SortableHeader>
+              <SortableHeader
+                active={sortKey === "completion"}
+                ascending={ascending}
+                className="numeric-cell"
+                onClick={() => changeSort("completion")}
+              >
+                이행률
+              </SortableHeader>
             </tr>
           </thead>
           <tbody>
@@ -177,12 +189,15 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                   <td className="numeric-cell">
                     <MarketCapCell event={event} />
                   </td>
+                  <td className="numeric-cell">
+                    <CompletionRateCell event={event} />
+                  </td>
                 </tr>
               );
             })}
             {visibleEvents.length === 0 ? (
               <tr>
-                <td className="empty-table-cell" colSpan={9}>
+                <td className="empty-table-cell" colSpan={10}>
                   표시할 이벤트가 없습니다.
                 </td>
               </tr>
@@ -315,6 +330,32 @@ function HoldingBeforeCell({ event }: { event: EnrichedEvent }) {
 function plannedStakeValue(event: EnrichedEvent) {
   const marketCap = marketCapFrom(event.latestPrice ?? event.priceReaction, event.holding);
   return plannedEventStake(event, marketCap.amount) ?? -1;
+}
+
+function completionRateValue(event: EnrichedEvent) {
+  return completionRate(event, event.execution) ?? -1;
+}
+
+function CompletionRateCell({ event }: { event: EnrichedEvent }) {
+  const rate = completionRate(event, event.execution);
+  const { status, reason } = executionStatus(event.execution);
+  if (rate === null && status === null) {
+    return <>-</>;
+  }
+  return (
+    <div className="stacked-value" title={status === "미달" ? (reason ?? undefined) : undefined}>
+      <strong>{formatPercent(rate, 1)}</strong>
+      {status ? (
+        <span className={`status-badge status-${statusClassName(status)}`}>{status}</span>
+      ) : null}
+    </div>
+  );
+}
+
+function statusClassName(status: "완료" | "미달" | "진행중") {
+  if (status === "완료") return "complete";
+  if (status === "미달") return "shortfall";
+  return "in-progress";
 }
 
 function MarketCapCell({ event }: { event: EnrichedEvent }) {

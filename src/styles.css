@@ -41,6 +41,12 @@
   --chip-trust-text: #3f4e7e;
   --chip-periodic-bg: #edf1ef;
   --chip-periodic-text: #596663;
+  --status-complete-bg: #e1f3e4;
+  --status-complete-text: #2c6b3a;
+  --status-shortfall-bg: #fde3e1;
+  --status-shortfall-text: #a3271d;
+  --status-progress-bg: #e9edf7;
+  --status-progress-text: #3f4e7e;
   --shadow: 0 12px 32px rgba(18, 32, 31, 0.08);
   background: var(--bg);
   color: var(--ink);
@@ -78,6 +84,12 @@
     --chip-trust-text: #aab6ef;
     --chip-periodic-bg: #2a3432;
     --chip-periodic-text: #c1cdc9;
+    --status-complete-bg: #1f3a26;
+    --status-complete-text: #8fe0a1;
+    --status-shortfall-bg: #43231f;
+    --status-shortfall-text: #ff9d92;
+    --status-progress-bg: #29304a;
+    --status-progress-text: #aab6ef;
     --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
   }
 }
@@ -871,6 +883,71 @@ tbody tr:last-child td {
   font-size: 11px;
   font-weight: 750;
   line-height: 1.35;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border-radius: 5px;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.status-complete {
+  background: var(--status-complete-bg);
+  color: var(--status-complete-text);
+}
+
+.status-shortfall {
+  background: var(--status-shortfall-bg);
+  color: var(--status-shortfall-text);
+  cursor: help;
+}
+
+.status-in-progress {
+  background: var(--status-progress-bg);
+  color: var(--status-progress-text);
+}
+
+.execution-summary {
+  display: grid;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.execution-summary strong {
+  font-weight: 850;
+}
+
+.execution-progress {
+  display: grid;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.execution-progress meter {
+  width: 100%;
+}
+
+.execution-progress small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.unlinked-executions {
+  margin-top: 16px;
+}
+
+.unlinked-executions h4 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
 }
 
 .reaction-value {

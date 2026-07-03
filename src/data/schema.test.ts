@@ -81,6 +81,38 @@ describe("validateDataset", () => {
           change_code: "2"
         }
       ],
+      executions: [
+        {
+          execution_id: "exec-1",
+          corp_code: "00126380",
+          stock_code: "005930",
+          corp_name: "삼성전자",
+          execution_type: "acquisition_result",
+          disclosure_date: "2026-06-19",
+          origin_report_date: "2026-05-22",
+          period_start: "2026-05-23",
+          period_end: "2026-06-18",
+          ordered_shares: 100,
+          actual_shares: 90,
+          actual_amount_krw: 9000,
+          avg_price_krw: 100,
+          planned_amount_krw: 10000,
+          planned_shares: null,
+          shortfall: false,
+          shortfall_reason: null,
+          holding_after_qty: 190,
+          holding_after_ratio: 0.02,
+          trust_contract_amount_krw: null,
+          trust_progress_ratio: null,
+          as_of_date: "2026-06-19",
+          linked_event_id: "event-1",
+          link_method: "report_date",
+          source: "DART",
+          rcept_no: "20260619000001",
+          source_url: null,
+          raw_report_name: "자기주식취득결과보고서"
+        }
+      ],
       status: {
         generated_at: "2026-06-20T00:00:00+09:00",
         dart_available: true,
@@ -114,6 +146,7 @@ describe("validateDataset", () => {
       holdingSnapshots: [],
       priceReactions: [],
       latestPrices: [],
+      executions: [],
       status: {
         generated_at: "",
         dart_available: false,
@@ -127,5 +160,100 @@ describe("validateDataset", () => {
     } as unknown as BuybacksDataset;
 
     expect(validateDataset(dataset).length).toBeGreaterThan(0);
+  });
+
+  it("reports duplicate execution ids and unknown linked events", () => {
+    const dataset = {
+      companies: [
+        {
+          corp_code: "00126380",
+          stock_code: "005930",
+          corp_name: "삼성전자",
+          market: "KOSPI",
+          sector: null,
+          last_updated: "2026-06-20"
+        }
+      ],
+      events: [],
+      holdingSnapshots: [],
+      priceReactions: [],
+      latestPrices: [],
+      executions: [
+        {
+          execution_id: "dup",
+          corp_code: "00126380",
+          stock_code: "005930",
+          corp_name: "삼성전자",
+          execution_type: "acquisition_result",
+          disclosure_date: "2026-06-19",
+          origin_report_date: null,
+          period_start: null,
+          period_end: null,
+          ordered_shares: null,
+          actual_shares: 90,
+          actual_amount_krw: 9000,
+          avg_price_krw: 100,
+          planned_amount_krw: null,
+          planned_shares: null,
+          shortfall: false,
+          shortfall_reason: null,
+          holding_after_qty: null,
+          holding_after_ratio: null,
+          trust_contract_amount_krw: null,
+          trust_progress_ratio: null,
+          as_of_date: "2026-06-19",
+          linked_event_id: "missing-event",
+          link_method: "report_date",
+          source: "DART",
+          rcept_no: null,
+          source_url: null,
+          raw_report_name: null
+        },
+        {
+          execution_id: "dup",
+          corp_code: "00126380",
+          stock_code: "005930",
+          corp_name: "삼성전자",
+          execution_type: "acquisition_result",
+          disclosure_date: "2026-06-19",
+          origin_report_date: null,
+          period_start: null,
+          period_end: null,
+          ordered_shares: null,
+          actual_shares: 90,
+          actual_amount_krw: 9000,
+          avg_price_krw: 100,
+          planned_amount_krw: null,
+          planned_shares: null,
+          shortfall: false,
+          shortfall_reason: null,
+          holding_after_qty: null,
+          holding_after_ratio: null,
+          trust_contract_amount_krw: null,
+          trust_progress_ratio: null,
+          as_of_date: "2026-06-19",
+          linked_event_id: null,
+          link_method: "unlinked",
+          source: "DART",
+          rcept_no: null,
+          source_url: null,
+          raw_report_name: null
+        }
+      ],
+      status: {
+        generated_at: "",
+        dart_available: false,
+        krx_available: false,
+        companies_count: 1,
+        events_count: 0,
+        holdings_count: 0,
+        price_reactions_count: 0,
+        warnings: []
+      }
+    } as unknown as BuybacksDataset;
+
+    const errors = validateDataset(dataset);
+    expect(errors).toContain("executions[1] duplicate execution_id");
+    expect(errors).toContain("executions[0] unknown linked_event_id missing-event");
   });
 });
