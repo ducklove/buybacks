@@ -107,14 +107,26 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
-          git add \
-            "data/backfills/${BACKFILL_RUN_ID}" \
-            public/data/buybacks
+          # Add the run-table files explicitly: the run directory also holds a
+          # raw/ response cache that must not be committed.
+          for name in companies.json disclosures.json events.json executions.json status.json; do
+            path="data/backfills/${BACKFILL_RUN_ID}/${name}"
+            if [ -f "$path" ]; then
+              git add "$path"
+            fi
+          done
+          git add public/data/buybacks
           if git diff --cached --quiet; then
             echo "No backfill changes to commit."
             exit 0
           fi
           git commit -m "Backfill buyback events ${BACKFILL_RUN_ID}"
+          # Long collections start from a stale checkout; if master gained
+          # workflow-file changes meanwhile, pushing the stale base is rejected
+          # (GITHUB_TOKEN lacks the workflows scope). Rebase the single data
+          # commit onto current master before pushing.
+          git fetch origin master
+          git rebase origin/master
           git push --set-upstream origin "$branch"
           manual_url="https://github.com/${GITHUB_REPOSITORY}/pull/new/${branch}"
           if pr_url="$(gh pr create \
