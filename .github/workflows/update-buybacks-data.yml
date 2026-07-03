@@ -15,6 +15,10 @@ on:
         description: "Price reaction recalculation scope: recent (daily default), missing-series (backfill events without a daily return series), all (full recalculation)."
         required: false
         default: "recent"
+      build_timeout_minutes:
+        description: Build step timeout in minutes. Raise for missing-series/all recalculations over large backfills.
+        required: false
+        default: "25"
   schedule:
     - cron: "30 20 * * *"
 
@@ -49,7 +53,7 @@ jobs:
         run: python -m pip install --upgrade pip pytest
 
       - name: Incrementally update buybacks data
-        timeout-minutes: 25
+        timeout-minutes: ${{ fromJSON(github.event.inputs.build_timeout_minutes || '25') }}
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
           DART_RETRIES: "3"
