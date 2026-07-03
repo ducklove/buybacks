@@ -90,6 +90,13 @@ def market_from_corp_cls(value: str | None) -> Market:
 
 def classify_event_type(report_name: str | None) -> EventType:
     text = report_name or ""
+    # Execution result reports (자기주식취득결과보고서, 자기주식처분결과보고서,
+    # 신탁계약에의한취득상황보고서 and their [기재정정] variants) describe how a
+    # past decision was carried out. They must never be classified as new
+    # decision events, so this guard runs before every keyword branch below.
+    compact = text.replace(" ", "")
+    if "결과보고서" in compact or "취득상황보고서" in compact:
+        return "unknown"
     if "신탁계약해지" in text or "신탁계약 해지" in text:
         return "trust_contract_end"
     if "신탁계약체결" in text or "신탁계약 체결" in text:

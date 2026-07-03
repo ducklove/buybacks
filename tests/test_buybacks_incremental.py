@@ -9,7 +9,13 @@ from scripts.buybacks.build_buybacks_dataset import (
     write_json,
 )
 from scripts.buybacks.fetch_krx_prices import missing_reaction
-from scripts.buybacks.models import BuybackEvent, Company, TreasuryHoldingSnapshot, to_jsonable
+from scripts.buybacks.models import (
+    BuybackEvent,
+    BuybackExecution,
+    Company,
+    TreasuryHoldingSnapshot,
+    to_jsonable,
+)
 
 
 def company(corp_code: str, stock_code: str, name: str) -> Company:
@@ -45,6 +51,45 @@ def event(event_id: str, stock_code: str, corp_code: str, disclosure_date: str, 
         rcept_no=rcept_no,
         source_url=None,
         raw_report_name=None,
+    )
+
+
+def execution(
+    rcept_no: str,
+    stock_code: str,
+    corp_code: str,
+    disclosure_date: str,
+    origin_report_date: str | None,
+) -> BuybackExecution:
+    return BuybackExecution(
+        execution_id=f"dart-{rcept_no}-acquisition_result",
+        corp_code=corp_code,
+        stock_code=stock_code,
+        corp_name="Company",
+        execution_type="acquisition_result",
+        disclosure_date=disclosure_date,
+        origin_report_date=origin_report_date,
+        period_start=None,
+        period_end=None,
+        ordered_shares=None,
+        actual_shares=1000,
+        actual_amount_krw=None,
+        avg_price_krw=None,
+        planned_amount_krw=None,
+        planned_shares=None,
+        shortfall=None,
+        shortfall_reason=None,
+        holding_after_qty=None,
+        holding_after_ratio=None,
+        trust_contract_amount_krw=None,
+        trust_progress_ratio=None,
+        as_of_date=None,
+        linked_event_id=None,
+        link_method="unlinked",
+        source="DART",
+        rcept_no=rcept_no,
+        source_url=None,
+        raw_report_name="자기주식취득결과보고서",
     )
 
 
@@ -153,10 +198,14 @@ def patch_incremental_collectors(monkeypatch, corp_code_calls, holding_scan_scop
         holding_scan_scopes.append([item.corp_code for item in scanned])
         return [holding(item.stock_code, item.corp_code, 120) for item in scanned], []
 
+    def fake_collect_execution_reports(api_key, bgn_de, end_de, raw_dir=None, page_limit=20):
+        return [], []
+
     monkeypatch.setattr(build_module, "fetch_buyback_disclosures", fake_fetch_disclosures)
     monkeypatch.setattr(build_module, "collect_dart_dataset", fake_collect_dataset)
     monkeypatch.setattr(build_module, "fetch_corp_codes", fake_fetch_corp_codes)
     monkeypatch.setattr(build_module, "collect_dart_holding_snapshots", fake_collect_holdings)
+    monkeypatch.setattr(build_module, "collect_execution_reports", fake_collect_execution_reports)
 
 
 def load(path):
@@ -214,6 +263,53 @@ def test_incremental_events_scope_keeps_event_company_behavior(monkeypatch, tmp_
     assert set(holdings) == {"005930", "035420"}
     # Existing snapshot outside the event scope is preserved untouched.
     assert holdings["005930"]["ending_qty"] == 100
+
+
+def test_incremental_merges_and_relinks_executions(monkeypatch, tmp_path):
+    output_dir = tmp_path / "out"
+    write_existing_dataset(output_dir)
+    # Existing execution referencing the old event through its origin date.
+    write_json(
+        output_dir / "executions.json",
+        to_jsonable([execution("20260610000900", "005930", "00126380", "2026-06-10", "2026-05-01")]),
+    )
+    corp_code_calls: list[str] = []
+    holding_scan_scopes: list[list[str]] = []
+    patch_incremental_collectors(monkeypatch, corp_code_calls, holding_scan_scopes)
+
+    new_execution = execution("20260701000900", "035420", "00266961", "2026-07-01", "2026-06-30")
+
+    def fake_collect_execution_reports(api_key, bgn_de, end_de, raw_dir=None, page_limit=20):
+        return [new_execution], ["execution warning"]
+
+    monkeypatch.setattr(build_module, "collect_execution_reports", fake_collect_execution_reports)
+
+    args = make_args(tmp_path, holding_stock_codes="EVENTS")
+    status = build_incremental_dataset(args, "key", output_dir)
+
+    stored = {item["rcept_no"]: item for item in load(output_dir / "executions.json")}
+    assert set(stored) == {"20260610000900", "20260701000900"}
+    # Both executions are (re)linked against the merged events on every build.
+    assert stored["20260610000900"]["linked_event_id"] == "dart-old-direct_acquisition"
+    assert stored["20260610000900"]["link_method"] == "report_date"
+    assert stored["20260701000900"]["linked_event_id"] == "dart-new-direct_acquisition"
+    assert status["executions_count"] == 2
+    assert "execution warning" in status["warnings"]
+    assert any("0 unlinked" in warning for warning in status["warnings"])
+
+
+def test_incremental_without_existing_executions_file_still_writes_dataset(monkeypatch, tmp_path):
+    output_dir = tmp_path / "out"
+    write_existing_dataset(output_dir)
+    corp_code_calls: list[str] = []
+    holding_scan_scopes: list[list[str]] = []
+    patch_incremental_collectors(monkeypatch, corp_code_calls, holding_scan_scopes)
+
+    args = make_args(tmp_path, holding_stock_codes="EVENTS")
+    status = build_incremental_dataset(args, "key", output_dir)
+
+    assert status["executions_count"] == 0
+    assert load(output_dir / "executions.json") == []
 
 
 def test_merge_holdings_prefers_refreshed_rows_for_identical_keys():

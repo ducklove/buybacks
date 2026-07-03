@@ -12,6 +12,11 @@ from pathlib import Path
 
 if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parents[2]))
+    from scripts.buybacks.executions import (
+        collect_execution_reports,
+        link_executions,
+        merge_executions,
+    )
     from scripts.buybacks.fetch_corp_codes import fetch_corp_codes
     from scripts.buybacks.fetch_dart_buybacks import (
         collect_dart_dataset,
@@ -28,6 +33,7 @@ if __package__ in {None, ""}:
     from scripts.buybacks.fetch_listed_issues import ListedIssue, fetch_naver_listed_issues
     from scripts.buybacks.models import (
         BuybackEvent,
+        BuybackExecution,
         Company,
         LatestPriceSnapshot,
         PriceReaction,
@@ -36,6 +42,11 @@ if __package__ in {None, ""}:
     )
     from scripts.buybacks.parsers import kst_today, market_from_corp_cls, normalize_date
 else:
+    from .executions import (
+        collect_execution_reports,
+        link_executions,
+        merge_executions,
+    )
     from .fetch_corp_codes import fetch_corp_codes
     from .fetch_dart_buybacks import (
         collect_dart_dataset,
@@ -50,7 +61,15 @@ else:
         missing_reaction,
     )
     from .fetch_listed_issues import ListedIssue, fetch_naver_listed_issues
-    from .models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction, TreasuryHoldingSnapshot, to_jsonable
+    from .models import (
+        BuybackEvent,
+        BuybackExecution,
+        Company,
+        LatestPriceSnapshot,
+        PriceReaction,
+        TreasuryHoldingSnapshot,
+        to_jsonable,
+    )
     from .parsers import kst_today, market_from_corp_cls, normalize_date
 
 LOGGER = logging.getLogger(__name__)
@@ -91,11 +110,17 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path, extra_warnings: li
     )
     latest_prices = load_fixture_latest_prices(fixture_dir, reactions)
     latest_prices = filter_latest_prices_to_companies(latest_prices, companies)
+    executions = filter_json_executions(
+        load_optional_json(fixture_dir / "executions.json", []),
+        companies,
+        events,
+    )
     write_json(output_dir / "companies.json", companies)
     write_json(output_dir / "events.json", events)
     write_json(output_dir / "holding_snapshots.json", holdings)
     write_json(output_dir / "price_reactions.json", reactions)
     write_json(output_dir / "latest_prices.json", latest_prices)
+    write_json(output_dir / "executions.json", executions)
     status = load_json(fixture_dir / "data_status.json")
     # generated_at is intentionally UTC; business dates elsewhere use KST (Asia/Seoul).
     status["generated_at"] = datetime.now(timezone.utc).isoformat()
@@ -110,6 +135,7 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path, extra_warnings: li
     status["holdings_count"] = len(holdings)
     status["price_reactions_count"] = len(reactions)
     status["latest_prices_count"] = len(latest_prices)
+    status["executions_count"] = len(executions)
     write_json(output_dir / "data_status.json", status)
     return status
 
@@ -242,6 +268,19 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         "Output universe restricted to currently trading KOSPI/KOSDAQ listed stock issues with event or holding rows."
     )
 
+    executions, execution_warnings = build_executions(
+        api_key=api_key,
+        bgn_de=disclosure_start,
+        end_de=args.end,
+        raw_dir=raw_dir,
+        page_limit=args.discovery_page_limit,
+        existing_executions=[],
+        listed_issues=listed_issues,
+        companies=live_companies,
+        events=events,
+    )
+    warnings.extend(execution_warnings)
+
     price_reactions, price_warnings, price_source = build_price_reactions(args, events, live_companies)
     warnings.extend(price_warnings)
     latest_prices, latest_price_warnings, latest_price_source = build_latest_prices(
@@ -261,8 +300,10 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         "holdings_count": len(holdings),
         "price_reactions_count": len(price_reactions),
         "latest_prices_count": len(latest_prices),
+        "executions_count": len(executions),
         "warnings": [
             *warnings,
+            *execution_status_warnings(executions),
             f"OpenDART disclosure discovery window: {disclosure_start} to {args.end}.",
             f"OpenDART holding scan scope: {len(holding_companies)} companies.",
             f"OpenDART holding scan source: {args.holding_source}.",
@@ -276,6 +317,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     write_json(output_dir / "holding_snapshots.json", to_jsonable(holdings))
     write_json(output_dir / "price_reactions.json", to_jsonable(price_reactions))
     write_json(output_dir / "latest_prices.json", to_jsonable(latest_prices))
+    write_json(output_dir / "executions.json", to_jsonable(executions))
     write_json(output_dir / "data_status.json", status)
     return status
 
@@ -290,6 +332,7 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
     existing_holdings = load_holdings(output_dir / "holding_snapshots.json")
     existing_reactions = load_reactions(output_dir / "price_reactions.json")
     existing_latest_prices = load_latest_prices(output_dir / "latest_prices.json")
+    existing_executions = load_executions(output_dir / "executions.json")
     existing_status = load_json(output_dir / "data_status.json")
     raw_dir = Path(args.raw_dir)
     warnings: list[str] = []
@@ -388,6 +431,19 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
         listed_issues,
     )
 
+    executions, execution_warnings = build_executions(
+        api_key=api_key,
+        bgn_de=disclosure_start,
+        end_de=args.end,
+        raw_dir=raw_dir,
+        page_limit=args.discovery_page_limit,
+        existing_executions=existing_executions,
+        listed_issues=listed_issues,
+        companies=live_companies,
+        events=events,
+    )
+    warnings.extend(execution_warnings)
+
     new_event_ids = {event.event_id for event in new_events}
     price_refresh_events = select_price_reaction_events(
         events,
@@ -435,10 +491,12 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
         "holdings_count": len(holdings),
         "price_reactions_count": len(price_reactions),
         "latest_prices_count": len(latest_prices),
+        "executions_count": len(executions),
         "warnings": [
             "Incremental update merged with the committed dataset instead of rebuilding the full universe.",
             incremental_holding_scope_note(holding_stock_codes, args.holding_stock_codes),
             *warnings,
+            *execution_status_warnings(executions),
             f"OpenDART incremental disclosure window: {disclosure_start} to {args.end}.",
             f"OpenDART incremental event company scope: {len(event_companies)} companies.",
             f"OpenDART incremental holding scan scope: {len(holding_companies)} companies.",
@@ -453,8 +511,68 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
     write_json(output_dir / "holding_snapshots.json", to_jsonable(holdings))
     write_json(output_dir / "price_reactions.json", to_jsonable(price_reactions))
     write_json(output_dir / "latest_prices.json", to_jsonable(latest_prices))
+    write_json(output_dir / "executions.json", to_jsonable(executions))
     write_json(output_dir / "data_status.json", status)
     return status
+
+
+def build_executions(
+    api_key: str,
+    bgn_de: str,
+    end_de: str,
+    raw_dir: Path,
+    page_limit: int,
+    existing_executions: list[BuybackExecution],
+    listed_issues: list[ListedIssue],
+    companies: list[Company],
+    events: list[BuybackEvent],
+) -> tuple[list[BuybackExecution], list[str]]:
+    """Collect execution result reports for the window and merge/link them.
+
+    Linking runs across the full merged set on every build (not just new rows)
+    so unlinked executions get promoted once the originating decision event is
+    backfilled later.
+    """
+    new_executions, warnings = collect_execution_reports(
+        api_key=api_key,
+        bgn_de=bgn_de,
+        end_de=end_de,
+        raw_dir=raw_dir,
+        page_limit=page_limit,
+    )
+    merged = merge_executions(existing_executions, new_executions)
+    merged = filter_executions_to_supported_stocks(merged, listed_issues, companies, events)
+    return link_executions(merged, events), warnings
+
+
+def filter_executions_to_supported_stocks(
+    executions: list[BuybackExecution],
+    listed_issues: list[ListedIssue],
+    companies: list[Company],
+    events: list[BuybackEvent],
+) -> list[BuybackExecution]:
+    """Keep executions for tradable KOSPI/KOSDAQ stocks (plus event stocks).
+
+    Unlinked executions are intentionally preserved as long as their issue is
+    supported; only unsupported-market rows are dropped, mirroring the event
+    filter.
+    """
+    if listed_issues:
+        allowed = {
+            issue.stock_code
+            for issue in listed_issues
+            if issue.is_trading and issue.market in SUPPORTED_MARKETS
+        }
+    else:
+        allowed = {company.stock_code for company in companies if company.market in SUPPORTED_MARKETS}
+    allowed |= {event.stock_code for event in events}
+    return [execution for execution in executions if execution.stock_code in allowed]
+
+
+def execution_status_warnings(executions: list[BuybackExecution]) -> list[str]:
+    unlinked_count = sum(1 for execution in executions if execution.link_method == "unlinked")
+    notes = [f"Execution result reports stored: {len(executions)} ({unlinked_count} unlinked)."]
+    return notes
 
 
 def main() -> None:
@@ -745,6 +863,44 @@ def load_latest_prices(path: Path) -> list[LatestPriceSnapshot]:
     if not path.exists():
         return []
     return [LatestPriceSnapshot(**item) for item in load_json(path)]
+
+
+def load_executions(path: Path) -> list[BuybackExecution]:
+    # executions.json is optional: datasets built before execution tracking
+    # (and the committed public data) simply have no file yet.
+    if not path.exists():
+        return []
+    return [BuybackExecution(**item) for item in load_json(path)]
+
+
+def load_optional_json(path: Path, fallback):
+    if not path.exists():
+        return fallback
+    return load_json(path)
+
+
+def filter_json_executions(
+    executions: list[dict],
+    companies: list[dict],
+    events: list[dict],
+) -> list[dict]:
+    """Fixture-path execution filter operating on raw JSON rows.
+
+    Keeps executions for supported companies and downgrades links whose target
+    event was filtered out, so the fixture dataset stays referentially valid.
+    """
+    supported_stocks = {str(company.get("stock_code") or "") for company in companies}
+    event_ids = {event.get("event_id") for event in events}
+    output: list[dict] = []
+    for item in executions:
+        if str(item.get("stock_code") or "") not in supported_stocks:
+            continue
+        execution = dict(item)
+        if execution.get("linked_event_id") not in event_ids:
+            execution["linked_event_id"] = None
+            execution["link_method"] = "unlinked"
+        output.append(execution)
+    return output
 
 
 def event_payload(item: dict) -> dict:

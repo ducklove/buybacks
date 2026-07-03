@@ -14,9 +14,11 @@ from typing import Any
 if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parents[2]))
     from scripts.buybacks.build_buybacks_dataset import (
+        filter_executions_to_supported_stocks,
         filter_live_dataset_to_supported_markets,
         load_companies,
         load_events,
+        load_executions,
         load_json,
         load_latest_prices,
         load_reactions,
@@ -28,15 +30,18 @@ if __package__ in {None, ""}:
         write_json,
         companies_from_disclosures as build_companies_from_disclosures,
     )
+    from scripts.buybacks.executions import collect_execution_reports, link_executions, merge_executions
     from scripts.buybacks.fetch_dart_buybacks import collect_dart_dataset, dedupe_events, fetch_buyback_disclosures
     from scripts.buybacks.fetch_krx_prices import missing_reaction
     from scripts.buybacks.fetch_listed_issues import fetch_naver_listed_issues
-    from scripts.buybacks.models import BuybackEvent, Company, PriceReaction, to_jsonable
+    from scripts.buybacks.models import BuybackEvent, BuybackExecution, Company, PriceReaction, to_jsonable
 else:
     from .build_buybacks_dataset import (
+        filter_executions_to_supported_stocks,
         filter_live_dataset_to_supported_markets,
         load_companies,
         load_events,
+        load_executions,
         load_json,
         load_latest_prices,
         load_reactions,
@@ -48,10 +53,11 @@ else:
         write_json,
         companies_from_disclosures as build_companies_from_disclosures,
     )
+    from .executions import collect_execution_reports, link_executions, merge_executions
     from .fetch_dart_buybacks import collect_dart_dataset, dedupe_events, fetch_buyback_disclosures
     from .fetch_krx_prices import missing_reaction
     from .fetch_listed_issues import fetch_naver_listed_issues
-    from .models import BuybackEvent, Company, PriceReaction, to_jsonable
+    from .models import BuybackEvent, BuybackExecution, Company, PriceReaction, to_jsonable
 
 
 LOGGER = logging.getLogger(__name__)
@@ -86,6 +92,8 @@ def collect_backfill(args: argparse.Namespace) -> dict[str, Any]:
     all_companies: list[Company] = []
     all_events: list[BuybackEvent] = []
     all_disclosures: list[dict] = []
+    all_executions: list[BuybackExecution] = []
+    include_executions = not getattr(args, "skip_executions", False)
 
     write_status(
         status_path,
@@ -140,6 +148,17 @@ def collect_backfill(args: argparse.Namespace) -> dict[str, Any]:
                 all_companies.extend(companies)
                 all_events.extend(events)
 
+            if include_executions:
+                chunk_executions, execution_warnings = collect_execution_reports(
+                    api_key=api_key,
+                    bgn_de=chunk.start,
+                    end_de=chunk.end,
+                    raw_dir=raw_dir,
+                    page_limit=args.page_limit,
+                )
+                warnings.extend(execution_warnings)
+                all_executions.extend(chunk_executions)
+
             progress = round(index / len(chunks) * 100, 2)
             LOGGER.info("backfill progress %.2f%%", progress)
             write_status(
@@ -155,12 +174,19 @@ def collect_backfill(args: argparse.Namespace) -> dict[str, Any]:
                     warnings=warnings,
                     companies_count=len(dedupe_companies_for_run(all_companies)),
                     events_count=len(dedupe_events(all_events)),
+                    executions_count=len(merge_executions([], all_executions)),
                     updated_at=utc_now(),
                 ),
             )
 
         companies = dedupe_companies_for_run(all_companies)
         events = dedupe_events(all_events)
+        executions = filter_executions_to_supported_stocks(
+            merge_executions([], all_executions),
+            listed_issues,
+            companies,
+            events,
+        )
         duplicate_count, new_count = compare_backfill_events(load_events(Path(args.data_dir) / "events.json"), events)
         duration_seconds = round(time.monotonic() - started, 2)
         status = run_status(
@@ -178,10 +204,13 @@ def collect_backfill(args: argparse.Namespace) -> dict[str, Any]:
             events_count=len(events),
             duplicate_events_count=duplicate_count,
             new_events_count=new_count,
+            executions_count=len(executions),
         )
         write_json(run_dir / "companies.json", to_jsonable(companies))
         write_json(run_dir / "events.json", to_jsonable(events))
         write_json(run_dir / "disclosures.json", all_disclosures)
+        if include_executions:
+            write_json(run_dir / "executions.json", to_jsonable(executions))
         write_status(status_path, status)
         LOGGER.info(
             "backfill completed in %ss: %d collected, %d new, %d duplicate",
@@ -237,6 +266,21 @@ def merge_backfill(args: argparse.Namespace) -> dict[str, Any]:
     merged_reactions = merge_price_reactions(existing_reactions, missing_reactions, merged_events)
     merged_latest_prices = merge_latest_prices(existing_latest_prices, [], merged_companies)
 
+    # Execution result reports: older runs have no executions.json, and the
+    # committed dataset may not have one either. Only write the file when the
+    # run or the dataset already tracks executions, and re-link everything
+    # against the merged events so backfilled decisions pick up their reports.
+    run_executions_path = run_dir / "executions.json"
+    data_executions_path = data_dir / "executions.json"
+    merged_executions: list[BuybackExecution] | None = None
+    if run_executions_path.exists() or data_executions_path.exists():
+        backfill_executions = load_executions(run_executions_path)
+        existing_executions = load_executions(data_executions_path)
+        merged_executions = link_executions(
+            merge_executions(existing_executions, backfill_executions),
+            merged_events,
+        )
+
     updated_status = {
         **existing_status,
         "generated_at": utc_now(),
@@ -257,10 +301,20 @@ def merge_backfill(args: argparse.Namespace) -> dict[str, Any]:
         ],
     }
 
+    if merged_executions is not None:
+        updated_status["executions_count"] = len(merged_executions)
+        unlinked_count = sum(1 for execution in merged_executions if execution.link_method == "unlinked")
+        updated_status["warnings"] = [
+            *updated_status["warnings"],
+            f"Execution result reports stored: {len(merged_executions)} ({unlinked_count} unlinked).",
+        ]
+
     write_json(data_dir / "companies.json", to_jsonable(merged_companies))
     write_json(data_dir / "events.json", to_jsonable(merged_events))
     write_json(data_dir / "price_reactions.json", to_jsonable(merged_reactions))
     write_json(data_dir / "latest_prices.json", to_jsonable(merged_latest_prices))
+    if merged_executions is not None:
+        write_json(data_dir / "executions.json", to_jsonable(merged_executions))
     write_json(data_dir / "data_status.json", updated_status)
     merged_run_status = {
         **status,
@@ -291,6 +345,7 @@ def run_status(
     events_count: int = 0,
     duplicate_events_count: int = 0,
     new_events_count: int = 0,
+    executions_count: int = 0,
 ) -> dict[str, Any]:
     return {
         "version": BACKFILL_VERSION,
@@ -309,6 +364,7 @@ def run_status(
         "events_count": events_count,
         "duplicate_events_count": duplicate_events_count,
         "new_events_count": new_events_count,
+        "executions_count": executions_count,
         "warnings": warnings or [],
         "error": error,
     }
@@ -414,6 +470,11 @@ def main() -> None:
     collect_parser.add_argument("--chunk-days", type=int, default=14)
     collect_parser.add_argument("--page-limit", type=int, default=50)
     collect_parser.add_argument("--report-codes", default="11011")
+    collect_parser.add_argument(
+        "--skip-executions",
+        action="store_true",
+        help="Skip execution result report collection (keeps the historical events-only behavior).",
+    )
     collect_parser.set_defaults(func=collect_backfill)
 
     merge_parser = subparsers.add_parser("merge")

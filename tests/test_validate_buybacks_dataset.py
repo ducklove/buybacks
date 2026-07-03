@@ -49,7 +49,42 @@ def test_holding_flow_warnings_skip_snapshots_with_null_or_non_numeric_fields():
     assert holding_flow_warnings([holding(acquired_qty="30")]) == []
 
 
-def write_dataset(data_dir, holdings) -> None:
+def execution(**overrides) -> dict:
+    row = {
+        "execution_id": "dart-20260620000100-acquisition_result",
+        "corp_code": "00126380",
+        "stock_code": "005930",
+        "corp_name": "Samsung Electronics",
+        "execution_type": "acquisition_result",
+        "disclosure_date": "2026-06-20",
+        "origin_report_date": "2026-06-20",
+        "period_start": None,
+        "period_end": None,
+        "ordered_shares": 1100,
+        "actual_shares": 1000,
+        "actual_amount_krw": 100_000_000,
+        "avg_price_krw": 100_000,
+        "planned_amount_krw": 100_000_000,
+        "planned_shares": None,
+        "shortfall": False,
+        "shortfall_reason": None,
+        "holding_after_qty": None,
+        "holding_after_ratio": None,
+        "trust_contract_amount_krw": None,
+        "trust_progress_ratio": None,
+        "as_of_date": "2026-06-20",
+        "linked_event_id": "dart-1-direct_acquisition",
+        "link_method": "report_date",
+        "source": "DART",
+        "rcept_no": "20260620000100",
+        "source_url": None,
+        "raw_report_name": "자기주식취득결과보고서",
+    }
+    row.update(overrides)
+    return row
+
+
+def write_dataset(data_dir, holdings, executions=None, status_overrides=None) -> None:
     companies = [
         {
             "corp_code": "00126380",
@@ -67,6 +102,7 @@ def write_dataset(data_dir, holdings) -> None:
             "event_type": "direct_acquisition",
             "source": "DART",
             "disclosure_date": "2026-06-20",
+            "planned_shares_common": 1000,
         }
     ]
     reactions = [{"event_id": "dart-1-direct_acquisition", "data_quality": "missing"}]
@@ -76,15 +112,19 @@ def write_dataset(data_dir, holdings) -> None:
         "holdings_count": len(holdings),
         "price_reactions_count": len(reactions),
         "warnings": [],
+        **(status_overrides or {}),
     }
     data_dir.mkdir(parents=True, exist_ok=True)
-    for name, payload in [
+    payloads = [
         ("companies.json", companies),
         ("events.json", events),
         ("holding_snapshots.json", holdings),
         ("price_reactions.json", reactions),
         ("data_status.json", status),
-    ]:
+    ]
+    if executions is not None:
+        payloads.append(("executions.json", executions))
+    for name, payload in payloads:
         (data_dir / name).write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
 
 
@@ -104,6 +144,87 @@ def test_validate_dataset_still_fails_on_structural_errors(tmp_path):
     errors, warnings = validate_dataset(tmp_path)
 
     assert any("unknown stock_code" in error for error in errors)
+
+
+def test_validate_dataset_accepts_valid_optional_executions(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        executions=[execution()],
+        status_overrides={"executions_count": 1},
+    )
+
+    errors, warnings = validate_dataset(tmp_path)
+
+    assert errors == []
+    assert warnings == []
+
+
+def test_validate_dataset_reports_dangling_execution_link_as_error(tmp_path):
+    write_dataset(tmp_path, [holding()], executions=[execution(linked_event_id="missing-event")])
+
+    errors, _ = validate_dataset(tmp_path)
+
+    assert any("unknown linked_event_id" in error for error in errors)
+
+
+def test_validate_dataset_rejects_unlinked_execution_with_link_target(tmp_path):
+    write_dataset(tmp_path, [holding()], executions=[execution(link_method="unlinked")])
+
+    errors, _ = validate_dataset(tmp_path)
+
+    assert any("unlinked row has linked_event_id" in error for error in errors)
+
+
+def test_validate_dataset_flags_executions_count_mismatch(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        executions=[execution()],
+        status_overrides={"executions_count": 5},
+    )
+
+    errors, _ = validate_dataset(tmp_path)
+
+    assert any("data_status.executions_count=5 expected 1" in error for error in errors)
+
+
+def test_validate_dataset_warns_on_completion_rate_anomaly_without_failing(tmp_path):
+    # actual_shares far above the linked event's planned shares: warning only.
+    write_dataset(tmp_path, [holding()], executions=[execution(actual_shares=5000)])
+
+    errors, warnings = validate_dataset(tmp_path)
+
+    assert errors == []
+    assert any("completion rate" in warning for warning in warnings)
+
+
+def test_validate_dataset_warns_on_trust_progress_anomaly(tmp_path):
+    trust_row = execution(
+        execution_id="dart-20260620000200-trust_status",
+        rcept_no="20260620000200",
+        execution_type="trust_status",
+        linked_event_id=None,
+        link_method="unlinked",
+        trust_progress_ratio=1.5,
+    )
+    write_dataset(tmp_path, [holding()], executions=[trust_row])
+
+    errors, warnings = validate_dataset(tmp_path)
+
+    assert errors == []
+    assert any("completion rate 1.50" in warning for warning in warnings)
+
+
+def test_validate_dataset_without_executions_file_stays_clean(tmp_path):
+    # Datasets built before execution tracking (like the committed public
+    # data) have no executions.json and must keep validating with exit 0.
+    write_dataset(tmp_path, [holding()])
+
+    errors, warnings = validate_dataset(tmp_path)
+
+    assert errors == []
+    assert warnings == []
 
 
 def test_main_exits_zero_when_only_flow_warnings_exist(tmp_path, monkeypatch, capsys):

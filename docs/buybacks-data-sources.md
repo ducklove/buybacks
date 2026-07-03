@@ -33,6 +33,29 @@ OpenDART is the primary source for official disclosure metadata and structured t
   - `주요사항보고서(자기주식취득결정)`
   - `주요사항보고서(자기주식처분결정)`
 
+### Execution result report discovery (E001/E002)
+
+OpenDART has no structured API for treasury stock execution result reports; the DS005 major-report group only covers the four "decision" disclosures. Execution results are therefore discovered through the same `list.json` endpoint with `pblntf_detail_ty` instead of `pblntf_ty`:
+
+- `pblntf_detail_ty=E001` (자기주식취득/처분): `자기주식취득결과보고서`, `자기주식처분결과보고서`
+- `pblntf_detail_ty=E002` (신탁계약체결/해지): `신탁계약에의한취득상황보고서`
+
+Only rows whose `report_nm` matches one of the three standardized report forms are kept. Matching normalizes spacing and strips bracket prefixes so `[기재정정]` correction reports (which get a new `rcept_no`) are captured as well. Pipeline entry point: `scripts/buybacks/executions.py` (`fetch_execution_disclosures`).
+
+Note: `classify_event_type` treats any report name containing `결과보고서` or `취득상황보고서` as a non-decision disclosure before all other keyword branches, so result reports can never be double counted as new decision events.
+
+### Execution report body (DART viewer, multi-section)
+
+Result report contents are only available as disclosure viewer HTML (same unofficial dart.fss.or.kr channel already used for retirement details):
+
+1. `GET https://dart.fss.or.kr/dsaf001/main.do?rcpNo=...` returns the viewer shell whose script embeds the full table of contents as repeated `node1['text'|'rcpNo'|'dcmNo'|'eleId'|'offset'|'length'|'dtd']` blocks.
+2. Each TOC node is fetched through `GET https://dart.fss.or.kr/report/viewer.do?rcpNo=&dcmNo=&eleId=&offset=&length=&dtd=` (6-8 sections per report, 2-4 KB each) with a polite interval between requests.
+3. Sections are merged behind `<!-- SECTION eleId=... text=... -->` markers and cached under `data/raw/buybacks/dart_viewers/{rcept_no}_full.html`, so re-runs are free.
+
+The single-section `fetch_dart_viewer_html` (first `viewDoc` match, cover page only) remains in place for retirement parsing; execution reports need `fetch_dart_viewer_document` because their data lives in later sections.
+
+Parsing is title-based (not positional) because `[기재정정]` reports insert a leading `정 정 신 고 (보고)` section that shifts every section index. Money columns honor the per-table `(단위 : ...)` declaration; some filers report holding/contract tables in 백만원. Parse failures are soft: fields stay null, a warning is recorded in `data_status.json`, and the event pipeline is never blocked.
+
 ### Periodic report treasury stock status
 
 - Official guide: <https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019006>
@@ -161,6 +184,7 @@ The frontend reads only:
 - `public/data/buybacks/events.json`
 - `public/data/buybacks/holding_snapshots.json`
 - `public/data/buybacks/price_reactions.json`
+- `public/data/buybacks/executions.json` (optional; treat a missing file as an empty list)
 - `public/data/buybacks/data_status.json`
 
 `data_status.json` records:
@@ -173,4 +197,5 @@ The frontend reads only:
 - `events_count`
 - `holdings_count`
 - `price_reactions_count`
-- `warnings`
+- `executions_count` (when execution tracking has run)
+- `warnings` (includes the stored/unlinked execution report counts)

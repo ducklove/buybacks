@@ -1,7 +1,12 @@
+import json
+from pathlib import Path
+
 from scripts.buybacks.build_buybacks_dataset import (
     companies_from_disclosures,
+    copy_fixture_dataset,
     dedupe_companies,
     filter_json_dataset_to_supported_markets,
+    filter_json_executions,
     filter_live_dataset_to_supported_markets,
     incremental_start_yyyymmdd,
     merge_latest_prices,
@@ -14,6 +19,8 @@ from scripts.buybacks.build_buybacks_dataset import (
 )
 from scripts.buybacks.fetch_listed_issues import ListedIssue
 from scripts.buybacks.models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction, TreasuryHoldingSnapshot
+
+FIXTURE_DIR = Path(__file__).parents[1] / "data" / "fixtures" / "buybacks"
 
 
 def test_parse_stock_codes_all_uses_disclosure_only_mode():
@@ -399,6 +406,39 @@ def test_merge_latest_prices_prefers_newer_supported_prices():
         ("003540", "2026-06-19", 17800),
         ("005930", "2026-06-19", 110),
     ]
+
+
+def test_copy_fixture_dataset_writes_executions_with_links(tmp_path):
+    status = copy_fixture_dataset(FIXTURE_DIR, tmp_path / "out")
+
+    executions = json.loads((tmp_path / "out" / "executions.json").read_text(encoding="utf-8"))
+    assert status["executions_count"] == len(executions) == 4
+
+    events = json.loads((tmp_path / "out" / "events.json").read_text(encoding="utf-8"))
+    event_ids = {event["event_id"] for event in events}
+    linked = [item for item in executions if item["link_method"] != "unlinked"]
+    # At least one fixture execution stays joined to a fixture event so the
+    # frontend can develop against the enriched-event path.
+    assert linked
+    assert all(item["linked_event_id"] in event_ids for item in linked)
+    assert any(item["link_method"] == "unlinked" for item in executions)
+
+
+def test_filter_json_executions_drops_unsupported_stock_and_downgrades_dangling_links():
+    companies = [{"stock_code": "005930", "market": "KOSPI"}]
+    events = [{"event_id": "keep-event", "stock_code": "005930"}]
+    executions = [
+        {"execution_id": "a", "stock_code": "005930", "linked_event_id": "keep-event", "link_method": "report_date"},
+        {"execution_id": "b", "stock_code": "005930", "linked_event_id": "gone-event", "link_method": "report_date"},
+        {"execution_id": "c", "stock_code": "123456", "linked_event_id": None, "link_method": "unlinked"},
+    ]
+
+    filtered = filter_json_executions(executions, companies, events)
+
+    assert [item["execution_id"] for item in filtered] == ["a", "b"]
+    assert filtered[0]["link_method"] == "report_date"
+    assert filtered[1]["link_method"] == "unlinked"
+    assert filtered[1]["linked_event_id"] is None
 
 
 def test_filter_json_dataset_removes_unsupported_markets_and_orphan_reactions():

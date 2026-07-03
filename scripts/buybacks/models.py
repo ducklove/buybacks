@@ -15,6 +15,12 @@ EventType = Literal[
 ]
 Source = Literal["DART", "KRX", "MANUAL", "DERIVED"]
 DataQuality = Literal["complete", "partial", "missing"]
+ExecutionType = Literal[
+    "acquisition_result",  # 자기주식취득결과보고서
+    "disposition_result",  # 자기주식처분결과보고서
+    "trust_status",  # 신탁계약에의한취득상황보고서
+]
+ExecutionLinkMethod = Literal["report_date", "period_overlap", "unlinked"]
 
 
 @dataclass(slots=True)
@@ -54,6 +60,46 @@ class BuybackEvent:
     holding_before_ratio_common: float | None
     source: Source
     rcept_no: str | None
+    source_url: str | None
+    raw_report_name: str | None
+
+
+@dataclass(slots=True)
+class BuybackExecution:
+    """One row per execution result report (자기주식 이행 결과/상황 공시).
+
+    Result reports are independent disclosures with their own rcept_no, so they
+    live in executions.json instead of mutating BuybackEvent rows. Linkage to
+    the originating decision event is derived data and recomputed on every
+    build (see link_executions).
+    """
+
+    execution_id: str  # f"dart-{rcept_no}-{execution_type}"
+    corp_code: str
+    stock_code: str
+    corp_name: str
+    execution_type: ExecutionType
+    disclosure_date: str  # 결과보고서 접수일
+    origin_report_date: str | None  # 본문 기재 "주요사항보고서 제출일" (연결 키)
+    period_start: str | None  # 실제 취득/처분 기간 (신탁: 계약기간)
+    period_end: str | None
+    ordered_shares: int | None  # 주문수량 계
+    actual_shares: int | None  # 취득/처분수량 계 (신탁: 누적)
+    actual_amount_krw: int | float | None  # 취득/처분가액 총액 (신탁: 누적)
+    avg_price_krw: int | float | None
+    planned_amount_krw: int | float | None  # 일치여부 표의 예정금액(보고서 자체 기재)
+    planned_shares: int | None  # 처분: 처분예정주식
+    shortfall: bool | None  # "미달"/"불일치" -> True, "일치"/"-" -> False
+    shortfall_reason: str | None
+    holding_after_qty: int | None  # 취득/처분후 보유상황 계(A+B) 수량
+    holding_after_ratio: float | None
+    trust_contract_amount_krw: int | float | None  # 신탁 전용: 계약금액
+    trust_progress_ratio: float | None  # 신탁 전용: 취득금액/계약금액
+    as_of_date: str | None  # 보유상황/신탁 보고 기준일
+    linked_event_id: str | None  # 연결된 BuybackEvent.event_id
+    link_method: ExecutionLinkMethod
+    source: Source
+    rcept_no: str
     source_url: str | None
     raw_report_name: str | None
 

@@ -22,6 +22,24 @@ One normalized row per disclosure or derived event. Event types:
 
 `event_id` is deterministic from source, receipt number or stock/date fallback, and event type.
 
+### BuybackExecution
+
+One row per execution result report, stored separately in `executions.json` (joined like `price_reactions.json` instead of mutating event rows). Execution types:
+
+- `acquisition_result` (자기주식취득결과보고서)
+- `disposition_result` (자기주식처분결과보고서)
+- `trust_status` (신탁계약에의한취득상황보고서, recurring roughly every 3 months per contract with cumulative figures)
+
+`execution_id` is `dart-{rcept_no}-{execution_type}`. Key fields: actual order/fill share counts and amounts from the "계" total row, the report's own planned amount/shares from the 일치·미달 여부 table, `shortfall`/`shortfall_reason`, post-execution holding quantity/ratio, and for trust reports the contract amount plus `trust_progress_ratio` (누적 취득금액 / 계약금액).
+
+Linking rules (recomputed deterministically on every build so backfilled events pick up their reports):
+
+1. `report_date`: `corp_code` + 본문의 "주요사항보고서 제출일" == 결정 이벤트의 `disclosure_date` + event-type mapping (`acquisition_result`→`direct_acquisition`, `disposition_result`→`direct_disposition`, `trust_status`→`trust_contract_start`).
+2. `period_overlap`: fallback when the referenced date misses (e.g. the origin disclosure was re-filed) — same corp and mapped type, execution period overlapping the decision's period, nearest preceding disclosure wins.
+3. `unlinked`: preserved, never dropped. Expected when the originating decision predates the discovery window or a backfill has not reached it yet; `data_status.json` reports the unlinked count.
+
+Correction handling: a `[기재정정]` result report has a new `rcept_no` and supersedes the original within its `(corp_code, execution_type, origin_report_date)` group (trust reports add `as_of_date` to that group so quarterly history survives). Because trust figures are cumulative, aggregations must use one representative row per contract — the latest `as_of_date` — via `latest_trust_status_by_contract`.
+
 ### TreasuryHoldingSnapshot
 
 One row per company/report period/stock kind. The preferred ratio is:
@@ -66,13 +84,13 @@ If neither denominator is reliable, event scale stays null.
 
 ## Completion Rate
 
-Preferred completion rate:
+Completion rate is derived at display/aggregation time from a linked BuybackExecution — it is intentionally not stored, so a corrected decision event can never disagree with a stale stored ratio. Derivation order:
 
-```text
-actual_shares / planned_shares_common
-```
+1. Share-count basis (preferred): `execution.actual_shares / event.planned_shares_common`. Amount-based "미달" verdicts can coexist with a 100% share fill (e.g. the plan's share count was fully acquired below the budgeted amount), so share counts win.
+2. Amount fallback: `execution.actual_amount_krw / (event.planned_amount_krw or execution.planned_amount_krw)` when share counts are unavailable.
+3. Trust contracts: `execution.trust_progress_ratio` (누적 취득금액 / 신탁계약금액) from the latest 상황보고서 per contract (`latest_trust_status_by_contract`); quarterly rows must never be summed because they are cumulative.
 
-Actual execution data may require KRX or follow-up disclosure coverage. Without verified execution data, completion rate stays null.
+Events without a linked execution report (not yet due, unlinked, or before execution tracking) keep a null completion rate. `validate_buybacks_dataset.py` reports derived rates above 1.2 as non-blocking warnings.
 
 ## Data Quality Rules
 
