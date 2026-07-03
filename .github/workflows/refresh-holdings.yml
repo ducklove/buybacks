@@ -110,9 +110,18 @@ jobs:
         with:
           path: dist
 
+      # The Pages deployment API intermittently returns "Deployment failed,
+      # try again later" and consistently succeeds on retry, so retry once
+      # before treating the run as failed.
       - name: Deploy to GitHub Pages
         if: steps.commit-data.outputs.changed == 'true'
         id: deployment
+        uses: actions/deploy-pages@v5
+        continue-on-error: true
+
+      - name: Retry deploy to GitHub Pages
+        if: steps.commit-data.outputs.changed == 'true' && steps.deployment.outcome == 'failure'
+        id: deployment-retry
         uses: actions/deploy-pages@v5
 
       - name: Notify value-invest on failure
