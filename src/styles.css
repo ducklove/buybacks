@@ -188,6 +188,7 @@ a:hover {
   padding: 0 8px;
   font-size: 14px;
   font-weight: 650;
+  white-space: nowrap;
 }
 
 .nav-link:hover,
@@ -507,13 +508,17 @@ a:focus-visible {
 .vertical-bars {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(42px, 1fr);
+  grid-auto-columns: minmax(36px, 1fr);
   align-items: end;
-  gap: 12px;
+  gap: 8px;
   min-height: 218px;
   margin-top: 18px;
   padding-top: 12px;
+  padding-bottom: 4px;
   border-bottom: 1px solid var(--border);
+  /* 백필로 월 범위가 늘어나면 패널 밖으로 넘치는 대신 내부 스크롤 */
+  overflow-x: auto;
+  scrollbar-width: thin;
 }
 
 .compact-bars {
@@ -557,6 +562,7 @@ a:focus-visible {
   color: var(--muted);
   font-size: 12px;
   font-weight: 750;
+  white-space: nowrap;
 }
 
 .horizontal-bars,

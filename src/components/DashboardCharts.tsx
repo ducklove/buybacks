@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { EnrichedEvent, PriceReaction, TreasuryHoldingSnapshot } from "../types/buybacks";
 import { EVENT_TYPE_LABELS } from "../utils/format";
 import {
@@ -22,7 +22,7 @@ export function DashboardCharts({ events, holdings, reactions }: DashboardCharts
   return (
     <section className="charts-grid" aria-label="대시보드 차트">
       <ChartPanel title="월별 추이" summary="현재 필터에 포함된 공시 이벤트 월별 건수입니다.">
-        <VerticalBars data={monthlyEventCounts(events)} />
+        <VerticalBars data={monthlyEventCounts(events)} monthLabels scrollToEnd />
       </ChartPanel>
       <ChartPanel title="이벤트 유형 분포" summary="현재 필터에 포함된 이벤트 유형 비중입니다.">
         <DistributionList
@@ -98,10 +98,30 @@ function ReturnWindowToggle({
   );
 }
 
-function VerticalBars({ data, compact = false }: { data: ChartDatum[]; compact?: boolean }) {
+function VerticalBars({
+  data,
+  compact = false,
+  monthLabels = false,
+  scrollToEnd = false
+}: {
+  data: ChartDatum[];
+  compact?: boolean;
+  /** "YYYY-MM" 라벨을 "YY-MM"으로 줄여 표시 (title에는 전체 라벨 유지) */
+  monthLabels?: boolean;
+  /** 마운트·데이터 변경 시 오른쪽 끝(최신 구간)으로 스크롤 */
+  scrollToEnd?: boolean;
+}) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const max = Math.max(...data.map((item) => item.value), 1);
+
+  useEffect(() => {
+    if (scrollToEnd && containerRef.current) {
+      containerRef.current.scrollLeft = containerRef.current.scrollWidth;
+    }
+  }, [scrollToEnd, data]);
+
   return (
-    <div className={compact ? "vertical-bars compact-bars" : "vertical-bars"}>
+    <div className={compact ? "vertical-bars compact-bars" : "vertical-bars"} ref={containerRef}>
       {data.map((item) => {
         const title = `${item.label}: ${item.value}건`;
         return (
@@ -110,7 +130,9 @@ function VerticalBars({ data, compact = false }: { data: ChartDatum[]; compact?:
             <div className="bar-track" aria-hidden="true">
               <span style={{ height: `${(item.value / max) * 100}%` }} />
             </div>
-            <span className="bar-label">{item.label}</span>
+            <span className="bar-label">
+              {monthLabels && /^\d{4}-\d{2}$/.test(item.label) ? item.label.slice(2) : item.label}
+            </span>
           </div>
         );
       })}

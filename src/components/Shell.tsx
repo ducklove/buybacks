@@ -5,12 +5,12 @@ interface ShellProps {
 }
 
 const navItems = [
-  { label: "Dashboard", target: "dashboard" },
+  { label: "대시보드", target: "dashboard" },
   { label: "분석", target: "analysis" },
-  { label: "Events", target: "events" },
+  { label: "이벤트", target: "events" },
   { label: "스크리너", target: "screener" },
-  { label: "Company", target: "company" },
-  { label: "Methodology", target: "methodology" }
+  { label: "기업 상세", target: "company" },
+  { label: "방법론", target: "methodology" }
 ];
 
 export function Shell({ children }: ShellProps) {
