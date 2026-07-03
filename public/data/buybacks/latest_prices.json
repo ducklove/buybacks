@@ -1081,10 +1081,10 @@
   },
   {
     "stock_code": "004920",
-    "price_date": "2026-07-02",
-    "close": 961.0,
+    "price_date": "2026-07-03",
+    "close": 949.0,
     "source": "kis_proxy",
-    "change_rate": 0.007337526205450695,
+    "change_rate": -0.012486992715920908,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -6751,10 +6751,10 @@
   },
   {
     "stock_code": "117670",
-    "price_date": "2026-07-02",
-    "close": 10870.0,
+    "price_date": "2026-07-03",
+    "close": 9960.0,
     "source": "kis_proxy",
-    "change_rate": 0.10805300713557586,
+    "change_rate": -0.08371665133394668,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
@@ -9635,6 +9635,16 @@
     "close": 24900.0,
     "source": "kis_proxy",
     "change_rate": 0.020491803278688492,
+    "issued_shares": null,
+    "market_cap_krw": null,
+    "change_code": null
+  },
+  {
+    "stock_code": "347890",
+    "price_date": "2026-07-03",
+    "close": 4355.0,
+    "source": "kis_proxy",
+    "change_rate": 0.017523364485981352,
     "issued_shares": null,
     "market_cap_krw": null,
     "change_code": null
