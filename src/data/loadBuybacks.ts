@@ -6,6 +6,7 @@ import type {
   CarCurves,
   Company,
   DataStatus,
+  DividendRecord,
   LatestPriceSnapshot,
   PriceReaction,
   ReactionSeries,
@@ -64,6 +65,7 @@ export async function loadBuybacksDataset(): Promise<BuybacksDataset> {
     executions,
     reactionSeries,
     carCurves,
+    dividends,
     status
   ] = await Promise.all([
     fetchJson<Company[]>("companies.json"),
@@ -74,6 +76,7 @@ export async function loadBuybacksDataset(): Promise<BuybacksDataset> {
     fetchOptionalJson<BuybackExecution[]>("executions.json", []),
     fetchOptionalJson<ReactionSeries[]>("reaction_series.json", []),
     fetchOptionalJson<CarCurves | null>("car_curves.json", null),
+    fetchOptionalJson<DividendRecord[]>("dividends.json", []),
     fetchJson<DataStatus>("data_status.json")
   ]);
 
@@ -86,6 +89,7 @@ export async function loadBuybacksDataset(): Promise<BuybacksDataset> {
     executions,
     reactionSeries,
     carCurves,
+    dividends,
     status
   };
   const errors = validateDataset(dataset);

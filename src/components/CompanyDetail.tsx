@@ -2,6 +2,7 @@ import { memo, useEffect, useMemo, useState } from "react";
 import type {
   BuybackExecution,
   Company,
+  DividendRecord,
   EnrichedEvent,
   LatestPriceSnapshot,
   PriceReaction,
@@ -31,6 +32,7 @@ interface CompanyDetailProps {
   priceReactions: PriceReaction[];
   latestPrices: LatestPriceSnapshot[];
   executions: BuybackExecution[];
+  dividends: DividendRecord[];
   selectedStockCode: string;
   onSelectStock: (stockCode: string) => void;
 }
@@ -42,6 +44,7 @@ export const CompanyDetail = memo(function CompanyDetail({
   priceReactions,
   latestPrices,
   executions,
+  dividends,
   selectedStockCode,
   onSelectStock
 }: CompanyDetailProps) {
@@ -93,6 +96,13 @@ export const CompanyDetail = memo(function CompanyDetail({
   const maxHoldingRatio = useMemo(
     () => Math.max(...companyHoldings.map((snapshot) => snapshot.treasury_ratio ?? 0), 0.01),
     [companyHoldings]
+  );
+  const latestDividend = useMemo(
+    () =>
+      dividends
+        .filter((dividend) => dividend.stock_code === company?.stock_code)
+        .sort((a, b) => b.bsns_year - a.bsns_year)[0],
+    [company?.stock_code, dividends]
   );
 
   useEffect(() => {
@@ -187,6 +197,10 @@ export const CompanyDetail = memo(function CompanyDetail({
         <div>
           <span>시가총액</span>
           <strong>{formatMarketCapKRW(currentMarketCap.amount)}</strong>
+        </div>
+        <div>
+          <span>주당배당금/배당수익률</span>
+          <strong>{dividendMetricLabel(latestDividend, currentMarketCap.amount)}</strong>
         </div>
       </div>
 
@@ -351,6 +365,26 @@ const DisclosureSourceLink = memo(function DisclosureSourceLink({
     </a>
   );
 });
+
+/**
+ * 최신 사업연도 배당 레코드를 "주당배당금 / 배당수익률" 한 줄로 표시한다.
+ * 레코드 자체가 없으면 "-", 수익률은 현금배당금총액 / 시가총액 (둘 중 하나라도 없으면 "-").
+ */
+function dividendMetricLabel(
+  dividend: DividendRecord | undefined,
+  marketCap: number | null
+): string {
+  if (!dividend) {
+    return "-";
+  }
+  const dpsLabel =
+    dividend.dps_common_krw !== null ? `${formatNumber(dividend.dps_common_krw)}원` : "-";
+  const dividendYield =
+    dividend.cash_dividend_total_krw !== null && marketCap !== null && marketCap > 0
+      ? dividend.cash_dividend_total_krw / marketCap
+      : null;
+  return `${dpsLabel} / ${formatPercent(dividendYield, 2)}`;
+}
 
 function pickPrimaryHolding(
   snapshots: TreasuryHoldingSnapshot[]

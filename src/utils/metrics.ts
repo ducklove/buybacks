@@ -1,5 +1,6 @@
 import type {
   BuybacksDataset,
+  DividendRecord,
   EnrichedEvent,
   EventType,
   Filters,
@@ -41,6 +42,7 @@ export function enrichEvents(dataset: BuybacksDataset): EnrichedEvent[] {
   );
   const latestPriceByStock = latestPriceMap(dataset.latestPrices);
   const executionByEvent = mapExecutionsByEvent(dataset.executions);
+  const latestDividendByStock = latestDividendMap(dataset.dividends ?? []);
 
   return dataset.events.map((event) => ({
     ...event,
@@ -48,8 +50,21 @@ export function enrichEvents(dataset: BuybacksDataset): EnrichedEvent[] {
     holding: latestHoldingByStock.get(event.stock_code),
     priceReaction: reactionByEvent.get(event.event_id),
     latestPrice: latestPriceByStock.get(event.stock_code),
-    execution: executionByEvent.get(event.event_id)
+    execution: executionByEvent.get(event.event_id),
+    dividend: latestDividendByStock.get(event.stock_code)
   }));
+}
+
+/** 종목별 최신 사업연도(bsns_year 최대) 배당 레코드 맵 */
+export function latestDividendMap(dividends: DividendRecord[]): Map<string, DividendRecord> {
+  const byStock = new Map<string, DividendRecord>();
+  dividends.forEach((dividend) => {
+    const previous = byStock.get(dividend.stock_code);
+    if (!previous || dividend.bsns_year > previous.bsns_year) {
+      byStock.set(dividend.stock_code, dividend);
+    }
+  });
+  return byStock;
 }
 
 export function latestPriceMap(prices: LatestPriceSnapshot[]): Map<string, LatestPriceSnapshot> {

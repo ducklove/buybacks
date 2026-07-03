@@ -80,6 +80,20 @@ Parsing is title-based (not positional) because `[기재정정]` reports insert 
 - Fields used: `istc_totqy`, `tesstk_co`, `distb_stock_co`, `stlm_dt`.
 - Use: enrich `issued_shares`, `floating_shares`, and treasury holding ratio when available. `tesstkAcqsDspsSttus` does not always provide the denominator needed for ratio calculation, so the pipeline merges stock total rows by stock kind.
 
+### Dividend matters (배당에 관한 사항)
+
+- Official guide: <https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019005>
+- Endpoint: `GET https://opendart.fss.or.kr/api/alotMatter.json`
+- Required parameters: `corp_code`, `bsns_year`, `reprt_code` (annual report `11011` is the only code collected by default; dividends are annual matters).
+- Response rows carry a `se` label (구분), an optional `stock_knd` (주식 종류), and `thstrm` (당기) / `frmtrm` (전기) / `lwfr` (전전기) values. Only `thstrm` is stored.
+- Rows normalized (label matching is whitespace-insensitive; `DIVIDEND_FIELD_ALIASES` in `scripts/buybacks/fetch_dart_dividends.py` covers response field renames the same way `FIELD_ALIASES` does for buyback decisions):
+  - `주당 현금배당금(원)` (보통주 row preferred; explicit 우선주-only rows are dropped) → `dps_common_krw`
+  - `현금배당금총액(백만원)` → `cash_dividend_total_krw` (unit multiplier derived from the label, default 백만원 = x1,000,000)
+  - `현금배당성향(%)` → `payout_ratio` (0..1 fraction)
+  - `(연결)당기순이익(백만원)` (연결 preferred, 별도 fallback) → `net_income_krw`
+- Output model: `DividendRecord`, one row per `(corp_code, bsns_year)`, written to `dividends.json` (optional file). Placeholder values (`-`) stay null; a company/year without any parsable row is omitted.
+- Scan scope follows the holding-snapshot pattern: `--dividend-stock-codes EVENTS` (default, incremental event companies only), `ALL` (corp code master; roughly one request per listed company per year), or explicit stock codes. Existing records are preserved on every build and merged by key, so occasional `ALL` scans and daily `EVENTS` runs compose safely. Backfill runs never touch `dividends.json`.
+
 ### Decision APIs
 
 OpenDART provides structured major-report APIs for treasury stock decision disclosures.
@@ -185,6 +199,7 @@ The frontend reads only:
 - `public/data/buybacks/holding_snapshots.json`
 - `public/data/buybacks/price_reactions.json`
 - `public/data/buybacks/executions.json` (optional; treat a missing file as an empty list)
+- `public/data/buybacks/dividends.json` (optional; treat a missing file as an empty list)
 - `public/data/buybacks/data_status.json`
 
 `data_status.json` records:
@@ -198,4 +213,5 @@ The frontend reads only:
 - `holdings_count`
 - `price_reactions_count`
 - `executions_count` (when execution tracking has run)
+- `dividends_count` (when dividend collection has run)
 - `warnings` (includes the stored/unlinked execution report counts)

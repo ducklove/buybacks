@@ -6,6 +6,7 @@ from scripts.buybacks.build_buybacks_dataset import (
     copy_fixture_dataset,
     dedupe_companies,
     filter_json_dataset_to_supported_markets,
+    filter_json_dividends,
     filter_json_executions,
     filter_live_dataset_to_supported_markets,
     incremental_start_yyyymmdd,
@@ -440,6 +441,37 @@ def test_copy_fixture_dataset_writes_reaction_series_and_car_curves(tmp_path):
     assert car["min_events"] == 5
     assert status["car_groups_count"] == len(car["groups"])
     assert any("Reaction series missing for" in warning for warning in status["warnings"])
+
+
+def test_copy_fixture_dataset_writes_dividends_for_supported_companies(tmp_path):
+    status = copy_fixture_dataset(FIXTURE_DIR, tmp_path / "out")
+
+    dividends = json.loads((tmp_path / "out" / "dividends.json").read_text(encoding="utf-8"))
+    assert status["dividends_count"] == len(dividends) == 3
+
+    companies = json.loads((tmp_path / "out" / "companies.json").read_text(encoding="utf-8"))
+    stock_codes = {company["stock_code"] for company in companies}
+    keys = set()
+    for record in dividends:
+        assert record["stock_code"] in stock_codes
+        key = (record["corp_code"], record["bsns_year"])
+        assert key not in keys
+        keys.add(key)
+    # At least one fixture record carries cash dividend values so the screener
+    # dividend-yield path can be developed against fixture data.
+    assert any(record["cash_dividend_total_krw"] for record in dividends)
+
+
+def test_filter_json_dividends_keeps_supported_companies_only():
+    companies = [{"stock_code": "005930", "market": "KOSPI"}]
+    dividends = [
+        {"corp_code": "00126380", "stock_code": "005930", "bsns_year": 2025},
+        {"corp_code": "00999999", "stock_code": "123456", "bsns_year": 2025},
+    ]
+
+    filtered = filter_json_dividends(dividends, companies)
+
+    assert filtered == [{"corp_code": "00126380", "stock_code": "005930", "bsns_year": 2025}]
 
 
 def test_filter_json_executions_drops_unsupported_stock_and_downgrades_dangling_links():

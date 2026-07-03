@@ -13,6 +13,7 @@ from scripts.buybacks.models import (
     BuybackEvent,
     BuybackExecution,
     Company,
+    DividendRecord,
     TreasuryHoldingSnapshot,
     to_jsonable,
 )
@@ -114,6 +115,21 @@ def holding(stock_code: str, corp_code: str, ending_qty: int) -> TreasuryHolding
     )
 
 
+def dividend(stock_code: str, corp_code: str, dps: int, bsns_year: int = 2025) -> DividendRecord:
+    return DividendRecord(
+        corp_code=corp_code,
+        stock_code=stock_code,
+        corp_name="Company",
+        bsns_year=bsns_year,
+        report_code="11011",
+        dps_common_krw=dps,
+        cash_dividend_total_krw=dps * 10_000,
+        payout_ratio=0.25,
+        net_income_krw=None,
+        rcept_no=None,
+    )
+
+
 def make_args(tmp_path, **overrides) -> argparse.Namespace:
     values = {
         "raw_dir": str(tmp_path / "raw"),
@@ -123,6 +139,7 @@ def make_args(tmp_path, **overrides) -> argparse.Namespace:
         "report_codes": "11011",
         "holding_source": "stock_totals",
         "holding_stock_codes": "ALL",
+        "dividend_stock_codes": "EVENTS",
         "max_holding_companies": 0,
         "incremental_lookback_days": 7,
         "incremental_price_lookback_days": 75,
@@ -162,7 +179,7 @@ def write_existing_dataset(output_dir) -> None:
     )
 
 
-def patch_incremental_collectors(monkeypatch, corp_code_calls, holding_scan_scopes):
+def patch_incremental_collectors(monkeypatch, corp_code_calls, holding_scan_scopes, dividend_scan_scopes=None):
     naver = company("00266961", "035420", "NAVER")
     new_event = event("dart-new-direct_acquisition", "035420", "00266961", "2026-06-30", "20260630000001")
     master = [
@@ -202,11 +219,18 @@ def patch_incremental_collectors(monkeypatch, corp_code_calls, holding_scan_scop
     def fake_collect_execution_reports(api_key, bgn_de, end_de, raw_dir=None, page_limit=20):
         return [], []
 
+    def fake_collect_dividends(api_key, companies, years, raw_dir=None, report_codes=None):
+        scanned = list(companies)
+        if dividend_scan_scopes is not None:
+            dividend_scan_scopes.append([item.corp_code for item in scanned])
+        return [dividend(item.stock_code, item.corp_code, 500) for item in scanned], []
+
     monkeypatch.setattr(build_module, "fetch_buyback_disclosures", fake_fetch_disclosures)
     monkeypatch.setattr(build_module, "collect_dart_dataset", fake_collect_dataset)
     monkeypatch.setattr(build_module, "fetch_corp_codes", fake_fetch_corp_codes)
     monkeypatch.setattr(build_module, "collect_dart_holding_snapshots", fake_collect_holdings)
     monkeypatch.setattr(build_module, "collect_execution_reports", fake_collect_execution_reports)
+    monkeypatch.setattr(build_module, "collect_dividend_records", fake_collect_dividends)
 
 
 def load(path):
@@ -389,6 +413,75 @@ def test_merge_holdings_prefers_refreshed_rows_for_identical_keys():
 
     assert len(merged) == 1
     assert merged[0].ending_qty == 120
+
+
+def test_incremental_merges_dividends_and_preserves_existing_years(monkeypatch, tmp_path):
+    output_dir = tmp_path / "out"
+    write_existing_dataset(output_dir)
+    # Existing dividends: an old year for Samsung and a stale NAVER row that a
+    # fresh scan must replace ((corp_code, bsns_year) key match).
+    write_json(
+        output_dir / "dividends.json",
+        to_jsonable(
+            [
+                dividend("005930", "00126380", 1400, bsns_year=2024),
+                dividend("035420", "00266961", 100, bsns_year=2025),
+            ]
+        ),
+    )
+    corp_code_calls: list[str] = []
+    holding_scan_scopes: list[list[str]] = []
+    dividend_scan_scopes: list[list[str]] = []
+    patch_incremental_collectors(monkeypatch, corp_code_calls, holding_scan_scopes, dividend_scan_scopes)
+
+    args = make_args(tmp_path, holding_stock_codes="EVENTS")
+    status = build_incremental_dataset(args, "key", output_dir)
+
+    # Default EVENTS scope scans only the event company (NAVER), no corp master.
+    assert dividend_scan_scopes == [["00266961"]]
+
+    stored = {(item["corp_code"], item["bsns_year"]): item for item in load(output_dir / "dividends.json")}
+    assert set(stored) == {("00126380", 2024), ("00266961", 2025)}
+    # Existing off-scope year is preserved untouched.
+    assert stored[("00126380", 2024)]["dps_common_krw"] == 1400
+    # Refreshed row replaced the stale row with the same key.
+    assert stored[("00266961", 2025)]["dps_common_krw"] == 500
+    assert status["dividends_count"] == 2
+    assert any("dividend scan scope: 1 companies" in warning for warning in status["warnings"])
+
+
+def test_incremental_all_dividend_scope_scans_corp_master(monkeypatch, tmp_path):
+    output_dir = tmp_path / "out"
+    write_existing_dataset(output_dir)
+    corp_code_calls: list[str] = []
+    holding_scan_scopes: list[list[str]] = []
+    dividend_scan_scopes: list[list[str]] = []
+    patch_incremental_collectors(monkeypatch, corp_code_calls, holding_scan_scopes, dividend_scan_scopes)
+
+    args = make_args(tmp_path, holding_stock_codes="EVENTS", dividend_stock_codes="ALL")
+    status = build_incremental_dataset(args, "key", output_dir)
+
+    assert dividend_scan_scopes == [["00126380", "00266961", "00164779"]]
+    assert status["dividends_count"] == 3
+
+
+def test_incremental_without_existing_dividends_file_still_writes_dataset(monkeypatch, tmp_path):
+    output_dir = tmp_path / "out"
+    write_existing_dataset(output_dir)
+    corp_code_calls: list[str] = []
+    holding_scan_scopes: list[list[str]] = []
+    patch_incremental_collectors(monkeypatch, corp_code_calls, holding_scan_scopes)
+
+    def fake_collect_dividends(api_key, companies, years, raw_dir=None, report_codes=None):
+        return [], []
+
+    monkeypatch.setattr(build_module, "collect_dividend_records", fake_collect_dividends)
+
+    args = make_args(tmp_path, holding_stock_codes="EVENTS")
+    status = build_incremental_dataset(args, "key", output_dir)
+
+    assert load(output_dir / "dividends.json") == []
+    assert status["dividends_count"] == 0
 
 
 def test_select_incremental_holding_companies_respects_max_limit(monkeypatch, tmp_path):

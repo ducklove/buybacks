@@ -4,6 +4,7 @@ import {
   buildKpis,
   dedupeHoldingTimeline,
   filterEvents,
+  latestDividendMap,
   latestHoldingSnapshots,
   latestPriceMap,
   marketOptions,
@@ -204,6 +205,32 @@ describe("latest prices", () => {
 
     expect(prices.get("003540")?.close).toBe(17800);
     expect(prices.get("005930")?.close).toBe(71200);
+  });
+});
+
+describe("latest dividends", () => {
+  it("keeps the newest business year record for each stock", () => {
+    const dividend = (stock_code: string, bsns_year: number, dps: number | null) => ({
+      corp_code: "00126380",
+      stock_code,
+      corp_name: "삼성전자",
+      bsns_year,
+      report_code: "11011",
+      dps_common_krw: dps,
+      cash_dividend_total_krw: null,
+      payout_ratio: null,
+      net_income_krw: null,
+      rcept_no: null
+    });
+    const dividends = latestDividendMap([
+      dividend("005930", 2024, 1444),
+      dividend("005930", 2025, 1500),
+      dividend("000660", 2025, 1200)
+    ]);
+
+    expect(dividends.get("005930")?.dps_common_krw).toBe(1500);
+    expect(dividends.get("000660")?.bsns_year).toBe(2025);
+    expect(dividends.get("035420")).toBeUndefined();
   });
 });
 

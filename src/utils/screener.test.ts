@@ -3,6 +3,7 @@ import { buildScreenerRows } from "./screener";
 import type {
   BuybackExecution,
   Company,
+  DividendRecord,
   EnrichedEvent,
   EventType,
   LatestPriceSnapshot,
@@ -89,6 +90,22 @@ function makeExecution(overrides: Partial<BuybackExecution> = {}): BuybackExecut
     rcept_no: null,
     source_url: null,
     raw_report_name: null,
+    ...overrides
+  };
+}
+
+function makeDividend(overrides: Partial<DividendRecord> = {}): DividendRecord {
+  return {
+    corp_code: "00126380",
+    stock_code: "005930",
+    corp_name: "삼성전자",
+    bsns_year: 2025,
+    report_code: "11011",
+    dps_common_krw: 1444,
+    cash_dividend_total_krw: 50_000_000,
+    payout_ratio: 0.28,
+    net_income_krw: null,
+    rcept_no: null,
     ...overrides
   };
 }
@@ -324,7 +341,8 @@ describe("buildScreenerRows", () => {
         holding: undefined,
         priceReaction: undefined,
         latestPrice: undefined,
-        execution: undefined
+        execution: undefined,
+        dividend: undefined
       })
     ];
 
@@ -333,7 +351,80 @@ describe("buildScreenerRows", () => {
     expect(row.acquisitionIntensity).toBeNull();
     expect(row.averageCompletionRate).toBeNull();
     expect(row.holdingRatio).toBeNull();
+    expect(row.dividendYield).toBeNull();
+    expect(row.totalShareholderReturn).toBeNull();
     expect(row.market).toBeNull();
+  });
+
+  it("computes dividend yield and total shareholder return against the market cap", () => {
+    const events: EnrichedEvent[] = [
+      makeEvent({
+        event_id: "e1",
+        event_type: "direct_acquisition",
+        disclosure_date: "2026-06-01",
+        planned_amount_krw: 100_000_000,
+        holding: makeHolding({ issued_shares: 1_000_000 }),
+        latestPrice: makeLatestPrice({ close: 1000 }),
+        dividend: makeDividend({ cash_dividend_total_krw: 50_000_000 })
+      })
+    ];
+
+    const [row] = buildScreenerRows(events, NOW);
+    // market cap = 1000 * 1,000,000 = 1,000,000,000
+    expect(row.dividendYield).toBeCloseTo(0.05);
+    // (배당 50M + 최근 12M 취득계획 100M) / 시총 1,000M
+    expect(row.totalShareholderReturn).toBeCloseTo(0.15);
+  });
+
+  it("computes total return from dividends alone when there is no recent buyback plan", () => {
+    const events: EnrichedEvent[] = [
+      makeEvent({
+        event_id: "old",
+        event_type: "direct_acquisition",
+        disclosure_date: "2020-01-01",
+        planned_amount_krw: 900_000_000,
+        holding: makeHolding({ issued_shares: 1_000_000 }),
+        latestPrice: makeLatestPrice({ close: 1000 }),
+        dividend: makeDividend({ cash_dividend_total_krw: 50_000_000 })
+      })
+    ];
+
+    const [row] = buildScreenerRows(events, NOW);
+    expect(row.recentPlannedAcquisitionAmountKrw).toBeNull();
+    expect(row.dividendYield).toBeCloseTo(0.05);
+    expect(row.totalShareholderReturn).toBeCloseTo(0.05);
+  });
+
+  it("returns null dividend metrics when the market cap is unavailable", () => {
+    const events: EnrichedEvent[] = [
+      makeEvent({
+        event_id: "e1",
+        dividend: makeDividend({ cash_dividend_total_krw: 50_000_000 })
+      })
+    ];
+
+    const [row] = buildScreenerRows(events, NOW);
+    expect(row.marketCapKrw).toBeNull();
+    expect(row.dividendYield).toBeNull();
+    expect(row.totalShareholderReturn).toBeNull();
+  });
+
+  it("returns null dividend metrics when the dividend cash total is unknown", () => {
+    const events: EnrichedEvent[] = [
+      makeEvent({
+        event_id: "e1",
+        disclosure_date: "2026-06-01",
+        planned_amount_krw: 100_000_000,
+        holding: makeHolding({ issued_shares: 1_000_000 }),
+        latestPrice: makeLatestPrice({ close: 1000 }),
+        dividend: makeDividend({ cash_dividend_total_krw: null })
+      })
+    ];
+
+    const [row] = buildScreenerRows(events, NOW);
+    expect(row.marketCapKrw).toBe(1_000_000_000);
+    expect(row.dividendYield).toBeNull();
+    expect(row.totalShareholderReturn).toBeNull();
   });
 
   it("falls back to the event's corp_name and derives market from the company when present", () => {

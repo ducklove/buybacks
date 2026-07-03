@@ -26,6 +26,11 @@ if __package__ in {None, ""}:
         dedupe_holdings,
         fetch_buyback_disclosures,
     )
+    from scripts.buybacks.fetch_dart_dividends import (
+        DIVIDEND_REPORT_CODES,
+        collect_dividend_records,
+        merge_dividends,
+    )
     from scripts.buybacks.fetch_krx_prices import (
         calculate_kis_proxy_latest_prices,
         calculate_kis_proxy_price_reactions,
@@ -36,6 +41,7 @@ if __package__ in {None, ""}:
         BuybackEvent,
         BuybackExecution,
         Company,
+        DividendRecord,
         LatestPriceSnapshot,
         PriceReaction,
         ReactionSeries,
@@ -58,6 +64,11 @@ else:
         dedupe_holdings,
         fetch_buyback_disclosures,
     )
+    from .fetch_dart_dividends import (
+        DIVIDEND_REPORT_CODES,
+        collect_dividend_records,
+        merge_dividends,
+    )
     from .fetch_krx_prices import (
         calculate_kis_proxy_latest_prices,
         calculate_kis_proxy_price_reactions,
@@ -68,6 +79,7 @@ else:
         BuybackEvent,
         BuybackExecution,
         Company,
+        DividendRecord,
         LatestPriceSnapshot,
         PriceReaction,
         ReactionSeries,
@@ -123,6 +135,10 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path, extra_warnings: li
         load_optional_json(fixture_dir / "reaction_series.json", []),
         events,
     )
+    dividends = filter_json_dividends(
+        load_optional_json(fixture_dir / "dividends.json", []),
+        companies,
+    )
     car_curves = aggregate_car_curves(reaction_series, events, companies)
     write_json(output_dir / "companies.json", companies)
     write_json(output_dir / "events.json", events)
@@ -131,6 +147,7 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path, extra_warnings: li
     write_json(output_dir / "latest_prices.json", latest_prices)
     write_json(output_dir / "executions.json", executions)
     write_json(output_dir / "reaction_series.json", reaction_series)
+    write_json(output_dir / "dividends.json", dividends)
     write_json(output_dir / "car_curves.json", car_curves)
     status = load_json(fixture_dir / "data_status.json")
     # generated_at is intentionally UTC; business dates elsewhere use KST (Asia/Seoul).
@@ -148,6 +165,7 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path, extra_warnings: li
     status["latest_prices_count"] = len(latest_prices)
     status["executions_count"] = len(executions)
     status["reaction_series_count"] = len(reaction_series)
+    status["dividends_count"] = len(dividends)
     status["car_groups_count"] = len(car_curves["groups"])
     status["warnings"] = [
         *status["warnings"],
@@ -163,6 +181,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     raw_dir = Path(args.raw_dir)
     stock_codes = parse_stock_codes(args.stock_codes)
     holding_stock_codes = parse_holding_stock_codes(args.holding_stock_codes)
+    dividend_stock_codes = parse_holding_stock_codes(args.dividend_stock_codes)
     listed_issues = fetch_listed_issues_for_build(args, raw_dir, warnings)
 
     disclosure_start = args.start or rolling_start_yyyymmdd(args.end, 89)
@@ -192,7 +211,11 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     all_companies: list[Company] | None = None
     company_by_corp: dict[str, Company] = {}
     company_by_stock: dict[str, Company] = {}
-    needs_corp_master = stock_codes is not None or holding_stock_codes != "EVENTS"
+    needs_corp_master = (
+        stock_codes is not None
+        or holding_stock_codes != "EVENTS"
+        or dividend_stock_codes != "EVENTS"
+    )
     if needs_corp_master:
         LOGGER.info("fetching OpenDART corp code master...")
         all_companies = fetch_corp_codes(api_key, raw_dir / "corp_codes.json")
@@ -315,6 +338,22 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         [company.stock_code for company in live_companies],
     )
     warnings.extend(latest_price_warnings)
+
+    dividend_companies = select_holding_companies(
+        dividend_stock_codes,
+        all_companies,
+        live_event_companies,
+        company_by_stock,
+    )
+    dividends, dividend_warnings = build_dividends(
+        api_key=api_key,
+        dividend_companies=dividend_companies,
+        years=years,
+        raw_dir=raw_dir,
+        existing_dividends=load_dividends(output_dir / "dividends.json"),
+    )
+    warnings.extend(dividend_warnings)
+
     status = {
         # generated_at is intentionally UTC; business dates elsewhere use KST (Asia/Seoul).
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -329,6 +368,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         "latest_prices_count": len(latest_prices),
         "executions_count": len(executions),
         "reaction_series_count": len(reaction_series),
+        "dividends_count": len(dividends),
         "car_groups_count": len(car_curves["groups"]),
         "warnings": [
             *warnings,
@@ -337,6 +377,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
             f"OpenDART disclosure discovery window: {disclosure_start} to {args.end}.",
             f"OpenDART holding scan scope: {len(holding_companies)} companies.",
             f"OpenDART holding scan source: {args.holding_source}.",
+            f"OpenDART dividend scan scope: {len(dividend_companies)} companies.",
             f"Listed issue master source: {args.listed_issue_source}.",
             "Price reactions use kis_proxy when configured; otherwise they remain missing.",
             "Latest prices use kis_proxy when configured; otherwise market caps remain missing.",
@@ -349,6 +390,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     write_json(output_dir / "latest_prices.json", to_jsonable(latest_prices))
     write_json(output_dir / "executions.json", to_jsonable(executions))
     write_json(output_dir / "reaction_series.json", to_jsonable(reaction_series))
+    write_json(output_dir / "dividends.json", to_jsonable(dividends))
     write_json(output_dir / "car_curves.json", car_curves)
     write_json(output_dir / "data_status.json", status)
     return status
@@ -366,6 +408,7 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
     existing_series = load_reaction_series(output_dir / "reaction_series.json")
     existing_latest_prices = load_latest_prices(output_dir / "latest_prices.json")
     existing_executions = load_executions(output_dir / "executions.json")
+    existing_dividends = load_dividends(output_dir / "dividends.json")
     existing_status = load_json(output_dir / "data_status.json")
     raw_dir = Path(args.raw_dir)
     warnings: list[str] = []
@@ -521,6 +564,21 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
     warnings.extend(latest_price_warnings)
     latest_prices = merge_latest_prices(existing_latest_prices, refreshed_latest_prices, live_companies)
 
+    dividend_companies = select_incremental_dividend_companies(
+        api_key,
+        parse_holding_stock_codes(args.dividend_stock_codes),
+        live_event_companies,
+        raw_dir,
+    )
+    dividends, dividend_warnings = build_dividends(
+        api_key=api_key,
+        dividend_companies=dividend_companies,
+        years=years,
+        raw_dir=raw_dir,
+        existing_dividends=existing_dividends,
+    )
+    warnings.extend(dividend_warnings)
+
     status = {
         # generated_at is intentionally UTC; business dates elsewhere use KST (Asia/Seoul).
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -539,6 +597,7 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
         "latest_prices_count": len(latest_prices),
         "executions_count": len(executions),
         "reaction_series_count": len(reaction_series),
+        "dividends_count": len(dividends),
         "car_groups_count": len(car_curves["groups"]),
         "warnings": [
             "Incremental update merged with the committed dataset instead of rebuilding the full universe.",
@@ -549,6 +608,7 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
             f"OpenDART incremental disclosure window: {disclosure_start} to {args.end}.",
             f"OpenDART incremental event company scope: {len(event_companies)} companies.",
             f"OpenDART incremental holding scan scope: {len(holding_companies)} companies.",
+            f"OpenDART incremental dividend scan scope: {len(dividend_companies)} companies.",
             f"OpenDART holding scan source: {args.holding_source}.",
             f"Listed issue master source: {args.listed_issue_source}.",
             "Price reactions use kis_proxy when configured; otherwise they remain missing.",
@@ -562,6 +622,7 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
     write_json(output_dir / "latest_prices.json", to_jsonable(latest_prices))
     write_json(output_dir / "executions.json", to_jsonable(executions))
     write_json(output_dir / "reaction_series.json", to_jsonable(reaction_series))
+    write_json(output_dir / "dividends.json", to_jsonable(dividends))
     write_json(output_dir / "car_curves.json", car_curves)
     write_json(output_dir / "data_status.json", status)
     return status
@@ -620,6 +681,60 @@ def filter_executions_to_supported_stocks(
     return [execution for execution in executions if execution.stock_code in allowed]
 
 
+def build_dividends(
+    api_key: str,
+    dividend_companies: list[Company],
+    years: list[int],
+    raw_dir: Path,
+    existing_dividends: list[DividendRecord],
+) -> tuple[list[DividendRecord], list[str]]:
+    """Collect alotMatter dividend records for the scope and merge them.
+
+    Existing records are always preserved; freshly collected rows replace
+    records with the same (corp_code, bsns_year) key.
+    """
+    if not dividend_companies:
+        return merge_dividends(existing_dividends, []), []
+    LOGGER.info(
+        "collecting OpenDART dividend records for %d companies, years=%s",
+        len(dividend_companies),
+        ",".join(str(year) for year in years),
+    )
+    new_dividends, warnings = collect_dividend_records(
+        api_key=api_key,
+        companies=dividend_companies,
+        years=years,
+        raw_dir=raw_dir,
+        report_codes=DIVIDEND_REPORT_CODES,
+    )
+    return merge_dividends(existing_dividends, new_dividends), warnings
+
+
+def select_incremental_dividend_companies(
+    api_key: str,
+    dividend_stock_codes: set[str] | None | str,
+    live_event_companies: list[Company],
+    raw_dir: Path,
+) -> list[Company]:
+    """Resolve the incremental dividend-scan scope from --dividend-stock-codes.
+
+    EVENTS (default) only touches companies with fresh event disclosures so the
+    daily incremental load stays small. ALL or explicit stock codes fetch the
+    corp code master for a full-universe dividend refresh.
+    """
+    if dividend_stock_codes == "EVENTS":
+        return select_holding_companies("EVENTS", None, live_event_companies, {})
+    LOGGER.info("fetching OpenDART corp code master for the incremental dividend scan...")
+    all_companies = fetch_corp_codes(api_key, raw_dir / "corp_codes.json")
+    company_by_stock = {company.stock_code: company for company in all_companies}
+    return select_holding_companies(
+        dividend_stock_codes,
+        all_companies,
+        live_event_companies,
+        company_by_stock,
+    )
+
+
 def execution_status_warnings(executions: list[BuybackExecution]) -> list[str]:
     unlinked_count = sum(1 for execution in executions if execution.link_method == "unlinked")
     notes = [f"Execution result reports stored: {len(executions)} ({unlinked_count} unlinked)."]
@@ -652,6 +767,11 @@ def main() -> None:
         choices=["stock_totals", "treasury_tables"],
         default="stock_totals",
         help="stock_totals stores total and treasury share counts with fewer DART requests.",
+    )
+    parser.add_argument(
+        "--dividend-stock-codes",
+        default="EVENTS",
+        help="Dividend (alotMatter) scan scope: ALL, EVENTS, or comma-separated stock codes.",
     )
     parser.add_argument("--start", default="")
     # Disclosure windows follow Korean market dates, so the default end is KST today.
@@ -953,6 +1073,14 @@ def load_executions(path: Path) -> list[BuybackExecution]:
     return [BuybackExecution(**item) for item in load_json(path)]
 
 
+def load_dividends(path: Path) -> list[DividendRecord]:
+    # dividends.json is optional: datasets built before dividend tracking
+    # (and the committed public data) simply have no file yet.
+    if not path.exists():
+        return []
+    return [DividendRecord(**item) for item in load_json(path)]
+
+
 def load_optional_json(path: Path, fallback):
     if not path.exists():
         return fallback
@@ -1070,6 +1198,12 @@ def filter_json_reaction_series(series: list[dict], events: list[dict]) -> list[
     """Fixture-path series filter: keep rows whose event survived filtering."""
     event_ids = {event.get("event_id") for event in events}
     return [record for record in series if record.get("event_id") in event_ids]
+
+
+def filter_json_dividends(dividends: list[dict], companies: list[dict]) -> list[dict]:
+    """Fixture-path dividend filter: keep rows whose company survived filtering."""
+    supported_stocks = {str(company.get("stock_code") or "") for company in companies}
+    return [record for record in dividends if str(record.get("stock_code") or "") in supported_stocks]
 
 
 def select_latest_price_stock_codes(

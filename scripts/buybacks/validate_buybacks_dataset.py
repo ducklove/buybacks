@@ -4,6 +4,7 @@ import argparse
 import json
 import re
 import sys
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -34,6 +35,12 @@ REACTION_SERIES_MAX_LENGTH = 60
 # A daily move beyond +-50% is usually a corporate action the adjusted price
 # feed missed (or a feed bug); report it, never fail on it.
 DAILY_RETURN_WARNING_THRESHOLD = 0.5
+# Dividend business years must fall inside a sane disclosure range. The upper
+# bound allows the year in progress plus one for timezone/new-year edges.
+DIVIDEND_YEAR_MIN = 1990
+# A payout ratio above 500% is almost always a unit or parsing error in the
+# DART source row; report it, never fail on it.
+DIVIDEND_PAYOUT_RATIO_WARNING_MAX = 5.0
 MAX_PRINTED_WARNINGS = 50
 
 
@@ -67,6 +74,9 @@ def validate_dataset(data_dir: Path) -> tuple[list[str], list[str]]:
     # data: datasets built before series tracking must keep validating cleanly.
     reaction_series = load_optional(data_dir / "reaction_series.json", None)
     car_curves = load_optional(data_dir / "car_curves.json", None)
+    # dividends.json is optional: datasets built before dividend tracking
+    # (including the committed public data) must keep validating cleanly.
+    dividends = load_optional(data_dir / "dividends.json", None)
     status = load(data_dir / "data_status.json")
 
     stocks = set()
@@ -126,6 +136,8 @@ def validate_dataset(data_dir: Path) -> tuple[list[str], list[str]]:
         errors.extend(reaction_series_errors(reaction_series, event_ids))
     if car_curves is not None:
         errors.extend(car_curves_errors(car_curves))
+    if dividends is not None:
+        errors.extend(dividend_errors(dividends))
 
     expected_counts = {
         "companies_count": len(companies),
@@ -141,6 +153,8 @@ def validate_dataset(data_dir: Path) -> tuple[list[str], list[str]]:
         expected_counts["reaction_series_count"] = len(reaction_series)
     if car_curves is not None and "car_groups_count" in status:
         expected_counts["car_groups_count"] = len(car_curves.get("groups") or [])
+    if dividends is not None and "dividends_count" in status:
+        expected_counts["dividends_count"] = len(dividends)
     for key, expected in expected_counts.items():
         if status.get(key) != expected:
             errors.append(f"data_status.{key}={status.get(key)} expected {expected}")
@@ -150,6 +164,8 @@ def validate_dataset(data_dir: Path) -> tuple[list[str], list[str]]:
         warnings.extend(execution_completion_warnings(executions, events))
     if reaction_series is not None:
         warnings.extend(reaction_series_return_warnings(reaction_series))
+    if dividends is not None:
+        warnings.extend(dividend_ratio_warnings(dividends))
     return errors, warnings
 
 
@@ -266,6 +282,54 @@ def car_curves_errors(car_curves: dict) -> list[str]:
         ):
             errors.append(f"car_curves.groups[{index}] mean_car length must equal window")
     return errors
+
+
+def dividend_errors(dividends: list[dict]) -> list[str]:
+    """Structural checks for dividends.json rows (only when the file exists)."""
+    errors: list[str] = []
+    seen: set[tuple[str, object]] = set()
+    max_year = date.today().year + 1
+    for index, record in enumerate(dividends):
+        corp_code = str(record.get("corp_code") or "")
+        if not corp_code:
+            errors.append(f"dividends[{index}] missing corp_code")
+        if not STOCK_CODE.fullmatch(str(record.get("stock_code") or "")):
+            errors.append(f"dividends[{index}] invalid stock_code")
+        bsns_year = record.get("bsns_year")
+        if not isinstance(bsns_year, int) or isinstance(bsns_year, bool):
+            errors.append(f"dividends[{index}] bsns_year must be an integer")
+        elif not DIVIDEND_YEAR_MIN <= bsns_year <= max_year:
+            errors.append(
+                f"dividends[{index}] bsns_year {bsns_year} outside {DIVIDEND_YEAR_MIN}..{max_year}"
+            )
+        key = (corp_code, bsns_year)
+        if key in seen:
+            errors.append(f"dividends[{index}] duplicate corp_code/bsns_year {corp_code}/{bsns_year}")
+        seen.add(key)
+        for field in ["dps_common_krw", "cash_dividend_total_krw", "payout_ratio", "net_income_krw"]:
+            value = record.get(field)
+            if value is not None and not is_finite_number(value):
+                errors.append(f"dividends[{index}] {field} must be numeric or null")
+    return errors
+
+
+def dividend_ratio_warnings(dividends: list[dict]) -> list[str]:
+    """Report payout ratios outside 0..DIVIDEND_PAYOUT_RATIO_WARNING_MAX (warning only).
+
+    Negative payout ratios (loss years) and extreme values usually mean a unit
+    or parsing problem in the DART source row; they never fail validation.
+    """
+    warnings: list[str] = []
+    for index, record in enumerate(dividends):
+        ratio = record.get("payout_ratio")
+        if not is_finite_number(ratio):
+            continue
+        if ratio < 0 or ratio > DIVIDEND_PAYOUT_RATIO_WARNING_MAX:
+            warnings.append(
+                f"dividends[{index}] {record.get('stock_code')} {record.get('bsns_year')} "
+                f"payout_ratio {ratio:.2f} outside 0..{DIVIDEND_PAYOUT_RATIO_WARNING_MAX}"
+            )
+    return warnings
 
 
 def is_finite_number(value: object) -> bool:

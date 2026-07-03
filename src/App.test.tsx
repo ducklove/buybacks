@@ -120,7 +120,8 @@ describe("App", () => {
       if (
         url.endsWith("executions.json") ||
         url.endsWith("reaction_series.json") ||
-        url.endsWith("car_curves.json")
+        url.endsWith("car_curves.json") ||
+        url.endsWith("dividends.json")
       ) {
         return notFoundResponse();
       }
@@ -146,6 +147,10 @@ describe("App", () => {
     expect(screen.getAllByText("9.09%").length).toBeGreaterThan(0);
     expect(screen.getByText("110")).toBeInTheDocument();
     expect(screen.getByText("△ +1.50%")).toBeInTheDocument();
+    // dividends.json 부재 시 배당 지표와 스크리너 배당 컬럼은 "-"로 기존과 동일 동작한다
+    expect(screen.getByText("주당배당금/배당수익률")).toBeInTheDocument();
+    expect(screen.getByText("배당수익률 %")).toBeInTheDocument();
+    expect(screen.getByText("총환원율 %")).toBeInTheDocument();
     expect(screen.queryByText("현재가")).not.toBeInTheDocument();
     expect(screen.getByText("공시 목록")).toBeInTheDocument();
     expect(screen.getByText(/예정주식수 보통 10 \/ 기타 3/)).toBeInTheDocument();
@@ -210,7 +215,8 @@ describe("App", () => {
       if (
         url.endsWith("latest_prices.json") ||
         url.endsWith("reaction_series.json") ||
-        url.endsWith("car_curves.json")
+        url.endsWith("car_curves.json") ||
+        url.endsWith("dividends.json")
       ) {
         return notFoundResponse();
       }
@@ -351,7 +357,8 @@ describe("App", () => {
         url.endsWith("latest_prices.json") ||
         url.endsWith("executions.json") ||
         url.endsWith("reaction_series.json") ||
-        url.endsWith("car_curves.json")
+        url.endsWith("car_curves.json") ||
+        url.endsWith("dividends.json")
       ) {
         return notFoundResponse();
       }

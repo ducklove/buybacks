@@ -17,6 +17,10 @@ export interface ScreenerRow {
   retirementShare: number | null;
   averageCompletionRate: number | null;
   holdingRatio: number | null;
+  /** 최신 사업연도 현금배당금총액 / 시가총액. 배당 또는 시총 없으면 null */
+  dividendYield: number | null;
+  /** (현금배당금총액 + 최근 12M 취득계획금액) / 시가총액. 배당 또는 시총 없으면 null */
+  totalShareholderReturn: number | null;
   lastEventDate: string | null;
 }
 
@@ -26,8 +30,9 @@ const retirementTypes = new Set<EventType>(["retirement"]);
 
 /**
  * EnrichedEvent[]를 종목(stock_code) 기준으로 집계해 기업 스크리너 행을 생성한다.
- * events가 비어 있으면 빈 배열을 반환한다. executions/holdings/latest_prices가 비어 있어도
- * (EnrichedEvent의 execution/holding/latestPrice가 undefined인 경우) 크래시 없이 null로 처리한다.
+ * events가 비어 있으면 빈 배열을 반환한다. executions/holdings/latest_prices/dividends가 비어
+ * 있어도 (EnrichedEvent의 execution/holding/latestPrice/dividend가 undefined인 경우) 크래시
+ * 없이 null로 처리한다.
  */
 export function buildScreenerRows(events: EnrichedEvent[], now: Date = new Date()): ScreenerRow[] {
   const byStock = new Map<string, EnrichedEvent[]>();
@@ -96,6 +101,16 @@ function buildRowForStock(
   const holdingRatio = latestEvent?.holding?.treasury_ratio ?? null;
   const lastEventDate = latestEvent?.disclosure_date ?? null;
 
+  // enrichEvents가 종목별 최신 배당 레코드를 모든 이벤트에 동일하게 붙이므로
+  // 대표 이벤트 하나에서 읽으면 충분하다.
+  const cashDividendTotalKrw = latestEvent?.dividend?.cash_dividend_total_krw ?? null;
+  const dividendYield = divideOrNull(cashDividendTotalKrw, marketCapKrw);
+  // 취득계획이 없는(null) 종목은 배당만으로 총환원율을 계산한다.
+  const totalShareholderReturn =
+    cashDividendTotalKrw === null
+      ? null
+      : divideOrNull(cashDividendTotalKrw + (recentPlannedAcquisitionAmountKrw ?? 0), marketCapKrw);
+
   return {
     stockCode,
     corpName: representative.corpName,
@@ -110,6 +125,8 @@ function buildRowForStock(
     retirementShare,
     averageCompletionRate,
     holdingRatio,
+    dividendYield,
+    totalShareholderReturn,
     lastEventDate
   };
 }

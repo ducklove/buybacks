@@ -115,6 +115,23 @@ def car_payload(**overrides) -> dict:
     return payload
 
 
+def dividend(**overrides) -> dict:
+    record = {
+        "corp_code": "00126380",
+        "stock_code": "005930",
+        "corp_name": "Samsung Electronics",
+        "bsns_year": 2025,
+        "report_code": "11011",
+        "dps_common_krw": 1444,
+        "cash_dividend_total_krw": 9_809_438_000_000,
+        "payout_ratio": 0.285,
+        "net_income_krw": 34_451_351_000_000,
+        "rcept_no": None,
+    }
+    record.update(overrides)
+    return record
+
+
 def write_dataset(
     data_dir,
     holdings,
@@ -122,6 +139,7 @@ def write_dataset(
     status_overrides=None,
     reaction_series=None,
     car_curves=None,
+    dividends=None,
 ) -> None:
     companies = [
         {
@@ -166,6 +184,8 @@ def write_dataset(
         payloads.append(("reaction_series.json", reaction_series))
     if car_curves is not None:
         payloads.append(("car_curves.json", car_curves))
+    if dividends is not None:
+        payloads.append(("dividends.json", dividends))
     for name, payload in payloads:
         (data_dir / name).write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
 
@@ -368,6 +388,90 @@ def test_validate_dataset_flags_series_and_car_count_mismatches(tmp_path):
 
     assert any("data_status.reaction_series_count=9 expected 1" in error for error in errors)
     assert any("data_status.car_groups_count=9 expected 1" in error for error in errors)
+
+
+def test_validate_dataset_accepts_valid_optional_dividends(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        dividends=[dividend(), dividend(bsns_year=2024)],
+        status_overrides={"dividends_count": 2},
+    )
+
+    errors, warnings = validate_dataset(tmp_path)
+
+    assert errors == []
+    assert warnings == []
+
+
+def test_validate_dataset_rejects_duplicate_dividend_keys_and_bad_years(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        dividends=[
+            dividend(),
+            dividend(),
+            dividend(bsns_year=1901),
+            dividend(bsns_year="2025"),
+        ],
+    )
+
+    errors, _ = validate_dataset(tmp_path)
+
+    assert any("duplicate corp_code/bsns_year 00126380/2025" in error for error in errors)
+    assert any("bsns_year 1901 outside" in error for error in errors)
+    assert any("bsns_year must be an integer" in error for error in errors)
+
+
+def test_validate_dataset_rejects_non_numeric_dividend_values(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        dividends=[dividend(cash_dividend_total_krw="9,809")],
+    )
+
+    errors, _ = validate_dataset(tmp_path)
+
+    assert any("cash_dividend_total_krw must be numeric or null" in error for error in errors)
+
+
+def test_validate_dataset_warns_on_payout_ratio_outside_range_without_failing(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        dividends=[dividend(payout_ratio=6.2), dividend(bsns_year=2024, payout_ratio=-0.1)],
+    )
+
+    errors, warnings = validate_dataset(tmp_path)
+
+    assert errors == []
+    assert len(warnings) == 2
+    assert all("payout_ratio" in warning for warning in warnings)
+
+
+def test_validate_dataset_flags_dividends_count_mismatch(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        dividends=[dividend()],
+        status_overrides={"dividends_count": 7},
+    )
+
+    errors, _ = validate_dataset(tmp_path)
+
+    assert any("data_status.dividends_count=7 expected 1" in error for error in errors)
+
+
+def test_validate_dataset_without_dividends_file_stays_clean(tmp_path):
+    # Datasets built before dividend tracking (like the committed public data)
+    # have no dividends.json and must keep validating with exit 0 — even when
+    # data_status.json already carries a dividends_count from an older build.
+    write_dataset(tmp_path, [holding()], status_overrides={"dividends_count": 3})
+
+    errors, warnings = validate_dataset(tmp_path)
+
+    assert errors == []
+    assert warnings == []
 
 
 def test_main_exits_zero_when_only_flow_warnings_exist(tmp_path, monkeypatch, capsys):

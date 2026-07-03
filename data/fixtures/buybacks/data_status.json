@@ -8,6 +8,7 @@
   "holdings_count": 6,
   "price_reactions_count": 7,
   "executions_count": 4,
+  "dividends_count": 3,
   "warnings": [
     "Fixture data for development and static build verification only.",
     "Set DART_API_KEY in local or GitHub Actions to collect live OpenDART data.",

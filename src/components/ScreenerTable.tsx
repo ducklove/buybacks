@@ -21,6 +21,8 @@ type SortKey =
   | "eventCount"
   | "recentAmount"
   | "intensity"
+  | "dividendYield"
+  | "totalReturn"
   | "retirementShare"
   | "completion"
   | "holding"
@@ -75,6 +77,12 @@ export function ScreenerTable({ events, selectedStockCode, onSelectStock }: Scre
       }
       if (sortKey === "intensity") {
         return compareNullableNumber(a.acquisitionIntensity, b.acquisitionIntensity, direction);
+      }
+      if (sortKey === "dividendYield") {
+        return compareNullableNumber(a.dividendYield, b.dividendYield, direction);
+      }
+      if (sortKey === "totalReturn") {
+        return compareNullableNumber(a.totalShareholderReturn, b.totalShareholderReturn, direction);
       }
       if (sortKey === "retirementShare") {
         return compareNullableNumber(a.retirementShare, b.retirementShare, direction);
@@ -220,6 +228,22 @@ export function ScreenerTable({ events, selectedStockCode, onSelectStock }: Scre
                 시총대비 %
               </SortableHeader>
               <SortableHeader
+                active={sortKey === "dividendYield"}
+                ascending={ascending}
+                className="numeric-cell col-optional"
+                onClick={() => changeSort("dividendYield")}
+              >
+                배당수익률 %
+              </SortableHeader>
+              <SortableHeader
+                active={sortKey === "totalReturn"}
+                ascending={ascending}
+                className="numeric-cell col-optional"
+                onClick={() => changeSort("totalReturn")}
+              >
+                총환원율 %
+              </SortableHeader>
+              <SortableHeader
                 active={sortKey === "retirementShare"}
                 ascending={ascending}
                 className="numeric-cell col-optional"
@@ -273,6 +297,10 @@ export function ScreenerTable({ events, selectedStockCode, onSelectStock }: Scre
                 <td className="numeric-cell">{row.eventCount}</td>
                 <td className="numeric-cell">{formatKRW(row.recentPlannedAcquisitionAmountKrw)}</td>
                 <td className="numeric-cell">{formatPercent(row.acquisitionIntensity, 2)}</td>
+                <td className="numeric-cell col-optional">{formatPercent(row.dividendYield, 2)}</td>
+                <td className="numeric-cell col-optional">
+                  {formatPercent(row.totalShareholderReturn, 2)}
+                </td>
                 <td className="numeric-cell col-optional">
                   {formatPercent(row.retirementShare, 1)}
                 </td>
@@ -283,7 +311,7 @@ export function ScreenerTable({ events, selectedStockCode, onSelectStock }: Scre
             ))}
             {visibleRows.length === 0 ? (
               <tr>
-                <td className="empty-table-cell" colSpan={9}>
+                <td className="empty-table-cell" colSpan={11}>
                   조건에 맞는 기업이 없습니다.
                 </td>
               </tr>

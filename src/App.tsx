@@ -172,6 +172,7 @@ function App() {
           priceReactions={dataset.priceReactions}
           latestPrices={dataset.latestPrices}
           executions={dataset.executions}
+          dividends={dataset.dividends ?? []}
           selectedStockCode={selectedStockCode}
           onSelectStock={setSelectedStockCode}
         />

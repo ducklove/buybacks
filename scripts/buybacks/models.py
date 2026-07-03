@@ -126,6 +126,27 @@ class TreasuryHoldingSnapshot:
 
 
 @dataclass(slots=True)
+class DividendRecord:
+    """One row per (corp_code, bsns_year) from OpenDART alotMatter.json.
+
+    Values are normalized to KRW (the source reports totals in 백만원) and
+    ratios to 0..1 fractions. Missing rows stay null; a company/year without
+    any parsable dividend row is omitted entirely.
+    """
+
+    corp_code: str
+    stock_code: str
+    corp_name: str
+    bsns_year: int
+    report_code: str
+    dps_common_krw: int | float | None  # 주당 현금배당금(원), 보통주
+    cash_dividend_total_krw: int | float | None  # 현금배당금총액
+    payout_ratio: float | None  # 현금배당성향(%) / 100
+    net_income_krw: int | float | None  # (연결)당기순이익
+    rcept_no: str | None
+
+
+@dataclass(slots=True)
 class PriceReaction:
     event_id: str
     stock_code: str

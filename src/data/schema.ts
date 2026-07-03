@@ -174,6 +174,7 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
 
   validateReactionSeries(dataset, errors);
   validateCarCurves(dataset, errors);
+  validateDividends(dataset, errors);
 
   if (dataset.status.companies_count !== dataset.companies.length) {
     errors.push("data_status.companies_count does not match companies length");
@@ -237,6 +238,36 @@ function validateCarCurves(dataset: BuybacksDataset, errors: string[]) {
     }
     if (group.mean_car.length > REACTION_WINDOW_MAX) {
       errors.push(`carCurves.groups[${index}] mean_car longer than ${REACTION_WINDOW_MAX}`);
+    }
+  });
+}
+
+function validateDividends(dataset: BuybacksDataset, errors: string[]) {
+  if (dataset.dividends === undefined) return;
+  if (!Array.isArray(dataset.dividends)) {
+    errors.push("dividends must be an array");
+    return;
+  }
+  const keys = new Set<string>();
+  dataset.dividends.forEach((dividend, index) => {
+    if (!dividend.corp_code) errors.push(`dividends[${index}] missing corp_code`);
+    if (!dividend.stock_code) errors.push(`dividends[${index}] missing stock_code`);
+    if (typeof dividend.bsns_year !== "number") {
+      errors.push(`dividends[${index}] bsns_year must be a number`);
+    }
+    const key = `${dividend.corp_code}:${dividend.bsns_year}`;
+    if (keys.has(key)) {
+      errors.push(`dividends[${index}] duplicate corp_code/bsns_year ${key}`);
+    }
+    keys.add(key);
+    if (
+      dividend.cash_dividend_total_krw !== null &&
+      typeof dividend.cash_dividend_total_krw !== "number"
+    ) {
+      errors.push(`dividends[${index}] cash_dividend_total_krw must be numeric or null`);
+    }
+    if (dividend.dps_common_krw !== null && typeof dividend.dps_common_krw !== "number") {
+      errors.push(`dividends[${index}] dps_common_krw must be numeric or null`);
     }
   });
 }

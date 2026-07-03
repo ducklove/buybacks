@@ -1,0 +1,38 @@
+[
+  {
+    "corp_code": "00126380",
+    "stock_code": "005930",
+    "corp_name": "삼성전자",
+    "bsns_year": 2025,
+    "report_code": "11011",
+    "dps_common_krw": 1444,
+    "cash_dividend_total_krw": 9809000000000,
+    "payout_ratio": 0.28,
+    "net_income_krw": 34451000000000,
+    "rcept_no": null
+  },
+  {
+    "corp_code": "00164742",
+    "stock_code": "005380",
+    "corp_name": "현대차",
+    "bsns_year": 2025,
+    "report_code": "11011",
+    "dps_common_krw": 12000,
+    "cash_dividend_total_krw": 3103000000000,
+    "payout_ratio": 0.25,
+    "net_income_krw": null,
+    "rcept_no": null
+  },
+  {
+    "corp_code": "00258801",
+    "stock_code": "035900",
+    "corp_name": "JYP Ent.",
+    "bsns_year": 2025,
+    "report_code": "11011",
+    "dps_common_krw": null,
+    "cash_dividend_total_krw": null,
+    "payout_ratio": null,
+    "net_income_krw": 101000000000,
+    "rcept_no": null
+  }
+]

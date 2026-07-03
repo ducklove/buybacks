@@ -113,6 +113,24 @@ export interface TreasuryHoldingSnapshot {
   source_rcept_no: string | null;
 }
 
+/** 정기보고서 배당에 관한 사항 (dividends.json, optional). (corp_code, bsns_year) 단위 1행 */
+export interface DividendRecord {
+  corp_code: string;
+  stock_code: string;
+  corp_name: string;
+  bsns_year: number;
+  report_code: string;
+  /** 주당 현금배당금(원), 보통주 */
+  dps_common_krw: number | null;
+  /** 현금배당금총액(원 환산) */
+  cash_dividend_total_krw: number | null;
+  /** 현금배당성향 (0..1 비율) */
+  payout_ratio: number | null;
+  /** (연결)당기순이익(원 환산) */
+  net_income_krw: number | null;
+  rcept_no: string | null;
+}
+
 export const CAR_MARKETS = ["ALL", "KOSPI", "KOSDAQ"] as const;
 export type CarMarket = (typeof CAR_MARKETS)[number];
 
@@ -188,6 +206,7 @@ export interface DataStatus {
   price_reactions_count: number;
   latest_prices_count?: number;
   reaction_series_count?: number;
+  dividends_count?: number;
   car_groups_count?: number;
   warnings: string[];
 }
@@ -201,6 +220,7 @@ export interface BuybacksDataset {
   executions: BuybackExecution[];
   reactionSeries?: ReactionSeries[];
   carCurves?: CarCurves | null;
+  dividends?: DividendRecord[];
   status: DataStatus;
 }
 
@@ -217,4 +237,6 @@ export interface EnrichedEvent extends BuybackEvent {
   priceReaction?: PriceReaction;
   latestPrice?: LatestPriceSnapshot;
   execution?: BuybackExecution;
+  /** 해당 종목의 최신 사업연도 배당 레코드 */
+  dividend?: DividendRecord;
 }

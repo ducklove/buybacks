@@ -388,4 +388,124 @@ describe("validateDataset", () => {
     expect(errors).toContain("carCurves.groups[0] invalid market");
     expect(errors).toContain("carCurves.groups[0] mean_car longer than 60");
   });
+
+  it("accepts valid optional dividends and skips validation when absent", () => {
+    const base = {
+      companies: [],
+      events: [],
+      holdingSnapshots: [],
+      priceReactions: [],
+      latestPrices: [],
+      executions: [],
+      status: {
+        generated_at: "2026-06-20T00:00:00+09:00",
+        dart_available: false,
+        krx_available: false,
+        companies_count: 0,
+        events_count: 0,
+        holdings_count: 0,
+        price_reactions_count: 0,
+        warnings: []
+      }
+    } as unknown as BuybacksDataset;
+
+    expect(validateDataset(base)).toEqual([]);
+    expect(
+      validateDataset({
+        ...base,
+        dividends: [
+          {
+            corp_code: "00126380",
+            stock_code: "005930",
+            corp_name: "삼성전자",
+            bsns_year: 2025,
+            report_code: "11011",
+            dps_common_krw: 1444,
+            cash_dividend_total_krw: 9809438000000,
+            payout_ratio: 0.285,
+            net_income_krw: null,
+            rcept_no: null
+          },
+          {
+            corp_code: "00126380",
+            stock_code: "005930",
+            corp_name: "삼성전자",
+            bsns_year: 2024,
+            report_code: "11011",
+            dps_common_krw: null,
+            cash_dividend_total_krw: null,
+            payout_ratio: null,
+            net_income_krw: null,
+            rcept_no: null
+          }
+        ]
+      })
+    ).toEqual([]);
+  });
+
+  it("reports duplicate dividend keys and malformed dividend values", () => {
+    const dataset = {
+      companies: [],
+      events: [],
+      holdingSnapshots: [],
+      priceReactions: [],
+      latestPrices: [],
+      executions: [],
+      dividends: [
+        {
+          corp_code: "00126380",
+          stock_code: "005930",
+          corp_name: "삼성전자",
+          bsns_year: 2025,
+          report_code: "11011",
+          dps_common_krw: 1444,
+          cash_dividend_total_krw: 9809438000000,
+          payout_ratio: 0.285,
+          net_income_krw: null,
+          rcept_no: null
+        },
+        {
+          corp_code: "00126380",
+          stock_code: "005930",
+          corp_name: "삼성전자",
+          bsns_year: 2025,
+          report_code: "11011",
+          dps_common_krw: "1,444",
+          cash_dividend_total_krw: null,
+          payout_ratio: null,
+          net_income_krw: null,
+          rcept_no: null
+        },
+        {
+          corp_code: "",
+          stock_code: "",
+          corp_name: "미상",
+          bsns_year: "2025",
+          report_code: "11011",
+          dps_common_krw: null,
+          cash_dividend_total_krw: null,
+          payout_ratio: null,
+          net_income_krw: null,
+          rcept_no: null
+        }
+      ],
+      status: {
+        generated_at: "2026-06-20T00:00:00+09:00",
+        dart_available: false,
+        krx_available: false,
+        companies_count: 0,
+        events_count: 0,
+        holdings_count: 0,
+        price_reactions_count: 0,
+        warnings: []
+      }
+    } as unknown as BuybacksDataset;
+
+    const errors = validateDataset(dataset);
+    expect(errors).toContain("dividends[1] duplicate corp_code/bsns_year 00126380:2025");
+    expect(errors).toContain("dividends[1] dps_common_krw must be numeric or null");
+    expect(errors).toContain("dividends[2] missing corp_code");
+    expect(errors).toContain("dividends[2] missing stock_code");
+    expect(errors).toContain("dividends[2] bsns_year must be a number");
+  });
 });
