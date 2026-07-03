@@ -91,6 +91,7 @@ jobs:
               f"- Collected events: `{status.get('events_count', 0)}`",
               f"- New events: `{status.get('merge_new_events_count', status.get('new_events_count', 0))}`",
               f"- Duplicate events: `{status.get('merge_duplicate_events_count', status.get('duplicate_events_count', 0))}`",
+              f"- Collected execution reports: `{status.get('executions_count', 0)}`",
               "",
               "The PR contains the temporary backfill table under `data/backfills/` and the merged `public/data/buybacks` JSON. Merge this PR to accept the backfill.",
           ])
@@ -107,10 +108,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
           git add \
-            "data/backfills/${BACKFILL_RUN_ID}/companies.json" \
-            "data/backfills/${BACKFILL_RUN_ID}/disclosures.json" \
-            "data/backfills/${BACKFILL_RUN_ID}/events.json" \
-            "data/backfills/${BACKFILL_RUN_ID}/status.json" \
+            "data/backfills/${BACKFILL_RUN_ID}" \
             public/data/buybacks
           if git diff --cached --quiet; then
             echo "No backfill changes to commit."
