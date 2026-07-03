@@ -43,6 +43,10 @@ jobs:
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          # Check out the branch head at job start, not the SHA pinned at
+          # dispatch time: queued data runs otherwise base on a stale commit
+          # and the final rebase-push conflicts with the previous run's data.
+          ref: master
 
       - name: Setup Python
         uses: actions/setup-python@v6
