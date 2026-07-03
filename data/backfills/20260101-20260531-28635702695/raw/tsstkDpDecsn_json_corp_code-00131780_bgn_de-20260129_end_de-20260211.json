@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260209000377",
+      "corp_cls": "Y",
+      "corp_code": "00131780",
+      "corp_name": "SK네트웍스",
+      "od_a_at_t": "4",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "SK증권(SK Securities Co., Ltd)",
+      "aq_wtn_div_ostk": "18,810,789",
+      "aq_wtn_div_ostk_rt": "8.50",
+      "aq_wtn_div_estk": "10,500",
+      "aq_wtn_div_estk_rt": "0.00",
+      "eaq_ostk": "8,520,903",
+      "eaq_ostk_rt": "3.85",
+      "eaq_estk": "20,148",
+      "eaq_estk_rt": "0.01",
+      "dppln_stk_ostk": "5,932",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "5,080",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "30,134,560",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 10일",
+      "dpprpd_edd": "2026년 02월 10일",
+      "dp_pp": "임원에 대한 상여금 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "5,932",
+      "dp_dd": "2026년 02월 09일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

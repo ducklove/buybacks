@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260528000678",
+      "corp_cls": "K",
+      "corp_code": "00872656",
+      "corp_name": "금양그린파워",
+      "od_a_at_t": "2",
+      "od_a_at_b": "1",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "삼성증권 (Samsung Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "52,600",
+      "eaq_ostk_rt": "0.43",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "52,600",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "9,910",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "521,266,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 05월 29일",
+      "dpprpd_edd": "2026년 08월 28일",
+      "dp_pp": "임직원 등에 대한 보상 지급\n(주식으로 직접 지급함)",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "52,600",
+      "dp_dd": "2026년 05월 28일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

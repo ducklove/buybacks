@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260105000017",
+      "corp_cls": "K",
+      "corp_code": "00858124",
+      "corp_name": "알에스오토메이션",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "63,000",
+      "aq_wtn_div_ostk_rt": "0.50",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1,656",
+      "eaq_ostk_rt": "0.01",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "14,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "15,920",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "222,880,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 05일",
+      "dpprpd_edd": "2026년 01월 05일",
+      "dp_pp": "RSU(Restricted Stock Unit) 지급에 따른 자기주식 교부",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "14,000",
+      "dp_dd": "2026년 01월 05일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

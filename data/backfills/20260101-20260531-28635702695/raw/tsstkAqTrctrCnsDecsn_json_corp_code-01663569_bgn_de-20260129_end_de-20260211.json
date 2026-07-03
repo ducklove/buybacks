@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260209000391",
+      "corp_cls": "K",
+      "corp_code": "01663569",
+      "corp_name": "하스",
+      "bddd": "2026년 02월 09일",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "NH투자증권(NH Investment & SecuritiesCo, Ltd)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "3,000,000,000",
+      "ctr_pd_bgd": "2026년 02월 10일",
+      "ctr_pd_edd": "2026년 08월 09일",
+      "ctr_pp": "          주주가치 제고 및 임직원 성과보상",
+      "ctr_cns_int": "NH투자증권(NH Investment & SecuritiesCo, Ltd)",
+      "ctr_cns_prd": "2026년 02월 09일"
+    }
+  ]
+}

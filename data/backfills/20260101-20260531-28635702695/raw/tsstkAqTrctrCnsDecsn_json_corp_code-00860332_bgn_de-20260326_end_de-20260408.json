@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260326000277",
+      "corp_cls": "Y",
+      "corp_code": "00860332",
+      "corp_name": "메리츠금융지주",
+      "bddd": "2026년 03월 26일",
+      "od_a_at_t": "4",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "NH투자증권\n(NH Investment & Securities Co.,Ltd.)",
+      "aq_wtn_div_ostk": "1,654,000",
+      "aq_wtn_div_ostk_rt": "0.98",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "2,421,100",
+      "eaq_ostk_rt": "1.43",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "700,000,000,000",
+      "ctr_pd_bgd": "2026년 03월 26일",
+      "ctr_pd_edd": "2027년 03월 25일",
+      "ctr_pp": "주주가치 제고",
+      "ctr_cns_int": "NH투자증권\n(NH Investment & Securities Co.,Ltd.)",
+      "ctr_cns_prd": "2026년 03월 26일"
+    }
+  ]
+}

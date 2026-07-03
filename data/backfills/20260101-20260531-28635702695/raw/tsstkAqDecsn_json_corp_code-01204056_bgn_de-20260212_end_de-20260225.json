@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260212001232",
+      "corp_cls": "Y",
+      "corp_code": "01204056",
+      "corp_name": "하이브",
+      "od_a_at_t": "5",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "aqpln_stk_ostk": "546,120",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "-",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 03월 16일",
+      "aqexpd_edd": "2026년 04월 13일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "임직원 등의 성과보상 재원 목적\n취득",
+      "aq_mth": "무상수증",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "102,847",
+      "aq_wtn_div_ostk_rt": "0.24",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 02월 12일",
+      "d1_prodlm_ostk": "-",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

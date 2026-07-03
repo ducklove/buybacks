@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260226006082",
+      "corp_cls": "Y",
+      "corp_code": "00128032",
+      "corp_name": "삼일제약",
+      "od_a_at_t": "1",
+      "od_a_at_b": "2",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "교보증권(주)",
+      "aq_wtn_div_ostk": "462,158",
+      "aq_wtn_div_ostk_rt": "2.13",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "141,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "11,650",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "1,642,650,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 27일",
+      "dpprpd_edd": "2026년 02월 27일",
+      "dp_pp": "사업상 협력관계 구축",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "141,000",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 26일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

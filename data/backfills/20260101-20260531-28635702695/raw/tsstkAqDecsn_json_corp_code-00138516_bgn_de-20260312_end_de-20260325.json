@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260318001220",
+      "corp_cls": "Y",
+      "corp_code": "00138516",
+      "corp_name": "아남전자",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "aqpln_stk_ostk": "25,657,000",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "40,024,920,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 03월 19일",
+      "aqexpd_edd": "2026년 04월 10일",
+      "hdexpd_bgd": "2026년 04월 14일",
+      "hdexpd_edd": "2027년 03월 18일",
+      "aq_pp": "주주가치 제고",
+      "aq_mth": "공개매수",
+      "cs_iv_bk": "신한투자증권",
+      "aq_wtn_div_ostk": "3,490",
+      "aq_wtn_div_ostk_rt": "0.00",
+      "aq_wtn_div_estk": "30",
+      "aq_wtn_div_estk_rt": "0.00",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 03월 18일",
+      "d1_prodlm_ostk": "-",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

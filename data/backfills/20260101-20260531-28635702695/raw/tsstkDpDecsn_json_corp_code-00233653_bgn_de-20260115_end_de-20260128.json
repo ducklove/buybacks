@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260115000394",
+      "corp_cls": "Y",
+      "corp_code": "00233653",
+      "corp_name": "한국토지신탁",
+      "od_a_at_t": "4",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "한국투자증권㈜, KB증권㈜",
+      "aq_wtn_div_ostk": "34,080,105",
+      "aq_wtn_div_ostk_rt": "13.5",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "14,880,952",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "1,344",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "20,000,000,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 23일",
+      "dpprpd_edd": "2026년 01월 23일",
+      "dp_pp": "자기주식을 대상으로 하는\n교환사채 발행",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "14,880,952",
+      "dp_dd": "2026년 01월 15일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

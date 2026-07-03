@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260211001074",
+      "corp_cls": "Y",
+      "corp_code": "00400857",
+      "corp_name": "에이블씨엔씨",
+      "bddd": "2026년 02월 11일",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "1,050,735",
+      "aq_wtn_div_ostk_rt": "4.0",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "3",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "10,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2025년 04월 24일",
+      "ctr_pd_bfcc_edd": "2026년 04월 23일",
+      "cc_pp": "자기주식 취득 완료(계약금액 소진)에 따른 중도해지",
+      "cc_int": "신한투자증권 주식회사\n\n(SHINHAN SECURITIES CO.,LTD.)",
+      "cc_prd": "2026년 02월 11일",
+      "tp_rm_atcc": "현금 및 실물(자사주)반환"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260122000459",
+      "corp_cls": "K",
+      "corp_code": "00485177",
+      "corp_name": "일진파워",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "삼성증권",
+      "aq_wtn_div_ostk": "243,611",
+      "aq_wtn_div_ostk_rt": "1.6",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "243,611",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "16,008",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "3,899,724,888",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 23일",
+      "dpprpd_edd": "2026년 01월 30일",
+      "dp_pp": "원자력 사업 관련 연구개발 및 기술 경쟁력 강화를 위한 대전기술연구소 시설 투자 및 운영자금 확보",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "243,611",
+      "dp_m_otc": "-",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 01월 22일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

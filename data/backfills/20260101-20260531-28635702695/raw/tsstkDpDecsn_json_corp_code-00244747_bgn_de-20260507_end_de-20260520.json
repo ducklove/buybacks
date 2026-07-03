@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260513000838",
+      "corp_cls": "K",
+      "corp_code": "00244747",
+      "corp_name": "파크시스템스",
+      "od_a_at_t": "6",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "KB증권(주)(KB Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "43,327",
+      "aq_wtn_div_ostk_rt": "0.6",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "732",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "298,500",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "218,502,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 05월 14일",
+      "dpprpd_edd": "2026년 08월 13일",
+      "dp_pp": "임직원 보상을 위한 RSU 교부",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "732",
+      "dp_dd": "2026년 05월 13일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

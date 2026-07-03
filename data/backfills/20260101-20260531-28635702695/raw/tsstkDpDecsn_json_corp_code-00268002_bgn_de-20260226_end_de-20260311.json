@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260304001313",
+      "corp_cls": "K",
+      "corp_code": "00268002",
+      "corp_name": "세종텔레콤",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "엔에이치투자증권(주)\n\n(NH INVESTMENT & SECURITIES CO.,LTD.)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "6,693",
+      "eaq_ostk_rt": "0.1",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "6,693",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "7,550",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "50,532,150",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 03월 05일",
+      "dpprpd_edd": "2026년 03월 11일",
+      "dp_pp": "유상감자시 취득한 단주(자기주식)의 처분(유통주식물량 확대를 통한 거래량 활성화)",
+      "dp_m_mkt": "6,693",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 03월 04일",
+      "d1_slodlm_ostk": "4,903",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

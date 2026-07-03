@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260326001137",
+      "corp_cls": "Y",
+      "corp_code": "00105855",
+      "corp_name": "엘에스일렉트릭",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "엔에이치투자증권\n(NH INVESTMENT & SECURITIES CO.,LTD.)",
+      "aq_wtn_div_ostk": "261,509",
+      "aq_wtn_div_ostk_rt": "0.87",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "22,581",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "844,000",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "19,058,364,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 03월 27일",
+      "dpprpd_edd": "2026년 04월 30일",
+      "dp_pp": "임직원의 책임경영을 강화하며, 회사의 장기적 \n성장(VISION2030 달성)에 기여하게 하기위한\n장기성과급지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "22,581",
+      "dp_dd": "2026년 03월 26일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

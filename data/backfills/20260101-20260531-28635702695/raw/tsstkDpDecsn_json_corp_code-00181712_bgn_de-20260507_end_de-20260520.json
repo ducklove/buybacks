@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260512000680",
+      "corp_cls": "Y",
+      "corp_code": "00181712",
+      "corp_name": "SK",
+      "od_a_at_t": "5",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "SK증권 (SK Securities Co., LTD.)",
+      "aq_wtn_div_ostk": "7,000,583",
+      "aq_wtn_div_ostk_rt": "9.6",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "10,978,213",
+      "eaq_ostk_rt": "15.0",
+      "eaq_estk": "1,787",
+      "eaq_estk_rt": "0.0",
+      "dppln_stk_ostk": "17,981",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "571,000",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "10,267,151,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 05월 13일",
+      "dpprpd_edd": "2026년 06월 12일",
+      "dp_pp": "임원 장기 성과급 지급을 위한\n자기주식 처분",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "17,981",
+      "dp_dd": "2026년 05월 12일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

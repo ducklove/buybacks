@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260423000431",
+      "corp_cls": "Y",
+      "corp_code": "00688996",
+      "corp_name": "KB금융",
+      "od_a_at_t": "7",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "3,811,944",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "600,000,000,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 04월 24일",
+      "aqexpd_edd": "2026년 07월 20일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "자기주식 취득 및 소각을 통한 주주환원과 기업가치 제고",
+      "aq_mth": "장내매수",
+      "cs_iv_bk": "KB증권",
+      "aq_wtn_div_ostk": "18,162,721",
+      "aq_wtn_div_ostk_rt": "4.87",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 04월 23일",
+      "d1_prodlm_ostk": "381,194",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260206001627",
+      "corp_cls": "K",
+      "corp_code": "00236863",
+      "corp_name": "희림",
+      "od_a_at_t": "-",
+      "od_a_at_b": "1",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "1,296,363",
+      "aq_wtn_div_ostk_rt": "9.31",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1,592",
+      "eaq_ostk_rt": "0.01",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "291,400",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "4,440",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "1,293,816,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 12일",
+      "dpprpd_edd": "2026년 03월 10일",
+      "dp_pp": "임직원 성과격려금 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "291,400",
+      "dp_dd": "2026년 02월 06일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 1,
+  "page_count": 100,
+  "total_count": 12,
+  "total_page": 1,
+  "list": [
+    {
+      "corp_code": "00158112",
+      "corp_name": "한국수출포장공업",
+      "stock_code": "002200",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260128000320",
+      "flr_nm": "한국수출포장공업",
+      "rcept_dt": "20260128",
+      "rm": ""
+    },
+    {
+      "corp_code": "00158112",
+      "corp_name": "한국수출포장공업",
+      "stock_code": "002200",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260128000105",
+      "flr_nm": "한국수출포장공업",
+      "rcept_dt": "20260128",
+      "rm": ""
+    },
+    {
+      "corp_code": "00133991",
+      "corp_name": "세아특수강",
+      "stock_code": "019440",
+      "corp_cls": "E",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260123000245",
+      "flr_nm": "세아특수강",
+      "rcept_dt": "20260123",
+      "rm": ""
+    },
+    {
+      "corp_code": "00233653",
+      "corp_name": "한국토지신탁",
+      "stock_code": "034830",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260121000509",
+      "flr_nm": "한국토지신탁",
+      "rcept_dt": "20260121",
+      "rm": ""
+    },
+    {
+      "corp_code": "00233653",
+      "corp_name": "한국토지신탁",
+      "stock_code": "034830",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260121000507",
+      "flr_nm": "한국토지신탁",
+      "rcept_dt": "20260121",
+      "rm": ""
+    },
+    {
+      "corp_code": "00233653",
+      "corp_name": "한국토지신탁",
+      "stock_code": "034830",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260121000503",
+      "flr_nm": "한국토지신탁",
+      "rcept_dt": "20260121",
+      "rm": ""
+    },
+    {
+      "corp_code": "00233653",
+      "corp_name": "한국토지신탁",
+      "stock_code": "034830",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260121000496",
+      "flr_nm": "한국토지신탁",
+      "rcept_dt": "20260121",
+      "rm": ""
+    },
+    {
+      "corp_code": "00692254",
+      "corp_name": "아이패밀리에스씨",
+      "stock_code": "114840",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260121000258",
+      "flr_nm": "아이패밀리에스씨",
+      "rcept_dt": "20260121",
+      "rm": ""
+    },
+    {
+      "corp_code": "00868705",
+      "corp_name": "윈스테크넷",
+      "stock_code": "136540",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260120000347",
+      "flr_nm": "윈스테크넷",
+      "rcept_dt": "20260120",
+      "rm": ""
+    },
+    {
+      "corp_code": "00138701",
+      "corp_name": "아세아",
+      "stock_code": "002030",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260116000255",
+      "flr_nm": "아세아",
+      "rcept_dt": "20260116",
+      "rm": ""
+    },
+    {
+      "corp_code": "00990165",
+      "corp_name": "아세아시멘트",
+      "stock_code": "183190",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260116000229",
+      "flr_nm": "아세아시멘트",
+      "rcept_dt": "20260116",
+      "rm": ""
+    },
+    {
+      "corp_code": "00117966",
+      "corp_name": "동원개발",
+      "stock_code": "013120",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260116000077",
+      "flr_nm": "동원개발",
+      "rcept_dt": "20260116",
+      "rm": ""
+    }
+  ]
+}

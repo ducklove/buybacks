@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260414001763",
+      "corp_cls": "K",
+      "corp_code": "01258710",
+      "corp_name": "이노메트리",
+      "bddd": "2026년 04월 14일",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "NH투자증권\n(NH SECURITIES CO.,LTD)",
+      "aq_wtn_div_ostk": "5,683",
+      "aq_wtn_div_ostk_rt": "0.06",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "1,000,000,000",
+      "ctr_pd_bgd": "2026년 04월 14일",
+      "ctr_pd_edd": "2026년 10월 14일",
+      "ctr_pp": "주주가치 제고(소각 등) 및 임직원 보상 재원 활용",
+      "ctr_cns_int": "NH투자증권\n(NH SECURITIES CO.,LTD)",
+      "ctr_cns_prd": "2026년 04월 14일"
+    }
+  ]
+}

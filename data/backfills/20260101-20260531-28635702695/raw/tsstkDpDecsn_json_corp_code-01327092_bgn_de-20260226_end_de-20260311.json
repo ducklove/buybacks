@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260303002379",
+      "corp_cls": "K",
+      "corp_code": "01327092",
+      "corp_name": "라닉스",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "한국투자증권",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "25,710",
+      "eaq_ostk_rt": "0.17",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "25,710",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "1,969",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "50,622,990",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 03월 04일",
+      "dpprpd_edd": "2026년 03월 04일",
+      "dp_pp": "운영자금 및 재원 확보,\n책임경영 및 주주가치 제고",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "25,710",
+      "dp_m_otc": "-",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 03월 03일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

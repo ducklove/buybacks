@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260123000189",
+      "corp_cls": "K",
+      "corp_code": "01003040",
+      "corp_name": "케이사인",
+      "bddd": "2026년 01월 23일",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "NH투자증권",
+      "aq_wtn_div_ostk": "220,989",
+      "aq_wtn_div_ostk_rt": "3.20",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "5,306",
+      "eaq_ostk_rt": "0.0002",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "3,000,000,000",
+      "ctr_pd_bgd": "2026년 01월 27일",
+      "ctr_pd_edd": "2026년 07월 26일",
+      "ctr_pp": "주가 안정 및 주주가치 제고",
+      "ctr_cns_int": "NH투자증권",
+      "ctr_cns_prd": "2026년 01월 27일"
+    }
+  ]
+}

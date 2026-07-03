@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260427000740",
+      "corp_cls": "Y",
+      "corp_code": "00159023",
+      "corp_name": "SK텔레콤",
+      "od_a_at_t": "5",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "SK증권",
+      "aq_wtn_div_ostk": "1,789,157",
+      "aq_wtn_div_ostk_rt": "0.83",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "51,952",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "100,000",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "5,195,200,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 04월 28일",
+      "dpprpd_edd": "2026년 05월 31일",
+      "dp_pp": "사외이사 주식보상 및 임원 장기성과급 주식보상",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "51,952",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 04월 27일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260311003714",
+      "corp_cls": "Y",
+      "corp_code": "00106368",
+      "corp_name": "금호석유화학",
+      "bddd": "2026년 03월 11일",
+      "od_a_at_t": "6",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "미래에셋증권\n(MIRAE ASSET SECURITIES CO., LTD.)",
+      "aq_wtn_div_ostk": "3,498,834",
+      "aq_wtn_div_ostk_rt": "13.44",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "30,000,000,000",
+      "ctr_pd_bgd": "2026년 03월 19일",
+      "ctr_pd_edd": "2026년 09월 18일",
+      "ctr_pp": "주주가치 제고를 위한 주주환원정책",
+      "ctr_cns_int": "미래에셋증권\n(MIRAE ASSET SECURITIES CO., LTD.)",
+      "ctr_cns_prd": "2026년 03월 19일"
+    }
+  ]
+}

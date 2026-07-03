@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260210000789",
+      "corp_cls": "K",
+      "corp_code": "00264635",
+      "corp_name": "에스넷",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "NH투자증권",
+      "aq_wtn_div_ostk": "1,428,066",
+      "aq_wtn_div_ostk_rt": "7.17",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "266,192",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "3,265",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "869,116,880",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 10일",
+      "dpprpd_edd": "2026년 02월 13일",
+      "dp_pp": "임직원 상여 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "266,192",
+      "dp_dd": "2026년 02월 10일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260518000342",
+      "corp_cls": "Y",
+      "corp_code": "00140955",
+      "corp_name": "한솔케미칼",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "184,050",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "60,000,300,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 05월 19일",
+      "aqexpd_edd": "2026년 08월 18일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주주가치 제고를 위한 자기주식 소각 목적",
+      "aq_mth": "유가증권시장을 통한 장내 매수",
+      "cs_iv_bk": "KB증권, 신한투자증권",
+      "aq_wtn_div_ostk": "467,296",
+      "aq_wtn_div_ostk_rt": "4.1",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 05월 18일",
+      "d1_prodlm_ostk": "24,022",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

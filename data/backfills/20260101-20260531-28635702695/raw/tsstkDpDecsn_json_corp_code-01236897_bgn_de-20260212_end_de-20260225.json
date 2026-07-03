@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260225004852",
+      "corp_cls": "Y",
+      "corp_code": "01236897",
+      "corp_name": "제일약품",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "NH투자증권",
+      "aq_wtn_div_ostk": "127,861",
+      "aq_wtn_div_ostk_rt": "95.88",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "5,494",
+      "eaq_ostk_rt": "4.12",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "133,355",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "16,036",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "2,138,480,780",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 26일",
+      "dpprpd_edd": "2026년 02월 26일",
+      "dp_pp": "공장증축 및 설비투자 자금 조달",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "133,355",
+      "dp_m_otc": "-",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 25일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

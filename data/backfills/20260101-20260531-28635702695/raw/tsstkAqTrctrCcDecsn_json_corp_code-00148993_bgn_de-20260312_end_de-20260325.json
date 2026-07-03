@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260312001082",
+      "corp_cls": "Y",
+      "corp_code": "00148993",
+      "corp_name": "하이트진로홀딩스",
+      "bddd": "-",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "1,834,565",
+      "aq_wtn_div_ostk_rt": "7.91",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "5,296",
+      "eaq_ostk_rt": "0.02",
+      "eaq_estk": "364",
+      "eaq_estk_rt": "0.08",
+      "ctr_prc_bfcc": "1,500,000,000",
+      "ctr_prc_atcc": "0",
+      "ctr_pd_bfcc_bgd": "2021년 03월 12일",
+      "ctr_pd_bfcc_edd": "2026년 03월 12일",
+      "cc_pp": "계약기간 만료에 따른 해지",
+      "cc_int": "한국투자\n증권(주)\n(Korea Investment & Securities Co., Ltd.)",
+      "cc_prd": "2026년 03월 12일",
+      "tp_rm_atcc": "현금 및 실물(자사주) 반환"
+    }
+  ]
+}

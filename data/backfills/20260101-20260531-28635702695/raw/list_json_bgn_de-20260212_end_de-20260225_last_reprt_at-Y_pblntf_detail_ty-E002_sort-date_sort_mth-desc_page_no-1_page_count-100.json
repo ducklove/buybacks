@@ -1,0 +1,175 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 1,
+  "page_count": 100,
+  "total_count": 15,
+  "total_page": 1,
+  "list": [
+    {
+      "corp_code": "00604426",
+      "corp_name": "인터로조",
+      "stock_code": "119610",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260225004283",
+      "flr_nm": "인터로조",
+      "rcept_dt": "20260225",
+      "rm": ""
+    },
+    {
+      "corp_code": "00876908",
+      "corp_name": "모트렉스",
+      "stock_code": "118990",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260224003387",
+      "flr_nm": "모트렉스",
+      "rcept_dt": "20260224",
+      "rm": ""
+    },
+    {
+      "corp_code": "00323868",
+      "corp_name": "웹케시",
+      "stock_code": "053580",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260223003456",
+      "flr_nm": "웹케시",
+      "rcept_dt": "20260223",
+      "rm": ""
+    },
+    {
+      "corp_code": "00353878",
+      "corp_name": "다스코",
+      "stock_code": "058730",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260223003217",
+      "flr_nm": "다스코",
+      "rcept_dt": "20260223",
+      "rm": ""
+    },
+    {
+      "corp_code": "00177199",
+      "corp_name": "디씨엠",
+      "stock_code": "024090",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260223003115",
+      "flr_nm": "디씨엠",
+      "rcept_dt": "20260223",
+      "rm": ""
+    },
+    {
+      "corp_code": "00687711",
+      "corp_name": "한국철강",
+      "stock_code": "104700",
+      "corp_cls": "Y",
+      "report_nm": "[기재정정]신탁계약해지결과보고서",
+      "rcept_no": "20260220002586",
+      "flr_nm": "한국철강",
+      "rcept_dt": "20260220",
+      "rm": ""
+    },
+    {
+      "corp_code": "00159740",
+      "corp_name": "KISCO홀딩스",
+      "stock_code": "001940",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260220002568",
+      "flr_nm": "KISCO홀딩스",
+      "rcept_dt": "20260220",
+      "rm": ""
+    },
+    {
+      "corp_code": "00244561",
+      "corp_name": "그래디언트",
+      "stock_code": "035080",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260220001945",
+      "flr_nm": "그래디언트",
+      "rcept_dt": "20260220",
+      "rm": ""
+    },
+    {
+      "corp_code": "00446901",
+      "corp_name": "코칩",
+      "stock_code": "126730",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260220001889",
+      "flr_nm": "코칩",
+      "rcept_dt": "20260220",
+      "rm": ""
+    },
+    {
+      "corp_code": "00398808",
+      "corp_name": "디지털대성",
+      "stock_code": "068930",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260220000293",
+      "flr_nm": "디지털대성",
+      "rcept_dt": "20260220",
+      "rm": ""
+    },
+    {
+      "corp_code": "00154329",
+      "corp_name": "TP",
+      "stock_code": "007980",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260219002669",
+      "flr_nm": "TP",
+      "rcept_dt": "20260219",
+      "rm": ""
+    },
+    {
+      "corp_code": "00146269",
+      "corp_name": "일신방직",
+      "stock_code": "003200",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260219002577",
+      "flr_nm": "일신방직",
+      "rcept_dt": "20260219",
+      "rm": ""
+    },
+    {
+      "corp_code": "00606886",
+      "corp_name": "엔지켐생명과학",
+      "stock_code": "183490",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260219001582",
+      "flr_nm": "엔지켐생명과학",
+      "rcept_dt": "20260219",
+      "rm": ""
+    },
+    {
+      "corp_code": "00358271",
+      "corp_name": "SFA",
+      "stock_code": "056190",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260213001843",
+      "flr_nm": "SFA",
+      "rcept_dt": "20260213",
+      "rm": ""
+    },
+    {
+      "corp_code": "00455875",
+      "corp_name": "와토스코리아",
+      "stock_code": "079000",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260212000321",
+      "flr_nm": "와토스코리아",
+      "rcept_dt": "20260212",
+      "rm": ""
+    }
+  ]
+}

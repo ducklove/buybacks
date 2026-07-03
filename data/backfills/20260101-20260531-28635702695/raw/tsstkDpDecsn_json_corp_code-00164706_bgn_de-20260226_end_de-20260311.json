@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260226007231",
+      "corp_cls": "Y",
+      "corp_code": "00164706",
+      "corp_name": "현대약품",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "삼성증권(주)",
+      "aq_wtn_div_ostk": "5,864,302",
+      "aq_wtn_div_ostk_rt": "18.33",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "4,780,654",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "12,810",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "61,240,177,740",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 27일",
+      "dpprpd_edd": "2026년 02월 27일",
+      "dp_pp": "(1)  천안공장 증설 및 제2형 당뇨병 치료제 신약(HDNO-1605) 임상자금 확보\n(2) 전략적 제휴를 통한 지속적인 사업협력관계 구축 ",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "1,500,000",
+      "dp_m_otc": "3,280,654",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 26일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

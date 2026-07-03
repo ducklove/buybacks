@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260410002610",
+      "corp_cls": "K",
+      "corp_code": "00204262",
+      "corp_name": "한글과컴퓨터",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "422,112",
+      "aq_wtn_div_ostk_rt": "1.75",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "10,764",
+      "eaq_ostk_rt": "0.04",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "105,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "16,003",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "1,680,315,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 04월 20일",
+      "dpprpd_edd": "2029년 03월 29일",
+      "dp_pp": "주식매수선택권 행사에 따른\n자기주식 교부",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "105,000",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 04월 10일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

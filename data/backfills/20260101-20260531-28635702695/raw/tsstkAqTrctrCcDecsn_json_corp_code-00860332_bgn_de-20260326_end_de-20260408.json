@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260326000117",
+      "corp_cls": "Y",
+      "corp_code": "00860332",
+      "corp_name": "메리츠금융지주",
+      "bddd": "2026년 03월 26일",
+      "od_a_at_t": "4",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "1,654,000",
+      "aq_wtn_div_ostk_rt": "0.98",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "2,421,100",
+      "eaq_ostk_rt": "1.43",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "200,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2026년 02월 09일",
+      "ctr_pd_bfcc_edd": "2026년 03월 31일",
+      "cc_pp": "신탁계약을 통한 자기주식 취득 완료",
+      "cc_int": "한국투자증권주식회사\n(Korea Investment & Securities Co., Ltd.)",
+      "cc_prd": "2026년 03월 26일",
+      "tp_rm_atcc": "현금 및 실물(자사주) 반환"
+    }
+  ]
+}

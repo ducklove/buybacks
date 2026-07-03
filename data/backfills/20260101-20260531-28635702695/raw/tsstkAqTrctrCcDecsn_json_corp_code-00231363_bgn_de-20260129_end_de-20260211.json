@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260210000941",
+      "corp_cls": "Y",
+      "corp_code": "00231363",
+      "corp_name": "LG유플러스",
+      "bddd": "2026년 02월 10일",
+      "od_a_at_t": "4",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "5,400,620",
+      "aq_wtn_div_ostk_rt": "1.3",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "3",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "80,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2025년 08월 04일",
+      "ctr_pd_bfcc_edd": "2026년 08월 03일",
+      "cc_pp": "자기주식 취득 완료에 따른 중도해지",
+      "cc_int": "NH투자증권 (NH INVESTMENT & SECURITIES CO., LTD.)",
+      "cc_prd": "2026년 02월 10일",
+      "tp_rm_atcc": "현금 및 실물(자사주) 반환"
+    }
+  ]
+}

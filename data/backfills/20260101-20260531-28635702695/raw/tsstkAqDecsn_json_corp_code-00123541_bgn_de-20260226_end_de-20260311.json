@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260227008221",
+      "corp_cls": "Y",
+      "corp_code": "00123541",
+      "corp_name": "보해양조",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "aqpln_stk_ostk": "404,858",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "200,000,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 03월 03일",
+      "aqexpd_edd": "2026년 04월 02일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주가 안정 및 주주가치 제고",
+      "aq_mth": "유가증권시장을 통한 장내 매수",
+      "cs_iv_bk": "NH투자증권",
+      "aq_wtn_div_ostk": "1,038,687",
+      "aq_wtn_div_ostk_rt": "0.75",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 02월 27일",
+      "d1_prodlm_ostk": "719,610",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

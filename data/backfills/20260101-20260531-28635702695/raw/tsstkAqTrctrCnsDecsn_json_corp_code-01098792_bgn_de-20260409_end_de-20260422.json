@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260414002600",
+      "corp_cls": "K",
+      "corp_code": "01098792",
+      "corp_name": "본느",
+      "bddd": "2026년 04월 14일",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "유진투자증권",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "40",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "1,000,000,000",
+      "ctr_pd_bgd": "2026년 04월 16일",
+      "ctr_pd_edd": "2026년 10월 16일",
+      "ctr_pp": "주주가치 제고 계획에 따른 자기주식 취득",
+      "ctr_cns_int": "유진투자증권",
+      "ctr_cns_prd": "2026년 04월 16일"
+    }
+  ]
+}

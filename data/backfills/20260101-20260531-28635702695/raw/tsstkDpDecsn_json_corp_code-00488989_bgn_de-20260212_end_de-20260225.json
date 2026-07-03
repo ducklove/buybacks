@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260223003970",
+      "corp_cls": "K",
+      "corp_code": "00488989",
+      "corp_name": "한양디지텍",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "신한투자증권\n\n(SHINHAN SECURITIES CO.,LTD.)",
+      "aq_wtn_div_ostk": "661,509",
+      "aq_wtn_div_ostk_rt": "4.3",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "661,509",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "25,874",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "17,115,883,866",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 24일",
+      "dpprpd_edd": "2026년 02월 24일",
+      "dp_pp": "투자 및 운영자금 확보",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "661,509",
+      "dp_m_otc": "-",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 23일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

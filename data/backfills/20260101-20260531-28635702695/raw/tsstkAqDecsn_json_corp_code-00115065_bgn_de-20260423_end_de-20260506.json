@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260504000104",
+      "corp_cls": "Y",
+      "corp_code": "00115065",
+      "corp_name": "동남합성",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "aqpln_stk_ostk": "20,000",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "604,000,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 05월 06일",
+      "aqexpd_edd": "2026년 08월 05일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주가안정",
+      "aq_mth": "유가증권시장을 통한 매수",
+      "cs_iv_bk": "NH투자증권",
+      "aq_wtn_div_ostk": "150,286",
+      "aq_wtn_div_ostk_rt": "4.3",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 05월 04일",
+      "d1_prodlm_ostk": "2,000",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260129000379",
+      "corp_cls": "K",
+      "corp_code": "00526836",
+      "corp_name": "미래나노텍",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "2,637,616",
+      "aq_wtn_div_ostk_rt": "8.51",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "2,158,828",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "12,970",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "27,999,999,160",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 30일",
+      "dpprpd_edd": "2026년 01월 30일",
+      "dp_pp": "경영상의 재원 확보",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "2,158,828",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 01월 29일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

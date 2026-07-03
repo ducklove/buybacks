@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260326001343",
+      "corp_cls": "Y",
+      "corp_code": "00164742",
+      "corp_name": "현대자동차",
+      "od_a_at_t": "7",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "현대차증권\n(HYUNDAI MOTOR SECURITIES CO.,LTD.)",
+      "aq_wtn_div_ostk": "2,006,508",
+      "aq_wtn_div_ostk_rt": "1.0",
+      "aq_wtn_div_estk": "1,214,332",
+      "aq_wtn_div_estk_rt": "2.0",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "50,458",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "501,000",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "25,279,458,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 04월 01일",
+      "dpprpd_edd": "2026년 04월 01일",
+      "dp_pp": "임원 대상 자기주식 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "50,458",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 03월 26일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

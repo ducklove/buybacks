@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260430001702",
+      "corp_cls": "K",
+      "corp_code": "00115931",
+      "corp_name": "디오",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "NH투자증권\n(NH INVESTMENT & SECURITIES)",
+      "aq_wtn_div_ostk": "445,748",
+      "aq_wtn_div_ostk_rt": "3.3",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "5,770",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "17,490",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "100,917,300",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 04월 30일",
+      "dpprpd_edd": "2026년 05월 15일",
+      "dp_pp": "양도제한조건부주식(RSU) 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "5,770",
+      "dp_dd": "2026년 04월 30일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

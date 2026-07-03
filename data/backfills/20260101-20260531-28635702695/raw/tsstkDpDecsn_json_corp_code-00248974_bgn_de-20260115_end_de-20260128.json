@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260123000401",
+      "corp_cls": "Y",
+      "corp_code": "00248974",
+      "corp_name": "하나제약",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "교보증권",
+      "aq_wtn_div_ostk": "173,460",
+      "aq_wtn_div_ostk_rt": "0.97",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "123,460",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "9,819",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "1,212,253,740",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 26일",
+      "dpprpd_edd": "2026년 01월 26일",
+      "dp_pp": "평택 신공장 건설자금 및\n연구개발 비용 확보",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "123,460",
+      "dp_m_otc": "-",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 01월 23일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

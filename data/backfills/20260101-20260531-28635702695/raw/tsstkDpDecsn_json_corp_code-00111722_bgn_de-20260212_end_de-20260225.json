@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260224004501",
+      "corp_cls": "Y",
+      "corp_code": "00111722",
+      "corp_name": "미래에셋증권",
+      "od_a_at_t": "4",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "미래에셋증권(MiraeAsset Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "12,327,979",
+      "aq_wtn_div_ostk_rt": "2.22",
+      "aq_wtn_div_estk": "3,322,123",
+      "aq_wtn_div_estk_rt": "57.82",
+      "eaq_ostk": "107,493,380",
+      "eaq_ostk_rt": "19.36",
+      "eaq_estk": "2,423,640",
+      "eaq_estk_rt": "42.18",
+      "dppln_stk_ostk": "205,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "68,300",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "14,001,500,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 25일",
+      "dpprpd_edd": "2026년 02월 26일",
+      "dp_pp": "임원 등 성과급의 자기주식 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "205,000",
+      "dp_dd": "2026년 02월 24일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

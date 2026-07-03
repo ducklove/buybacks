@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260119000191",
+      "corp_cls": "K",
+      "corp_code": "00216498",
+      "corp_name": "성도이엔지",
+      "od_a_at_t": "1",
+      "od_a_at_b": "0",
+      "adt_a_atn": "불참",
+      "cs_iv_bk": "삼성증권",
+      "aq_wtn_div_ostk": "1,228,684",
+      "aq_wtn_div_ostk_rt": "7.94",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "38,316",
+      "eaq_ostk_rt": "0.25",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "750,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "6,290",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "4,717,500,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 20일",
+      "dpprpd_edd": "2026년 01월 20일",
+      "dp_pp": "자기주식 처분 및 타사주식 취득\n(교환)을 통해 상대방 회사와의 \n전략적 제휴를 강화하고, \n이를 바탕으로 회사의 중·장기적인 \n사업 시너지 창출 기반을 마련코자 함",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "750,000",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 01월 19일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

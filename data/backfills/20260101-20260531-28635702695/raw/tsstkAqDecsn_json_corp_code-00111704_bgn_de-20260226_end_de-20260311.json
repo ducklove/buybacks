@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260305000671",
+      "corp_cls": "Y",
+      "corp_code": "00111704",
+      "corp_name": "한화오션",
+      "od_a_at_t": "5",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "37,721",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "5,107,423,400",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 03월 20일",
+      "aqexpd_edd": "2026년 06월 03일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "임직원 주식보상",
+      "aq_mth": "유가증권시장을 통한 장내 매수",
+      "cs_iv_bk": "NH투자증권\n(NH INVESTMENT & SECURITIES CO.,LTD.)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "16,207",
+      "eaq_ostk_rt": "0.01",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 03월 04일",
+      "d1_prodlm_ostk": "535,694",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

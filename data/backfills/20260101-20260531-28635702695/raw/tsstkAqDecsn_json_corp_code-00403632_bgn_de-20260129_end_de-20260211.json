@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260211000382",
+      "corp_cls": "Y",
+      "corp_code": "00403632",
+      "corp_name": "현대퓨처넷",
+      "od_a_at_t": "3",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "1,322,435",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "4,661,583,375",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 02월 12일",
+      "aqexpd_edd": "2026년 05월 11일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주주가치 제고를 위한 \n자기주식 취득",
+      "aq_mth": "유가증권시장을 통한 장내매수",
+      "cs_iv_bk": "KB증권 (KB Securities co.,Ltd.)",
+      "aq_wtn_div_ostk": "952,315",
+      "aq_wtn_div_ostk_rt": "0.86",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "49,590",
+      "eaq_ostk_rt": "0.04",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 02월 11일",
+      "d1_prodlm_ostk": "132,243",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

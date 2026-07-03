@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260320001356",
+      "corp_cls": "Y",
+      "corp_code": "00155531",
+      "corp_name": "풍산홀딩스",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "aqpln_stk_ostk": "124,174",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "4,700,000,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 03월 23일",
+      "aqexpd_edd": "2026년 06월 22일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주가안정 및 주주가치 제고",
+      "aq_mth": "유가증권시장을 통한 장내매수(장중취득)",
+      "cs_iv_bk": "SK증권(SK Securities co.,Ltd.)",
+      "aq_wtn_div_ostk": "670,869",
+      "aq_wtn_div_ostk_rt": "4.7",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "17,560",
+      "eaq_ostk_rt": "0.1",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 03월 20일",
+      "d1_prodlm_ostk": "18,707",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

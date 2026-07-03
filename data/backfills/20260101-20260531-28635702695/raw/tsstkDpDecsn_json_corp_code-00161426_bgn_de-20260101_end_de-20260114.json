@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260109000710",
+      "corp_cls": "Y",
+      "corp_code": "00161426",
+      "corp_name": "한미사이언스",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "신한투자증권",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "677,844",
+      "eaq_ostk_rt": "0.99",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "48,514",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "37,000",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "1,795,018,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 12일",
+      "dpprpd_edd": "2026년 02월 12일",
+      "dp_pp": "임직원에 대한 생산성 장려금(PI) 주식지급 (RSA)",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "48,514",
+      "dp_dd": "2026년 01월 09일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

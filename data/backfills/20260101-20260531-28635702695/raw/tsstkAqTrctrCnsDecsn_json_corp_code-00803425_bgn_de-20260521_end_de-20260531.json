@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260521000710",
+      "corp_cls": "K",
+      "corp_code": "00803425",
+      "corp_name": "코리아에프티",
+      "bddd": "2026년 05월 21일",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "한국투자증권\n(Korea Investment & Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "5",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "10,000,000,000",
+      "ctr_pd_bgd": "2026년 05월 26일",
+      "ctr_pd_edd": "2026년 11월 25일",
+      "ctr_pp": "주가 안정 및 주주가치 제고",
+      "ctr_cns_int": "한국투자증권\n(Korea Investment & Securities Co., Ltd.)",
+      "ctr_cns_prd": "2026년 05월 26일"
+    }
+  ]
+}

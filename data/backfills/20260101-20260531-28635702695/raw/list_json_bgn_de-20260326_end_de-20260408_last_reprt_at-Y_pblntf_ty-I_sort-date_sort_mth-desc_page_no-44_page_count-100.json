@@ -1,0 +1,76 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 44,
+  "page_count": 100,
+  "total_count": 4306,
+  "total_page": 44,
+  "list": [
+    {
+      "corp_code": "01251595",
+      "corp_name": "압타바이오",
+      "stock_code": "293780",
+      "corp_cls": "K",
+      "report_nm": "기업설명회(IR)개최              ",
+      "rcept_no": "20260326900104",
+      "flr_nm": "압타바이오",
+      "rcept_dt": "20260326",
+      "rm": "코"
+    },
+    {
+      "corp_code": "00159254",
+      "corp_name": "한국전자홀딩스",
+      "stock_code": "006200",
+      "corp_cls": "Y",
+      "report_nm": "전환청구권ㆍ신주인수권ㆍ교환청구권행사              ",
+      "rcept_no": "20260326800088",
+      "flr_nm": "한국전자홀딩스",
+      "rcept_dt": "20260326",
+      "rm": "유"
+    },
+    {
+      "corp_code": "01093007",
+      "corp_name": "LS에코에너지",
+      "stock_code": "229640",
+      "corp_cls": "Y",
+      "report_nm": "투자판단관련주요경영사항              ",
+      "rcept_no": "20260326800067",
+      "flr_nm": "LS에코에너지",
+      "rcept_dt": "20260326",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00332149",
+      "corp_name": "코스닥시장본부",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "기타시장안내(금일NXT경쟁매매대상종목지정으로인한KRX시간외단일가매매제외종목안내(코스닥시장))              ",
+      "rcept_no": "20260326900014",
+      "flr_nm": "코스닥시장본부",
+      "rcept_dt": "20260326",
+      "rm": "코"
+    },
+    {
+      "corp_code": "00420301",
+      "corp_name": "유가증권시장본부",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "기타시장안내(금일NXT경쟁매매대상종목지정으로인한KRX시간외단일가매매제외종목안내(유가증권시장))              ",
+      "rcept_no": "20260326800011",
+      "flr_nm": "유가증권시장본부",
+      "rcept_dt": "20260326",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00149655",
+      "corp_name": "삼성물산",
+      "stock_code": "028260",
+      "corp_cls": "Y",
+      "report_nm": "단일판매ㆍ공급계약체결              ",
+      "rcept_no": "20260326800003",
+      "flr_nm": "삼성물산",
+      "rcept_dt": "20260326",
+      "rm": "유"
+    }
+  ]
+}

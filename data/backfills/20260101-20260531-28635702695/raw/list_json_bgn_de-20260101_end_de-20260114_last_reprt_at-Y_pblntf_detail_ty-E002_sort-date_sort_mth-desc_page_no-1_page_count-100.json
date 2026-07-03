@@ -1,0 +1,131 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 1,
+  "page_count": 100,
+  "total_count": 11,
+  "total_page": 1,
+  "list": [
+    {
+      "corp_code": "01010110",
+      "corp_name": "더블유게임즈",
+      "stock_code": "192080",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260114000266",
+      "flr_nm": "더블유게임즈",
+      "rcept_dt": "20260114",
+      "rm": ""
+    },
+    {
+      "corp_code": "01448544",
+      "corp_name": "셀로맥스사이언스",
+      "stock_code": "471820",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260112000391",
+      "flr_nm": "셀로맥스사이언스",
+      "rcept_dt": "20260112",
+      "rm": ""
+    },
+    {
+      "corp_code": "00688996",
+      "corp_name": "KB금융",
+      "stock_code": "105560",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260109000562",
+      "flr_nm": "KB금융",
+      "rcept_dt": "20260109",
+      "rm": ""
+    },
+    {
+      "corp_code": "00147772",
+      "corp_name": "정원엔시스",
+      "stock_code": "045510",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260109000530",
+      "flr_nm": "정원엔시스",
+      "rcept_dt": "20260109",
+      "rm": ""
+    },
+    {
+      "corp_code": "00102113",
+      "corp_name": "경인양행",
+      "stock_code": "012610",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260109000259",
+      "flr_nm": "경인양행",
+      "rcept_dt": "20260109",
+      "rm": ""
+    },
+    {
+      "corp_code": "00137234",
+      "corp_name": "모베이스전자",
+      "stock_code": "012860",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260109000051",
+      "flr_nm": "모베이스전자",
+      "rcept_dt": "20260109",
+      "rm": ""
+    },
+    {
+      "corp_code": "00622787",
+      "corp_name": "바이오노트",
+      "stock_code": "377740",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260108000027",
+      "flr_nm": "바이오노트",
+      "rcept_dt": "20260108",
+      "rm": ""
+    },
+    {
+      "corp_code": "00135795",
+      "corp_name": "신도리코",
+      "stock_code": "029530",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260105000019",
+      "flr_nm": "신도리코",
+      "rcept_dt": "20260105",
+      "rm": ""
+    },
+    {
+      "corp_code": "01061327",
+      "corp_name": "클래시스",
+      "stock_code": "214150",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260102000433",
+      "flr_nm": "클래시스",
+      "rcept_dt": "20260102",
+      "rm": ""
+    },
+    {
+      "corp_code": "00299002",
+      "corp_name": "HL홀딩스",
+      "stock_code": "060980",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260102000371",
+      "flr_nm": "HL홀딩스",
+      "rcept_dt": "20260102",
+      "rm": ""
+    },
+    {
+      "corp_code": "00497631",
+      "corp_name": "티플랙스",
+      "stock_code": "081150",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260102000233",
+      "flr_nm": "티플랙스",
+      "rcept_dt": "20260102",
+      "rm": ""
+    }
+  ]
+}

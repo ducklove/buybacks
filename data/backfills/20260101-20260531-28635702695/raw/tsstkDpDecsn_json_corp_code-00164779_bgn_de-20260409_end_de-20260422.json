@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260422000633",
+      "corp_cls": "Y",
+      "corp_code": "00164779",
+      "corp_name": "SK하이닉스",
+      "od_a_at_t": "6",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "SK증권(SK Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "1,642,984",
+      "aq_wtn_div_ostk_rt": "0.2",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "12,536",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "1,224,000",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "15,344,064,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 04월 23일",
+      "dpprpd_edd": "2026년 05월 22일",
+      "dp_pp": "사외이사 주식 보수 및\n장기성과급 행사에 따른\n주식 보수 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "12,536",
+      "dp_dd": "2026년 04월 22일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

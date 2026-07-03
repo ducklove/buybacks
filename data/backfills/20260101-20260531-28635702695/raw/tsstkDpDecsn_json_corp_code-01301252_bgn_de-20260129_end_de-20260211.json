@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260205000474",
+      "corp_cls": "K",
+      "corp_code": "01301252",
+      "corp_name": "티이엠씨",
+      "od_a_at_t": "1",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "427,199",
+      "aq_wtn_div_ostk_rt": "2.00",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "6",
+      "eaq_ostk_rt": "0.00",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "49,617",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "8,891",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "441,144,747",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 23일",
+      "dpprpd_edd": "2026년 02월 27일",
+      "dp_pp": "성과 대체 양도제한조건부주식(RSU) \n부여에 따른 자기주식의 교부",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "49,617",
+      "dp_dd": "2026년 02월 05일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

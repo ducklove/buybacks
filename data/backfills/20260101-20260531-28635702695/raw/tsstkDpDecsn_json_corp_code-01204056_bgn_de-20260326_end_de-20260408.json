@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260401004974",
+      "corp_cls": "Y",
+      "corp_code": "01204056",
+      "corp_name": "하이브",
+      "od_a_at_t": "5",
+      "od_a_at_b": "1",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "NH투자증권",
+      "aq_wtn_div_ostk": "93,837",
+      "aq_wtn_div_ostk_rt": "0.22",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "546,120",
+      "eaq_ostk_rt": "1.27",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "101,619",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "299,000",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "30,384,122,035",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 04월 03일",
+      "dpprpd_edd": "2026년 04월 30일",
+      "dp_pp": "회사 및 계열회사 임직원  보상",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "36,979",
+      "dp_m_otc": "-",
+      "dp_m_etc": "64,640",
+      "dp_dd": "2026년 03월 31일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

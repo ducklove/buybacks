@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260212001303",
+      "corp_cls": "K",
+      "corp_code": "00352499",
+      "corp_name": "링네트",
+      "od_a_at_t": "1",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "유안타증권",
+      "aq_wtn_div_ostk": "1,392,732",
+      "aq_wtn_div_ostk_rt": "6.25",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "159,175",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "3,935",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "626,353,625",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 13일",
+      "dpprpd_edd": "2026년 03월 31일",
+      "dp_pp": "임직원 상여 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "159,175",
+      "dp_dd": "2026년 02월 12일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

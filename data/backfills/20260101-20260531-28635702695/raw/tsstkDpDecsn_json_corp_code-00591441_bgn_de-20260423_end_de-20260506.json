@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260430001759",
+      "corp_cls": "K",
+      "corp_code": "00591441",
+      "corp_name": "어보브반도체",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "한국투자증권",
+      "aq_wtn_div_ostk": "1,230,927",
+      "aq_wtn_div_ostk_rt": "6.9",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "2",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "2,771",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "14,590",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "40,428,890",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 04월 30일",
+      "dpprpd_edd": "2026년 04월 30일",
+      "dp_pp": "주식매수선택권 행사에 따른\n자기주식 교부",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "2,771",
+      "dp_dd": "2026년 04월 30일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

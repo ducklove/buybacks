@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260128000366",
+      "corp_cls": "Y",
+      "corp_code": "00164779",
+      "corp_name": "SK하이닉스",
+      "od_a_at_t": "5",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "SK증권, 하나증권\n(SK Securities Co., Ltd.,\nHana Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "17,377,728",
+      "aq_wtn_div_ostk_rt": "2.4",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "570",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "451,015",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "800,000",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "360,812,000,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 28일",
+      "dpprpd_edd": "2026년 02월 27일",
+      "dp_pp": "장기성과급 행사에 따른\n주식 보수 지급 및\n기업가치 연계 보상을 위한 \n임직원 대상 자기주식 상여 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "451,015",
+      "dp_dd": "2026년 01월 28일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

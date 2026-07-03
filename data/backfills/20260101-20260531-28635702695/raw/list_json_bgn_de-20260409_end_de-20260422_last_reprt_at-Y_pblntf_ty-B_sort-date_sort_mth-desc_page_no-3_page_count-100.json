@@ -1,0 +1,142 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 3,
+  "page_count": 100,
+  "total_count": 212,
+  "total_page": 3,
+  "list": [
+    {
+      "corp_code": "00197759",
+      "corp_name": "미래산업",
+      "stock_code": "025560",
+      "corp_cls": "Y",
+      "report_nm": "[기재정정]주요사항보고서(유상증자결정)",
+      "rcept_no": "20260409002410",
+      "flr_nm": "미래산업",
+      "rcept_dt": "20260409",
+      "rm": ""
+    },
+    {
+      "corp_code": "00936787",
+      "corp_name": "애경케미칼",
+      "stock_code": "161000",
+      "corp_cls": "Y",
+      "report_nm": "주요사항보고서(자기주식처분결정)",
+      "rcept_no": "20260409002262",
+      "flr_nm": "애경케미칼",
+      "rcept_dt": "20260409",
+      "rm": ""
+    },
+    {
+      "corp_code": "00165343",
+      "corp_name": "혜인",
+      "stock_code": "003010",
+      "corp_cls": "Y",
+      "report_nm": "주요사항보고서(자기주식취득신탁계약해지결정)",
+      "rcept_no": "20260409002298",
+      "flr_nm": "혜인",
+      "rcept_dt": "20260409",
+      "rm": ""
+    },
+    {
+      "corp_code": "00373021",
+      "corp_name": "테라사이언스",
+      "stock_code": "073640",
+      "corp_cls": "K",
+      "report_nm": "[기재정정]주요사항보고서(유형자산양도결정)",
+      "rcept_no": "20260409002319",
+      "flr_nm": "테라사이언스",
+      "rcept_dt": "20260409",
+      "rm": ""
+    },
+    {
+      "corp_code": "00486705",
+      "corp_name": "아주스틸",
+      "stock_code": "139990",
+      "corp_cls": "Y",
+      "report_nm": "주요사항보고서(자기신주인수권부사채만기전취득결정)",
+      "rcept_no": "20260409002112",
+      "flr_nm": "아주스틸",
+      "rcept_dt": "20260409",
+      "rm": ""
+    },
+    {
+      "corp_code": "00664181",
+      "corp_name": "인텔리안테크",
+      "stock_code": "189300",
+      "corp_cls": "K",
+      "report_nm": "주요사항보고서(자기주식처분결정)",
+      "rcept_no": "20260409002022",
+      "flr_nm": "인텔리안테크",
+      "rcept_dt": "20260409",
+      "rm": ""
+    },
+    {
+      "corp_code": "00139454",
+      "corp_name": "애경산업",
+      "stock_code": "018250",
+      "corp_cls": "Y",
+      "report_nm": "[첨부정정]주요사항보고서(회사합병결정)",
+      "rcept_no": "20260409001742",
+      "flr_nm": "애경산업",
+      "rcept_dt": "20260409",
+      "rm": ""
+    },
+    {
+      "corp_code": "00125822",
+      "corp_name": "삼보산업",
+      "stock_code": "009620",
+      "corp_cls": "K",
+      "report_nm": "주요사항보고서(유상증자결정)",
+      "rcept_no": "20260409001446",
+      "flr_nm": "삼보산업",
+      "rcept_dt": "20260409",
+      "rm": ""
+    },
+    {
+      "corp_code": "00875176",
+      "corp_name": "에이치엠티메가라인",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "[기재정정]타법인주식및출자증권취득결정",
+      "rcept_no": "20260409001031",
+      "flr_nm": "에이치엠티메가라인",
+      "rcept_dt": "20260409",
+      "rm": "공"
+    },
+    {
+      "corp_code": "00875194",
+      "corp_name": "아이티더블유메가라인",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "[기재정정]타법인주식및출자증권취득결정",
+      "rcept_no": "20260409001013",
+      "flr_nm": "아이티더블유메가라인",
+      "rcept_dt": "20260409",
+      "rm": "공"
+    },
+    {
+      "corp_code": "01677711",
+      "corp_name": "원씽",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "회사합병결정",
+      "rcept_no": "20260409000684",
+      "flr_nm": "원씽",
+      "rcept_dt": "20260409",
+      "rm": "공"
+    },
+    {
+      "corp_code": "00158112",
+      "corp_name": "한국수출포장공업",
+      "stock_code": "002200",
+      "corp_cls": "Y",
+      "report_nm": "주요사항보고서(자기주식취득신탁계약해지결정)",
+      "rcept_no": "20260409000408",
+      "flr_nm": "한국수출포장공업",
+      "rcept_dt": "20260409",
+      "rm": ""
+    }
+  ]
+}

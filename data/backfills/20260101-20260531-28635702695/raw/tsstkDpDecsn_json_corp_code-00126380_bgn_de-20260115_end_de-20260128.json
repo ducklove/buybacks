@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260126000001",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "od_a_at_t": "6",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "삼성증권 (Samsung Securities Co., Ltd.),신한투자증권 (Shinhan Securities Co., Ltd.),KB증권 (KB Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "109,126,021",
+      "aq_wtn_div_ostk_rt": "1.8",
+      "aq_wtn_div_estk": "13,603,461",
+      "aq_wtn_div_estk_rt": "1.7",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "1,152,022",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "152,100",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "175,222,546,200",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 26일",
+      "dpprpd_edd": "2026년 01월 26일",
+      "dp_pp": "임원 등 성과급의 자기주식 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "1,152,022",
+      "dp_dd": "2026년 01월 23일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

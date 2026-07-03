@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260518000293",
+      "corp_cls": "Y",
+      "corp_code": "00353878",
+      "corp_name": "다스코",
+      "bddd": "-",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "1,905,188",
+      "aq_wtn_div_ostk_rt": "9.55",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "2,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2025년 11월 18일",
+      "ctr_pd_bfcc_edd": "2026년 05월 18일",
+      "cc_pp": "신탁계약 기간 만료에 의한 해지",
+      "cc_int": "삼성증권 주식회사\n(Samsung Securities Co. Ltd)",
+      "cc_prd": "2026년 05월 18일",
+      "tp_rm_atcc": "현금 및 실물(자사주) 반환"
+    }
+  ]
+}

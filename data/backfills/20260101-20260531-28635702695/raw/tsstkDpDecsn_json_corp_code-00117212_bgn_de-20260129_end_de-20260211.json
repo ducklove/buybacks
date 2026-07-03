@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260210000849",
+      "corp_cls": "Y",
+      "corp_code": "00117212",
+      "corp_name": "두산",
+      "od_a_at_t": "3",
+      "od_a_at_b": "1",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "한국투자증권㈜ (Korea Investment & Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "2,437,320",
+      "aq_wtn_div_ostk_rt": "15.1",
+      "aq_wtn_div_estk": "296,009",
+      "aq_wtn_div_estk_rt": "6.1",
+      "eaq_ostk": "193,999",
+      "eaq_ostk_rt": "1.2",
+      "eaq_estk": "316,095",
+      "eaq_estk_rt": "6.5",
+      "dppln_stk_ostk": "44,260",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "885,000",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "39,170,100,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 25일",
+      "dpprpd_edd": "2026년 02월 25일",
+      "dp_pp": "임원에 대한 장기 성과급 보상\n(RSU 지급)",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "44,260",
+      "dp_dd": "2026년 02월 10일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

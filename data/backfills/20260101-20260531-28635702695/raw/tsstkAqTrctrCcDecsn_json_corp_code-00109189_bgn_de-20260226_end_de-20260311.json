@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260309001524",
+      "corp_cls": "Y",
+      "corp_code": "00109189",
+      "corp_name": "대덕",
+      "bddd": "2026년 03월 09일",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "aq_wtn_div_ostk": "2,603,052",
+      "aq_wtn_div_ostk_rt": "7.4",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "24,000,000,000",
+      "ctr_prc_atcc": "0",
+      "ctr_pd_bfcc_bgd": "2025년 04월 11일",
+      "ctr_pd_bfcc_edd": "2026년 04월 10일",
+      "cc_pp": "자기주식 취득 완료에 따른 중도해지",
+      "cc_int": "NH투자증권(NH Investment & Securities Co., Ltd.)",
+      "cc_prd": "2026년 03월 09일",
+      "tp_rm_atcc": "현금 및 실물(자사주) 반환"
+    }
+  ]
+}

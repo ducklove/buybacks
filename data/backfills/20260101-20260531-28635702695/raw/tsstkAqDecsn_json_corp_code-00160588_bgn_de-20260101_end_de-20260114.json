@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260114000081",
+      "corp_cls": "Y",
+      "corp_code": "00160588",
+      "corp_name": "한화",
+      "od_a_at_t": "4",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "-",
+      "aqpln_stk_estk": "199,033",
+      "aqpln_prc_ostk": "-",
+      "aqpln_prc_estk": "14,151,246,300",
+      "aqexpd_bgd": "2026년 02월 26일",
+      "aqexpd_edd": "2026년 03월 18일",
+      "hdexpd_bgd": "2026년 03월 20일",
+      "hdexpd_edd": "-",
+      "aq_pp": "제1우선주 상장폐지 이후 소액주주 보호를 위한\n자기주식(제1우선주) 취득",
+      "aq_mth": "장외매수",
+      "cs_iv_bk": "NH투자증권\n(NH INVESTMENT & SECURITIES CO.,LTD.)",
+      "aq_wtn_div_ostk": "1,132,437",
+      "aq_wtn_div_ostk_rt": "1.51",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "4,450,816",
+      "eaq_ostk_rt": "5.94",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 01월 14일",
+      "d1_prodlm_ostk": "-",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

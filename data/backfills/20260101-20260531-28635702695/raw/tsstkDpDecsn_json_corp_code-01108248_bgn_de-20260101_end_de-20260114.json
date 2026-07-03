@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260109000094",
+      "corp_cls": "K",
+      "corp_code": "01108248",
+      "corp_name": "지노믹트리",
+      "od_a_at_t": "1",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "359,699",
+      "aq_wtn_div_ostk_rt": "1.5",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "27,033",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "31,600",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "854,242,800",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 08일",
+      "dpprpd_edd": "2026년 01월 08일",
+      "dp_pp": "주식기준보상으로서 RSU(양도제한조건부주식) 부여에 따른 자기주식의 교부",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "27,033",
+      "dp_dd": "2026년 01월 08일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

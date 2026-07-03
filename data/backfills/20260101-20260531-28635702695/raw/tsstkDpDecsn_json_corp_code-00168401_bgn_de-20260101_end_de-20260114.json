@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260113000713",
+      "corp_cls": "Y",
+      "corp_code": "00168401",
+      "corp_name": "금비",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "116,500",
+      "aq_wtn_div_ostk_rt": "11.65",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "80,378",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "50,537",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "4,062,047,402",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 14일",
+      "dpprpd_edd": "2026년 01월 14일",
+      "dp_pp": "지속적인 사업 협력관계 구축",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "80,378",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 01월 13일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

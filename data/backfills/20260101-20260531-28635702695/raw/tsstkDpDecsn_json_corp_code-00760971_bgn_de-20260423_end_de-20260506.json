@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260430001031",
+      "corp_cls": "Y",
+      "corp_code": "00760971",
+      "corp_name": "크래프톤",
+      "od_a_at_t": "5",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "672,276",
+      "aq_wtn_div_ostk_rt": "1.5",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1,638,896",
+      "eaq_ostk_rt": "3.6",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "22,368",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "277,500",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "6,207,120,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 06월 01일",
+      "dpprpd_edd": "2026년 06월 01일",
+      "dp_pp": "임직원 대상 RSU에 따른 자기주식 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "22,368",
+      "dp_dd": "2026년 04월 30일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

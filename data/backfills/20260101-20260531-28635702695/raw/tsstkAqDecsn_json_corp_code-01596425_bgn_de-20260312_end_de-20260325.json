@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260325000832",
+      "corp_cls": "Y",
+      "corp_code": "01596425",
+      "corp_name": "SK스퀘어",
+      "od_a_at_t": "5",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "67,226",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "40,000,000,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 03월 26일",
+      "aqexpd_edd": "2026년 06월 25일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주주가치 제고 ",
+      "aq_mth": "유가증권 시장을 통한 직접 취득",
+      "cs_iv_bk": "SK증권 (SK Securities Co.,Ltd.)",
+      "aq_wtn_div_ostk": "394,701",
+      "aq_wtn_div_ostk_rt": "0.30",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 03월 25일",
+      "d1_prodlm_ostk": "159,521",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

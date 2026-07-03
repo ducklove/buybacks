@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260130000705",
+      "corp_cls": "Y",
+      "corp_code": "01316254",
+      "corp_name": "HS효성첨단소재",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "엔에이치투자증권(주)\n(NH INVESTMENT & \nSECURITIES CO.,LTD.)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "11,926",
+      "eaq_ostk_rt": "0.27",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "11,926",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "254,500",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "3,035,167,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 02일",
+      "dpprpd_edd": "2026년 02월 27일",
+      "dp_pp": "투자자금 및 운영자금 확보",
+      "dp_m_mkt": "11,926",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 01월 30일",
+      "d1_slodlm_ostk": "7,863",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

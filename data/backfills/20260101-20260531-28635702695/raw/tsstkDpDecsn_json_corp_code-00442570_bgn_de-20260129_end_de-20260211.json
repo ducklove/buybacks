@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260203000333",
+      "corp_cls": "K",
+      "corp_code": "00442570",
+      "corp_name": "제우스",
+      "od_a_at_t": "-",
+      "od_a_at_b": "1",
+      "adt_a_atn": "불참",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "265,923",
+      "aq_wtn_div_ostk_rt": "0.86",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "447",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "18,490",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "8,265,030",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 05일",
+      "dpprpd_edd": "2026년 02월 05일",
+      "dp_pp": "직원 대상 RSU(양도제한조건부주식) 가득조건 충족에 따른 지급 이행",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "447",
+      "dp_dd": "2026년 02월 03일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

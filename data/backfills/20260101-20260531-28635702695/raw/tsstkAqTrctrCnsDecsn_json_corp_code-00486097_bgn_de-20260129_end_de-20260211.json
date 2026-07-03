@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260211000707",
+      "corp_cls": "K",
+      "corp_code": "00486097",
+      "corp_name": "KT나스미디어",
+      "bddd": "2026년 02월 11일",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "KB증권\n(KB Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "261,994",
+      "eaq_ostk_rt": "2.26",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "2,000,000,000",
+      "ctr_pd_bgd": "2026년 02월 12일",
+      "ctr_pd_edd": "2026년 08월 11일",
+      "ctr_pp": "자기주식 취득을 통한\n주주가치 제고 ",
+      "ctr_cns_int": "KB증권\n(KB Securities Co., Ltd.)",
+      "ctr_cns_prd": "2026년 02월 12일"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260212001587",
+      "corp_cls": "Y",
+      "corp_code": "01204056",
+      "corp_name": "하이브",
+      "od_a_at_t": "5",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "삼성증권",
+      "aq_wtn_div_ostk": "102,847",
+      "aq_wtn_div_ostk_rt": "0.24",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "9,010",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "383,000",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "3,450,830,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 03월 03일",
+      "dpprpd_edd": "2026년 03월 31일",
+      "dp_pp": "임직원 대상 \n주가 연동형 보상으로 \n자기주식 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "9,010",
+      "dp_dd": "2026년 02월 12일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

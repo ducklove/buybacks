@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260316001137",
+      "corp_cls": "Y",
+      "corp_code": "00422895",
+      "corp_name": "세이브존I&C",
+      "bddd": "-",
+      "od_a_at_t": "0",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "3,339,042",
+      "aq_wtn_div_ostk_rt": "8.2",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "19,553",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "1,000,000,000",
+      "ctr_prc_atcc": "0",
+      "ctr_pd_bfcc_bgd": "2025년 03월 17일",
+      "ctr_pd_bfcc_edd": "2026년 03월 16일",
+      "cc_pp": "신탁계약 기간만료에 따른 해지",
+      "cc_int": "미래에셋증권(주)\n (MIRAE ASSET SECURITIES CO., LTD)",
+      "cc_prd": "2026년 03월 16일",
+      "tp_rm_atcc": "현금 및 실물(자기주식)반환"
+    }
+  ]
+}

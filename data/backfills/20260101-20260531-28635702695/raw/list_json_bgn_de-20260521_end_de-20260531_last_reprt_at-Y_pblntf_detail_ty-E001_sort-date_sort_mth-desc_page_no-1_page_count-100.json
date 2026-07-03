@@ -1,0 +1,131 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 1,
+  "page_count": 100,
+  "total_count": 11,
+  "total_page": 1,
+  "list": [
+    {
+      "corp_code": "01288827",
+      "corp_name": "HPSP",
+      "stock_code": "403870",
+      "corp_cls": "K",
+      "report_nm": "자기주식처분결과보고서",
+      "rcept_no": "20260529001990",
+      "flr_nm": "HPSP",
+      "rcept_dt": "20260529",
+      "rm": ""
+    },
+    {
+      "corp_code": "01538528",
+      "corp_name": "에이에스텍",
+      "stock_code": "453860",
+      "corp_cls": "K",
+      "report_nm": "[기재정정]자기주식처분결과보고서",
+      "rcept_no": "20260529001924",
+      "flr_nm": "에이에스텍",
+      "rcept_dt": "20260529",
+      "rm": ""
+    },
+    {
+      "corp_code": "00497631",
+      "corp_name": "티플랙스",
+      "stock_code": "081150",
+      "corp_cls": "K",
+      "report_nm": "자기주식처분결과보고서",
+      "rcept_no": "20260529001613",
+      "flr_nm": "티플랙스",
+      "rcept_dt": "20260529",
+      "rm": ""
+    },
+    {
+      "corp_code": "00231707",
+      "corp_name": "비트컴퓨터",
+      "stock_code": "032850",
+      "corp_cls": "K",
+      "report_nm": "자기주식취득결과보고서",
+      "rcept_no": "20260529000601",
+      "flr_nm": "비트컴퓨터",
+      "rcept_dt": "20260529",
+      "rm": ""
+    },
+    {
+      "corp_code": "00269922",
+      "corp_name": "인바디",
+      "stock_code": "041830",
+      "corp_cls": "K",
+      "report_nm": "자기주식처분결과보고서",
+      "rcept_no": "20260528000752",
+      "flr_nm": "인바디",
+      "rcept_dt": "20260528",
+      "rm": ""
+    },
+    {
+      "corp_code": "00108913",
+      "corp_name": "대교",
+      "stock_code": "019680",
+      "corp_cls": "Y",
+      "report_nm": "자기주식처분결과보고서",
+      "rcept_no": "20260528000704",
+      "flr_nm": "대교",
+      "rcept_dt": "20260528",
+      "rm": ""
+    },
+    {
+      "corp_code": "00140955",
+      "corp_name": "한솔케미칼",
+      "stock_code": "014680",
+      "corp_cls": "Y",
+      "report_nm": "자기주식처분결과보고서",
+      "rcept_no": "20260527000567",
+      "flr_nm": "한솔케미칼",
+      "rcept_dt": "20260527",
+      "rm": ""
+    },
+    {
+      "corp_code": "00692254",
+      "corp_name": "아이패밀리에스씨",
+      "stock_code": "114840",
+      "corp_cls": "K",
+      "report_nm": "자기주식처분결과보고서",
+      "rcept_no": "20260527000237",
+      "flr_nm": "아이패밀리에스씨",
+      "rcept_dt": "20260527",
+      "rm": ""
+    },
+    {
+      "corp_code": "01108248",
+      "corp_name": "지노믹트리",
+      "stock_code": "228760",
+      "corp_cls": "K",
+      "report_nm": "자기주식처분결과보고서",
+      "rcept_no": "20260522000539",
+      "flr_nm": "지노믹트리",
+      "rcept_dt": "20260522",
+      "rm": ""
+    },
+    {
+      "corp_code": "00609661",
+      "corp_name": "티쓰리",
+      "stock_code": "204610",
+      "corp_cls": "K",
+      "report_nm": "자기주식취득결과보고서",
+      "rcept_no": "20260522000408",
+      "flr_nm": "티쓰리",
+      "rcept_dt": "20260522",
+      "rm": ""
+    },
+    {
+      "corp_code": "00788773",
+      "corp_name": "씨젠",
+      "stock_code": "096530",
+      "corp_cls": "K",
+      "report_nm": "자기주식처분결과보고서",
+      "rcept_no": "20260521000412",
+      "flr_nm": "씨젠",
+      "rcept_dt": "20260521",
+      "rm": ""
+    }
+  ]
+}

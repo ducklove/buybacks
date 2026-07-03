@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260206002081",
+      "corp_cls": "Y",
+      "corp_code": "00583424",
+      "corp_name": "아모레퍼시픽",
+      "od_a_at_t": "5",
+      "od_a_at_b": "1",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "미래에셋증권 (MIRAE ASSET SECURITIES CO., LTD.)",
+      "aq_wtn_div_ostk": "56,763",
+      "aq_wtn_div_ostk_rt": "0.08",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1",
+      "eaq_ostk_rt": "0.00",
+      "eaq_estk": "6,218",
+      "eaq_estk_rt": "0.01",
+      "dppln_stk_ostk": "3,636",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "139,700",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "507,949,200",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 09일",
+      "dpprpd_edd": "2026년 02월 09일",
+      "dp_pp": "직원에 대한 상여금으로 자기주식을 지급 ",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "3,636",
+      "dp_dd": "2026년 02월 06일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

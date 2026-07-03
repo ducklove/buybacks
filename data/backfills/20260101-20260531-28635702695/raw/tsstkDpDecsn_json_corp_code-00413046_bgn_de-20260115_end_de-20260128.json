@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260121000386",
+      "corp_cls": "Y",
+      "corp_code": "00413046",
+      "corp_name": "셀트리온",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "7,165,466",
+      "aq_wtn_div_ostk_rt": "3.1",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "5,182,379",
+      "eaq_ostk_rt": "2.2",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "11,379",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "144,840",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "1,648,139,691",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 21일",
+      "dpprpd_edd": "2026년 01월 21일",
+      "dp_pp": "주식매수선택권 행사에 따른 자기주식 교부",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "11,379",
+      "dp_dd": "2026년 01월 21일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

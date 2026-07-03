@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260212001723",
+      "corp_cls": "K",
+      "corp_code": "00104537",
+      "corp_name": "국영지앤엠",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "1,000,000",
+      "aq_wtn_div_ostk_rt": "2.87",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "1,000,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "1,412",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "1,412,000,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 13일",
+      "dpprpd_edd": "2026년 02월 13일",
+      "dp_pp": "사업상 전략적 제휴",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "1,000,000",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 12일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

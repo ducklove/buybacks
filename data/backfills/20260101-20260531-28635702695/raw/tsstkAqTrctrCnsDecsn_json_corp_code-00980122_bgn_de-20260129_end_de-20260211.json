@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260205000460",
+      "corp_cls": "Y",
+      "corp_code": "00980122",
+      "corp_name": "JB금융지주",
+      "bddd": "2026년 02월 05일",
+      "od_a_at_t": "9",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "신한투자증권(주)\n(Shinhan Securities Co., LTD.)",
+      "aq_wtn_div_ostk": "4,125,110",
+      "aq_wtn_div_ostk_rt": "2.2",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "45,000,000,000",
+      "ctr_pd_bgd": "2026년 02월 06일",
+      "ctr_pd_edd": "2026년 06월 30일",
+      "ctr_pp": "자기주식 취득을 통한 \n주주환원과 기업가치 제고",
+      "ctr_cns_int": "신한투자증권(주)\n(Shinhan Securities Co., LTD.)",
+      "ctr_cns_prd": "2026년 02월 06일"
+    }
+  ]
+}

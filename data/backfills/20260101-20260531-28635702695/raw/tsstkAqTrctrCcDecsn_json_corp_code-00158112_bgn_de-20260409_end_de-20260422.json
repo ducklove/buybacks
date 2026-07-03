@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260409000408",
+      "corp_cls": "Y",
+      "corp_code": "00158112",
+      "corp_name": "한국수출포장공업",
+      "bddd": "2026년 04월 09일",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "aq_wtn_div_ostk": "3,232,629",
+      "aq_wtn_div_ostk_rt": "8.51",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "4,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2026년 01월 30일",
+      "ctr_pd_bfcc_edd": "2026년 04월 29일",
+      "cc_pp": "자기주식 취득 완료에 따른 중도해지",
+      "cc_int": "미래에셋증권(주)\n(MIRAE ASSET SECURITIES CO., LTD.)",
+      "cc_prd": "2026년 04월 09일",
+      "tp_rm_atcc": "현금 및 실물(자기주식)반환"
+    }
+  ]
+}

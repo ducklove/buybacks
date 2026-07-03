@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260526000409",
+      "corp_cls": "K",
+      "corp_code": "01325429",
+      "corp_name": "지아이에스",
+      "bddd": "-",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "1,081,084",
+      "aq_wtn_div_ostk_rt": "2.25",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1,118,964",
+      "eaq_ostk_rt": "2.33",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "1,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2025년 11월 26일",
+      "ctr_pd_bfcc_edd": "2026년 05월 26일",
+      "cc_pp": "신탁계약 기간 만료에 따른 해지",
+      "cc_int": "DB증권",
+      "cc_prd": "2026년 05월 26일",
+      "tp_rm_atcc": "실물(자사주) 및 현금 반환"
+    }
+  ]
+}

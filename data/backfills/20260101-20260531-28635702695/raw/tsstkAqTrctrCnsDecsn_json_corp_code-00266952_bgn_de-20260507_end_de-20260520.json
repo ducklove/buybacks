@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260518000267",
+      "corp_cls": "K",
+      "corp_code": "00266952",
+      "corp_name": "네오위즈홀딩스",
+      "bddd": "2026년 05월 18일",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "DB증권\n(DB Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "1,865,927",
+      "aq_wtn_div_ostk_rt": "22.92",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "111,166",
+      "eaq_ostk_rt": "1.37",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "10,000,000,000",
+      "ctr_pd_bgd": "2026년 05월 18일",
+      "ctr_pd_edd": "2026년 11월 17일",
+      "ctr_pp": "주주 가치 제고를 위한 소각 목적 취득",
+      "ctr_cns_int": "DB증권\n(DB Securities Co., Ltd.)",
+      "ctr_cns_prd": "2026년 05월 18일"
+    }
+  ]
+}

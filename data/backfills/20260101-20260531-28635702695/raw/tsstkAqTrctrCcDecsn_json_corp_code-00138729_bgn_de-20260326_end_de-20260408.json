@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260406003799",
+      "corp_cls": "Y",
+      "corp_code": "00138729",
+      "corp_name": "아세아제지",
+      "bddd": "-",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "1,032,085",
+      "aq_wtn_div_ostk_rt": "2.6",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "5,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2026년 01월 05일",
+      "ctr_pd_bfcc_edd": "2026년 04월 04일",
+      "cc_pp": "신탁계약 기간만료에 의한 해지",
+      "cc_int": "NH투자증권\n(NH INVESTMENT & SECURITIES CO., LTD.)",
+      "cc_prd": "2026년 04월 06일",
+      "tp_rm_atcc": "현금 및 실물(자기주식)반환"
+    }
+  ]
+}

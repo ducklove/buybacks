@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260130000346",
+      "corp_cls": "Y",
+      "corp_code": "00158112",
+      "corp_name": "한국수출포장공업",
+      "bddd": "2026년 01월 30일",
+      "od_a_at_t": "1",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "미래에셋증권(주)\n(MIRAE ASSET SECURITIES CO., LTD.)",
+      "aq_wtn_div_ostk": "5,232,629",
+      "aq_wtn_div_ostk_rt": "13.08",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "4,000,000,000",
+      "ctr_pd_bgd": "2026년 01월 30일",
+      "ctr_pd_edd": "2026년 04월 29일",
+      "ctr_pp": "주가 안정을 통한 주주가치 제고",
+      "ctr_cns_int": "미래에셋증권(주)\n(MIRAE ASSET SECURITIES CO., LTD.)",
+      "ctr_cns_prd": "2026년 01월 30일"
+    }
+  ]
+}

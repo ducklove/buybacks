@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260115000050",
+      "corp_cls": "K",
+      "corp_code": "00997812",
+      "corp_name": "코미코",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "삼성증권(\nSamsung Securities Co.,Ltd.)",
+      "aq_wtn_div_ostk": "379,328",
+      "aq_wtn_div_ostk_rt": "3.6",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "3,270",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "94,600",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "309,342,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 16일",
+      "dpprpd_edd": "2026년 01월 16일",
+      "dp_pp": "임직원 보상용 RSU(양도제한조건부주식) 부여를 위한 자기주식 교부",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "3,270",
+      "dp_dd": "2026년 01월 15일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

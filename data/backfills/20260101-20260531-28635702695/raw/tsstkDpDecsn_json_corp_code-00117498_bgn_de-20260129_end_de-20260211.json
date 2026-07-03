@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260211000303",
+      "corp_cls": "Y",
+      "corp_code": "00117498",
+      "corp_name": "스틱인베스트먼트",
+      "od_a_at_t": "4",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "신한투자증권\n(Shinhan Securities Co.,Ltd.)",
+      "aq_wtn_div_ostk": "4,021,619",
+      "aq_wtn_div_ostk_rt": "9.65",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1,611,609",
+      "eaq_ostk_rt": "3.87",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "25,890",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "12,040",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "311,715,600",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 11일",
+      "dpprpd_edd": "2026년 02월 13일",
+      "dp_pp": "임원 성과급 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "25,890",
+      "dp_dd": "2026년 02월 11일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

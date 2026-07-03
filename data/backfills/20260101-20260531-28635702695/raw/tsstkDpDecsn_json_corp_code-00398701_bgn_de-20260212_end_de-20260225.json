@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260212001688",
+      "corp_cls": "Y",
+      "corp_code": "00398701",
+      "corp_name": "엘앤에프",
+      "od_a_at_t": "5",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "엔에이치투자증권(주)\n (NH INVESTMENT \n& SECURITIES CO.,LTD.)",
+      "aq_wtn_div_ostk": "198,030",
+      "aq_wtn_div_ostk_rt": "0.49",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1,540,581",
+      "eaq_ostk_rt": "3.83",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "500,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "116,700",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "58,350,000,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 13일",
+      "dpprpd_edd": "2026년 02월 13일",
+      "dp_pp": "운영자금 조달",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "500,000",
+      "dp_m_otc": "-",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 12일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260115000181",
+      "corp_cls": "Y",
+      "corp_code": "00453284",
+      "corp_name": "교촌에프앤비",
+      "bddd": "2026년 01월 15일",
+      "od_a_at_t": "3",
+      "od_a_at_b": "1",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "삼성증권\n(Samsung Securities Co., Ltd)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "1,000,000,000",
+      "ctr_pd_bgd": "2026년 01월 16일",
+      "ctr_pd_edd": "2026년 07월 15일",
+      "ctr_pp": "임직원 보상용 양도제한조건부주식\n(RSU) 재원 확보,\n주가 안정 및 주주가치 제고",
+      "ctr_cns_int": "삼성증권\n(Samsung Securities Co., Ltd)",
+      "ctr_cns_prd": "2026년 01월 16일"
+    }
+  ]
+}
