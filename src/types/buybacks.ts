@@ -85,7 +85,7 @@ export interface BuybackExecution {
   holding_after_ratio: number | null;
   trust_contract_amount_krw: number | null;
   trust_progress_ratio: number | null;
-  as_of_date: string;
+  as_of_date: string | null;
   linked_event_id: string | null;
   link_method: LinkMethod;
   source: Source;

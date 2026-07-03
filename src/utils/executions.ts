@@ -24,7 +24,9 @@ export function pickRepresentativeExecution(
 
   const trustExecutions = linked.filter((execution) => execution.execution_type === "trust_status");
   if (trustExecutions.length > 0) {
-    return [...trustExecutions].sort((a, b) => b.as_of_date.localeCompare(a.as_of_date))[0];
+    return [...trustExecutions].sort((a, b) =>
+      (b.as_of_date ?? "").localeCompare(a.as_of_date ?? "")
+    )[0];
   }
 
   return [...linked].sort((a, b) => b.disclosure_date.localeCompare(a.disclosure_date))[0];

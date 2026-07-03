@@ -437,7 +437,8 @@ const ExecutionSummary = memo(function ExecutionSummary({ event }: { event: Enri
         </meter>
         <small>
           누적 {formatNumber(execution.actual_shares)}주 · {formatKRW(execution.actual_amount_krw)}
-          원 · 진행률 {formatPercent(rate)} · 기준일 {execution.as_of_date}
+          원 · 진행률 {formatPercent(rate)}
+          {execution.as_of_date ? ` · 기준일 ${execution.as_of_date}` : ""}
           {url ? (
             <>
               {" · "}
@@ -525,7 +526,11 @@ const UnlinkedExecutionsSection = memo(function UnlinkedExecutionsSection({
                   ) : null}
                 </small>
               </div>
-              <span className="muted">기준일 {execution.as_of_date}</span>
+              <span className="muted">
+                {execution.as_of_date
+                  ? `기준일 ${execution.as_of_date}`
+                  : `공시일 ${execution.disclosure_date}`}
+              </span>
               {url ? (
                 <a className="source-link" href={url} target="_blank" rel="noreferrer">
                   원문

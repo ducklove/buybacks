@@ -104,7 +104,8 @@ describe("validateDataset", () => {
           holding_after_ratio: 0.02,
           trust_contract_amount_krw: null,
           trust_progress_ratio: null,
-          as_of_date: "2026-06-19",
+          // 취득/처분 결과보고서는 보유상황 기준일이 없을 수 있다 — null이 유효해야 한다.
+          as_of_date: null,
           linked_event_id: "event-1",
           link_method: "report_date",
           source: "DART",

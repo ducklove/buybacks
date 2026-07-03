@@ -152,7 +152,7 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
     if (!ISO_DATE.test(execution.disclosure_date)) {
       errors.push(`executions[${index}] invalid disclosure_date`);
     }
-    if (!ISO_DATE.test(execution.as_of_date)) {
+    if (execution.as_of_date !== null && !ISO_DATE.test(execution.as_of_date)) {
       errors.push(`executions[${index}] invalid as_of_date`);
     }
     if (!isLinkMethod(execution.link_method)) {
