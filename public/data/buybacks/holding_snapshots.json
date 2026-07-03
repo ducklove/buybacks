@@ -8840,7 +8840,7 @@
   {
     "corp_code": "01309795",
     "stock_code": "297570",
-    "corp_name": "알로이스",
+    "corp_name": "아틀라스링크",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -15873,7 +15873,7 @@
     "issued_shares": 11703922,
     "treasury_ratio": 0.03257549050651568,
     "floating_shares": 11322661,
-    "source_rcept_no": "20260320000832"
+    "source_rcept_no": "20260703000477"
   },
   {
     "corp_code": "00977641",
@@ -18502,24 +18502,6 @@
     "treasury_ratio": null,
     "floating_shares": 61855670,
     "source_rcept_no": "20260608000223"
-  },
-  {
-    "corp_code": "00576789",
-    "stock_code": "113810",
-    "corp_name": "디젠스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 32628051,
-    "treasury_ratio": null,
-    "floating_shares": 32628051,
-    "source_rcept_no": "20260318001189"
   },
   {
     "corp_code": "00670340",
@@ -24711,7 +24693,7 @@
     "issued_shares": 8396593,
     "treasury_ratio": 0.012017255093821982,
     "floating_shares": 8295689,
-    "source_rcept_no": "20260312000435"
+    "source_rcept_no": "20260629000270"
   },
   {
     "corp_code": "00238199",
@@ -26476,24 +26458,6 @@
     "treasury_ratio": 0.0015683333333333333,
     "floating_shares": 5990590,
     "source_rcept_no": "20260317000684"
-  },
-  {
-    "corp_code": "00208134",
-    "stock_code": "058400",
-    "corp_name": "KNN",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 132429720,
-    "treasury_ratio": null,
-    "floating_shares": 132429720,
-    "source_rcept_no": "20260316000737"
   },
   {
     "corp_code": "00270113",
@@ -43074,24 +43038,6 @@
     "source_rcept_no": "20260318001468"
   },
   {
-    "corp_code": "00117337",
-    "stock_code": "001520",
-    "corp_name": "동양",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 48880000,
-    "issued_shares": 238684063,
-    "treasury_ratio": 0.20478954223265422,
-    "floating_shares": 189804063,
-    "source_rcept_no": "20260318001406"
-  },
-  {
     "corp_code": "00131850",
     "stock_code": "001515",
     "corp_name": "SK증권우",
@@ -44692,24 +44638,6 @@
     "treasury_ratio": 0.05210304330396892,
     "floating_shares": 25986851,
     "source_rcept_no": "20260318000486"
-  },
-  {
-    "corp_code": "00112378",
-    "stock_code": "000040",
-    "corp_name": "KR모터스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 11608,
-    "issued_shares": 86375184,
-    "treasury_ratio": 0.00013439045177605642,
-    "floating_shares": 86363576,
-    "source_rcept_no": "20260320001257"
   },
   {
     "corp_code": "00119195",

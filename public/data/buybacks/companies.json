@@ -341,7 +341,7 @@
     "corp_name": "HPSP",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-09-26"
+    "last_updated": "2026-06-25"
   },
   {
     "corp_code": "00230911",
@@ -494,14 +494,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2025-09-12"
-  },
-  {
-    "corp_code": "00208134",
-    "stock_code": "058400",
-    "corp_name": "KNN",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-11-21"
   },
   {
     "corp_code": "00618410",
@@ -1717,7 +1709,7 @@
     "corp_name": "노머스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-03-31"
+    "last_updated": "2026-06-29"
   },
   {
     "corp_code": "00811372",
@@ -1853,7 +1845,7 @@
     "corp_name": "뉴키즈온",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-05-28"
+    "last_updated": "2026-06-30"
   },
   {
     "corp_code": "01214248",
@@ -2069,7 +2061,7 @@
     "corp_name": "대양전기공업",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-12-24"
+    "last_updated": "2026-06-25"
   },
   {
     "corp_code": "00111838",
@@ -2720,14 +2712,6 @@
     "last_updated": "2025-09-30"
   },
   {
-    "corp_code": "00576789",
-    "stock_code": "113810",
-    "corp_name": "디젠스",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2022-12-12"
-  },
-  {
     "corp_code": "00295547",
     "stock_code": "043360",
     "corp_name": "디지아이",
@@ -3149,7 +3133,7 @@
     "corp_name": "린드먼아시아",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-07-21"
+    "last_updated": "2026-07-01"
   },
   {
     "corp_code": "00352499",
@@ -3157,7 +3141,7 @@
     "corp_name": "링네트",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-12-02"
+    "last_updated": "2026-06-29"
   },
   {
     "corp_code": "01035678",
@@ -3285,7 +3269,7 @@
     "corp_name": "메가스터디교육",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-10-10"
+    "last_updated": "2026-07-01"
   },
   {
     "corp_code": "00807555",
@@ -3333,7 +3317,7 @@
     "corp_name": "메디톡스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-11-26"
+    "last_updated": "2026-06-30"
   },
   {
     "corp_code": "00453929",
@@ -3845,7 +3829,7 @@
     "corp_name": "밸로프",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-05-06"
+    "last_updated": "2026-06-29"
   },
   {
     "corp_code": "01138595",
@@ -4173,7 +4157,7 @@
     "corp_name": "비츠로셀",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-06-30"
+    "last_updated": "2026-06-25"
   },
   {
     "corp_code": "00201432",
@@ -4821,7 +4805,7 @@
     "corp_name": "서희건설",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-03-23"
+    "last_updated": "2026-07-03"
   },
   {
     "corp_code": "00921916",
@@ -5373,7 +5357,7 @@
     "corp_name": "스튜디오삼익",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-08-25"
+    "last_updated": "2026-07-02"
   },
   {
     "corp_code": "00136165",
@@ -6749,7 +6733,7 @@
     "corp_name": "얼라인드",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-01-21"
+    "last_updated": "2026-06-30"
   },
   {
     "corp_code": "00169215",
@@ -7789,7 +7773,7 @@
     "corp_name": "엠게임",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-12-16"
+    "last_updated": "2026-06-29"
   },
   {
     "corp_code": "01022142",
@@ -8093,7 +8077,7 @@
     "corp_name": "오성첨단소재",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-04-04"
+    "last_updated": "2026-07-02"
   },
   {
     "corp_code": "00349811",
@@ -8373,7 +8357,7 @@
     "corp_name": "와이즈버즈",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-05-14"
+    "last_updated": "2026-06-30"
   },
   {
     "corp_code": "00139719",
@@ -8661,7 +8645,7 @@
     "corp_name": "원티드랩",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-10-24"
+    "last_updated": "2026-06-29"
   },
   {
     "corp_code": "00144012",
@@ -8757,7 +8741,7 @@
     "corp_name": "웹케시",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-08-18"
+    "last_updated": "2026-06-25"
   },
   {
     "corp_code": "01137860",
@@ -8997,7 +8981,7 @@
     "corp_name": "유비온",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-04-13"
+    "last_updated": "2026-07-01"
   },
   {
     "corp_code": "01203376",
@@ -9021,7 +9005,7 @@
     "corp_name": "유성티엔에스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2024-02-07"
+    "last_updated": "2026-07-03"
   },
   {
     "corp_code": "00144650",
@@ -9381,7 +9365,7 @@
     "corp_name": "이스트소프트",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-02-13"
+    "last_updated": "2026-06-25"
   },
   {
     "corp_code": "01128622",
@@ -10213,7 +10197,7 @@
     "corp_name": "중앙백신",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-12-10"
+    "last_updated": "2026-06-25"
   },
   {
     "corp_code": "00149770",
@@ -10693,7 +10677,7 @@
     "corp_name": "케이씨에스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-04-22"
+    "last_updated": "2026-06-25"
   },
   {
     "corp_code": "00441447",
@@ -10901,7 +10885,7 @@
     "corp_name": "코나아이",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-08-12"
+    "last_updated": "2026-06-26"
   },
   {
     "corp_code": "00601988",
@@ -11629,7 +11613,7 @@
     "corp_name": "티쓰리",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-11-21"
+    "last_updated": "2026-06-25"
   },
   {
     "corp_code": "00381756",
@@ -12229,7 +12213,7 @@
     "corp_name": "풍강",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-01-06"
+    "last_updated": "2026-07-01"
   },
   {
     "corp_code": "00155452",
@@ -12893,7 +12877,7 @@
     "corp_name": "한국정보통신",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-11-26"
+    "last_updated": "2026-07-01"
   },
   {
     "corp_code": "01818682",
@@ -13437,7 +13421,7 @@
     "corp_name": "휴맥스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-03-05"
+    "last_updated": "2026-06-30"
   },
   {
     "corp_code": "00219440",
@@ -13445,7 +13429,7 @@
     "corp_name": "휴맥스홀딩스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-09-05"
+    "last_updated": "2026-06-30"
   },
   {
     "corp_code": "00861997",
@@ -14077,7 +14061,7 @@
     "corp_name": "JB금융지주",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-10-28"
+    "last_updated": "2026-06-30"
   },
   {
     "corp_code": "00225706",
@@ -14198,14 +14182,6 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2025-04-14"
-  },
-  {
-    "corp_code": "00112378",
-    "stock_code": "000040",
-    "corp_name": "KR모터스",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-03-31"
   },
   {
     "corp_code": "00160232",
@@ -14637,7 +14613,7 @@
     "corp_name": "SIMPAC",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-12-17"
+    "last_updated": "2026-06-29"
   },
   {
     "corp_code": "00134510",
@@ -14645,7 +14621,7 @@
     "corp_name": "SJG세종",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-08-08"
+    "last_updated": "2026-06-30"
   },
   {
     "corp_code": "00815369",
@@ -14933,7 +14909,7 @@
     "corp_name": "TP",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-11-13"
+    "last_updated": "2026-06-26"
   },
   {
     "corp_code": "00117230",
@@ -15389,7 +15365,7 @@
     "corp_name": "넷마블",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-03-25"
+    "last_updated": "2026-06-25"
   },
   {
     "corp_code": "00583442",
@@ -15469,7 +15445,7 @@
     "corp_name": "다스코",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-11-18"
+    "last_updated": "2026-07-03"
   },
   {
     "corp_code": "00156859",
@@ -15501,7 +15477,7 @@
     "corp_name": "대교",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-11-07"
+    "last_updated": "2026-07-01"
   },
   {
     "corp_code": "00108913",
@@ -15992,14 +15968,6 @@
     "last_updated": "2025-11-07"
   },
   {
-    "corp_code": "00117337",
-    "stock_code": "001520",
-    "corp_name": "동양",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-03-31"
-  },
-  {
     "corp_code": "00540641",
     "stock_code": "084670",
     "corp_name": "동양고속",
@@ -16333,7 +16301,7 @@
     "corp_name": "만호제강",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-09-25"
+    "last_updated": "2026-07-02"
   },
   {
     "corp_code": "00860332",
@@ -18053,7 +18021,7 @@
     "corp_name": "우진아이엔에스",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-02-23"
+    "last_updated": "2026-07-01"
   },
   {
     "corp_code": "00303217",
@@ -18893,7 +18861,7 @@
     "corp_name": "코오롱",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-12-05"
+    "last_updated": "2026-06-30"
   },
   {
     "corp_code": "00152880",
@@ -19773,7 +19741,7 @@
     "corp_name": "한익스프레스",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-05-22"
+    "last_updated": "2026-07-02"
   },
   {
     "corp_code": "01319808",
