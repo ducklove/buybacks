@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-07-03T04:05:29.560396+00:00",
+  "generated_at": "2026-07-03T07:26:37.991826+00:00",
   "dart_available": true,
   "krx_available": false,
   "price_source": "kis_proxy",
   "latest_price_source": "kis_proxy",
   "update_mode": "backfill_merge",
-  "previous_generated_at": "2026-07-03T02:54:29.408525+00:00",
-  "companies_count": 2543,
-  "events_count": 1153,
+  "previous_generated_at": "2026-07-03T04:05:29.560396+00:00",
+  "companies_count": 2548,
+  "events_count": 2870,
   "holdings_count": 2550,
-  "price_reactions_count": 1153,
+  "price_reactions_count": 2870,
   "latest_prices_count": 600,
   "warnings": [
     "Incremental update merged with the committed dataset instead of rebuilding the full universe.",
@@ -25,10 +25,13 @@
     "Execution result reports stored: 85 (4 unlinked).",
     "Backfill run 20260101-20260531-28635702695 merged 102 new events and skipped 796 duplicates.",
     "Backfilled historical price reactions are initialized as missing until price enrichment is run.",
-    "Execution result reports stored: 516 (105 unlinked)."
+    "Execution result reports stored: 516 (105 unlinked).",
+    "Backfill run 20250101-20251231-28638767903 merged 1717 new events and skipped 0 duplicates.",
+    "Backfilled historical price reactions are initialized as missing until price enrichment is run.",
+    "Execution result reports stored: 1550 (233 unlinked)."
   ],
-  "last_backfill_run_id": "20260101-20260531-28635702695",
-  "last_backfill_new_events_count": 102,
-  "last_backfill_duplicate_events_count": 796,
-  "executions_count": 516
+  "last_backfill_run_id": "20250101-20251231-28638767903",
+  "last_backfill_new_events_count": 1717,
+  "last_backfill_duplicate_events_count": 0,
+  "executions_count": 1550
 }
