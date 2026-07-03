@@ -15,6 +15,7 @@ EventType = Literal[
 ]
 Source = Literal["DART", "KRX", "MANUAL", "DERIVED"]
 DataQuality = Literal["complete", "partial", "missing"]
+SeriesDataQuality = Literal["complete", "partial"]
 ExecutionType = Literal[
     "acquisition_result",  # 자기주식취득결과보고서
     "disposition_result",  # 자기주식처분결과보고서
@@ -144,6 +145,27 @@ class PriceReaction:
     abnormal_return_60d: float | None
     volume_change_20d: float | None
     data_quality: DataQuality
+
+
+@dataclass(slots=True)
+class ReactionSeries:
+    """Daily post-event return series for CAR curves and frontend backtests.
+
+    daily_return[k] is the simple return between trading days t+k and t+k+1
+    after t0 (the first trading day after the event date) — not cumulative
+    versus the t0 close. daily_abnormal has the same length and subtracts the
+    matching daily index return (same index selection as PriceReaction
+    abnormal fields); entries are null when the index data is unavailable.
+    Records are omitted entirely when no price data exists for the event.
+    """
+
+    event_id: str
+    stock_code: str
+    event_date: str
+    t0_date: str
+    daily_return: list[float]
+    daily_abnormal: list[float | None]
+    data_quality: SeriesDataQuality
 
 
 @dataclass(slots=True)

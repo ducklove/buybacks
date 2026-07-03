@@ -126,6 +126,7 @@ def make_args(tmp_path, **overrides) -> argparse.Namespace:
         "max_holding_companies": 0,
         "incremental_lookback_days": 7,
         "incremental_price_lookback_days": 75,
+        "price_reaction_scope": "recent",
         "discovery_page_limit": 50,
         "price_source": "missing",
         "latest_price_lookback_days": 10,
@@ -310,6 +311,74 @@ def test_incremental_without_existing_executions_file_still_writes_dataset(monke
 
     assert status["executions_count"] == 0
     assert load(output_dir / "executions.json") == []
+
+
+def test_incremental_preserves_series_prunes_dangling_and_writes_car_curves(monkeypatch, tmp_path):
+    output_dir = tmp_path / "out"
+    write_existing_dataset(output_dir)
+    write_json(
+        output_dir / "reaction_series.json",
+        [
+            {
+                "event_id": "dart-old-direct_acquisition",
+                "stock_code": "005930",
+                "event_date": "2026-05-01",
+                "t0_date": "2026-05-02",
+                "daily_return": [0.012, -0.003],
+                "daily_abnormal": [0.01, -0.004],
+                "data_quality": "partial",
+            },
+            {
+                "event_id": "dart-gone-direct_acquisition",
+                "stock_code": "005930",
+                "event_date": "2026-04-01",
+                "t0_date": "2026-04-02",
+                "daily_return": [0.02],
+                "daily_abnormal": [0.02],
+                "data_quality": "partial",
+            },
+        ],
+    )
+    corp_code_calls: list[str] = []
+    holding_scan_scopes: list[list[str]] = []
+    patch_incremental_collectors(monkeypatch, corp_code_calls, holding_scan_scopes)
+
+    args = make_args(tmp_path, holding_stock_codes="EVENTS")
+    status = build_incremental_dataset(args, "key", output_dir)
+
+    # The old event's series survives even though its reaction was refreshed
+    # to missing (price_source missing produces no replacement series), while
+    # the series of the event that no longer exists is pruned.
+    series = load(output_dir / "reaction_series.json")
+    assert [item["event_id"] for item in series] == ["dart-old-direct_acquisition"]
+    assert series[0]["daily_return"] == [0.012, -0.003]
+
+    # CAR curves are re-aggregated every build: one series stays below
+    # min_events, so the file exists with an empty group list.
+    car = load(output_dir / "car_curves.json")
+    assert car["window"] == 60
+    assert car["min_events"] == 5
+    assert car["groups"] == []
+
+    assert status["reaction_series_count"] == 1
+    assert status["car_groups_count"] == 0
+    assert any("Reaction series missing for 1 of 2 events" in warning for warning in status["warnings"])
+
+
+def test_incremental_without_existing_series_file_writes_empty_optional_files(monkeypatch, tmp_path):
+    output_dir = tmp_path / "out"
+    write_existing_dataset(output_dir)
+    corp_code_calls: list[str] = []
+    holding_scan_scopes: list[list[str]] = []
+    patch_incremental_collectors(monkeypatch, corp_code_calls, holding_scan_scopes)
+
+    args = make_args(tmp_path, holding_stock_codes="EVENTS")
+    status = build_incremental_dataset(args, "key", output_dir)
+
+    assert load(output_dir / "reaction_series.json") == []
+    assert load(output_dir / "car_curves.json")["groups"] == []
+    assert status["reaction_series_count"] == 0
+    assert status["car_groups_count"] == 0
 
 
 def test_merge_holdings_prefers_refreshed_rows_for_identical_keys():

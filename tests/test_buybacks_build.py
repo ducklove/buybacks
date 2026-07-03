@@ -424,6 +424,24 @@ def test_copy_fixture_dataset_writes_executions_with_links(tmp_path):
     assert any(item["link_method"] == "unlinked" for item in executions)
 
 
+def test_copy_fixture_dataset_writes_reaction_series_and_car_curves(tmp_path):
+    status = copy_fixture_dataset(FIXTURE_DIR, tmp_path / "out")
+
+    series = json.loads((tmp_path / "out" / "reaction_series.json").read_text(encoding="utf-8"))
+    assert status["reaction_series_count"] == len(series) == 3
+    events = json.loads((tmp_path / "out" / "events.json").read_text(encoding="utf-8"))
+    event_ids = {event["event_id"] for event in events}
+    for record in series:
+        assert record["event_id"] in event_ids
+        assert len(record["daily_return"]) == len(record["daily_abnormal"]) <= 60
+
+    car = json.loads((tmp_path / "out" / "car_curves.json").read_text(encoding="utf-8"))
+    assert car["window"] == 60
+    assert car["min_events"] == 5
+    assert status["car_groups_count"] == len(car["groups"])
+    assert any("Reaction series missing for" in warning for warning in status["warnings"])
+
+
 def test_filter_json_executions_drops_unsupported_stock_and_downgrades_dangling_links():
     companies = [{"stock_code": "005930", "market": "KOSPI"}]
     events = [{"event_id": "keep-event", "stock_code": "005930"}]

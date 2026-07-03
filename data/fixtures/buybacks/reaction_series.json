@@ -1,0 +1,29 @@
+[
+  {
+    "event_id": "fixture-005930-2026-05-22-acq",
+    "stock_code": "005930",
+    "event_date": "2026-05-22",
+    "t0_date": "2026-05-25",
+    "daily_return": [0.004, 0.0021, -0.0035, 0.0058, 0.0016, -0.0009],
+    "daily_abnormal": [0.0032, 0.0015, -0.0041, 0.0043, 0.0009, -0.0013],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "fixture-000660-2026-05-20-acq",
+    "stock_code": "000660",
+    "event_date": "2026-05-20",
+    "t0_date": "2026-05-21",
+    "daily_return": [0.006, 0.0042, 0.0075, -0.0028, 0.003, 0.0051],
+    "daily_abnormal": [0.0048, 0.0035, 0.0069, -0.0034, 0.0022, 0.0044],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "fixture-051910-2026-05-15-retire",
+    "stock_code": "051910",
+    "event_date": "2026-05-15",
+    "t0_date": "2026-05-18",
+    "daily_return": [0.001, 0.0038, 0.0012, -0.0044, 0.0067],
+    "daily_abnormal": [0.0004, 0.0031, 0.0008, -0.0039, 0.0058],
+    "data_quality": "partial"
+  }
+]

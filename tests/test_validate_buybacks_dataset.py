@@ -84,7 +84,45 @@ def execution(**overrides) -> dict:
     return row
 
 
-def write_dataset(data_dir, holdings, executions=None, status_overrides=None) -> None:
+def series_row(**overrides) -> dict:
+    row = {
+        "event_id": "dart-1-direct_acquisition",
+        "stock_code": "005930",
+        "event_date": "2026-06-20",
+        "t0_date": "2026-06-23",
+        "daily_return": [0.012, -0.005],
+        "daily_abnormal": [0.008, None],
+        "data_quality": "partial",
+    }
+    row.update(overrides)
+    return row
+
+
+def car_payload(**overrides) -> dict:
+    payload = {
+        "window": 3,
+        "min_events": 1,
+        "groups": [
+            {
+                "event_type": "direct_acquisition",
+                "market": "ALL",
+                "n": 1,
+                "mean_car": [0.008, 0.01, None],
+            }
+        ],
+    }
+    payload.update(overrides)
+    return payload
+
+
+def write_dataset(
+    data_dir,
+    holdings,
+    executions=None,
+    status_overrides=None,
+    reaction_series=None,
+    car_curves=None,
+) -> None:
     companies = [
         {
             "corp_code": "00126380",
@@ -124,6 +162,10 @@ def write_dataset(data_dir, holdings, executions=None, status_overrides=None) ->
     ]
     if executions is not None:
         payloads.append(("executions.json", executions))
+    if reaction_series is not None:
+        payloads.append(("reaction_series.json", reaction_series))
+    if car_curves is not None:
+        payloads.append(("car_curves.json", car_curves))
     for name, payload in payloads:
         (data_dir / name).write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
 
@@ -225,6 +267,107 @@ def test_validate_dataset_without_executions_file_stays_clean(tmp_path):
 
     assert errors == []
     assert warnings == []
+
+
+def test_validate_dataset_accepts_valid_optional_series_and_car_curves(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        reaction_series=[series_row()],
+        car_curves=car_payload(),
+        status_overrides={"reaction_series_count": 1, "car_groups_count": 1},
+    )
+
+    errors, warnings = validate_dataset(tmp_path)
+
+    assert errors == []
+    assert warnings == []
+
+
+def test_validate_dataset_reports_dangling_and_duplicate_series_event_ids(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        reaction_series=[
+            series_row(),
+            series_row(),
+            series_row(event_id="missing-event"),
+        ],
+    )
+
+    errors, _ = validate_dataset(tmp_path)
+
+    assert any("duplicate event_id" in error for error in errors)
+    assert any("unknown event_id missing-event" in error for error in errors)
+
+
+def test_validate_dataset_rejects_series_length_problems(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        reaction_series=[
+            series_row(daily_return=[0.001] * 61, daily_abnormal=[0.001] * 61),
+        ],
+    )
+    errors, _ = validate_dataset(tmp_path)
+    assert any("exceeds 60" in error for error in errors)
+
+    write_dataset(
+        tmp_path,
+        [holding()],
+        reaction_series=[series_row(daily_abnormal=[0.008])],
+    )
+    errors, _ = validate_dataset(tmp_path)
+    assert any("!= daily_abnormal length" in error for error in errors)
+
+
+def test_validate_dataset_warns_on_extreme_daily_returns_without_failing(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        reaction_series=[series_row(daily_return=[0.6, -0.01], daily_abnormal=[0.55, None])],
+    )
+
+    errors, warnings = validate_dataset(tmp_path)
+
+    assert errors == []
+    assert len(warnings) == 1
+    assert "beyond +-0.5" in warnings[0]
+
+
+def test_validate_dataset_rejects_car_groups_below_min_events_and_bad_length(tmp_path):
+    bad_car = car_payload(
+        min_events=5,
+        groups=[
+            {
+                "event_type": "direct_acquisition",
+                "market": "ALL",
+                "n": 2,
+                "mean_car": [0.01, 0.02],
+            }
+        ],
+    )
+    write_dataset(tmp_path, [holding()], car_curves=bad_car)
+
+    errors, _ = validate_dataset(tmp_path)
+
+    assert any("n=2 below min_events 5" in error for error in errors)
+    assert any("mean_car length must equal window" in error for error in errors)
+
+
+def test_validate_dataset_flags_series_and_car_count_mismatches(tmp_path):
+    write_dataset(
+        tmp_path,
+        [holding()],
+        reaction_series=[series_row()],
+        car_curves=car_payload(),
+        status_overrides={"reaction_series_count": 9, "car_groups_count": 9},
+    )
+
+    errors, _ = validate_dataset(tmp_path)
+
+    assert any("data_status.reaction_series_count=9 expected 1" in error for error in errors)
+    assert any("data_status.car_groups_count=9 expected 1" in error for error in errors)
 
 
 def test_main_exits_zero_when_only_flow_warnings_exist(tmp_path, monkeypatch, capsys):

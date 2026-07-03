@@ -30,6 +30,7 @@ if __package__ in {None, ""}:
         write_json,
         companies_from_disclosures as build_companies_from_disclosures,
     )
+    from scripts.buybacks.car_curves import aggregate_car_curves
     from scripts.buybacks.executions import collect_execution_reports, link_executions, merge_executions
     from scripts.buybacks.fetch_dart_buybacks import collect_dart_dataset, dedupe_events, fetch_buyback_disclosures
     from scripts.buybacks.fetch_krx_prices import missing_reaction
@@ -53,6 +54,7 @@ else:
         write_json,
         companies_from_disclosures as build_companies_from_disclosures,
     )
+    from .car_curves import aggregate_car_curves
     from .executions import collect_execution_reports, link_executions, merge_executions
     from .fetch_dart_buybacks import collect_dart_dataset, dedupe_events, fetch_buyback_disclosures
     from .fetch_krx_prices import missing_reaction
@@ -266,6 +268,26 @@ def merge_backfill(args: argparse.Namespace) -> dict[str, Any]:
     merged_reactions = merge_price_reactions(existing_reactions, missing_reactions, merged_events)
     merged_latest_prices = merge_latest_prices(existing_latest_prices, [], merged_companies)
 
+    # Reaction series are optional derived data: backfill never creates them,
+    # but when the dataset already tracks them, rows whose event disappeared in
+    # the merge/dedupe must be pruned and the CAR curves re-aggregated so the
+    # dataset stays referentially valid.
+    series_path = data_dir / "reaction_series.json"
+    merged_series: list[dict] | None = None
+    merged_car_curves: dict | None = None
+    if series_path.exists():
+        merged_event_ids = {event.event_id for event in merged_events}
+        merged_series = [
+            record
+            for record in load_json(series_path)
+            if record.get("event_id") in merged_event_ids
+        ]
+        merged_car_curves = aggregate_car_curves(
+            merged_series,
+            to_jsonable(merged_events),
+            to_jsonable(merged_companies),
+        )
+
     # Execution result reports: older runs have no executions.json, and the
     # committed dataset may not have one either. Only write the file when the
     # run or the dataset already tracks executions, and re-link everything
@@ -309,10 +331,17 @@ def merge_backfill(args: argparse.Namespace) -> dict[str, Any]:
             f"Execution result reports stored: {len(merged_executions)} ({unlinked_count} unlinked).",
         ]
 
+    if merged_series is not None and merged_car_curves is not None:
+        updated_status["reaction_series_count"] = len(merged_series)
+        updated_status["car_groups_count"] = len(merged_car_curves["groups"])
+
     write_json(data_dir / "companies.json", to_jsonable(merged_companies))
     write_json(data_dir / "events.json", to_jsonable(merged_events))
     write_json(data_dir / "price_reactions.json", to_jsonable(merged_reactions))
     write_json(data_dir / "latest_prices.json", to_jsonable(merged_latest_prices))
+    if merged_series is not None and merged_car_curves is not None:
+        write_json(series_path, merged_series)
+        write_json(data_dir / "car_curves.json", merged_car_curves)
     if merged_executions is not None:
         write_json(data_dir / "executions.json", to_jsonable(merged_executions))
     write_json(data_dir / "data_status.json", updated_status)

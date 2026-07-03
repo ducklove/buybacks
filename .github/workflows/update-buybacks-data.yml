@@ -11,6 +11,10 @@ on:
         description: Recent event window for refreshing incomplete price reactions.
         required: false
         default: "75"
+      price_reaction_scope:
+        description: "Price reaction recalculation scope: recent (daily default), missing-series (backfill events without a daily return series), all (full recalculation)."
+        required: false
+        default: "recent"
   schedule:
     - cron: "30 20 * * *"
 
@@ -29,6 +33,7 @@ jobs:
     env:
       LOOKBACK_DAYS: ${{ github.event.inputs.lookback_days || '7' }}
       PRICE_LOOKBACK_DAYS: ${{ github.event.inputs.price_lookback_days || '75' }}
+      PRICE_REACTION_SCOPE: ${{ github.event.inputs.price_reaction_scope || 'recent' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -66,6 +71,7 @@ jobs:
           --discovery-page-limit 50
           --incremental-lookback-days "$LOOKBACK_DAYS"
           --incremental-price-lookback-days "$PRICE_LOOKBACK_DAYS"
+          --price-reaction-scope "$PRICE_REACTION_SCOPE"
 
       - name: Validate data
         run: python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks

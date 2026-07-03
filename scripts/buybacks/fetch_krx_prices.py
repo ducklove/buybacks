@@ -14,13 +14,24 @@ from urllib.request import Request, urlopen
 
 if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parents[2]))
-    from scripts.buybacks.models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction
+    from scripts.buybacks.models import (
+        BuybackEvent,
+        Company,
+        LatestPriceSnapshot,
+        PriceReaction,
+        ReactionSeries,
+    )
     from scripts.buybacks.parsers import kst_today, normalize_date, parse_number
 else:
-    from .models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction
+    from .models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction, ReactionSeries
     from .parsers import kst_today, normalize_date, parse_number
 
 LOGGER = logging.getLogger(__name__)
+
+# Maximum trading days stored per event in reaction_series.json (t+1..t+60).
+REACTION_SERIES_WINDOW = 60
+# Stored series values are rounded to keep the JSON payload compact.
+SERIES_DECIMALS = 6
 
 
 @dataclass(frozen=True)
@@ -93,7 +104,7 @@ def calculate_kis_proxy_price_reactions(
     companies: Iterable[Company],
     base_url: str,
     token: str = "",
-) -> tuple[list[PriceReaction], list[str]]:
+) -> tuple[list[PriceReaction], list[ReactionSeries], list[str]]:
     client = KISProxyPriceClient(base_url=base_url, token=token)
     event_list = list(events)
     company_by_stock = {company.stock_code: company for company in companies}
@@ -123,6 +134,7 @@ def calculate_kis_proxy_price_reactions(
                 market_prices[index_market] = []
 
     reactions: list[PriceReaction] = []
+    series_list: list[ReactionSeries] = []
     for event in event_list:
         company = company_by_stock.get(event.stock_code)
         index_market = kis_proxy_index_market(company.market if company else "OTHER")
@@ -130,16 +142,19 @@ def calculate_kis_proxy_price_reactions(
         if not prices:
             reactions.append(missing_reaction(event.event_id, event.stock_code, event.disclosure_date))
             continue
-        reactions.append(
-            calculate_price_reaction(
-                event.event_id,
-                event.stock_code,
-                event.disclosure_date,
-                prices,
-                market_prices.get(index_market) or None,
-            )
+        # The daily return series is derived from the same fetched price rows
+        # as the reaction snapshot, so no extra proxy requests are made.
+        reaction, series = calculate_price_reaction_with_series(
+            event.event_id,
+            event.stock_code,
+            event.disclosure_date,
+            prices,
+            market_prices.get(index_market) or None,
         )
-    return reactions, warnings
+        reactions.append(reaction)
+        if series is not None:
+            series_list.append(series)
+    return reactions, series_list, warnings
 
 
 def calculate_kis_proxy_latest_prices(
@@ -197,12 +212,40 @@ def calculate_price_reaction(
     stock_prices: Iterable[PriceRow | dict],
     market_prices: Iterable[PriceRow | dict] | None = None,
 ) -> PriceReaction:
+    reaction, _series = calculate_price_reaction_with_series(
+        event_id,
+        stock_code,
+        event_date,
+        stock_prices,
+        market_prices,
+    )
+    return reaction
+
+
+def calculate_price_reaction_with_series(
+    event_id: str,
+    stock_code: str,
+    event_date: str,
+    stock_prices: Iterable[PriceRow | dict],
+    market_prices: Iterable[PriceRow | dict] | None = None,
+) -> tuple[PriceReaction, ReactionSeries | None]:
+    """Calculate the reaction snapshot and its daily return series in one pass.
+
+    Both outputs share the same t0 definition (first trading day after the
+    event date) and the same fetched price rows. The series is None when no
+    post-event price data exists (the reaction is then "missing").
+    """
     prices = sorted([coerce_price_row(row) for row in stock_prices], key=lambda row: row.date)
     event_date_norm = normalize_date(event_date) or event_date
     start_index = next((index for index, row in enumerate(prices) if row.date > event_date_norm), None)
     if start_index is None:
-        return missing_reaction(event_id, stock_code, event_date_norm)
+        return missing_reaction(event_id, stock_code, event_date_norm), None
 
+    market_rows = (
+        sorted([coerce_price_row(row) for row in market_prices], key=lambda row: row.date)
+        if market_prices is not None
+        else None
+    )
     base = prices[start_index]
 
     def ret(offset: int) -> float | None:
@@ -217,9 +260,9 @@ def calculate_price_reaction(
     return_60d = ret(60)
     max_drawdown_20d = max_drawdown(prices[start_index : start_index + 21], base.close)
     max_drawdown_60d = max_drawdown(prices[start_index : start_index + 61], base.close)
-    market_return_5d = calculate_market_return(market_prices, event_date_norm, 5)
-    market_return_20d = calculate_market_return(market_prices, event_date_norm, 20)
-    market_return_60d = calculate_market_return(market_prices, event_date_norm, 60)
+    market_return_5d = calculate_market_return(market_rows, event_date_norm, 5)
+    market_return_20d = calculate_market_return(market_rows, event_date_norm, 20)
+    market_return_60d = calculate_market_return(market_rows, event_date_norm, 60)
     volume_change_20d = volume_change(prices, start_index, 20)
     quality = price_data_quality(
         close_t0=base.close,
@@ -232,7 +275,7 @@ def calculate_price_reaction(
         volume_change_20d=volume_change_20d,
     )
 
-    return PriceReaction(
+    reaction = PriceReaction(
         event_id=event_id,
         stock_code=stock_code,
         event_date=event_date_norm,
@@ -258,6 +301,68 @@ def calculate_price_reaction(
         volume_change_20d=volume_change_20d,
         data_quality=quality,  # type: ignore[arg-type]
     )
+    series = build_reaction_series(event_id, stock_code, event_date_norm, prices, start_index, market_rows)
+    return reaction, series
+
+
+def build_reaction_series(
+    event_id: str,
+    stock_code: str,
+    event_date: str,
+    prices: list[PriceRow],
+    start_index: int,
+    market_rows: list[PriceRow] | None,
+    window: int = REACTION_SERIES_WINDOW,
+) -> ReactionSeries:
+    """Build the t+1..t+window daily return series from already-sorted rows.
+
+    daily_return[k] = close(t+k+1) / close(t+k) - 1 (per trading day, not
+    versus the t0 close). daily_abnormal subtracts the daily index return at
+    the same trading-day offset from the index's own t0 (the same positional
+    alignment used by the abnormal_return_Nd snapshot fields); entries are
+    None wherever the index row is unavailable.
+    """
+    raw_daily: list[float] = []
+    for offset in range(1, window + 1):
+        target_index = start_index + offset
+        if target_index >= len(prices):
+            break
+        raw_daily.append(prices[target_index].close / prices[target_index - 1].close - 1)
+    raw_market_daily = market_daily_returns(market_rows, event_date, len(raw_daily))
+    daily_return = [round(value, SERIES_DECIMALS) for value in raw_daily]
+    daily_abnormal = [
+        round(raw_daily[index] - market_value, SERIES_DECIMALS) if market_value is not None else None
+        for index, market_value in enumerate(raw_market_daily)
+    ]
+    return ReactionSeries(
+        event_id=event_id,
+        stock_code=stock_code,
+        event_date=event_date,
+        t0_date=prices[start_index].date,
+        daily_return=daily_return,
+        daily_abnormal=daily_abnormal,
+        data_quality="complete" if len(daily_return) >= window else "partial",
+    )
+
+
+def market_daily_returns(
+    market_rows: list[PriceRow] | None,
+    event_date: str,
+    length: int,
+) -> list[float | None]:
+    if not market_rows or length == 0:
+        return [None] * length
+    start_index = next((index for index, row in enumerate(market_rows) if row.date > event_date), None)
+    if start_index is None:
+        return [None] * length
+    returns: list[float | None] = []
+    for offset in range(1, length + 1):
+        target_index = start_index + offset
+        if target_index >= len(market_rows):
+            returns.append(None)
+        else:
+            returns.append(market_rows[target_index].close / market_rows[target_index - 1].close - 1)
+    return returns
 
 
 def price_data_quality(

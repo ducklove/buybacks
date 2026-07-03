@@ -23,10 +23,17 @@ SOURCES = {"DART", "KRX", "MANUAL", "DERIVED"}
 QUALITIES = {"complete", "partial", "missing"}
 EXECUTION_TYPES = {"acquisition_result", "disposition_result", "trust_status"}
 EXECUTION_LINK_METHODS = {"report_date", "period_overlap", "unlinked"}
+SERIES_QUALITIES = {"complete", "partial"}
+CAR_MARKETS = {"ALL", "KOSPI", "KOSDAQ"}
 HOLDING_FLOW_FIELDS = ("beginning_qty", "acquired_qty", "disposed_qty", "retired_qty", "ending_qty")
 # Completion above this level (actual vs planned or trust progress) is almost
 # always a parsing/unit error or a plan revision; report it, never fail on it.
 COMPLETION_RATE_WARNING_THRESHOLD = 1.2
+# reaction_series stores at most t+1..t+60 trading days per event.
+REACTION_SERIES_MAX_LENGTH = 60
+# A daily move beyond +-50% is usually a corporate action the adjusted price
+# feed missed (or a feed bug); report it, never fail on it.
+DAILY_RETURN_WARNING_THRESHOLD = 0.5
 MAX_PRINTED_WARNINGS = 50
 
 
@@ -56,6 +63,10 @@ def validate_dataset(data_dir: Path) -> tuple[list[str], list[str]]:
     # executions.json is optional: datasets built before execution tracking
     # (including the committed public data) must keep validating cleanly.
     executions = load_optional(data_dir / "executions.json", None)
+    # reaction_series.json and car_curves.json are optional derived series
+    # data: datasets built before series tracking must keep validating cleanly.
+    reaction_series = load_optional(data_dir / "reaction_series.json", None)
+    car_curves = load_optional(data_dir / "car_curves.json", None)
     status = load(data_dir / "data_status.json")
 
     stocks = set()
@@ -111,6 +122,10 @@ def validate_dataset(data_dir: Path) -> tuple[list[str], list[str]]:
 
     if executions is not None:
         errors.extend(execution_errors(executions, event_ids))
+    if reaction_series is not None:
+        errors.extend(reaction_series_errors(reaction_series, event_ids))
+    if car_curves is not None:
+        errors.extend(car_curves_errors(car_curves))
 
     expected_counts = {
         "companies_count": len(companies),
@@ -122,6 +137,10 @@ def validate_dataset(data_dir: Path) -> tuple[list[str], list[str]]:
         expected_counts["latest_prices_count"] = len(latest_prices)
     if executions is not None and "executions_count" in status:
         expected_counts["executions_count"] = len(executions)
+    if reaction_series is not None and "reaction_series_count" in status:
+        expected_counts["reaction_series_count"] = len(reaction_series)
+    if car_curves is not None and "car_groups_count" in status:
+        expected_counts["car_groups_count"] = len(car_curves.get("groups") or [])
     for key, expected in expected_counts.items():
         if status.get(key) != expected:
             errors.append(f"data_status.{key}={status.get(key)} expected {expected}")
@@ -129,6 +148,8 @@ def validate_dataset(data_dir: Path) -> tuple[list[str], list[str]]:
     warnings = holding_flow_warnings(holdings)
     if executions is not None:
         warnings.extend(execution_completion_warnings(executions, events))
+    if reaction_series is not None:
+        warnings.extend(reaction_series_return_warnings(reaction_series))
     return errors, warnings
 
 
@@ -158,6 +179,97 @@ def execution_errors(executions: list[dict], event_ids: set) -> list[str]:
         elif linked_event_id not in event_ids:
             errors.append(f"executions[{index}] unknown linked_event_id {linked_event_id}")
     return errors
+
+
+def reaction_series_errors(series: list[dict], event_ids: set) -> list[str]:
+    """Structural checks for reaction_series.json rows (only when the file exists)."""
+    errors: list[str] = []
+    seen: set = set()
+    for index, record in enumerate(series):
+        event_id = record.get("event_id")
+        if event_id in seen:
+            errors.append(f"reaction_series[{index}] duplicate event_id {event_id}")
+        seen.add(event_id)
+        if event_id not in event_ids:
+            errors.append(f"reaction_series[{index}] unknown event_id {event_id}")
+        if record.get("data_quality") not in SERIES_QUALITIES:
+            errors.append(f"reaction_series[{index}] invalid data_quality")
+        daily_return = record.get("daily_return")
+        daily_abnormal = record.get("daily_abnormal")
+        if not isinstance(daily_return, list) or not isinstance(daily_abnormal, list):
+            errors.append(f"reaction_series[{index}] daily_return/daily_abnormal must be arrays")
+            continue
+        if len(daily_return) > REACTION_SERIES_MAX_LENGTH:
+            errors.append(
+                f"reaction_series[{index}] daily_return length {len(daily_return)} "
+                f"exceeds {REACTION_SERIES_MAX_LENGTH}"
+            )
+        if len(daily_return) != len(daily_abnormal):
+            errors.append(
+                f"reaction_series[{index}] daily_return length {len(daily_return)} "
+                f"!= daily_abnormal length {len(daily_abnormal)}"
+            )
+        # daily_return entries must be numbers; daily_abnormal entries may be
+        # null where the index data was unavailable that day.
+        if any(not is_finite_number(value) for value in daily_return):
+            errors.append(f"reaction_series[{index}] daily_return has non-numeric entries")
+        if any(value is not None and not is_finite_number(value) for value in daily_abnormal):
+            errors.append(f"reaction_series[{index}] daily_abnormal has non-numeric entries")
+    return errors
+
+
+def reaction_series_return_warnings(series: list[dict]) -> list[str]:
+    """Report daily moves beyond +-DAILY_RETURN_WARNING_THRESHOLD (warning only)."""
+    warnings: list[str] = []
+    for index, record in enumerate(series):
+        values = [
+            *(record.get("daily_return") if isinstance(record.get("daily_return"), list) else []),
+            *(record.get("daily_abnormal") if isinstance(record.get("daily_abnormal"), list) else []),
+        ]
+        outliers = sum(
+            1 for value in values if is_finite_number(value) and abs(value) > DAILY_RETURN_WARNING_THRESHOLD
+        )
+        if outliers:
+            warnings.append(
+                f"reaction_series[{index}] {record.get('stock_code')} {record.get('event_id')} has "
+                f"{outliers} daily return value(s) beyond +-{DAILY_RETURN_WARNING_THRESHOLD}"
+            )
+    return warnings
+
+
+def car_curves_errors(car_curves: dict) -> list[str]:
+    """Structural checks for car_curves.json (only when the file exists)."""
+    errors: list[str] = []
+    window = car_curves.get("window")
+    min_events = car_curves.get("min_events")
+    if not isinstance(window, int) or isinstance(window, bool) or window <= 0:
+        errors.append("car_curves.window must be a positive integer")
+    if not isinstance(min_events, int) or isinstance(min_events, bool) or min_events < 1:
+        errors.append("car_curves.min_events must be a positive integer")
+    groups = car_curves.get("groups")
+    if not isinstance(groups, list):
+        errors.append("car_curves.groups must be an array")
+        return errors
+    for index, group in enumerate(groups):
+        if group.get("event_type") not in EVENT_TYPES:
+            errors.append(f"car_curves.groups[{index}] invalid event_type")
+        if group.get("market") not in CAR_MARKETS:
+            errors.append(f"car_curves.groups[{index}] invalid market")
+        n = group.get("n")
+        if not isinstance(n, int) or isinstance(n, bool):
+            errors.append(f"car_curves.groups[{index}] invalid n")
+        elif isinstance(min_events, int) and not isinstance(min_events, bool) and n < min_events:
+            errors.append(f"car_curves.groups[{index}] n={n} below min_events {min_events}")
+        mean_car = group.get("mean_car")
+        if not isinstance(mean_car, list) or (
+            isinstance(window, int) and not isinstance(window, bool) and len(mean_car) != window
+        ):
+            errors.append(f"car_curves.groups[{index}] mean_car length must equal window")
+    return errors
+
+
+def is_finite_number(value: object) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
 def execution_completion_warnings(executions: list[dict], events: list[dict]) -> list[str]:

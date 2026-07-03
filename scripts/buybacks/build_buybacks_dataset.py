@@ -12,6 +12,7 @@ from pathlib import Path
 
 if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parents[2]))
+    from scripts.buybacks.car_curves import aggregate_car_curves
     from scripts.buybacks.executions import (
         collect_execution_reports,
         link_executions,
@@ -37,11 +38,13 @@ if __package__ in {None, ""}:
         Company,
         LatestPriceSnapshot,
         PriceReaction,
+        ReactionSeries,
         TreasuryHoldingSnapshot,
         to_jsonable,
     )
     from scripts.buybacks.parsers import kst_today, market_from_corp_cls, normalize_date
 else:
+    from .car_curves import aggregate_car_curves
     from .executions import (
         collect_execution_reports,
         link_executions,
@@ -67,6 +70,7 @@ else:
         Company,
         LatestPriceSnapshot,
         PriceReaction,
+        ReactionSeries,
         TreasuryHoldingSnapshot,
         to_jsonable,
     )
@@ -115,12 +119,19 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path, extra_warnings: li
         companies,
         events,
     )
+    reaction_series = filter_json_reaction_series(
+        load_optional_json(fixture_dir / "reaction_series.json", []),
+        events,
+    )
+    car_curves = aggregate_car_curves(reaction_series, events, companies)
     write_json(output_dir / "companies.json", companies)
     write_json(output_dir / "events.json", events)
     write_json(output_dir / "holding_snapshots.json", holdings)
     write_json(output_dir / "price_reactions.json", reactions)
     write_json(output_dir / "latest_prices.json", latest_prices)
     write_json(output_dir / "executions.json", executions)
+    write_json(output_dir / "reaction_series.json", reaction_series)
+    write_json(output_dir / "car_curves.json", car_curves)
     status = load_json(fixture_dir / "data_status.json")
     # generated_at is intentionally UTC; business dates elsewhere use KST (Asia/Seoul).
     status["generated_at"] = datetime.now(timezone.utc).isoformat()
@@ -136,6 +147,12 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path, extra_warnings: li
     status["price_reactions_count"] = len(reactions)
     status["latest_prices_count"] = len(latest_prices)
     status["executions_count"] = len(executions)
+    status["reaction_series_count"] = len(reaction_series)
+    status["car_groups_count"] = len(car_curves["groups"])
+    status["warnings"] = [
+        *status["warnings"],
+        *reaction_series_coverage_warnings(len(events), len(reaction_series)),
+    ]
     write_json(output_dir / "data_status.json", status)
     return status
 
@@ -281,8 +298,18 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     )
     warnings.extend(execution_warnings)
 
-    price_reactions, price_warnings, price_source = build_price_reactions(args, events, live_companies)
+    price_reactions, reaction_series, price_warnings, price_source = build_price_reactions(
+        args,
+        events,
+        live_companies,
+    )
     warnings.extend(price_warnings)
+    reaction_series = merge_reaction_series([], reaction_series, events)
+    car_curves = aggregate_car_curves(
+        to_jsonable(reaction_series),
+        to_jsonable(events),
+        to_jsonable(live_companies),
+    )
     latest_prices, latest_price_warnings, latest_price_source = build_latest_prices(
         args,
         [company.stock_code for company in live_companies],
@@ -301,9 +328,12 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
         "price_reactions_count": len(price_reactions),
         "latest_prices_count": len(latest_prices),
         "executions_count": len(executions),
+        "reaction_series_count": len(reaction_series),
+        "car_groups_count": len(car_curves["groups"]),
         "warnings": [
             *warnings,
             *execution_status_warnings(executions),
+            *reaction_series_coverage_warnings(len(events), len(reaction_series)),
             f"OpenDART disclosure discovery window: {disclosure_start} to {args.end}.",
             f"OpenDART holding scan scope: {len(holding_companies)} companies.",
             f"OpenDART holding scan source: {args.holding_source}.",
@@ -318,6 +348,8 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     write_json(output_dir / "price_reactions.json", to_jsonable(price_reactions))
     write_json(output_dir / "latest_prices.json", to_jsonable(latest_prices))
     write_json(output_dir / "executions.json", to_jsonable(executions))
+    write_json(output_dir / "reaction_series.json", to_jsonable(reaction_series))
+    write_json(output_dir / "car_curves.json", car_curves)
     write_json(output_dir / "data_status.json", status)
     return status
 
@@ -331,6 +363,7 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
     existing_events = load_events(output_dir / "events.json")
     existing_holdings = load_holdings(output_dir / "holding_snapshots.json")
     existing_reactions = load_reactions(output_dir / "price_reactions.json")
+    existing_series = load_reaction_series(output_dir / "reaction_series.json")
     existing_latest_prices = load_latest_prices(output_dir / "latest_prices.json")
     existing_executions = load_executions(output_dir / "executions.json")
     existing_status = load_json(output_dir / "data_status.json")
@@ -451,18 +484,31 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
         new_event_ids,
         args.incremental_price_lookback_days,
         args.end,
+        scope=args.price_reaction_scope,
+        series_event_ids={series.event_id for series in existing_series},
     )
     refreshed_reactions: list[PriceReaction] = []
+    refreshed_series: list[ReactionSeries] = []
     price_source = str(existing_status.get("price_source") or "missing")
     if price_refresh_events:
-        LOGGER.info("refreshing price reactions for %d incremental/recent events", len(price_refresh_events))
-        refreshed_reactions, price_warnings, price_source = build_price_reactions(
+        LOGGER.info(
+            "refreshing price reactions for %d events (scope: %s)",
+            len(price_refresh_events),
+            args.price_reaction_scope,
+        )
+        refreshed_reactions, refreshed_series, price_warnings, price_source = build_price_reactions(
             args,
             price_refresh_events,
             live_companies,
         )
         warnings.extend(price_warnings)
     price_reactions = merge_price_reactions(existing_reactions, refreshed_reactions, events)
+    reaction_series = merge_reaction_series(existing_series, refreshed_series, events)
+    car_curves = aggregate_car_curves(
+        to_jsonable(reaction_series),
+        to_jsonable(events),
+        to_jsonable(live_companies),
+    )
     latest_price_stock_codes = select_latest_price_stock_codes(
         events,
         existing_latest_prices,
@@ -492,11 +538,14 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
         "price_reactions_count": len(price_reactions),
         "latest_prices_count": len(latest_prices),
         "executions_count": len(executions),
+        "reaction_series_count": len(reaction_series),
+        "car_groups_count": len(car_curves["groups"]),
         "warnings": [
             "Incremental update merged with the committed dataset instead of rebuilding the full universe.",
             incremental_holding_scope_note(holding_stock_codes, args.holding_stock_codes),
             *warnings,
             *execution_status_warnings(executions),
+            *reaction_series_coverage_warnings(len(events), len(reaction_series)),
             f"OpenDART incremental disclosure window: {disclosure_start} to {args.end}.",
             f"OpenDART incremental event company scope: {len(event_companies)} companies.",
             f"OpenDART incremental holding scan scope: {len(holding_companies)} companies.",
@@ -512,6 +561,8 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
     write_json(output_dir / "price_reactions.json", to_jsonable(price_reactions))
     write_json(output_dir / "latest_prices.json", to_jsonable(latest_prices))
     write_json(output_dir / "executions.json", to_jsonable(executions))
+    write_json(output_dir / "reaction_series.json", to_jsonable(reaction_series))
+    write_json(output_dir / "car_curves.json", car_curves)
     write_json(output_dir / "data_status.json", status)
     return status
 
@@ -621,6 +672,16 @@ def main() -> None:
         type=int,
         default=75,
         help="Recent event window for refreshing incomplete kis_proxy price reactions.",
+    )
+    parser.add_argument(
+        "--price-reaction-scope",
+        choices=["recent", "missing-series", "all"],
+        default="recent",
+        help=(
+            "Incremental price reaction recalculation scope. recent keeps the daily load; "
+            "missing-series also recalculates events without a stored daily return series; "
+            "all recalculates every event."
+        ),
     )
     parser.add_argument(
         "--price-source",
@@ -787,25 +848,36 @@ def build_price_reactions(
     args: argparse.Namespace,
     events: list[BuybackEvent],
     companies: list[Company],
-) -> tuple[list[PriceReaction], list[str], str]:
+) -> tuple[list[PriceReaction], list[ReactionSeries], list[str], str]:
     if args.price_source == "missing":
-        return missing_price_reactions(events), [], "missing"
+        return missing_price_reactions(events), [], [], "missing"
 
     kis_proxy_url = os.environ.get("KIS_PROXY_URL", "").strip()
     if kis_proxy_url:
         LOGGER.info("collecting price reactions from kis_proxy...")
-        reactions, warnings = calculate_kis_proxy_price_reactions(
+        reactions, series, warnings = calculate_kis_proxy_price_reactions(
             events,
             companies,
             base_url=kis_proxy_url,
             token=os.environ.get("KIS_PROXY_TOKEN", "").strip(),
         )
-        return reactions, warnings, "kis_proxy"
+        return reactions, series, warnings, "kis_proxy"
 
     warnings = ["KIS_PROXY_URL is not set; price reactions marked missing."]
     if args.price_source == "kis_proxy":
         warnings.append("Requested --price-source kis_proxy but no proxy URL was configured.")
-    return missing_price_reactions(events), warnings, "missing"
+    return missing_price_reactions(events), [], warnings, "missing"
+
+
+def reaction_series_coverage_warnings(events_count: int, series_count: int) -> list[str]:
+    """Report how many events still lack a daily return series (warning only)."""
+    missing = events_count - series_count
+    if missing <= 0:
+        return []
+    return [
+        f"Reaction series missing for {missing} of {events_count} events; "
+        "run an incremental build with --price-reaction-scope missing-series to backfill."
+    ]
 
 
 def build_latest_prices(
@@ -857,6 +929,14 @@ def load_holdings(path: Path) -> list[TreasuryHoldingSnapshot]:
 
 def load_reactions(path: Path) -> list[PriceReaction]:
     return [PriceReaction(**reaction_payload(item)) for item in load_json(path)]
+
+
+def load_reaction_series(path: Path) -> list[ReactionSeries]:
+    # reaction_series.json is optional: datasets built before series tracking
+    # (including the committed public data) simply have no file yet.
+    if not path.exists():
+        return []
+    return [ReactionSeries(**item) for item in load_json(path)]
 
 
 def load_latest_prices(path: Path) -> list[LatestPriceSnapshot]:
@@ -961,6 +1041,37 @@ def merge_price_reactions(
     ]
 
 
+def merge_reaction_series(
+    existing: list[ReactionSeries],
+    refreshed: list[ReactionSeries],
+    events: list[BuybackEvent],
+) -> list[ReactionSeries]:
+    """Merge daily return series by event_id.
+
+    Refreshed series replace existing rows; series whose event disappeared
+    (e.g. removed by dedupe) are dropped. Unlike price reactions, events
+    without a series get no placeholder row — a recalculation that produced no
+    series (delisted stock or a temporary proxy failure) keeps the previous
+    series, because historical daily returns cannot change.
+    """
+    event_ids = {event.event_id for event in events}
+    by_event = {series.event_id: series for series in existing if series.event_id in event_ids}
+    for series in refreshed:
+        if series.event_id in event_ids:
+            by_event[series.event_id] = series
+    return [
+        by_event[event.event_id]
+        for event in sorted(events, key=lambda item: (item.disclosure_date, item.event_id), reverse=True)
+        if event.event_id in by_event
+    ]
+
+
+def filter_json_reaction_series(series: list[dict], events: list[dict]) -> list[dict]:
+    """Fixture-path series filter: keep rows whose event survived filtering."""
+    event_ids = {event.get("event_id") for event in events}
+    return [record for record in series if record.get("event_id") in event_ids]
+
+
 def select_latest_price_stock_codes(
     events: list[BuybackEvent],
     existing_prices: list[LatestPriceSnapshot],
@@ -992,7 +1103,21 @@ def select_price_reaction_events(
     new_event_ids: set[str],
     lookback_days: int,
     end_yyyymmdd: str,
+    scope: str = "recent",
+    series_event_ids: set[str] | frozenset[str] = frozenset(),
 ) -> list[BuybackEvent]:
+    """Pick the events whose price reactions get recalculated this build.
+
+    Scopes:
+    - "recent" (default, daily operation): new events, events without any
+      reaction row, and recent-window incomplete reactions — unchanged
+      historical behavior/load.
+    - "missing-series": everything "recent" selects, plus any event that has
+      a reaction but no daily return series yet (one-off series backfill).
+    - "all": every event (full recalculation).
+    """
+    if scope == "all":
+        return list(events)
     existing_by_event = {reaction.event_id: reaction for reaction in existing_reactions}
     cutoff = datetime.strptime(end_yyyymmdd, "%Y%m%d").date() - timedelta(days=lookback_days)
     selected: list[BuybackEvent] = []
@@ -1004,6 +1129,8 @@ def select_price_reaction_events(
         elif disclosure_date >= cutoff and (
             reaction.data_quality != "complete" or has_missing_relative_window(reaction)
         ):
+            selected.append(event)
+        elif scope == "missing-series" and event.event_id not in series_event_ids:
             selected.append(event)
     return selected
 

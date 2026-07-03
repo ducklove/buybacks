@@ -66,6 +66,37 @@ The frontend shows both simple return and index-relative return. Summary cards, 
 
 If trading is suspended, delisted, or the required future window is not available, the metric remains null and `data_quality` becomes `partial` or `missing`.
 
+### ReactionSeries (reaction_series.json, optional)
+
+The daily post-event return series preserved for event-study CAR curves and frontend backtests. It is produced on the same computation path (and the same fetched price rows) as PriceReaction, so both share the identical t0 definition.
+
+```text
+t0 = first trading day after event_date (same as PriceReaction)
+daily_return[k]   = close(t+k+1) / close(t+k) - 1        # per trading day, NOT cumulative vs t0
+daily_abnormal[k] = daily_return[k] - index_daily_return[k]
+```
+
+- Arrays cover t+1..t+60 trading days at most; the length is the number of trading days available so far (0..60). Values are rounded to 6 decimals.
+- `daily_abnormal` has the same length as `daily_return` and uses the same index selection as the `abnormal_return_Nd` snapshot fields (KOSPI or KOSDAQ index via kis_proxy) with the same positional trading-day alignment from the index's own t0. Entries are null where the index data is unavailable.
+- `data_quality` is `complete` when all 60 days exist, otherwise `partial`. Events with no post-event price data at all get no series record (there is no `missing` placeholder row).
+- Incremental builds merge by `event_id`: a recalculated event replaces its series, series of deduped/removed events are dropped, and an event whose recalculation produced no series keeps its previous series (historical daily returns cannot change).
+- The daily scheduled run only recalculates the usual recent window (`--price-reaction-scope recent`). `--price-reaction-scope missing-series` additionally recalculates events that have a reaction but no stored series (one-off backfill), and `--price-reaction-scope all` recalculates every event.
+
+### CAR curves (car_curves.json, optional)
+
+Mean cumulative abnormal return curves aggregated per `event_type` x market group (`ALL`, `KOSPI`, `KOSDAQ`). This file is a pure derivative: it is re-aggregated from `reaction_series.json` + `events.json` on every build and never merged with a previously stored aggregate.
+
+```text
+CAR_k(event)     = sum(daily_abnormal[0..k])             # cumulative sum, stops at the first null entry
+mean_car[k]      = mean of CAR_k over the group's events that still have data at k
+```
+
+- `mean_car` always has length `window` (60); entries are null at depths where no event in the group has data.
+- Events with a shorter series simply drop out of deeper `k` buckets instead of being zero-filled; `n` counts the group's events contributing at least one abnormal data point.
+- Groups with fewer than `min_events` (5) contributing events are omitted.
+
+Both files are optional: datasets built before series tracking keep validating cleanly, and `data_status.json` reports `reaction_series_count`, `car_groups_count`, plus a warning with the number of events that still lack a series.
+
 ## Event Scale
 
 Preferred event scale:
