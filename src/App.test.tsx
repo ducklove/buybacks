@@ -8,6 +8,13 @@ const okResponse = (payload: unknown) =>
     json: () => Promise.resolve(payload)
   } as Response);
 
+const notFoundResponse = () =>
+  Promise.resolve({
+    ok: false,
+    status: 404,
+    json: () => Promise.resolve(null)
+  } as Response);
+
 describe("App", () => {
   it("renders the primary dashboard after static JSON loads", async () => {
     vi.stubGlobal("fetch", (input: RequestInfo | URL) => {
@@ -110,12 +117,12 @@ describe("App", () => {
           }
         ]);
       }
-      if (url.endsWith("executions.json")) {
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          json: () => Promise.resolve(null)
-        } as Response);
+      if (
+        url.endsWith("executions.json") ||
+        url.endsWith("reaction_series.json") ||
+        url.endsWith("car_curves.json")
+      ) {
+        return notFoundResponse();
       }
       return okResponse({
         generated_at: "2026-06-20T00:00:00+09:00",
@@ -200,12 +207,12 @@ describe("App", () => {
       if (url.endsWith("price_reactions.json")) {
         return okResponse([]);
       }
-      if (url.endsWith("latest_prices.json")) {
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          json: () => Promise.resolve(null)
-        } as Response);
+      if (
+        url.endsWith("latest_prices.json") ||
+        url.endsWith("reaction_series.json") ||
+        url.endsWith("car_curves.json")
+      ) {
+        return notFoundResponse();
       }
       if (url.endsWith("executions.json")) {
         return okResponse([
@@ -291,5 +298,84 @@ describe("App", () => {
     expect(screen.getAllByText("완료").length).toBeGreaterThan(0);
     expect(screen.getByText("미연결 결과보고서")).toBeInTheDocument();
     expect(screen.getByText("미달")).toBeInTheDocument();
+  });
+
+  it("renders the analysis section as empty states when reaction_series and car_curves are absent", async () => {
+    vi.stubGlobal("fetch", (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.endsWith("companies.json")) {
+        return okResponse([
+          {
+            corp_code: "00126380",
+            stock_code: "005930",
+            corp_name: "삼성전자",
+            market: "KOSPI",
+            sector: "반도체",
+            last_updated: "2026-06-20"
+          }
+        ]);
+      }
+      if (url.endsWith("events.json")) {
+        return okResponse([
+          {
+            event_id: "event-1",
+            corp_code: "00126380",
+            stock_code: "005930",
+            corp_name: "삼성전자",
+            event_type: "direct_acquisition",
+            disclosure_date: "2026-05-22",
+            decision_date: "2026-05-22",
+            period_start: null,
+            period_end: null,
+            planned_shares_common: 10,
+            planned_shares_other: null,
+            planned_amount_krw: 1000,
+            actual_shares: null,
+            actual_amount_krw: null,
+            method: null,
+            purpose: null,
+            broker: null,
+            holding_before_common: null,
+            holding_before_ratio_common: null,
+            source: "MANUAL",
+            rcept_no: null,
+            source_url: null,
+            raw_report_name: null
+          }
+        ]);
+      }
+      if (url.endsWith("holding_snapshots.json") || url.endsWith("price_reactions.json")) {
+        return okResponse([]);
+      }
+      if (
+        url.endsWith("latest_prices.json") ||
+        url.endsWith("executions.json") ||
+        url.endsWith("reaction_series.json") ||
+        url.endsWith("car_curves.json")
+      ) {
+        return notFoundResponse();
+      }
+      return okResponse({
+        generated_at: "2026-06-20T00:00:00+09:00",
+        dart_available: false,
+        krx_available: false,
+        companies_count: 1,
+        events_count: 1,
+        holdings_count: 0,
+        price_reactions_count: 0,
+        warnings: []
+      });
+    });
+
+    render(<App />);
+    expect(await screen.findByText("자사주 매입·처분·소각 분석")).toBeInTheDocument();
+    // 분석 섹션과 네비게이션은 데이터 부재 시에도 렌더된다
+    expect(screen.getByRole("button", { name: "분석" })).toBeInTheDocument();
+    expect(screen.getByText("CAR 곡선")).toBeInTheDocument();
+    expect(screen.getByText("간이 백테스트")).toBeInTheDocument();
+    expect(screen.getAllByText(/가격 시계열 보강 후 표시됩니다/)).toHaveLength(2);
+    // 나머지 대시보드는 기존과 동일하게 동작한다
+    expect(screen.getByText("이벤트 탐색기")).toBeInTheDocument();
+    expect(screen.getAllByText("삼성전자").length).toBeGreaterThan(0);
   });
 });

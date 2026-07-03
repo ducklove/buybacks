@@ -3,10 +3,12 @@ import type {
   BuybackEvent,
   BuybackExecution,
   BuybacksDataset,
+  CarCurves,
   Company,
   DataStatus,
   LatestPriceSnapshot,
   PriceReaction,
+  ReactionSeries,
   TreasuryHoldingSnapshot
 } from "../types/buybacks";
 
@@ -43,20 +45,37 @@ async function fetchOptionalJson<T>(fileName: string, fallback: T): Promise<T> {
   if (!response.ok) {
     throw new Error(loadErrorMessage(fileName, response.status));
   }
+  // 개발 서버(SPA fallback)는 없는 파일에 404 대신 index.html 을 반환할 수 있다.
+  // JSON 이 아닌 응답은 파일 부재로 간주한다.
+  const contentType = response.headers?.get("content-type") ?? "";
+  if (contentType.includes("text/html")) {
+    return fallback;
+  }
   return (await response.json()) as T;
 }
 
 export async function loadBuybacksDataset(): Promise<BuybacksDataset> {
-  const [companies, events, holdingSnapshots, priceReactions, latestPrices, executions, status] =
-    await Promise.all([
-      fetchJson<Company[]>("companies.json"),
-      fetchJson<BuybackEvent[]>("events.json"),
-      fetchJson<TreasuryHoldingSnapshot[]>("holding_snapshots.json"),
-      fetchJson<PriceReaction[]>("price_reactions.json"),
-      fetchOptionalJson<LatestPriceSnapshot[]>("latest_prices.json", []),
-      fetchOptionalJson<BuybackExecution[]>("executions.json", []),
-      fetchJson<DataStatus>("data_status.json")
-    ]);
+  const [
+    companies,
+    events,
+    holdingSnapshots,
+    priceReactions,
+    latestPrices,
+    executions,
+    reactionSeries,
+    carCurves,
+    status
+  ] = await Promise.all([
+    fetchJson<Company[]>("companies.json"),
+    fetchJson<BuybackEvent[]>("events.json"),
+    fetchJson<TreasuryHoldingSnapshot[]>("holding_snapshots.json"),
+    fetchJson<PriceReaction[]>("price_reactions.json"),
+    fetchOptionalJson<LatestPriceSnapshot[]>("latest_prices.json", []),
+    fetchOptionalJson<BuybackExecution[]>("executions.json", []),
+    fetchOptionalJson<ReactionSeries[]>("reaction_series.json", []),
+    fetchOptionalJson<CarCurves | null>("car_curves.json", null),
+    fetchJson<DataStatus>("data_status.json")
+  ]);
 
   const dataset: BuybacksDataset = {
     companies,
@@ -65,6 +84,8 @@ export async function loadBuybacksDataset(): Promise<BuybacksDataset> {
     priceReactions,
     latestPrices,
     executions,
+    reactionSeries,
+    carCurves,
     status
   };
   const errors = validateDataset(dataset);

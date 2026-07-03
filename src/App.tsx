@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { AnalysisSection } from "./components/AnalysisSection";
 import { CompanyDetail } from "./components/CompanyDetail";
 import { DashboardCharts } from "./components/DashboardCharts";
 import { DataStatusBanner } from "./components/DataStatusBanner";
@@ -143,6 +144,13 @@ function App() {
           events={filteredEvents}
           holdings={latestHoldings}
           reactions={filteredPriceReactions}
+        />
+
+        <AnalysisSection
+          carCurves={dataset.carCurves ?? null}
+          reactionSeries={dataset.reactionSeries ?? []}
+          events={dataset.events}
+          companies={dataset.companies}
         />
 
         <EventTable

@@ -257,4 +257,135 @@ describe("validateDataset", () => {
     expect(errors).toContain("executions[1] duplicate execution_id");
     expect(errors).toContain("executions[0] unknown linked_event_id missing-event");
   });
+
+  it("accepts valid optional reaction series and CAR curves", () => {
+    const dataset = {
+      companies: [],
+      events: [],
+      holdingSnapshots: [],
+      priceReactions: [],
+      latestPrices: [],
+      executions: [],
+      reactionSeries: [
+        {
+          event_id: "event-1",
+          stock_code: "005930",
+          event_date: "2026-05-22",
+          t0_date: "2026-05-25",
+          daily_return: [0.01, -0.002],
+          daily_abnormal: [0.008, null],
+          data_quality: "partial"
+        }
+      ],
+      carCurves: {
+        window: 60,
+        min_events: 5,
+        groups: [
+          {
+            event_type: "direct_acquisition",
+            market: "ALL",
+            n: 12,
+            mean_car: Array.from({ length: 60 }, (_, index) => (index % 7 === 0 ? null : 0.001))
+          }
+        ]
+      },
+      status: {
+        generated_at: "2026-06-20T00:00:00+09:00",
+        dart_available: false,
+        krx_available: false,
+        companies_count: 0,
+        events_count: 0,
+        holdings_count: 0,
+        price_reactions_count: 0,
+        warnings: []
+      }
+    } as unknown as BuybacksDataset;
+
+    expect(validateDataset(dataset)).toEqual([]);
+  });
+
+  it("skips optional validation when the files are absent", () => {
+    const dataset = {
+      companies: [],
+      events: [],
+      holdingSnapshots: [],
+      priceReactions: [],
+      latestPrices: [],
+      executions: [],
+      reactionSeries: [],
+      carCurves: null,
+      status: {
+        generated_at: "2026-06-20T00:00:00+09:00",
+        dart_available: false,
+        krx_available: false,
+        companies_count: 0,
+        events_count: 0,
+        holdings_count: 0,
+        price_reactions_count: 0,
+        warnings: []
+      }
+    } as unknown as BuybacksDataset;
+
+    expect(validateDataset(dataset)).toEqual([]);
+  });
+
+  it("reports malformed reaction series and CAR curve groups", () => {
+    const dataset = {
+      companies: [],
+      events: [],
+      holdingSnapshots: [],
+      priceReactions: [],
+      latestPrices: [],
+      executions: [],
+      reactionSeries: [
+        {
+          event_id: "dup-series",
+          stock_code: "005930",
+          event_date: "2026-05-22",
+          t0_date: "2026-05-25",
+          daily_return: Array.from({ length: 61 }, () => 0.001),
+          daily_abnormal: Array.from({ length: 61 }, () => 0.001),
+          data_quality: "partial"
+        },
+        {
+          event_id: "dup-series",
+          stock_code: "005930",
+          event_date: "2026-05-22",
+          t0_date: "2026-05-25",
+          daily_return: [0.01, 0.02],
+          daily_abnormal: [0.01],
+          data_quality: "partial"
+        }
+      ],
+      carCurves: {
+        window: 60,
+        min_events: 5,
+        groups: [
+          {
+            event_type: "direct_acquisition",
+            market: "KONEX",
+            n: 3,
+            mean_car: Array.from({ length: 61 }, () => 0.001)
+          }
+        ]
+      },
+      status: {
+        generated_at: "2026-06-20T00:00:00+09:00",
+        dart_available: false,
+        krx_available: false,
+        companies_count: 0,
+        events_count: 0,
+        holdings_count: 0,
+        price_reactions_count: 0,
+        warnings: []
+      }
+    } as unknown as BuybacksDataset;
+
+    const errors = validateDataset(dataset);
+    expect(errors).toContain("reactionSeries[0] daily_return longer than 60");
+    expect(errors).toContain("reactionSeries[1] duplicate event_id dup-series");
+    expect(errors).toContain("reactionSeries[1] daily_abnormal length must match daily_return");
+    expect(errors).toContain("carCurves.groups[0] invalid market");
+    expect(errors).toContain("carCurves.groups[0] mean_car longer than 60");
+  });
 });

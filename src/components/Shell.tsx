@@ -6,6 +6,7 @@ interface ShellProps {
 
 const navItems = [
   { label: "Dashboard", target: "dashboard" },
+  { label: "분석", target: "analysis" },
   { label: "Events", target: "events" },
   { label: "스크리너", target: "screener" },
   { label: "Company", target: "company" },

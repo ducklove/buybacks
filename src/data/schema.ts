@@ -1,4 +1,5 @@
 import {
+  CAR_MARKETS,
   DATA_QUALITIES,
   EVENT_TYPES,
   EXECUTION_TYPES,
@@ -6,6 +7,7 @@ import {
   MARKETS,
   SOURCES,
   type BuybacksDataset,
+  type CarMarket,
   type Company,
   type DataQuality,
   type EventType,
@@ -16,6 +18,9 @@ import {
 } from "../types/buybacks";
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+/** reaction_series/car_curves 배열의 최대 길이 (t+1..t+60 거래일) */
+export const REACTION_WINDOW_MAX = 60;
 
 function isOneOf<T extends readonly string[]>(value: unknown, allowed: T): value is T[number] {
   return typeof value === "string" && allowed.includes(value);
@@ -43,6 +48,10 @@ export function isExecutionType(value: unknown): value is ExecutionType {
 
 export function isLinkMethod(value: unknown): value is LinkMethod {
   return isOneOf(value, LINK_METHODS);
+}
+
+export function isCarMarket(value: unknown): value is CarMarket {
+  return isOneOf(value, CAR_MARKETS);
 }
 
 export function validateDataset(dataset: BuybacksDataset): string[] {
@@ -163,6 +172,9 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
     }
   });
 
+  validateReactionSeries(dataset, errors);
+  validateCarCurves(dataset, errors);
+
   if (dataset.status.companies_count !== dataset.companies.length) {
     errors.push("data_status.companies_count does not match companies length");
   }
@@ -171,6 +183,62 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
   }
 
   return errors;
+}
+
+function validateReactionSeries(dataset: BuybacksDataset, errors: string[]) {
+  if (dataset.reactionSeries === undefined) return;
+  if (!Array.isArray(dataset.reactionSeries)) {
+    errors.push("reactionSeries must be an array");
+    return;
+  }
+  const seriesEventIds = new Set<string>();
+  dataset.reactionSeries.forEach((series, index) => {
+    if (!series.event_id) errors.push(`reactionSeries[${index}] missing event_id`);
+    if (seriesEventIds.has(series.event_id)) {
+      errors.push(`reactionSeries[${index}] duplicate event_id ${series.event_id}`);
+    }
+    seriesEventIds.add(series.event_id);
+    if (!ISO_DATE.test(series.event_date)) {
+      errors.push(`reactionSeries[${index}] invalid event_date`);
+    }
+    if (!Array.isArray(series.daily_return) || !Array.isArray(series.daily_abnormal)) {
+      errors.push(`reactionSeries[${index}] daily arrays must be arrays`);
+      return;
+    }
+    if (series.daily_return.length > REACTION_WINDOW_MAX) {
+      errors.push(`reactionSeries[${index}] daily_return longer than ${REACTION_WINDOW_MAX}`);
+    }
+    if (series.daily_abnormal.length !== series.daily_return.length) {
+      errors.push(`reactionSeries[${index}] daily_abnormal length must match daily_return`);
+    }
+  });
+}
+
+function validateCarCurves(dataset: BuybacksDataset, errors: string[]) {
+  if (dataset.carCurves === undefined || dataset.carCurves === null) return;
+  const carCurves = dataset.carCurves;
+  if (!Array.isArray(carCurves.groups)) {
+    errors.push("carCurves.groups must be an array");
+    return;
+  }
+  if (typeof carCurves.window !== "number" || carCurves.window <= 0) {
+    errors.push("carCurves.window must be a positive number");
+  }
+  carCurves.groups.forEach((group, index) => {
+    if (!isCarMarket(group.market)) {
+      errors.push(`carCurves.groups[${index}] invalid market`);
+    }
+    if (typeof group.n !== "number" || group.n < 0) {
+      errors.push(`carCurves.groups[${index}] n must be a non-negative number`);
+    }
+    if (!Array.isArray(group.mean_car)) {
+      errors.push(`carCurves.groups[${index}] mean_car must be an array`);
+      return;
+    }
+    if (group.mean_car.length > REACTION_WINDOW_MAX) {
+      errors.push(`carCurves.groups[${index}] mean_car longer than ${REACTION_WINDOW_MAX}`);
+    }
+  });
 }
 
 function validateCompany(company: Company, index: number, errors: string[]) {

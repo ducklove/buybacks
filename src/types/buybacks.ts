@@ -113,6 +113,37 @@ export interface TreasuryHoldingSnapshot {
   source_rcept_no: string | null;
 }
 
+export const CAR_MARKETS = ["ALL", "KOSPI", "KOSDAQ"] as const;
+export type CarMarket = (typeof CAR_MARKETS)[number];
+
+/** 공시 후 t+1..t+60 거래일의 일별 수익률 시계열 (reaction_series.json, optional) */
+export interface ReactionSeries {
+  event_id: string;
+  stock_code: string;
+  event_date: string;
+  t0_date: string;
+  /** t+1..t+60 거래일의 일별 단순수익률. 항목은 항상 숫자, 길이 0~60 */
+  daily_return: number[];
+  /** daily_return 과 같은 길이. 지수 데이터가 없는 날은 null */
+  daily_abnormal: Array<number | null>;
+  data_quality: DataQuality;
+}
+
+/** 그룹별 평균 누적초과수익률 곡선 (car_curves.json, optional) */
+export interface CarCurveGroup {
+  event_type: EventType;
+  market: CarMarket;
+  n: number;
+  /** 길이 window(=60). 데이터 없는 k는 null */
+  mean_car: Array<number | null>;
+}
+
+export interface CarCurves {
+  window: number;
+  min_events: number;
+  groups: CarCurveGroup[];
+}
+
 export interface PriceReaction {
   event_id: string;
   stock_code: string;
@@ -156,6 +187,8 @@ export interface DataStatus {
   holdings_count: number;
   price_reactions_count: number;
   latest_prices_count?: number;
+  reaction_series_count?: number;
+  car_groups_count?: number;
   warnings: string[];
 }
 
@@ -166,6 +199,8 @@ export interface BuybacksDataset {
   priceReactions: PriceReaction[];
   latestPrices: LatestPriceSnapshot[];
   executions: BuybackExecution[];
+  reactionSeries?: ReactionSeries[];
+  carCurves?: CarCurves | null;
   status: DataStatus;
 }
 
