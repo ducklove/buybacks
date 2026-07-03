@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "run_id": "20260601-20260703-28634867397",
+  "state": "succeeded",
+  "start": "20260601",
+  "end": "20260703",
+  "progress_percent": 100,
+  "total_chunks": 3,
+  "completed_chunks": 3,
+  "started_at": "2026-07-03T02:41:43.335213+00:00",
+  "updated_at": "2026-07-03T02:54:29.230572+00:00",
+  "finished_at": "2026-07-03T02:54:29.230559+00:00",
+  "duration_seconds": 765.9,
+  "companies_count": 190,
+  "events_count": 241,
+  "duplicate_events_count": 224,
+  "new_events_count": 17,
+  "executions_count": 85,
+  "warnings": [
+    "20260608000431 execution report has no parsed actual shares/amount; fields kept null.",
+    "20260623800463 retirement detail fetch failed: DART HTML request failed: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>",
+    "20260617000475 execution report has no parsed actual shares/amount; fields kept null.",
+    "20260629000482 execution report has no parsed actual shares/amount; fields kept null."
+  ],
+  "error": null,
+  "merge_state": "merged",
+  "merged_at": "2026-07-03T02:54:29.485742+00:00",
+  "merge_new_events_count": 17,
+  "merge_duplicate_events_count": 224
+}
