@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260224003623",
+      "corp_cls": "K",
+      "corp_code": "00247975",
+      "corp_name": "솔브레인홀딩스",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "삼성증권\n(Samsung Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "881,163",
+      "aq_wtn_div_ostk_rt": "4.20",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "363,088",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "52,900",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "19,207,355,200",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 25일",
+      "dpprpd_edd": "2026년 02월 25일",
+      "dp_pp": "첨단신소재 공동개발 등을 위한\n전략적 제휴",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "363,088",
+      "dp_m_otc": "-",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 24일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260130000357",
+      "corp_cls": "Y",
+      "corp_code": "00547583",
+      "corp_name": "하나금융지주",
+      "od_a_at_t": "9",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "1,930,501",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "200,000,000,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 02월 02일",
+      "aqexpd_edd": "2026년 04월 30일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주주환원 및 기업가치 제고",
+      "aq_mth": "장내매수",
+      "cs_iv_bk": "하나증권(Hana Securities Co.,Ltd.)",
+      "aq_wtn_div_ostk": "8,298,066",
+      "aq_wtn_div_ostk_rt": "3.0",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 01월 30일",
+      "d1_prodlm_ostk": "193,050",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260226006947",
+      "corp_cls": "K",
+      "corp_code": "00210740",
+      "corp_name": "대화제약",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "909,209",
+      "aq_wtn_div_ostk_rt": "4.88",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "715,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "15,130",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "10,817,950,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 27일",
+      "dpprpd_edd": "2026년 02월 27일",
+      "dp_pp": "사업협력 관계 강화, 전략적 제휴 구축 및 중장기적 사업 시너지 창출 ",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "715,000",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 26일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

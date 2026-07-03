@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260109000643",
+      "corp_cls": "K",
+      "corp_code": "00497631",
+      "corp_name": "티플랙스",
+      "bddd": "2026년 01월 09일",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "신한투자증권\n(SHINHAN SECURITIES CO., LTD.)",
+      "aq_wtn_div_ostk": "1,528,057",
+      "aq_wtn_div_ostk_rt": "6.30",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "3,000,000,000",
+      "ctr_pd_bgd": "2026년 01월 12일",
+      "ctr_pd_edd": "2026년 05월 12일",
+      "ctr_pp": "주주가치제고",
+      "ctr_cns_int": "신한투자증권\n(SHINHAN SECURITIES CO., LTD.)",
+      "ctr_cns_prd": "2026년 01월 12일"
+    }
+  ]
+}

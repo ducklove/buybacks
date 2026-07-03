@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260513000321",
+      "corp_cls": "Y",
+      "corp_code": "00136457",
+      "corp_name": "SH에너지화학",
+      "bddd": "2026년 05월 13일",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "aq_wtn_div_ostk": "327,735",
+      "aq_wtn_div_ostk_rt": "2.9",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "2,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2025년 05월 15일",
+      "ctr_pd_bfcc_edd": "2026년 05월 15일",
+      "cc_pp": "신탁 계약기간 만료에 의한 해지",
+      "cc_int": "NH투자증권\n(NH INVESTMENT & SECURITIES CO., LTD.)",
+      "cc_prd": "2026년 05월 22일",
+      "tp_rm_atcc": "현금 및 실물(자사주)반환"
+    }
+  ]
+}

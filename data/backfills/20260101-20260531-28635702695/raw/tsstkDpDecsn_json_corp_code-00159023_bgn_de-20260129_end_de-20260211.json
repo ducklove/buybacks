@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260204000368",
+      "corp_cls": "Y",
+      "corp_code": "00159023",
+      "corp_name": "SK텔레콤",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "1,805,440",
+      "aq_wtn_div_ostk_rt": "0.84",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "195,245",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "56,860",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "11,101,630,700",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 12일",
+      "dpprpd_edd": "2027년 03월 25일",
+      "dp_pp": "주식매수선택권의 최초행사에 따른 동일 주주총회 부여물량 전체 공시",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "195,245",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 04일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

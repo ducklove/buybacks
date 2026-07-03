@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260311004042",
+      "corp_cls": "K",
+      "corp_code": "00788773",
+      "corp_name": "씨젠",
+      "od_a_at_t": "2",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "6,667,771",
+      "aq_wtn_div_ostk_rt": "12.8",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "5,195",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "2,747",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "22,350",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "61,395,450",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 03월 12일",
+      "dpprpd_edd": "2026년 04월 10일",
+      "dp_pp": "양도제한조건부주식(RSU) 부여에 따른 자기주식의 교부",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "2,747",
+      "dp_dd": "2026년 03월 11일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

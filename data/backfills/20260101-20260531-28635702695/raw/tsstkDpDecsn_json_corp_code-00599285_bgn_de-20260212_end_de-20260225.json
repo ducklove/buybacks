@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260213002603",
+      "corp_cls": "K",
+      "corp_code": "00599285",
+      "corp_name": "서플러스글로벌",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "2,517,128",
+      "aq_wtn_div_ostk_rt": "6.81",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "21,566",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "4,721",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "101,813,086",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 20일",
+      "dpprpd_edd": "2028년 02월 19일",
+      "dp_pp": "-",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "21,566",
+      "dp_dd": "2026년 02월 13일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260205000470",
+      "corp_cls": "K",
+      "corp_code": "00374738",
+      "corp_name": "위세아이텍",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "삼성증권\n(SAMSUNG SECURITIES Co.,Ltd.)",
+      "aq_wtn_div_ostk": "475,645",
+      "aq_wtn_div_ostk_rt": "6.44",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "753",
+      "eaq_ostk_rt": "0.01",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "45,371",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "6,250",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "283,568,750",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 05일",
+      "dpprpd_edd": "2026년 03월 05일",
+      "dp_pp": "임직원 양도제한조건부주식\n(RSU, Restricted Stock Unit) 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "45,371",
+      "dp_dd": "2026년 02월 05일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

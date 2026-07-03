@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260126000421",
+      "corp_cls": "Y",
+      "corp_code": "00108913",
+      "corp_name": "대교",
+      "od_a_at_t": "2",
+      "od_a_at_b": "1",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "NH투자증권\n\n(NHINVESTMENT & SECURITIES CO.,LTD)",
+      "aq_wtn_div_ostk": "15,311,880",
+      "aq_wtn_div_ostk_rt": "18.1",
+      "aq_wtn_div_estk": "5,652,913",
+      "aq_wtn_div_estk_rt": "29.1",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "-",
+      "dppln_stk_estk": "107,730",
+      "dpstk_prc_ostk": "-",
+      "dpstk_prc_estk": "1,182",
+      "dppln_prc_ostk": "-",
+      "dppln_prc_estk": "127,336,860",
+      "dpprpd_bgd": "2026년 01월 29일",
+      "dpprpd_edd": "2026년 01월 30일",
+      "dp_pp": "2025년 교학상장 Award 우수구성원 포상",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "107,730",
+      "dp_dd": "2026년 01월 26일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

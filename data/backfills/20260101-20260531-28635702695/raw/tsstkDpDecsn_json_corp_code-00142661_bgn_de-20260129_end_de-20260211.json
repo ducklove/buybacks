@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260205000499",
+      "corp_cls": "Y",
+      "corp_code": "00142661",
+      "corp_name": "우성",
+      "od_a_at_t": "3",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "518,100",
+      "aq_wtn_div_ostk_rt": "16.8",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "5,144",
+      "eaq_ostk_rt": "0.2",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "27,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "18,090",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "488,430,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 05일",
+      "dpprpd_edd": "2026년 02월 12일",
+      "dp_pp": "직원 성과 보상\n(우리사주조합 무상출연)",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "27,000",
+      "dp_dd": "2026년 02월 05일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

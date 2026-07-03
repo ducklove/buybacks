@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260224004473",
+      "corp_cls": "K",
+      "corp_code": "00351807",
+      "corp_name": "대원미디어",
+      "od_a_at_t": "1",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "한국예탁결제원",
+      "aq_wtn_div_ostk": "494,532",
+      "aq_wtn_div_ostk_rt": "3.9",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "251,579",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "7,930",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "1,995,021,470",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "-",
+      "dpprpd_edd": "-",
+      "dp_pp": "자기주식 현물배당(결산배당)",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "251,579",
+      "dp_dd": "-",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260212000962",
+      "corp_cls": "Y",
+      "corp_code": "00127167",
+      "corp_name": "삼영무역",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "KB국민은행 증권대행사업부",
+      "aq_wtn_div_ostk": "722,844",
+      "aq_wtn_div_ostk_rt": "3.9",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "180,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "17,910",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "3,223,800,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 03월 27일",
+      "dpprpd_edd": "2026년 04월 26일",
+      "dp_pp": "결산배당",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "180,000",
+      "dp_dd": "2026년 02월 12일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

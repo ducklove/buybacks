@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260309001597",
+      "corp_cls": "Y",
+      "corp_code": "00110893",
+      "corp_name": "대신증권",
+      "od_a_at_t": "5",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "-",
+      "aqpln_stk_estk": "2,091,253",
+      "aqpln_prc_ostk": "-",
+      "aqpln_prc_estk": "117,628,778,112",
+      "aqexpd_bgd": "2026년 03월 30일",
+      "aqexpd_edd": "2026년 03월 30일",
+      "hdexpd_bgd": "2026년 03월 30일",
+      "hdexpd_edd": "2026년 03월 30일",
+      "aq_pp": "상환전환우선주(RCPS) Tranche B (4우선주) 상환 결정에 따른 자기주식 취득 및 소각",
+      "aq_mth": "장외직접매수",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "12,289,996",
+      "aq_wtn_div_ostk_rt": "24.2",
+      "aq_wtn_div_estk": "6,030,000",
+      "aq_wtn_div_estk_rt": "13.8",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 03월 09일",
+      "d1_prodlm_ostk": "-",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

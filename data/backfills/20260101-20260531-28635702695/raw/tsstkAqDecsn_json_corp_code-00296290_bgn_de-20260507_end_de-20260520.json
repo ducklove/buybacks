@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260514000710",
+      "corp_cls": "Y",
+      "corp_code": "00296290",
+      "corp_name": "키움증권",
+      "od_a_at_t": "4",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "-",
+      "aqpln_stk_estk": "166,206",
+      "aqpln_prc_ostk": "-",
+      "aqpln_prc_estk": "40,000,028,652",
+      "aqexpd_bgd": "2026년 06월 30일",
+      "aqexpd_edd": "2026년 06월 30일",
+      "hdexpd_bgd": "2026년 06월 30일",
+      "hdexpd_edd": "2026년 07월 07일",
+      "aq_pp": "상환권 행사를 통한 보통주 가치\n희석 방지(주주가치 제고)및\n자본구조 최적화",
+      "aq_mth": "기타(상환전환우선주 \n상환 약정에 따른 장외 직접 취득)",
+      "cs_iv_bk": "키움증권(주)\n(KIWOOM Securities Co., Ltd)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 05월 14일",
+      "d1_prodlm_ostk": "-",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

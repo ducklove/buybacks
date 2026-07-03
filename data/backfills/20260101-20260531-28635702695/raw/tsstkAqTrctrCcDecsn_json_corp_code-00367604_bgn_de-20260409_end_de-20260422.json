@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260413003122",
+      "corp_cls": "K",
+      "corp_code": "00367604",
+      "corp_name": "SM Life Design",
+      "bddd": "2026년 04월 13일",
+      "od_a_at_t": "-",
+      "od_a_at_b": "1",
+      "adt_a_atn": "참석",
+      "aq_wtn_div_ostk": "709,790",
+      "aq_wtn_div_ostk_rt": "1.5",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "1,100,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2026년 03월 24일",
+      "ctr_pd_bfcc_edd": "2026년 09월 23일",
+      "cc_pp": "자기주식 취득 완료에 따른 중도해지",
+      "cc_int": "IBK투자증권\n(IBK SECURITIES CO., LTD.)",
+      "cc_prd": "2026년 04월 13일",
+      "tp_rm_atcc": "현금 및 실물(자사주) 반환"
+    }
+  ]
+}

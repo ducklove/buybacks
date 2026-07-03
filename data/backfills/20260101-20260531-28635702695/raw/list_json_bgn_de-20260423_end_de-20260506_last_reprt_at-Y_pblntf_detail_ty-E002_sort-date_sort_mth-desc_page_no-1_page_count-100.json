@@ -1,0 +1,153 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 1,
+  "page_count": 100,
+  "total_count": 13,
+  "total_page": 1,
+  "list": [
+    {
+      "corp_code": "00170558",
+      "corp_name": "코웨이",
+      "stock_code": "021240",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260506000504",
+      "flr_nm": "코웨이",
+      "rcept_dt": "20260506",
+      "rm": ""
+    },
+    {
+      "corp_code": "00170558",
+      "corp_name": "코웨이",
+      "stock_code": "021240",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260506000448",
+      "flr_nm": "코웨이",
+      "rcept_dt": "20260506",
+      "rm": ""
+    },
+    {
+      "corp_code": "00204262",
+      "corp_name": "한글과컴퓨터",
+      "stock_code": "030520",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260506000395",
+      "flr_nm": "한글과컴퓨터",
+      "rcept_dt": "20260506",
+      "rm": ""
+    },
+    {
+      "corp_code": "00401731",
+      "corp_name": "LG전자",
+      "stock_code": "066570",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260506000271",
+      "flr_nm": "LG전자",
+      "rcept_dt": "20260506",
+      "rm": ""
+    },
+    {
+      "corp_code": "01663569",
+      "corp_name": "하스",
+      "stock_code": "450330",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260504000274",
+      "flr_nm": "하스",
+      "rcept_dt": "20260504",
+      "rm": ""
+    },
+    {
+      "corp_code": "00641171",
+      "corp_name": "인지소프트",
+      "stock_code": "100030",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260504000219",
+      "flr_nm": "인지소프트",
+      "rcept_dt": "20260504",
+      "rm": ""
+    },
+    {
+      "corp_code": "00182696",
+      "corp_name": "대한조선",
+      "stock_code": "439260",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260429000799",
+      "flr_nm": "대한조선",
+      "rcept_dt": "20260429",
+      "rm": ""
+    },
+    {
+      "corp_code": "00182696",
+      "corp_name": "대한조선",
+      "stock_code": "439260",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260429000746",
+      "flr_nm": "대한조선",
+      "rcept_dt": "20260429",
+      "rm": ""
+    },
+    {
+      "corp_code": "00442145",
+      "corp_name": "아바코",
+      "stock_code": "083930",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260428000535",
+      "flr_nm": "아바코",
+      "rcept_dt": "20260428",
+      "rm": ""
+    },
+    {
+      "corp_code": "00138446",
+      "corp_name": "아가방컴퍼니",
+      "stock_code": "013990",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260427000134",
+      "flr_nm": "아가방컴퍼니",
+      "rcept_dt": "20260427",
+      "rm": ""
+    },
+    {
+      "corp_code": "01003040",
+      "corp_name": "케이사인",
+      "stock_code": "192250",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260427000113",
+      "flr_nm": "케이사인",
+      "rcept_dt": "20260427",
+      "rm": ""
+    },
+    {
+      "corp_code": "00117966",
+      "corp_name": "동원개발",
+      "stock_code": "013120",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260423000510",
+      "flr_nm": "동원개발",
+      "rcept_dt": "20260423",
+      "rm": ""
+    },
+    {
+      "corp_code": "00692254",
+      "corp_name": "아이패밀리에스씨",
+      "stock_code": "114840",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260423000255",
+      "flr_nm": "아이패밀리에스씨",
+      "rcept_dt": "20260423",
+      "rm": ""
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260129000359",
+      "corp_cls": "Y",
+      "corp_code": "00401731",
+      "corp_name": "LG전자",
+      "bddd": "2026년 01월 29일",
+      "od_a_at_t": "4",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "NH투자증권 (NH INVESTMENT & SECURITIES CO., LTD.)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1,749",
+      "eaq_ostk_rt": "0.00",
+      "eaq_estk": "4,693",
+      "eaq_estk_rt": "0.03",
+      "ctr_prc": "100,000,000,000",
+      "ctr_pd_bgd": "2026년 02월 02일",
+      "ctr_pd_edd": "2026년 09월 30일",
+      "ctr_pp": "주주가치 제고",
+      "ctr_cns_int": "NH투자증권 (NH INVESTMENT & SECURITIES CO., LTD.)",
+      "ctr_cns_prd": "2026년 02월 02일"
+    }
+  ]
+}

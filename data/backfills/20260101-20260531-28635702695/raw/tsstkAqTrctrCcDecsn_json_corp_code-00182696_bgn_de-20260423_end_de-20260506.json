@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260428000299",
+      "corp_cls": "Y",
+      "corp_code": "00182696",
+      "corp_name": "대한조선",
+      "bddd": "2026년 04월 28일",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "437,582",
+      "aq_wtn_div_ostk_rt": "1.1",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "40,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2026년 03월 11일",
+      "ctr_pd_bfcc_edd": "2026년 06월 10일",
+      "cc_pp": "자기주식 취득 완료에 따른 중도 해지",
+      "cc_int": "케이비증권\n\n(KB Securities co.Ltd.)",
+      "cc_prd": "2026년 04월 29일",
+      "tp_rm_atcc": "현금 및 실물(자사주)반환"
+    }
+  ]
+}

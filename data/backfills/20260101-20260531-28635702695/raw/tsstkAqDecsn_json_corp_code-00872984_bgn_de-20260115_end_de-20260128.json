@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260120000101",
+      "corp_cls": "Y",
+      "corp_code": "00872984",
+      "corp_name": "이마트",
+      "od_a_at_t": "4",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "900",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "73,980,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 01월 21일",
+      "aqexpd_edd": "2026년 01월 22일",
+      "hdexpd_bgd": "2026년 01월 21일",
+      "hdexpd_edd": "2026년 01월 26일",
+      "aq_pp": "임원 RSU 상여 보상",
+      "aq_mth": "장내취득",
+      "cs_iv_bk": "신한투자증권(주)\n(Shinhan Securities Co.,Ltd.)",
+      "aq_wtn_div_ostk": "795,824",
+      "aq_wtn_div_ostk_rt": "2.9",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "11,642",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 01월 20일",
+      "d1_prodlm_ostk": "43,445",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

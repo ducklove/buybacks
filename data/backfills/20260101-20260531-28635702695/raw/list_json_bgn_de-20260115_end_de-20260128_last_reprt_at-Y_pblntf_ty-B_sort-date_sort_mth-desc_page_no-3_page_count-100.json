@@ -1,0 +1,153 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 3,
+  "page_count": 100,
+  "total_count": 213,
+  "total_page": 3,
+  "list": [
+    {
+      "corp_code": "00233653",
+      "corp_name": "한국토지신탁",
+      "stock_code": "034830",
+      "corp_cls": "Y",
+      "report_nm": "주요사항보고서(자기주식취득신탁계약해지결정)",
+      "rcept_no": "20260115000371",
+      "flr_nm": "한국토지신탁",
+      "rcept_dt": "20260115",
+      "rm": ""
+    },
+    {
+      "corp_code": "00233653",
+      "corp_name": "한국토지신탁",
+      "stock_code": "034830",
+      "corp_cls": "Y",
+      "report_nm": "주요사항보고서(자기주식취득신탁계약해지결정)",
+      "rcept_no": "20260115000365",
+      "flr_nm": "한국토지신탁",
+      "rcept_dt": "20260115",
+      "rm": ""
+    },
+    {
+      "corp_code": "01694903",
+      "corp_name": "뷰텔",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "[기재정정]주요사항보고서(유상증자결정)",
+      "rcept_no": "20260115000407",
+      "flr_nm": "뷰텔",
+      "rcept_dt": "20260115",
+      "rm": ""
+    },
+    {
+      "corp_code": "00145437",
+      "corp_name": "아센디오",
+      "stock_code": "012170",
+      "corp_cls": "Y",
+      "report_nm": "[기재정정]주요사항보고서(유상증자결정)",
+      "rcept_no": "20260115000313",
+      "flr_nm": "아센디오",
+      "rcept_dt": "20260115",
+      "rm": ""
+    },
+    {
+      "corp_code": "01011526",
+      "corp_name": "엔켐",
+      "stock_code": "348370",
+      "corp_cls": "K",
+      "report_nm": "[기재정정]주요사항보고서(자기전환사채매도결정)",
+      "rcept_no": "20260115000214",
+      "flr_nm": "엔켐",
+      "rcept_dt": "20260115",
+      "rm": ""
+    },
+    {
+      "corp_code": "01107665",
+      "corp_name": "크리스탈신소재",
+      "stock_code": "900250",
+      "corp_cls": "K",
+      "report_nm": "[기재정정]주요사항보고서(유상증자결정)",
+      "rcept_no": "20260115000201",
+      "flr_nm": "크리스탈신소재",
+      "rcept_dt": "20260115",
+      "rm": ""
+    },
+    {
+      "corp_code": "00453284",
+      "corp_name": "교촌에프앤비",
+      "stock_code": "339770",
+      "corp_cls": "Y",
+      "report_nm": "주요사항보고서(자기주식취득신탁계약체결결정)",
+      "rcept_no": "20260115000181",
+      "flr_nm": "교촌에프앤비",
+      "rcept_dt": "20260115",
+      "rm": ""
+    },
+    {
+      "corp_code": "00127200",
+      "corp_name": "삼영전자공업",
+      "stock_code": "005680",
+      "corp_cls": "Y",
+      "report_nm": "주요사항보고서(자기주식처분결정)",
+      "rcept_no": "20260115000168",
+      "flr_nm": "삼영전자공업",
+      "rcept_dt": "20260115",
+      "rm": ""
+    },
+    {
+      "corp_code": "00598037",
+      "corp_name": "캐처스",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "비유동자산취득결정",
+      "rcept_no": "20260115000119",
+      "flr_nm": "캐처스",
+      "rcept_dt": "20260115",
+      "rm": "공"
+    },
+    {
+      "corp_code": "01110474",
+      "corp_name": "풍전약품",
+      "stock_code": "298060",
+      "corp_cls": "K",
+      "report_nm": "[첨부정정]주요사항보고서(회사합병결정)",
+      "rcept_no": "20260115000106",
+      "flr_nm": "풍전약품",
+      "rcept_dt": "20260115",
+      "rm": ""
+    },
+    {
+      "corp_code": "01139035",
+      "corp_name": "티에스아이",
+      "stock_code": "277880",
+      "corp_cls": "K",
+      "report_nm": "주요사항보고서(자기주식취득결정)",
+      "rcept_no": "20260115000108",
+      "flr_nm": "티에스아이",
+      "rcept_dt": "20260115",
+      "rm": ""
+    },
+    {
+      "corp_code": "00306162",
+      "corp_name": "상상인",
+      "stock_code": "038540",
+      "corp_cls": "K",
+      "report_nm": "주요사항보고서(자기주식취득신탁계약체결결정)",
+      "rcept_no": "20260115000102",
+      "flr_nm": "상상인",
+      "rcept_dt": "20260115",
+      "rm": ""
+    },
+    {
+      "corp_code": "00997812",
+      "corp_name": "코미코",
+      "stock_code": "183300",
+      "corp_cls": "K",
+      "report_nm": "주요사항보고서(자기주식처분결정)",
+      "rcept_no": "20260115000050",
+      "flr_nm": "코미코",
+      "rcept_dt": "20260115",
+      "rm": ""
+    }
+  ]
+}

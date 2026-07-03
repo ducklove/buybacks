@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260109000294",
+      "corp_cls": "Y",
+      "corp_code": "00102113",
+      "corp_name": "경인양행",
+      "bddd": "-",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "748,597",
+      "aq_wtn_div_ostk_rt": "1.80",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "1,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2025년 01월 10일",
+      "ctr_pd_bfcc_edd": "2026년 01월 09일",
+      "cc_pp": "신탁계약 기간 만료에 의한 해지",
+      "cc_int": "하나증권 주식회사\n(Hana Securities CO.,LTD)",
+      "cc_prd": "2026년 01월 09일",
+      "tp_rm_atcc": "현금 및 실물(자기주식) 반환"
+    }
+  ]
+}

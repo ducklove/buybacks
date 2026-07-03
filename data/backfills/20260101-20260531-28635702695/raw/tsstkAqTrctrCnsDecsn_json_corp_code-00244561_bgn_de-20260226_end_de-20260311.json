@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260309001469",
+      "corp_cls": "K",
+      "corp_code": "00244561",
+      "corp_name": "그래디언트",
+      "bddd": "2026년 03월 09일",
+      "od_a_at_t": "3",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "삼성증권\n(Samsung Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "2,245,314",
+      "aq_wtn_div_ostk_rt": "16.42",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "3,000,000,000",
+      "ctr_pd_bgd": "2026년 03월 10일",
+      "ctr_pd_edd": "2026년 06월 10일",
+      "ctr_pp": "주주가치 제고를 위한 소각목적 취득",
+      "ctr_cns_int": "삼성증권\n(Samsung Securities Co., Ltd.)",
+      "ctr_cns_prd": "2026년 03월 10일"
+    }
+  ]
+}

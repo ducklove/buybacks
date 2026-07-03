@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260210000847",
+      "corp_cls": "K",
+      "corp_code": "01035368",
+      "corp_name": "티에프이",
+      "od_a_at_t": "2",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "357,918",
+      "aq_wtn_div_ostk_rt": "2.99",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "48,200",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "43,050",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "2,075,010,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 12일",
+      "dpprpd_edd": "2026년 02월 12일",
+      "dp_pp": "임직원 대상 자기주식 상여 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "48,200",
+      "dp_dd": "2026년 02월 10일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

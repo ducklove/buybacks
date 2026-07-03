@@ -1,0 +1,197 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 3,
+  "page_count": 100,
+  "total_count": 217,
+  "total_page": 3,
+  "list": [
+    {
+      "corp_code": "00299659",
+      "corp_name": "메가박스중앙",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "타인을위한채무보증결정",
+      "rcept_no": "20260326000881",
+      "flr_nm": "메가박스중앙",
+      "rcept_dt": "20260326",
+      "rm": "공"
+    },
+    {
+      "corp_code": "00904672",
+      "corp_name": "넷마블",
+      "stock_code": "251270",
+      "corp_cls": "Y",
+      "report_nm": "[첨부정정]주요사항보고서(주식교환ㆍ이전결정)",
+      "rcept_no": "20260326000792",
+      "flr_nm": "넷마블",
+      "rcept_dt": "20260326",
+      "rm": ""
+    },
+    {
+      "corp_code": "01246858",
+      "corp_name": "플레이리스트",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "[기재정정]유상증자결정",
+      "rcept_no": "20260326000765",
+      "flr_nm": "플레이리스트",
+      "rcept_dt": "20260326",
+      "rm": "공"
+    },
+    {
+      "corp_code": "01211232",
+      "corp_name": "코윈테크",
+      "stock_code": "282880",
+      "corp_cls": "K",
+      "report_nm": "주요사항보고서(자기주식처분결정)",
+      "rcept_no": "20260326000670",
+      "flr_nm": "코윈테크",
+      "rcept_dt": "20260326",
+      "rm": ""
+    },
+    {
+      "corp_code": "00247513",
+      "corp_name": "테라닉스",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "감자결정",
+      "rcept_no": "20260326000616",
+      "flr_nm": "테라닉스",
+      "rcept_dt": "20260326",
+      "rm": "공"
+    },
+    {
+      "corp_code": "01246858",
+      "corp_name": "플레이리스트",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "[기재정정]유상증자결정",
+      "rcept_no": "20260326000615",
+      "flr_nm": "플레이리스트",
+      "rcept_dt": "20260326",
+      "rm": "공"
+    },
+    {
+      "corp_code": "00521099",
+      "corp_name": "행복나래",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "증여결정",
+      "rcept_no": "20260326000499",
+      "flr_nm": "행복나래",
+      "rcept_dt": "20260326",
+      "rm": "공"
+    },
+    {
+      "corp_code": "00521099",
+      "corp_name": "행복나래",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "증여결정",
+      "rcept_no": "20260326000482",
+      "flr_nm": "행복나래",
+      "rcept_dt": "20260326",
+      "rm": "공"
+    },
+    {
+      "corp_code": "00521099",
+      "corp_name": "행복나래",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "증여결정",
+      "rcept_no": "20260326000469",
+      "flr_nm": "행복나래",
+      "rcept_dt": "20260326",
+      "rm": "공"
+    },
+    {
+      "corp_code": "00109286",
+      "corp_name": "대동",
+      "stock_code": "000490",
+      "corp_cls": "Y",
+      "report_nm": "주요사항보고서(자기주식처분결정)",
+      "rcept_no": "20260326000417",
+      "flr_nm": "대동",
+      "rcept_dt": "20260326",
+      "rm": ""
+    },
+    {
+      "corp_code": "00139472",
+      "corp_name": "애경자산관리",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "[기재정정]비유동자산처분결정",
+      "rcept_no": "20260326000370",
+      "flr_nm": "애경자산관리",
+      "rcept_dt": "20260326",
+      "rm": "공"
+    },
+    {
+      "corp_code": "01563667",
+      "corp_name": "더즌",
+      "stock_code": "462860",
+      "corp_cls": "K",
+      "report_nm": "주요사항보고서(자기주식취득결정)",
+      "rcept_no": "20260326000258",
+      "flr_nm": "더즌",
+      "rcept_dt": "20260326",
+      "rm": ""
+    },
+    {
+      "corp_code": "00860332",
+      "corp_name": "메리츠금융지주",
+      "stock_code": "138040",
+      "corp_cls": "Y",
+      "report_nm": "주요사항보고서(자기주식취득신탁계약체결결정)",
+      "rcept_no": "20260326000277",
+      "flr_nm": "메리츠금융지주",
+      "rcept_dt": "20260326",
+      "rm": ""
+    },
+    {
+      "corp_code": "00860332",
+      "corp_name": "메리츠금융지주",
+      "stock_code": "138040",
+      "corp_cls": "Y",
+      "report_nm": "주요사항보고서(자기주식취득신탁계약해지결정)",
+      "rcept_no": "20260326000117",
+      "flr_nm": "메리츠금융지주",
+      "rcept_dt": "20260326",
+      "rm": ""
+    },
+    {
+      "corp_code": "01965591",
+      "corp_name": "퓨처그라프",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "비유동자산취득결정",
+      "rcept_no": "20260326000026",
+      "flr_nm": "퓨처그라프",
+      "rcept_dt": "20260326",
+      "rm": "공"
+    },
+    {
+      "corp_code": "01336762",
+      "corp_name": "스피어",
+      "stock_code": "347700",
+      "corp_cls": "K",
+      "report_nm": "주요사항보고서(자기전환사채매도결정)",
+      "rcept_no": "20260325001431",
+      "flr_nm": "스피어",
+      "rcept_dt": "20260326",
+      "rm": ""
+    },
+    {
+      "corp_code": "01049167",
+      "corp_name": "롤링스톤",
+      "stock_code": "214610",
+      "corp_cls": "K",
+      "report_nm": "주요사항보고서(자기전환사채만기전취득결정)",
+      "rcept_no": "20260325001422",
+      "flr_nm": "롤링스톤",
+      "rcept_dt": "20260326",
+      "rm": ""
+    }
+  ]
+}

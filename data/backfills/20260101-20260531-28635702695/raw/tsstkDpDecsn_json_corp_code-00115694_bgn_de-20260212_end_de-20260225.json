@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260225003965",
+      "corp_cls": "Y",
+      "corp_code": "00115694",
+      "corp_name": "DB증권",
+      "od_a_at_t": "3",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "2,386,850",
+      "aq_wtn_div_ostk_rt": "5.62",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "325,628",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "7,860",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "2,559,273,266",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 25일",
+      "dpprpd_edd": "2026년 02월 25일",
+      "dp_pp": "우리사주조합\n유·무상출연",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "162,814",
+      "dp_m_etc": "162,814",
+      "dp_dd": "2026년 02월 25일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260120000144",
+      "corp_cls": "Y",
+      "corp_code": "00190321",
+      "corp_name": "케이티",
+      "od_a_at_t": "7",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "엔에이치투자증권(주)\n(NH INVESTMENT & SECURITIES CO.,LTD)",
+      "aq_wtn_div_ostk": "10,926,622",
+      "aq_wtn_div_ostk_rt": "4.34",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "1,383",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "53,600",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "74,128,800",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 28일",
+      "dpprpd_edd": "2026년 01월 28일",
+      "dp_pp": "자기주식을 활용한 양도제한조건부주식(RSU) 부여에 따른 주식 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "1,383",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 01월 20일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 1,
+  "page_count": 100,
+  "total_count": 13,
+  "total_page": 1,
+  "list": [
+    {
+      "corp_code": "01325429",
+      "corp_name": "지아이에스",
+      "stock_code": "306620",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260529002226",
+      "flr_nm": "지아이에스",
+      "rcept_dt": "20260529",
+      "rm": ""
+    },
+    {
+      "corp_code": "01468061",
+      "corp_name": "레뷰코퍼레이션",
+      "stock_code": "443250",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260529001643",
+      "flr_nm": "레뷰코퍼레이션",
+      "rcept_dt": "20260529",
+      "rm": ""
+    },
+    {
+      "corp_code": "01493793",
+      "corp_name": "코셈",
+      "stock_code": "360350",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260529000779",
+      "flr_nm": "코셈",
+      "rcept_dt": "20260529",
+      "rm": ""
+    },
+    {
+      "corp_code": "01381391",
+      "corp_name": "에스피소프트",
+      "stock_code": "443670",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260529000491",
+      "flr_nm": "에스피소프트",
+      "rcept_dt": "20260529",
+      "rm": ""
+    },
+    {
+      "corp_code": "01467503",
+      "corp_name": "뉴키즈온",
+      "stock_code": "462310",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260527000527",
+      "flr_nm": "뉴키즈온",
+      "rcept_dt": "20260527",
+      "rm": ""
+    },
+    {
+      "corp_code": "00878915",
+      "corp_name": "iM금융지주",
+      "stock_code": "139130",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260527000376",
+      "flr_nm": "iM금융지주",
+      "rcept_dt": "20260527",
+      "rm": ""
+    },
+    {
+      "corp_code": "00454399",
+      "corp_name": "이상네트웍스",
+      "stock_code": "080010",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260527000225",
+      "flr_nm": "이상네트웍스",
+      "rcept_dt": "20260527",
+      "rm": ""
+    },
+    {
+      "corp_code": "00429694",
+      "corp_name": "파버나인",
+      "stock_code": "177830",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260526000313",
+      "flr_nm": "파버나인",
+      "rcept_dt": "20260526",
+      "rm": ""
+    },
+    {
+      "corp_code": "00604426",
+      "corp_name": "인터로조",
+      "stock_code": "119610",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260526000083",
+      "flr_nm": "인터로조",
+      "rcept_dt": "20260526",
+      "rm": ""
+    },
+    {
+      "corp_code": "00136457",
+      "corp_name": "SH에너지화학",
+      "stock_code": "002360",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260522000462",
+      "flr_nm": "SH에너지화학",
+      "rcept_dt": "20260522",
+      "rm": ""
+    },
+    {
+      "corp_code": "00482426",
+      "corp_name": "인화정공",
+      "stock_code": "101930",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260522000232",
+      "flr_nm": "인화정공",
+      "rcept_dt": "20260522",
+      "rm": ""
+    },
+    {
+      "corp_code": "00409672",
+      "corp_name": "티비에이치글로벌",
+      "stock_code": "084870",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260522000035",
+      "flr_nm": "티비에이치글로벌",
+      "rcept_dt": "20260522",
+      "rm": ""
+    },
+    {
+      "corp_code": "00446901",
+      "corp_name": "코칩",
+      "stock_code": "126730",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260521000433",
+      "flr_nm": "코칩",
+      "rcept_dt": "20260521",
+      "rm": ""
+    }
+  ]
+}

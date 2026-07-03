@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260211001124",
+      "corp_cls": "Y",
+      "corp_code": "00400857",
+      "corp_name": "에이블씨엔씨",
+      "bddd": "2026년 02월 11일",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "신한투자증권 주식회사\n(SHINHAN SECURITIES CO.,LTD.)",
+      "aq_wtn_div_ostk": "1,050,735",
+      "aq_wtn_div_ostk_rt": "4.0",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "3",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "20,000,000,000",
+      "ctr_pd_bgd": "2026년 02월 12일",
+      "ctr_pd_edd": "2026년 08월 11일",
+      "ctr_pp": "주주가치 제고",
+      "ctr_cns_int": "신한투자증권 주식회사\n\n(SHINHAN SECURITIES CO.,LTD.)",
+      "ctr_cns_prd": "2026년 02월 12일"
+    }
+  ]
+}

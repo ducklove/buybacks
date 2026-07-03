@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260115000168",
+      "corp_cls": "Y",
+      "corp_code": "00127200",
+      "corp_name": "삼영전자공업",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "삼성증권",
+      "aq_wtn_div_ostk": "996,798",
+      "aq_wtn_div_ostk_rt": "4.98",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "6,600",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "10,240",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "67,584,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 30일",
+      "dpprpd_edd": "2026년 02월 10일",
+      "dp_pp": "직원의 근속과 성과 장려하기 위하여 자기주식 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "6,600",
+      "dp_dd": "2026년 01월 15일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

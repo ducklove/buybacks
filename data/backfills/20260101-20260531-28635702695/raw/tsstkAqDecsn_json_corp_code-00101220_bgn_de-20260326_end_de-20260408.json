@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260407002269",
+      "corp_cls": "Y",
+      "corp_code": "00101220",
+      "corp_name": "KG케미칼",
+      "od_a_at_t": "1",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "aqpln_stk_ostk": "1,171,875",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "6,000,000,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 04월 08일",
+      "aqexpd_edd": "2026년 07월 07일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주주가치제고",
+      "aq_mth": "장내매수",
+      "cs_iv_bk": "NH투자증권(NH INVESTMENT & SECURITIES CO.,LTD.)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 04월 07일",
+      "d1_prodlm_ostk": "343,821",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

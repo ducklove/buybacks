@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260325001167",
+      "corp_cls": "Y",
+      "corp_code": "00904672",
+      "corp_name": "넷마블",
+      "bddd": "2026년 03월 25일",
+      "od_a_at_t": "5",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "케이비증권(주)(KB SECURITIES CO.,LTD)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "25,800",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "82,800,000,000",
+      "ctr_pd_bgd": "2026년 03월 26일",
+      "ctr_pd_edd": "2026년 06월 25일",
+      "ctr_pp": "주식교환 과정에서 희석되는 당사 주주의 \n지분가치 희석효과 차단 및 주주가치 제고",
+      "ctr_cns_int": "케이비증권\n(주)(KB SECURITIES CO.,LTD)",
+      "ctr_cns_prd": "2026년 03월 26일"
+    }
+  ]
+}

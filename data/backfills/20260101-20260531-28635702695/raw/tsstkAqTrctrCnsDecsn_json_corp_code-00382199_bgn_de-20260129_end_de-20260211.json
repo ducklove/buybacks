@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260205000191",
+      "corp_cls": "Y",
+      "corp_code": "00382199",
+      "corp_name": "신한지주",
+      "bddd": "2026년 02월 05일",
+      "od_a_at_t": "9",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "NH투자증권(NH Investment & Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "10,840,573",
+      "aq_wtn_div_ostk_rt": "2.2",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "500,000,000,000",
+      "ctr_pd_bgd": "2026년 02월 09일",
+      "ctr_pd_edd": "2026년 07월 10일",
+      "ctr_pp": "주주환원을 통한 주주가치 제고",
+      "ctr_cns_int": "NH투자증권(NH Investment & Securities Co., Ltd.)",
+      "ctr_cns_prd": "2026년 02월 09일"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260528000521",
+      "corp_cls": "K",
+      "corp_code": "01390399",
+      "corp_name": "솔트웨어",
+      "bddd": "2026년 05월 28일",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "불참",
+      "cs_iv_bk": "한국투자증권\n(KOREA INVESTMENT & SECURITIES CO.,LTD)",
+      "aq_wtn_div_ostk": "91,753",
+      "aq_wtn_div_ostk_rt": "1.34",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "917",
+      "eaq_ostk_rt": "0.01",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "1,000,000,000",
+      "ctr_pd_bgd": "2026년 05월 28일",
+      "ctr_pd_edd": "2027년 01월 27일",
+      "ctr_pp": "주가안정을 통한 주주가치 제고",
+      "ctr_cns_int": "한국투자증권\n(KOREA INVESTMENT & SECURITIES CO.,LTD)",
+      "ctr_cns_prd": "2026년 05월 28일"
+    }
+  ]
+}

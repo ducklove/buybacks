@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260306000004",
+      "corp_cls": "Y",
+      "corp_code": "00131832",
+      "corp_name": "SK디스커버리",
+      "bddd": "2026년 03월 06일",
+      "od_a_at_t": "4",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "에스케이증권주식회사\n(SK Securities Co.,LTD.)",
+      "aq_wtn_div_ostk": "286,396",
+      "aq_wtn_div_ostk_rt": "1.5",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "12,137",
+      "eaq_ostk_rt": "0.1",
+      "eaq_estk": "1,467",
+      "eaq_estk_rt": "0.0",
+      "ctr_prc": "20,000,000,000",
+      "ctr_pd_bgd": "2026년 03월 06일",
+      "ctr_pd_edd": "2026년 09월 07일",
+      "ctr_pp": "주가 안정을 통한 주주가치 제고",
+      "ctr_cns_int": "에스케이증권주식회사\n(SK Securities Co.,LTD.)",
+      "ctr_cns_prd": "2026년 03월 06일"
+    }
+  ]
+}

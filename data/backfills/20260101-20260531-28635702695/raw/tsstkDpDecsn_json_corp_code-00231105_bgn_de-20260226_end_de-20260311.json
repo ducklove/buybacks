@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260305001443",
+      "corp_cls": "K",
+      "corp_code": "00231105",
+      "corp_name": "동성화인텍",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "56,365",
+      "aq_wtn_div_ostk_rt": "0.2",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "8,134",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "25,050",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "203,756,700",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 03월 05일",
+      "dpprpd_edd": "2026년 04월 30일",
+      "dp_pp": "혼합형 성과조건부 주식보상제도에 따른 임원 장기성과급의 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "8,134",
+      "dp_dd": "2026년 03월 05일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260210000634",
+      "corp_cls": "Y",
+      "corp_code": "00122579",
+      "corp_name": "BYC",
+      "bddd": "2026년 02월 10일",
+      "od_a_at_t": "2",
+      "od_a_at_b": "1",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "78,164",
+      "aq_wtn_div_ostk_rt": "1.2",
+      "aq_wtn_div_estk": "76,718",
+      "aq_wtn_div_estk_rt": "3.6",
+      "eaq_ostk": "80",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "3,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2025년 10월 31일",
+      "ctr_pd_bfcc_edd": "2026년 04월 30일",
+      "cc_pp": "자기주식 취득 완료(계약금액 소진)에 따른 중도해지",
+      "cc_int": "신한투자증권\n(SHINHAN SECURITIES CO.,LTD)",
+      "cc_prd": "2026년 02월 11일",
+      "tp_rm_atcc": "현금 및 주식 실물(자사주) 반환"
+    }
+  ]
+}

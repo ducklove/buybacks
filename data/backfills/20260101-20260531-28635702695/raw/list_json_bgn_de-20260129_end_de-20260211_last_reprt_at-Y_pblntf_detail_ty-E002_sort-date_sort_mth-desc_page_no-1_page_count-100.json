@@ -1,0 +1,241 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 1,
+  "page_count": 100,
+  "total_count": 21,
+  "total_page": 1,
+  "list": [
+    {
+      "corp_code": "00400857",
+      "corp_name": "에이블씨엔씨",
+      "stock_code": "078520",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260211001105",
+      "flr_nm": "에이블씨엔씨",
+      "rcept_dt": "20260211",
+      "rm": ""
+    },
+    {
+      "corp_code": "00122579",
+      "corp_name": "BYC",
+      "stock_code": "001460",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260211000848",
+      "flr_nm": "BYC",
+      "rcept_dt": "20260211",
+      "rm": ""
+    },
+    {
+      "corp_code": "00238001",
+      "corp_name": "블루콤",
+      "stock_code": "033560",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260211000386",
+      "flr_nm": "블루콤",
+      "rcept_dt": "20260211",
+      "rm": ""
+    },
+    {
+      "corp_code": "00231363",
+      "corp_name": "LG유플러스",
+      "stock_code": "032640",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260210000946",
+      "flr_nm": "LG유플러스",
+      "rcept_dt": "20260210",
+      "rm": ""
+    },
+    {
+      "corp_code": "00579139",
+      "corp_name": "한국맥널티",
+      "stock_code": "222980",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260209000510",
+      "flr_nm": "한국맥널티",
+      "rcept_dt": "20260209",
+      "rm": ""
+    },
+    {
+      "corp_code": "00209780",
+      "corp_name": "케이씨",
+      "stock_code": "029460",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260209000485",
+      "flr_nm": "케이씨",
+      "rcept_dt": "20260209",
+      "rm": ""
+    },
+    {
+      "corp_code": "00860332",
+      "corp_name": "메리츠금융지주",
+      "stock_code": "138040",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260209000170",
+      "flr_nm": "메리츠금융지주",
+      "rcept_dt": "20260209",
+      "rm": ""
+    },
+    {
+      "corp_code": "00149026",
+      "corp_name": "CS홀딩스",
+      "stock_code": "000590",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260206001941",
+      "flr_nm": "CS홀딩스",
+      "rcept_dt": "20260206",
+      "rm": ""
+    },
+    {
+      "corp_code": "00178754",
+      "corp_name": "동아지질",
+      "stock_code": "028100",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260206000804",
+      "flr_nm": "동아지질",
+      "rcept_dt": "20260206",
+      "rm": ""
+    },
+    {
+      "corp_code": "00204262",
+      "corp_name": "한글과컴퓨터",
+      "stock_code": "030520",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260205000426",
+      "flr_nm": "한글과컴퓨터",
+      "rcept_dt": "20260205",
+      "rm": ""
+    },
+    {
+      "corp_code": "00209780",
+      "corp_name": "케이씨",
+      "stock_code": "029460",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260205000414",
+      "flr_nm": "케이씨",
+      "rcept_dt": "20260205",
+      "rm": ""
+    },
+    {
+      "corp_code": "00122579",
+      "corp_name": "BYC",
+      "stock_code": "001460",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260204000386",
+      "flr_nm": "BYC",
+      "rcept_dt": "20260204",
+      "rm": ""
+    },
+    {
+      "corp_code": "00641171",
+      "corp_name": "인지소프트",
+      "stock_code": "100030",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260204000167",
+      "flr_nm": "인지소프트",
+      "rcept_dt": "20260204",
+      "rm": ""
+    },
+    {
+      "corp_code": "00158325",
+      "corp_name": "NICE평가정보",
+      "stock_code": "030190",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260204000015",
+      "flr_nm": "NICE평가정보",
+      "rcept_dt": "20260204",
+      "rm": ""
+    },
+    {
+      "corp_code": "00980122",
+      "corp_name": "JB금융지주",
+      "stock_code": "175330",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260203000415",
+      "flr_nm": "JB금융지주",
+      "rcept_dt": "20260203",
+      "rm": ""
+    },
+    {
+      "corp_code": "00163196",
+      "corp_name": "한일철강",
+      "stock_code": "002220",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260203000412",
+      "flr_nm": "한일철강",
+      "rcept_dt": "20260203",
+      "rm": ""
+    },
+    {
+      "corp_code": "00980122",
+      "corp_name": "JB금융지주",
+      "stock_code": "175330",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260203000335",
+      "flr_nm": "JB금융지주",
+      "rcept_dt": "20260203",
+      "rm": ""
+    },
+    {
+      "corp_code": "00484682",
+      "corp_name": "엘오티베큠",
+      "stock_code": "083310",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260202000743",
+      "flr_nm": "엘오티베큠",
+      "rcept_dt": "20260202",
+      "rm": ""
+    },
+    {
+      "corp_code": "00170026",
+      "corp_name": "시공테크",
+      "stock_code": "020710",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260202000310",
+      "flr_nm": "시공테크",
+      "rcept_dt": "20260202",
+      "rm": ""
+    },
+    {
+      "corp_code": "00382199",
+      "corp_name": "신한지주",
+      "stock_code": "055550",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260130000693",
+      "flr_nm": "신한지주",
+      "rcept_dt": "20260130",
+      "rm": ""
+    },
+    {
+      "corp_code": "00616962",
+      "corp_name": "린드먼아시아",
+      "stock_code": "277070",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260130000486",
+      "flr_nm": "린드먼아시아",
+      "rcept_dt": "20260130",
+      "rm": ""
+    }
+  ]
+}

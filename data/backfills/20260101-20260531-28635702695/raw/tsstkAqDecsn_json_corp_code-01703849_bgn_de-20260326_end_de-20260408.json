@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260331004552",
+      "corp_cls": "K",
+      "corp_code": "01703849",
+      "corp_name": "노머스",
+      "od_a_at_t": "3",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "58,513",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "1,000,000,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 03월 31일",
+      "aqexpd_edd": "2026년 06월 30일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주주가치 제고 및 양도제한조건부주식 등 부여",
+      "aq_mth": "직접 취득, 장내 매수",
+      "cs_iv_bk": "삼성증권",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 03월 31일",
+      "d1_prodlm_ostk": "23,746",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

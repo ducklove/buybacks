@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260127000367",
+      "corp_cls": "K",
+      "corp_code": "01139965",
+      "corp_name": "스튜디오미르",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "153,089",
+      "eaq_ostk_rt": "0.47",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "133,852",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "2,990",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "400,217,480",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 28일",
+      "dpprpd_edd": "2026년 04월 24일",
+      "dp_pp": "임직원에 대한 상여금 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "133,852",
+      "dp_dd": "2026년 01월 27일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

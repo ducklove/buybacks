@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260219002651",
+      "corp_cls": "Y",
+      "corp_code": "00151368",
+      "corp_name": "인터지스",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "BNK투자증권",
+      "aq_wtn_div_ostk": "736,660",
+      "aq_wtn_div_ostk_rt": "2.47",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "797,082",
+      "eaq_ostk_rt": "2.68",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "380,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "2,442",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "927,960,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 20일",
+      "dpprpd_edd": "2026년 02월 20일",
+      "dp_pp": "하역사업장 안전 및 경쟁력 강화를 위한 AI 안전관리 시스템 등 신기술 도입 관련 투자재원 마련",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "380,000",
+      "dp_m_otc": "-",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 19일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260430000910",
+      "corp_cls": "Y",
+      "corp_code": "00858364",
+      "corp_name": "BNK금융지주",
+      "bddd": "2026년 04월 30일",
+      "od_a_at_t": "7",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "삼성증권",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "60,000,000,000",
+      "ctr_pd_bgd": "2026년 05월 08일",
+      "ctr_pd_edd": "2026년 07월 24일",
+      "ctr_pp": "주주가치 제고",
+      "ctr_cns_int": "삼성증권",
+      "ctr_cns_prd": "2026년 05월 08일"
+    }
+  ]
+}

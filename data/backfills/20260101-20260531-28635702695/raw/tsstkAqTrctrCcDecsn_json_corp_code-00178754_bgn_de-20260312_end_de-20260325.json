@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260317000484",
+      "corp_cls": "Y",
+      "corp_code": "00178754",
+      "corp_name": "동아지질",
+      "bddd": "2026년 03월 17일",
+      "od_a_at_t": "2",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "aq_wtn_div_ostk": "1,267,822",
+      "aq_wtn_div_ostk_rt": "9.47",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "7,500,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2025년 11월 07일",
+      "ctr_pd_bfcc_edd": "2026년 11월 06일",
+      "cc_pp": "자기주식 취득 완료(계약금액 소진)에 따른 중도해지",
+      "cc_int": "KB증권(KB Securities Co., Ltd.)",
+      "cc_prd": "2026년 03월 17일",
+      "tp_rm_atcc": "현금 및 실물(자사주)반환"
+    }
+  ]
+}

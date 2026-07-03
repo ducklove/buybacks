@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260326001478",
+      "corp_cls": "K",
+      "corp_code": "01067808",
+      "corp_name": "넵튠",
+      "od_a_at_t": "2",
+      "od_a_at_b": "1",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1,808,899",
+      "eaq_ostk_rt": "3.87",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "7,250",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "4,175",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "30,268,750",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 04월 01일",
+      "dpprpd_edd": "2026년 04월 01일",
+      "dp_pp": "RSU 지급신청에 따른 \n임직원 대상 자기주식 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "7,250",
+      "dp_dd": "2026년 03월 26일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

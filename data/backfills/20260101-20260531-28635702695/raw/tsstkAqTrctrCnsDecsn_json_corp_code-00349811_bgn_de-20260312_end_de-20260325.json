@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260319000469",
+      "corp_cls": "K",
+      "corp_code": "00349811",
+      "corp_name": "오션인더블유",
+      "bddd": "2026년 03월 19일",
+      "od_a_at_t": "0",
+      "od_a_at_b": "1",
+      "adt_a_atn": "불참",
+      "cs_iv_bk": "한국투자증권",
+      "aq_wtn_div_ostk": "616,135",
+      "aq_wtn_div_ostk_rt": "3.65",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "4,880",
+      "eaq_ostk_rt": "0.03",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "2,000,000,000",
+      "ctr_pd_bgd": "2026년 03월 19일",
+      "ctr_pd_edd": "2026년 09월 21일",
+      "ctr_pp": "주가안정 및 주주가치 제고",
+      "ctr_cns_int": "한국투자증권",
+      "ctr_cns_prd": "2026년 03월 19일"
+    }
+  ]
+}

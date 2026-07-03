@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260514000362",
+      "corp_cls": "K",
+      "corp_code": "00231707",
+      "corp_name": "비트컴퓨터",
+      "od_a_at_t": "2",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "aqpln_stk_ostk": "208,560",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "1,000,045,200",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 05월 15일",
+      "aqexpd_edd": "2026년 08월 14일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주가안정 및 주주가치 제고",
+      "aq_mth": "코스닥시장을 통한 직접 취득",
+      "cs_iv_bk": "아이비케이(IBK)투자증권",
+      "aq_wtn_div_ostk": "1,495,558",
+      "aq_wtn_div_ostk_rt": "9.00",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "26,621",
+      "eaq_ostk_rt": "0.16",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 05월 14일",
+      "d1_prodlm_ostk": "70,176",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

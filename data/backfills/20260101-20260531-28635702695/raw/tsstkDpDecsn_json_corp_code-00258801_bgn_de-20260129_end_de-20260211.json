@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260211001133",
+      "corp_cls": "Y",
+      "corp_code": "00258801",
+      "corp_name": "카카오",
+      "od_a_at_t": "5",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "하나증권\n (Hana Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "25,940",
+      "aq_wtn_div_ostk_rt": "0.0",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "2,414,783",
+      "eaq_ostk_rt": "0.5",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "13,259",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "58,300",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "772,999,700",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 12일",
+      "dpprpd_edd": "2026년 05월 11일",
+      "dp_pp": "2021년 부여 RSU 지급 ",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "13,259",
+      "dp_dd": "2026년 02월 11일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

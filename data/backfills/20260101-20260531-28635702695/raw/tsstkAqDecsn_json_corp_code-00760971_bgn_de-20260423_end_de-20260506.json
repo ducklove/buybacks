@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260430001009",
+      "corp_cls": "Y",
+      "corp_code": "00760971",
+      "corp_name": "크래프톤",
+      "od_a_at_t": "5",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "360,360",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "99,999,900,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 05월 04일",
+      "aqexpd_edd": "2026년 08월 03일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "자기주식 취득 및 소각을 통한 주주가치 제고",
+      "aq_mth": "유가증권시장에서의 직접 취득",
+      "cs_iv_bk": "미래에셋증권\n(MIRAE ASSET SECURITIES CO., LTD.)",
+      "aq_wtn_div_ostk": "672,276",
+      "aq_wtn_div_ostk_rt": "1.5",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1,638,896",
+      "eaq_ostk_rt": "3.6",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 04월 30일",
+      "d1_prodlm_ostk": "36,036",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

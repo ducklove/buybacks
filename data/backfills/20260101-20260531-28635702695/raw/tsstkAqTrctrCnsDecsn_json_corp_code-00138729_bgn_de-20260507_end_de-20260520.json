@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260515000711",
+      "corp_cls": "Y",
+      "corp_code": "00138729",
+      "corp_name": "아세아제지",
+      "bddd": "2026년 05월 15일",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "NH투자증권\n(NH INVESTMENT & SECURITIES CO., LTD.)",
+      "aq_wtn_div_ostk": "1,598,975",
+      "aq_wtn_div_ostk_rt": "4.05",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "5,000,000,000",
+      "ctr_pd_bgd": "2026년 05월 15일",
+      "ctr_pd_edd": "2026년 08월 14일",
+      "ctr_pp": "주주가치 제고",
+      "ctr_cns_int": "NH투자증권\n(NH INVESTMENT & SECURITIES CO., LTD.)",
+      "ctr_cns_prd": "2026년 05월 15일"
+    }
+  ]
+}

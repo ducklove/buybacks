@@ -1,0 +1,230 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 16,
+  "page_count": 100,
+  "total_count": 1520,
+  "total_page": 16,
+  "list": [
+    {
+      "corp_code": "00688996",
+      "corp_name": "KB금융",
+      "stock_code": "105560",
+      "corp_cls": "Y",
+      "report_nm": "기업설명회(IR)개최(안내공시)              ",
+      "rcept_no": "20260409800577",
+      "flr_nm": "KB금융",
+      "rcept_dt": "20260409",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00127875",
+      "corp_name": "삼익제약",
+      "stock_code": "014950",
+      "corp_cls": "K",
+      "report_nm": "전환청구권행사              (제1회차)",
+      "rcept_no": "20260409900575",
+      "flr_nm": "삼익제약",
+      "rcept_dt": "20260409",
+      "rm": "코"
+    },
+    {
+      "corp_code": "00131850",
+      "corp_name": "SK증권",
+      "stock_code": "001510",
+      "corp_cls": "Y",
+      "report_nm": "최대주주등소유주식변동신고서              ",
+      "rcept_no": "20260409800573",
+      "flr_nm": "SK증권",
+      "rcept_dt": "20260409",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00872984",
+      "corp_name": "이마트",
+      "stock_code": "139480",
+      "corp_cls": "Y",
+      "report_nm": "영업(잠정)실적(공정공시)              ",
+      "rcept_no": "20260409800542",
+      "flr_nm": "이마트",
+      "rcept_dt": "20260409",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00106881",
+      "corp_name": "인디에프",
+      "stock_code": "014990",
+      "corp_cls": "Y",
+      "report_nm": "주주명부폐쇄기간또는기준일설정              ",
+      "rcept_no": "20260409800520",
+      "flr_nm": "인디에프",
+      "rcept_dt": "20260409",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00106881",
+      "corp_name": "인디에프",
+      "stock_code": "014990",
+      "corp_cls": "Y",
+      "report_nm": "주주총회소집결의              ",
+      "rcept_no": "20260409800502",
+      "flr_nm": "인디에프",
+      "rcept_dt": "20260409",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00677334",
+      "corp_name": "아하",
+      "stock_code": "102950",
+      "corp_cls": "N",
+      "report_nm": "대표이사변경              ",
+      "rcept_no": "20260409600487",
+      "flr_nm": "아하",
+      "rcept_dt": "20260409",
+      "rm": "넥"
+    },
+    {
+      "corp_code": "00106881",
+      "corp_name": "인디에프",
+      "stock_code": "014990",
+      "corp_cls": "Y",
+      "report_nm": "주식병합결정              ",
+      "rcept_no": "20260409800472",
+      "flr_nm": "인디에프",
+      "rcept_dt": "20260409",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00178754",
+      "corp_name": "동아지질",
+      "stock_code": "028100",
+      "corp_cls": "Y",
+      "report_nm": "단일판매ㆍ공급계약체결              ",
+      "rcept_no": "20260409800475",
+      "flr_nm": "동아지질",
+      "rcept_dt": "20260409",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00159786",
+      "corp_name": "유니드",
+      "stock_code": "014830",
+      "corp_cls": "Y",
+      "report_nm": "최대주주등소유주식변동신고서              ",
+      "rcept_no": "20260409800484",
+      "flr_nm": "유니드",
+      "rcept_dt": "20260409",
+      "rm": "유"
+    },
+    {
+      "corp_code": "01265251",
+      "corp_name": "압타머사이언스",
+      "stock_code": "291650",
+      "corp_cls": "K",
+      "report_nm": "증권발행결과(자율공시)              ",
+      "rcept_no": "20260409900483",
+      "flr_nm": "압타머사이언스",
+      "rcept_dt": "20260409",
+      "rm": "코"
+    },
+    {
+      "corp_code": "00132992",
+      "corp_name": "성우하이텍",
+      "stock_code": "015750",
+      "corp_cls": "K",
+      "report_nm": "[기재정정]현금ㆍ현물배당결정              ",
+      "rcept_no": "20260409900445",
+      "flr_nm": "성우하이텍",
+      "rcept_dt": "20260409",
+      "rm": "코"
+    },
+    {
+      "corp_code": "00670340",
+      "corp_name": "씨에스윈드",
+      "stock_code": "112610",
+      "corp_cls": "Y",
+      "report_nm": "기업설명회(IR)개최(안내공시)              ",
+      "rcept_no": "20260409800451",
+      "flr_nm": "씨에스윈드",
+      "rcept_dt": "20260409",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00321204",
+      "corp_name": "지에이이노더스",
+      "stock_code": "076340",
+      "corp_cls": "N",
+      "report_nm": "기업설명회(IR)개최              ",
+      "rcept_no": "20260409600422",
+      "flr_nm": "지에이이노더스",
+      "rcept_dt": "20260409",
+      "rm": "넥"
+    },
+    {
+      "corp_code": "00111704",
+      "corp_name": "한화오션",
+      "stock_code": "042660",
+      "corp_cls": "Y",
+      "report_nm": "단일판매ㆍ공급계약체결              ",
+      "rcept_no": "20260409800345",
+      "flr_nm": "한화오션",
+      "rcept_dt": "20260409",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00133876",
+      "corp_name": "세보엠이씨",
+      "stock_code": "011560",
+      "corp_cls": "K",
+      "report_nm": "단일판매ㆍ공급계약체결(자율공시)              ",
+      "rcept_no": "20260409900311",
+      "flr_nm": "세보엠이씨",
+      "rcept_dt": "20260409",
+      "rm": "코"
+    },
+    {
+      "corp_code": "01109937",
+      "corp_name": "티앤알바이오팹",
+      "stock_code": "246710",
+      "corp_cls": "K",
+      "report_nm": "연결재무제표기준영업(잠정)실적(공정공시)              ",
+      "rcept_no": "20260409900327",
+      "flr_nm": "티앤알바이오팹",
+      "rcept_dt": "20260409",
+      "rm": "코"
+    },
+    {
+      "corp_code": "00332149",
+      "corp_name": "코스닥시장본부",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "기타시장안내(금일NXT경쟁매매대상종목지정으로인한KRX시간외단일가매매제외종목안내(코스닥시장))              ",
+      "rcept_no": "20260409900024",
+      "flr_nm": "코스닥시장본부",
+      "rcept_dt": "20260409",
+      "rm": "코"
+    },
+    {
+      "corp_code": "00420301",
+      "corp_name": "유가증권시장본부",
+      "stock_code": "",
+      "corp_cls": "E",
+      "report_nm": "기타시장안내(금일NXT경쟁매매대상종목지정으로인한KRX시간외단일가매매제외종목안내(유가증권시장))              ",
+      "rcept_no": "20260409800020",
+      "flr_nm": "유가증권시장본부",
+      "rcept_dt": "20260409",
+      "rm": "유"
+    },
+    {
+      "corp_code": "00492894",
+      "corp_name": "젬백스",
+      "stock_code": "082270",
+      "corp_cls": "K",
+      "report_nm": "투자판단관련주요경영사항(임상시험결과)              (진행성 핵상마비 치료제로서 GV1001의 국내 2a상(GV1001-PSP-CL2-011) 임상시험의 연장 임상시험 의 최종결과보고서(CSR) 수령)",
+      "rcept_no": "20260409900002",
+      "flr_nm": "젬백스",
+      "rcept_dt": "20260409",
+      "rm": "코"
+    }
+  ]
+}

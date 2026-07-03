@@ -1,0 +1,175 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 1,
+  "page_count": 100,
+  "total_count": 15,
+  "total_page": 1,
+  "list": [
+    {
+      "corp_code": "00109189",
+      "corp_name": "대덕",
+      "stock_code": "008060",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260310002112",
+      "flr_nm": "대덕",
+      "rcept_dt": "20260310",
+      "rm": ""
+    },
+    {
+      "corp_code": "00175173",
+      "corp_name": "오스템",
+      "stock_code": "031510",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260309001907",
+      "flr_nm": "오스템",
+      "rcept_dt": "20260309",
+      "rm": ""
+    },
+    {
+      "corp_code": "00384762",
+      "corp_name": "파커스",
+      "stock_code": "065690",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260305001120",
+      "flr_nm": "파커스",
+      "rcept_dt": "20260305",
+      "rm": ""
+    },
+    {
+      "corp_code": "00498001",
+      "corp_name": "모베이스",
+      "stock_code": "101330",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260304001358",
+      "flr_nm": "모베이스",
+      "rcept_dt": "20260304",
+      "rm": ""
+    },
+    {
+      "corp_code": "00922304",
+      "corp_name": "아셈스",
+      "stock_code": "136410",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260304001205",
+      "flr_nm": "아셈스",
+      "rcept_dt": "20260304",
+      "rm": ""
+    },
+    {
+      "corp_code": "01468061",
+      "corp_name": "레뷰코퍼레이션",
+      "stock_code": "443250",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260304001199",
+      "flr_nm": "레뷰코퍼레이션",
+      "rcept_dt": "20260304",
+      "rm": ""
+    },
+    {
+      "corp_code": "01381391",
+      "corp_name": "에스피소프트",
+      "stock_code": "443670",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260304000646",
+      "flr_nm": "에스피소프트",
+      "rcept_dt": "20260304",
+      "rm": ""
+    },
+    {
+      "corp_code": "00447502",
+      "corp_name": "바이오톡스텍",
+      "stock_code": "086040",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260227007087",
+      "flr_nm": "바이오톡스텍",
+      "rcept_dt": "20260227",
+      "rm": ""
+    },
+    {
+      "corp_code": "01325429",
+      "corp_name": "지아이에스",
+      "stock_code": "306620",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260227006020",
+      "flr_nm": "지아이에스",
+      "rcept_dt": "20260227",
+      "rm": ""
+    },
+    {
+      "corp_code": "00256380",
+      "corp_name": "유아이엘",
+      "stock_code": "049520",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260227005779",
+      "flr_nm": "유아이엘",
+      "rcept_dt": "20260227",
+      "rm": ""
+    },
+    {
+      "corp_code": "00159342",
+      "corp_name": "한국정보통신",
+      "stock_code": "025770",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260227001477",
+      "flr_nm": "한국정보통신",
+      "rcept_dt": "20260227",
+      "rm": ""
+    },
+    {
+      "corp_code": "00113508",
+      "corp_name": "노루홀딩스",
+      "stock_code": "000320",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260226004771",
+      "flr_nm": "노루홀딩스",
+      "rcept_dt": "20260226",
+      "rm": ""
+    },
+    {
+      "corp_code": "00113508",
+      "corp_name": "노루홀딩스",
+      "stock_code": "000320",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260226004722",
+      "flr_nm": "노루홀딩스",
+      "rcept_dt": "20260226",
+      "rm": ""
+    },
+    {
+      "corp_code": "00113508",
+      "corp_name": "노루홀딩스",
+      "stock_code": "000320",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260226004665",
+      "flr_nm": "노루홀딩스",
+      "rcept_dt": "20260226",
+      "rm": ""
+    },
+    {
+      "corp_code": "01046708",
+      "corp_name": "바디텍메드",
+      "stock_code": "206640",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260226001973",
+      "flr_nm": "바디텍메드",
+      "rcept_dt": "20260226",
+      "rm": ""
+    }
+  ]
+}

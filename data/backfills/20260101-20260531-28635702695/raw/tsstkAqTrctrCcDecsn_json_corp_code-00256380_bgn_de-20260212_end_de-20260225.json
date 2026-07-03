@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260225001583",
+      "corp_cls": "K",
+      "corp_code": "00256380",
+      "corp_name": "유아이엘",
+      "bddd": "2026년 02월 25일",
+      "od_a_at_t": "4",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "860,000",
+      "aq_wtn_div_ostk_rt": "2.7",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "735",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "3,500,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2025년 12월 23일",
+      "ctr_pd_bfcc_edd": "2026년 06월 23일",
+      "cc_pp": "자기주식 취득 완료에 따른 중도 해지",
+      "cc_int": "KB증권(KB SECURITIES CO., LTD.)",
+      "cc_prd": "2026년 02월 25일",
+      "tp_rm_atcc": "현금 및 실물(자기주식)의 반환"
+    }
+  ]
+}

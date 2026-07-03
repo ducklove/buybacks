@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260105000433",
+      "corp_cls": "K",
+      "corp_code": "00946030",
+      "corp_name": "로보티즈",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "한국투자증권\n(KOREA INVESTMENT\n& SECURITIES CO,LTD.)",
+      "aq_wtn_div_ostk": "156,646",
+      "aq_wtn_div_ostk_rt": "1.06",
+      "aq_wtn_div_estk": "76,515",
+      "aq_wtn_div_estk_rt": "0.52",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "97,646",
+      "dppln_stk_estk": "76,515",
+      "dpstk_prc_ostk": "269,500",
+      "dpstk_prc_estk": "236,513",
+      "dppln_prc_ostk": "26,315,597,000",
+      "dppln_prc_estk": "18,096,792,195",
+      "dpprpd_bgd": "2026년 01월 06일",
+      "dpprpd_edd": "2026년 01월 08일",
+      "dp_pp": "경영상의 재원확보",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "97,646",
+      "dp_m_otc": "76,515",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 01월 05일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

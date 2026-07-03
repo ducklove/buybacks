@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260109000414",
+      "corp_cls": "K",
+      "corp_code": "00562245",
+      "corp_name": "태웅로직스",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "aqpln_stk_ostk": "-",
+      "aqpln_stk_estk": "2,306,565",
+      "aqpln_prc_ostk": "-",
+      "aqpln_prc_estk": "11,305,651,242",
+      "aqexpd_bgd": "2026년 02월 09일",
+      "aqexpd_edd": "2026년 02월 09일",
+      "hdexpd_bgd": "2026년 02월 09일",
+      "hdexpd_edd": "-",
+      "aq_pp": "상환전환우선주 상환청구에 따른 자기주식 취득",
+      "aq_mth": "장외직접매수",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 01월 09일",
+      "d1_prodlm_ostk": "-",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

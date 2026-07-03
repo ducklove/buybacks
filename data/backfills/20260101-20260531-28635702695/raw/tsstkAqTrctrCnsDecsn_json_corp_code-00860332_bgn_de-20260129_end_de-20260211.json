@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260209000461",
+      "corp_cls": "Y",
+      "corp_code": "00860332",
+      "corp_name": "메리츠금융지주",
+      "bddd": "2026년 02월 09일",
+      "od_a_at_t": "4",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "한국투자증권주식회사\n(Korea Investment & Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "6,220,500",
+      "aq_wtn_div_ostk_rt": "3.55",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "2,421,099",
+      "eaq_ostk_rt": "1.38",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "200,000,000,000",
+      "ctr_pd_bgd": "2026년 02월 09일",
+      "ctr_pd_edd": "2026년 03월 31일",
+      "ctr_pp": "주주가치 제고",
+      "ctr_cns_int": "한국투자증권주식회사\n(Korea Investment & Securities Co., Ltd.)",
+      "ctr_cns_prd": "2026년 02월 09일"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260410003407",
+      "corp_cls": "K",
+      "corp_code": "00533191",
+      "corp_name": "비보존 제약",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "555,182",
+      "eaq_ostk_rt": "1.11",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "192,562",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "2,995",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "576,723,190",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 04월 13일",
+      "dpprpd_edd": "2026년 04월 15일",
+      "dp_pp": "우리사주조합 무상 출연 및 성과급 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "192,562",
+      "dp_dd": "2026년 04월 10일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

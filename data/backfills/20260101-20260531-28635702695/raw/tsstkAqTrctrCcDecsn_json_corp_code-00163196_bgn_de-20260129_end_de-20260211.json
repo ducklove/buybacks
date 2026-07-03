@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260203000397",
+      "corp_cls": "Y",
+      "corp_code": "00163196",
+      "corp_name": "한일철강",
+      "bddd": "-",
+      "od_a_at_t": "0",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "2,954,933",
+      "aq_wtn_div_ostk_rt": "11.06",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "2,000,000,000",
+      "ctr_prc_atcc": "0",
+      "ctr_pd_bfcc_bgd": "2025년 02월 04일",
+      "ctr_pd_bfcc_edd": "2026년 02월 03일",
+      "cc_pp": "신탁계약 기간 만료에 따른 해지",
+      "cc_int": "미래에셋증권(주)\n(MIRAE ASSET SECURITIES CO.,LTD)",
+      "cc_prd": "2026년 02월 03일",
+      "tp_rm_atcc": "현금 및 실물(자사주) 반환"
+    }
+  ]
+}

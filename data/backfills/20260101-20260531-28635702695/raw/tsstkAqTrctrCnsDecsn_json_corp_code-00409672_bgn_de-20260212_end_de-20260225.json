@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260220000002",
+      "corp_cls": "Y",
+      "corp_code": "00409672",
+      "corp_name": "티비에이치글로벌",
+      "bddd": "2026년 02월 19일",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "KB증권(KB SECURITIES CO., LTD.)",
+      "aq_wtn_div_ostk": "398,563",
+      "aq_wtn_div_ostk_rt": "1.91",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "5,000,000,000",
+      "ctr_pd_bgd": "2026년 02월 20일",
+      "ctr_pd_edd": "2027년 02월 19일",
+      "ctr_pp": "주주가치 제고 및 주가 안정",
+      "ctr_cns_int": "KB증권(KB SECURITIES CO., LTD.)",
+      "ctr_cns_prd": "2026년 02월 20일"
+    }
+  ]
+}

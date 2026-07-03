@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260205000583",
+      "corp_cls": "K",
+      "corp_code": "01259232",
+      "corp_name": "노바텍",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "NH투자증권",
+      "aq_wtn_div_ostk": "1,174,112",
+      "aq_wtn_div_ostk_rt": "11.1",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "300,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "27,026",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "8,107,800,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 06일",
+      "dpprpd_edd": "2026년 02월 09일",
+      "dp_pp": "신규 설비 투자를 위한 자금 조달",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "300,000",
+      "dp_m_otc": "-",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 05일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

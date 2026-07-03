@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260116000106",
+      "corp_cls": "Y",
+      "corp_code": "00173795",
+      "corp_name": "신흥",
+      "od_a_at_t": "2",
+      "od_a_at_b": "1",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "146,228",
+      "aq_wtn_div_ostk_rt": "1.54",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "3,095",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "13,840",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "42,834,800",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 19일",
+      "dpprpd_edd": "2026년 01월 30일",
+      "dp_pp": "종업원에 대한 상여금 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "3,095",
+      "dp_dd": "2026년 01월 16일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260116000351",
+      "corp_cls": "Y",
+      "corp_code": "00116824",
+      "corp_name": "동아쏘시오홀딩스",
+      "od_a_at_t": "4",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "98,190",
+      "aq_wtn_div_ostk_rt": "1.5",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "2,528",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "31,301",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "103,200",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "3,230,263,200",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 19일",
+      "dpprpd_edd": "2026년 01월 19일",
+      "dp_pp": "우리사주조합 유상처분",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "31,301",
+      "dp_dd": "2026년 01월 16일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

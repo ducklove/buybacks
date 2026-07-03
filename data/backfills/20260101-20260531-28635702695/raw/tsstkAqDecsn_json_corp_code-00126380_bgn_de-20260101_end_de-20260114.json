@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260107000715",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "od_a_at_t": "6",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "18,000,000",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "2,500,200,000,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 01월 08일",
+      "aqexpd_edd": "2026년 04월 07일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "임직원 주식보상",
+      "aq_mth": "유가증권시장을 통한 장내 매수",
+      "cs_iv_bk": "삼성증권 (Samsung Securities Co., Ltd.),신한투자증권 (Shinhan Securities Co., Ltd.),KB증권 (KB Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "91,828,987",
+      "aq_wtn_div_ostk_rt": "1.6",
+      "aq_wtn_div_estk": "13,603,461",
+      "aq_wtn_div_estk_rt": "1.7",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 01월 07일",
+      "d1_prodlm_ostk": "5,746,531",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

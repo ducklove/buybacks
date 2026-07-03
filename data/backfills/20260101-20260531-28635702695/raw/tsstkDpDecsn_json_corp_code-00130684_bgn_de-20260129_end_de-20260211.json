@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260204000338",
+      "corp_cls": "Y",
+      "corp_code": "00130684",
+      "corp_name": "서울도시가스",
+      "od_a_at_t": "2",
+      "od_a_at_b": "1",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "1,067,208",
+      "aq_wtn_div_ostk_rt": "21.34",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "50,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "64,700",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "3,235,000,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 05일",
+      "dpprpd_edd": "2026년 02월 28일",
+      "dp_pp": "사내근로복지기금 무상출연",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "50,000",
+      "dp_dd": "2026년 02월 04일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

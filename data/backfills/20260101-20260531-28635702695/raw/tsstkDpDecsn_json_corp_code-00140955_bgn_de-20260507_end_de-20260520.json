@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260518000335",
+      "corp_cls": "Y",
+      "corp_code": "00140955",
+      "corp_name": "한솔케미칼",
+      "od_a_at_t": "3",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "467,296",
+      "aq_wtn_div_ostk_rt": "4.1",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "110,000",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "84,215",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "9,263,650,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 05월 26일",
+      "dpprpd_edd": "2029년 12월 31일",
+      "dp_pp": "주식매수선택권(자기주식 교부형)\n최초행사 예정에 따라 동일 주주총회 부여물량 전체 공시",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "110,000",
+      "dp_dd": "2026년 05월 18일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

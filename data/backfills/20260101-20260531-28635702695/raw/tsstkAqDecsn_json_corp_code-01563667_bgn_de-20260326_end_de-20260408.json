@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260326000258",
+      "corp_cls": "K",
+      "corp_code": "01563667",
+      "corp_name": "더즌",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "aqpln_stk_ostk": "933,125",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "2,999,996,875",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 03월 31일",
+      "aqexpd_edd": "2026년 05월 29일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주주가치 제고 및 임직원 성과보상",
+      "aq_mth": "코스닥증권시장을 통한 장내 직접취득",
+      "cs_iv_bk": "우리투자증권(Woori Investment Securities Co.,Ltd.)",
+      "aq_wtn_div_ostk": "259,173",
+      "aq_wtn_div_ostk_rt": "0.36",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "0.00",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "0.00",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "0.00",
+      "aq_dd": "2026년 03월 26일",
+      "d1_prodlm_ostk": "164,931",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

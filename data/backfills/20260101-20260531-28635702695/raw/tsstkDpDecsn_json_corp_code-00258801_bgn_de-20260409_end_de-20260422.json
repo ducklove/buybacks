@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260416000444",
+      "corp_cls": "Y",
+      "corp_code": "00258801",
+      "corp_name": "카카오",
+      "od_a_at_t": "4",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "1) 삼성증권\n(Samsung Securities Co., Ltd.)\n\n2) NH투자증권\n(NH Investment & Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "25,940",
+      "aq_wtn_div_ostk_rt": "0.0",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "2,401,524",
+      "eaq_ostk_rt": "0.5",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "477,900",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "49,600",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "23,703,840,000",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 04월 17일",
+      "dpprpd_edd": "2026년 05월 16일",
+      "dp_pp": "2025년 부여 RSU 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "477,900",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 04월 16일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

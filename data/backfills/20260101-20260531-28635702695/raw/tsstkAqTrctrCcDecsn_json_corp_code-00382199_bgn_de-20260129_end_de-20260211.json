@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260130000650",
+      "corp_cls": "Y",
+      "corp_code": "00382199",
+      "corp_name": "신한지주",
+      "bddd": "-",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "10,840,573",
+      "aq_wtn_div_ostk_rt": "2.23",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "1",
+      "eaq_ostk_rt": "0.0",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "800,000,000,000",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2025년 07월 31일",
+      "ctr_pd_bfcc_edd": "2026년 01월 30일",
+      "cc_pp": "계약기간 만료에 따른 해지",
+      "cc_int": "NH투자증권(NH Investment & Securities Co., Ltd.)",
+      "cc_prd": "2026년 01월 30일",
+      "tp_rm_atcc": "현금 및 실물(자사주) 반환"
+    }
+  ]
+}

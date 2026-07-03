@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260226006233",
+      "corp_cls": "Y",
+      "corp_code": "00137359",
+      "corp_name": "신풍제약",
+      "od_a_at_t": "3",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "3,003,778",
+      "eaq_ostk_rt": "5.67",
+      "eaq_estk": "208,770",
+      "eaq_estk_rt": "9.49",
+      "dppln_stk_ostk": "2,437,310",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "12,130",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "29,564,570,300",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 02월 27일",
+      "dpprpd_edd": "2026년 02월 27일",
+      "dp_pp": "전략적 제휴를 통한 사업 시너지 창출 및 R&D 파트너십 강화",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "2,437,310",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 02월 26일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

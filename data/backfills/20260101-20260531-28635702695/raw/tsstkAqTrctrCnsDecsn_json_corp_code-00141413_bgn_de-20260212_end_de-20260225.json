@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260213002783",
+      "corp_cls": "Y",
+      "corp_code": "00141413",
+      "corp_name": "영화금속",
+      "bddd": "2026년 02월 13일",
+      "od_a_at_t": "3",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "BNK 투자증권 (BNK Securities co.,Ltd.)",
+      "aq_wtn_div_ostk": "2,140,000",
+      "aq_wtn_div_ostk_rt": "4.14",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "1,000,000,000",
+      "ctr_pd_bgd": "2026년 02월 13일",
+      "ctr_pd_edd": "2026년 08월 12일",
+      "ctr_pp": "주식가격의 안정 및 기업이미지 제고",
+      "ctr_cns_int": "부산은행 ( BusanBank co.,Ltd.)",
+      "ctr_cns_prd": "2026년 02월 13일"
+    }
+  ]
+}

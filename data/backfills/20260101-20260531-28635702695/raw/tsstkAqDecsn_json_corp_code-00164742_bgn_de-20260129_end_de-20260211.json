@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260129000336",
+      "corp_cls": "Y",
+      "corp_code": "00164742",
+      "corp_name": "현대자동차",
+      "od_a_at_t": "7",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "aqpln_stk_ostk": "744,870",
+      "aqpln_stk_estk": "125,054",
+      "aqpln_prc_ostk": "366,848,475,000",
+      "aqpln_prc_estk": "33,843,935,500",
+      "aqexpd_bgd": "2026년 01월 30일",
+      "aqexpd_edd": "2026년 04월 27일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "주주가치 제고",
+      "aq_mth": "장내매수",
+      "cs_iv_bk": "현대차증권",
+      "aq_wtn_div_ostk": "1,648,558",
+      "aq_wtn_div_ostk_rt": "0.8",
+      "aq_wtn_div_estk": "1,089,278",
+      "aq_wtn_div_estk_rt": "1.8",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 01월 29일",
+      "d1_prodlm_ostk": "944,571",
+      "d1_prodlm_estk": "94,559"
+    }
+  ]
+}

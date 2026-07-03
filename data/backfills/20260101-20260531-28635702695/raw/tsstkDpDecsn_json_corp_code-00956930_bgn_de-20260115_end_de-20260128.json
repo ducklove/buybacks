@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260116000358",
+      "corp_cls": "Y",
+      "corp_code": "00956930",
+      "corp_name": "동아에스티",
+      "od_a_at_t": "4",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "175,065",
+      "aq_wtn_div_ostk_rt": "1.9",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "18,975",
+      "eaq_ostk_rt": "0.2",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "25,923",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "51,900",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "1,345,403,700",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 19일",
+      "dpprpd_edd": "2026년 01월 19일",
+      "dp_pp": "우리사주조합 유상처분",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "25,923",
+      "dp_dd": "2026년 01월 16일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

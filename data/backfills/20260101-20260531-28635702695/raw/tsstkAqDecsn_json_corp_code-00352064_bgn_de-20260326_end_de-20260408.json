@@ -1,0 +1,37 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260331003102",
+      "corp_cls": "K",
+      "corp_code": "00352064",
+      "corp_name": "프리엠스",
+      "od_a_at_t": "0",
+      "od_a_at_b": "1",
+      "adt_a_atn": "불참",
+      "aqpln_stk_ostk": "701,262",
+      "aqpln_stk_estk": "-",
+      "aqpln_prc_ostk": "5,000,000,000",
+      "aqpln_prc_estk": "-",
+      "aqexpd_bgd": "2026년 04월 01일",
+      "aqexpd_edd": "2026년 06월 30일",
+      "hdexpd_bgd": "-",
+      "hdexpd_edd": "-",
+      "aq_pp": "자기주식 취득 및 소각을 통한 주주가치 제고",
+      "aq_mth": "코스닥시장을 통한 장내 직접 취득",
+      "cs_iv_bk": "KB증권",
+      "aq_wtn_div_ostk": "904,906",
+      "aq_wtn_div_ostk_rt": "15.08",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "aq_dd": "2026년 03월 31일",
+      "d1_prodlm_ostk": "60,000",
+      "d1_prodlm_estk": "-"
+    }
+  ]
+}

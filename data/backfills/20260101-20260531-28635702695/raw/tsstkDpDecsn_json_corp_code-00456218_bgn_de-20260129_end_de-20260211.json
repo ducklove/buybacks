@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260130000263",
+      "corp_cls": "K",
+      "corp_code": "00456218",
+      "corp_name": "모두투어",
+      "od_a_at_t": "2",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "KB증권대행부",
+      "aq_wtn_div_ostk": "684,389",
+      "aq_wtn_div_ostk_rt": "3.62",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "3,322",
+      "eaq_ostk_rt": "0.02",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "dppln_stk_ostk": "551,437",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "11,210",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "6,181,608,770",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 03월 30일",
+      "dpprpd_edd": "2026년 04월 24일",
+      "dp_pp": "자기주식 현물배당 (결산배당)",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "551,437",
+      "dp_dd": "2026년 01월 30일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

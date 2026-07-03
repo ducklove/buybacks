@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260417000172",
+      "corp_cls": "K",
+      "corp_code": "01015160",
+      "corp_name": "PS일렉트로닉스",
+      "bddd": "2026년 04월 17일",
+      "od_a_at_t": "1",
+      "od_a_at_b": "-",
+      "adt_a_atn": "참석",
+      "aq_wtn_div_ostk": "553,454",
+      "aq_wtn_div_ostk_rt": "1.1",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "3,000,000,000",
+      "ctr_prc_atcc": "0",
+      "ctr_pd_bfcc_bgd": "2026년 03월 25일",
+      "ctr_pd_bfcc_edd": "2026년 06월 24일",
+      "cc_pp": "자기주식 취득 완료에 따른 중도해지",
+      "cc_int": "삼성증권\n(\nSamsung Securities Co.,Ltd)",
+      "cc_prd": "2026년 04월 17일",
+      "tp_rm_atcc": "현금 및 실물(자사주) 반환"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260428000721",
+      "corp_cls": "Y",
+      "corp_code": "00131850",
+      "corp_name": "SK증권",
+      "od_a_at_t": "5",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "-",
+      "aq_wtn_div_ostk": "18,300,000",
+      "aq_wtn_div_ostk_rt": "7.91",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "4,078,309",
+      "eaq_ostk_rt": "1.76",
+      "eaq_estk": "1,974",
+      "eaq_estk_rt": "0.10",
+      "dppln_stk_ostk": "301,501",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "4,845",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "1,460,772,345",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 05월 04일",
+      "dpprpd_edd": "2026년 05월 04일",
+      "dp_pp": "임직원 대상 자기주식 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "-",
+      "dp_m_etc": "301,501",
+      "dp_dd": "2026년 04월 28일",
+      "d1_slodlm_ostk": "-",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

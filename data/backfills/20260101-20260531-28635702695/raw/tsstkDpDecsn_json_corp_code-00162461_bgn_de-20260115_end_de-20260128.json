@@ -1,0 +1,40 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260127000338",
+      "corp_cls": "Y",
+      "corp_code": "00162461",
+      "corp_name": "한화솔루션",
+      "od_a_at_t": "5",
+      "od_a_at_b": "0",
+      "adt_a_atn": "-",
+      "cs_iv_bk": "한화투자증권\n(HANWHA INVESTMENT&SECURITIES CO.,LTD)",
+      "aq_wtn_div_ostk": "2,378,668",
+      "aq_wtn_div_ostk_rt": "1.36",
+      "aq_wtn_div_estk": "9,435",
+      "aq_wtn_div_estk_rt": "0.01",
+      "eaq_ostk": "165,589",
+      "eaq_ostk_rt": "0.09",
+      "eaq_estk": "21,298",
+      "eaq_estk_rt": "0.01",
+      "dppln_stk_ostk": "160,221",
+      "dppln_stk_estk": "-",
+      "dpstk_prc_ostk": "27,250",
+      "dpstk_prc_estk": "-",
+      "dppln_prc_ostk": "4,366,022,250",
+      "dppln_prc_estk": "-",
+      "dpprpd_bgd": "2026년 01월 22일",
+      "dpprpd_edd": "2026년 02월 04일",
+      "dp_pp": "주식기준보상(RSU제도)에 따른 주식의 지급",
+      "dp_m_mkt": "-",
+      "dp_m_ovtm": "-",
+      "dp_m_otc": "160,221",
+      "dp_m_etc": "-",
+      "dp_dd": "2026년 01월 22일",
+      "d1_slodlm_ostk": "304,119",
+      "d1_slodlm_estk": "-"
+    }
+  ]
+}

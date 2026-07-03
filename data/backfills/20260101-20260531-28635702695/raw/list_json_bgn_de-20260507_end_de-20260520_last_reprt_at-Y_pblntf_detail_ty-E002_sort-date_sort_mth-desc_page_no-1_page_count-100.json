@@ -1,0 +1,230 @@
+{
+  "status": "000",
+  "message": "정상",
+  "page_no": 1,
+  "page_count": 100,
+  "total_count": 20,
+  "total_page": 1,
+  "list": [
+    {
+      "corp_code": "01275665",
+      "corp_name": "리메드",
+      "stock_code": "302550",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260520000301",
+      "flr_nm": "리메드",
+      "rcept_dt": "20260520",
+      "rm": ""
+    },
+    {
+      "corp_code": "00353878",
+      "corp_name": "다스코",
+      "stock_code": "058730",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260518000331",
+      "flr_nm": "다스코",
+      "rcept_dt": "20260518",
+      "rm": ""
+    },
+    {
+      "corp_code": "01284876",
+      "corp_name": "인스피언",
+      "stock_code": "465480",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260515001121",
+      "flr_nm": "인스피언",
+      "rcept_dt": "20260515",
+      "rm": ""
+    },
+    {
+      "corp_code": "00141413",
+      "corp_name": "영화금속",
+      "stock_code": "012280",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260514000270",
+      "flr_nm": "영화금속",
+      "rcept_dt": "20260514",
+      "rm": ""
+    },
+    {
+      "corp_code": "01275665",
+      "corp_name": "리메드",
+      "stock_code": "302550",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260513000717",
+      "flr_nm": "리메드",
+      "rcept_dt": "20260513",
+      "rm": ""
+    },
+    {
+      "corp_code": "00148896",
+      "corp_name": "OCI홀딩스",
+      "stock_code": "010060",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260513000535",
+      "flr_nm": "OCI홀딩스",
+      "rcept_dt": "20260513",
+      "rm": ""
+    },
+    {
+      "corp_code": "01407909",
+      "corp_name": "원텍",
+      "stock_code": "336570",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260513000318",
+      "flr_nm": "원텍",
+      "rcept_dt": "20260513",
+      "rm": ""
+    },
+    {
+      "corp_code": "00486097",
+      "corp_name": "KT나스미디어",
+      "stock_code": "089600",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260513000266",
+      "flr_nm": "KT나스미디어",
+      "rcept_dt": "20260513",
+      "rm": ""
+    },
+    {
+      "corp_code": "00154329",
+      "corp_name": "TP",
+      "stock_code": "007980",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260512000673",
+      "flr_nm": "TP",
+      "rcept_dt": "20260512",
+      "rm": ""
+    },
+    {
+      "corp_code": "00400857",
+      "corp_name": "에이블씨엔씨",
+      "stock_code": "078520",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260512000524",
+      "flr_nm": "에이블씨엔씨",
+      "rcept_dt": "20260512",
+      "rm": ""
+    },
+    {
+      "corp_code": "00238001",
+      "corp_name": "블루콤",
+      "stock_code": "033560",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260512000458",
+      "flr_nm": "블루콤",
+      "rcept_dt": "20260512",
+      "rm": ""
+    },
+    {
+      "corp_code": "01760738",
+      "corp_name": "OCI",
+      "stock_code": "456040",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260512000422",
+      "flr_nm": "OCI",
+      "rcept_dt": "20260512",
+      "rm": ""
+    },
+    {
+      "corp_code": "01350869",
+      "corp_name": "우리금융지주",
+      "stock_code": "316140",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260512000051",
+      "flr_nm": "우리금융지주",
+      "rcept_dt": "20260512",
+      "rm": ""
+    },
+    {
+      "corp_code": "00980122",
+      "corp_name": "JB금융지주",
+      "stock_code": "175330",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260511000709",
+      "flr_nm": "JB금융지주",
+      "rcept_dt": "20260511",
+      "rm": ""
+    },
+    {
+      "corp_code": "00382199",
+      "corp_name": "신한지주",
+      "stock_code": "055550",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260511000637",
+      "flr_nm": "신한지주",
+      "rcept_dt": "20260511",
+      "rm": ""
+    },
+    {
+      "corp_code": "00563837",
+      "corp_name": "제로투세븐",
+      "stock_code": "159580",
+      "corp_cls": "K",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260511000564",
+      "flr_nm": "제로투세븐",
+      "rcept_dt": "20260511",
+      "rm": ""
+    },
+    {
+      "corp_code": "00299002",
+      "corp_name": "HL홀딩스",
+      "stock_code": "060980",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260511000554",
+      "flr_nm": "HL홀딩스",
+      "rcept_dt": "20260511",
+      "rm": ""
+    },
+    {
+      "corp_code": "01205842",
+      "corp_name": "HD건설기계",
+      "stock_code": "267270",
+      "corp_cls": "Y",
+      "report_nm": "신탁계약에의한취득상황보고서",
+      "rcept_no": "20260511000337",
+      "flr_nm": "HD건설기계",
+      "rcept_dt": "20260511",
+      "rm": ""
+    },
+    {
+      "corp_code": "00455875",
+      "corp_name": "와토스코리아",
+      "stock_code": "079000",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260511000279",
+      "flr_nm": "와토스코리아",
+      "rcept_dt": "20260511",
+      "rm": ""
+    },
+    {
+      "corp_code": "00138446",
+      "corp_name": "아가방컴퍼니",
+      "stock_code": "013990",
+      "corp_cls": "K",
+      "report_nm": "신탁계약해지결과보고서",
+      "rcept_no": "20260508000538",
+      "flr_nm": "아가방컴퍼니",
+      "rcept_dt": "20260508",
+      "rm": ""
+    }
+  ]
+}

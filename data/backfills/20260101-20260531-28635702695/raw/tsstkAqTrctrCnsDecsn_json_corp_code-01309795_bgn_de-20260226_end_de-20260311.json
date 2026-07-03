@@ -1,0 +1,31 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260305000652",
+      "corp_cls": "K",
+      "corp_code": "01309795",
+      "corp_name": "아틀라스링크",
+      "bddd": "2026년 03월 05일",
+      "od_a_at_t": "2",
+      "od_a_at_b": "0",
+      "adt_a_atn": "참석",
+      "cs_iv_bk": "아이비케이투자증권\n(IBK Securities Co., Ltd.)",
+      "aq_wtn_div_ostk": "-",
+      "aq_wtn_div_ostk_rt": "-",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc": "1,000,000,000",
+      "ctr_pd_bgd": "2026년 03월 05일",
+      "ctr_pd_edd": "2026년 09월 04일",
+      "ctr_pp": "주가안정 및 주주가치 제고",
+      "ctr_cns_int": "아이비케이투자증권\n(IBK Securities Co., Ltd.)",
+      "ctr_cns_prd": "2026년 03월 05일"
+    }
+  ]
+}

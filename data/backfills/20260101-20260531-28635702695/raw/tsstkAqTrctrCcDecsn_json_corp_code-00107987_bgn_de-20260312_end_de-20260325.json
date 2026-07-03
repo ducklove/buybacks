@@ -1,0 +1,32 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20260323000822",
+      "corp_cls": "Y",
+      "corp_code": "00107987",
+      "corp_name": "남해화학",
+      "bddd": "-",
+      "od_a_at_t": "-",
+      "od_a_at_b": "-",
+      "adt_a_atn": "-",
+      "aq_wtn_div_ostk": "1,730,148",
+      "aq_wtn_div_ostk_rt": "3.5",
+      "aq_wtn_div_estk": "-",
+      "aq_wtn_div_estk_rt": "-",
+      "eaq_ostk": "-",
+      "eaq_ostk_rt": "-",
+      "eaq_estk": "-",
+      "eaq_estk_rt": "-",
+      "ctr_prc_bfcc": "7,572,906,769",
+      "ctr_prc_atcc": "-",
+      "ctr_pd_bfcc_bgd": "2025년 03월 22일",
+      "ctr_pd_bfcc_edd": "2026년 03월 21일",
+      "cc_pp": "신탁계약기간의 만료",
+      "cc_int": "NH농협은행(Nonghyup Bank)",
+      "cc_prd": "2026년 03월 23일",
+      "tp_rm_atcc": "실물(자기주식)의 반환"
+    }
+  ]
+}
