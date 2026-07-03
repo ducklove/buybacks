@@ -99,6 +99,12 @@ jobs:
         uses: actions/deploy-pages@v5
         continue-on-error: true
 
+      # An immediate retry hits the same error window; a ~60s delay matches
+      # the manual reruns that consistently succeeded.
+      - name: Wait before deploy retry
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 60
+
       - name: Retry deploy to GitHub Pages
         id: deployment-retry
         if: steps.deployment.outcome == 'failure'
