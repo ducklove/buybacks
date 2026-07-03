@@ -6,6 +6,7 @@ import { EventTable } from "./components/EventTable";
 import { FilterBar } from "./components/FilterBar";
 import { KpiGrid } from "./components/KpiGrid";
 import { Methodology } from "./components/Methodology";
+import { ScreenerTable } from "./components/ScreenerTable";
 import { Shell } from "./components/Shell";
 import { loadBuybacksDataset } from "./data/loadBuybacks";
 import {
@@ -144,23 +145,28 @@ function App() {
           reactions={filteredPriceReactions}
         />
 
-        <section className="split-layout">
-          <EventTable
-            events={filteredEvents}
-            onSelectStock={setSelectedStockCode}
-            selectedStockCode={selectedStockCode}
-          />
-          <CompanyDetail
-            companies={dataset.companies}
-            events={enrichedEvents}
-            holdings={dataset.holdingSnapshots}
-            priceReactions={dataset.priceReactions}
-            latestPrices={dataset.latestPrices}
-            executions={dataset.executions}
-            selectedStockCode={selectedStockCode}
-            onSelectStock={setSelectedStockCode}
-          />
-        </section>
+        <EventTable
+          events={filteredEvents}
+          onSelectStock={setSelectedStockCode}
+          selectedStockCode={selectedStockCode}
+        />
+
+        <ScreenerTable
+          events={enrichedEvents}
+          onSelectStock={setSelectedStockCode}
+          selectedStockCode={selectedStockCode}
+        />
+
+        <CompanyDetail
+          companies={dataset.companies}
+          events={enrichedEvents}
+          holdings={dataset.holdingSnapshots}
+          priceReactions={dataset.priceReactions}
+          latestPrices={dataset.latestPrices}
+          executions={dataset.executions}
+          selectedStockCode={selectedStockCode}
+          onSelectStock={setSelectedStockCode}
+        />
 
         <Methodology status={dataset.status} />
       </main>

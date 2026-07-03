@@ -634,6 +634,7 @@ meter::-moz-meter-bar {
 .detail-panel,
 .methodology {
   padding: 18px;
+  margin-top: 16px;
   scroll-margin-top: 82px;
 }
 
@@ -661,6 +662,22 @@ meter::-moz-meter-bar {
   padding: 6px 9px;
   font-size: 12px;
   font-weight: 850;
+}
+
+.screener-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.screener-filters label {
+  min-width: 160px;
+}
+
+.screener-filters .filter-toggle {
+  align-self: center;
 }
 
 .table-scroll {
