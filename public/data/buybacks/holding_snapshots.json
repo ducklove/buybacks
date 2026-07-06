@@ -17982,24 +17982,6 @@
     "source_rcept_no": "20260330001617"
   },
   {
-    "corp_code": "00615723",
-    "stock_code": "123010",
-    "corp_name": "알엔티엑스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 236535,
-    "issued_shares": 32658542,
-    "treasury_ratio": 0.007242668702111686,
-    "floating_shares": 32422007,
-    "source_rcept_no": "20260320001397"
-  },
-  {
     "corp_code": "00759294",
     "stock_code": "122990",
     "corp_name": "와이솔",
@@ -25630,24 +25612,6 @@
     "treasury_ratio": null,
     "floating_shares": 27483948,
     "source_rcept_no": "20260317000805"
-  },
-  {
-    "corp_code": "00384717",
-    "stock_code": "065170",
-    "corp_name": "비엘팜텍",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 4070,
-    "issued_shares": 26683025,
-    "treasury_ratio": 0.00015253143149998922,
-    "floating_shares": 26678955,
-    "source_rcept_no": "20260324000004"
   },
   {
     "corp_code": "00366845",
@@ -38502,6 +38466,24 @@
     "source_rcept_no": "20260311004398"
   },
   {
+    "corp_code": "00165680",
+    "stock_code": "008775",
+    "corp_name": "호텔신라우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 11407,
+    "issued_shares": 751879,
+    "treasury_ratio": 0.015171324109331422,
+    "floating_shares": 740472,
+    "source_rcept_no": "20260311004398"
+  },
+  {
     "corp_code": "00145260",
     "stock_code": "008730",
     "corp_name": "율촌화학",
@@ -43287,6 +43269,24 @@
     "issued_shares": 89696580,
     "treasury_ratio": 0.03851501361590375,
     "floating_shares": 86241915,
+    "source_rcept_no": "20260319000542"
+  },
+  {
+    "corp_code": "00113234",
+    "stock_code": "001795",
+    "corp_name": "대한제당우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": null,
+    "issued_shares": 6482760,
+    "treasury_ratio": null,
+    "floating_shares": 6482760,
     "source_rcept_no": "20260319000542"
   },
   {
