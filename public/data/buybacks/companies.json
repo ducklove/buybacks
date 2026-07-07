@@ -696,14 +696,6 @@
     "last_updated": "2026-03-19"
   },
   {
-    "corp_code": "01037542",
-    "stock_code": "222160",
-    "corp_name": "NPX",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-01-12"
-  },
-  {
     "corp_code": "00133557",
     "stock_code": "024940",
     "corp_name": "PN풍년",
@@ -717,7 +709,7 @@
     "corp_name": "PS일렉트로닉스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-07-06"
+    "last_updated": "2026-07-07"
   },
   {
     "corp_code": "01078178",
@@ -8429,7 +8421,7 @@
     "corp_name": "와이즈넛",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-06-17"
+    "last_updated": "2026-07-07"
   },
   {
     "corp_code": "01236532",
@@ -9205,7 +9197,7 @@
     "corp_name": "유티아이",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-10-28"
+    "last_updated": "2026-07-07"
   },
   {
     "corp_code": "00843900",
@@ -9229,7 +9221,7 @@
     "corp_name": "율촌",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-06-16"
+    "last_updated": "2026-07-07"
   },
   {
     "corp_code": "00184889",
@@ -12693,7 +12685,7 @@
     "corp_name": "핌스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2023-02-17"
+    "last_updated": "2026-07-07"
   },
   {
     "corp_code": "01142075",
@@ -15013,7 +15005,7 @@
     "corp_name": "SUN&L",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-05-04"
+    "last_updated": "2026-07-07"
   },
   {
     "corp_code": "00127042",
@@ -16560,14 +16552,6 @@
     "last_updated": "2025-12-09"
   },
   {
-    "corp_code": "00197759",
-    "stock_code": "025560",
-    "corp_name": "미래산업",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-03-10"
-  },
-  {
     "corp_code": "00104786",
     "stock_code": "007120",
     "corp_name": "미래아이앤지",
@@ -16965,7 +16949,7 @@
     "corp_name": "삼성전자",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-10-30"
+    "last_updated": "2026-07-07"
   },
   {
     "corp_code": "00126380",
@@ -20373,7 +20357,7 @@
     "corp_name": "호텔신라",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-07-06"
+    "last_updated": "2026-07-07"
   },
   {
     "corp_code": "00165680",

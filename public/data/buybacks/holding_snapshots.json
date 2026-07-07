@@ -12636,24 +12636,6 @@
     "source_rcept_no": "20260316001214"
   },
   {
-    "corp_code": "01037542",
-    "stock_code": "222160",
-    "corp_name": "NPX",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주식",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 9894439,
-    "treasury_ratio": null,
-    "floating_shares": 9894439,
-    "source_rcept_no": "20260320001395"
-  },
-  {
     "corp_code": "00962922",
     "stock_code": "222110",
     "corp_name": "팬젠",
@@ -33480,24 +33462,6 @@
     "source_rcept_no": "20260319001268"
   },
   {
-    "corp_code": "00197759",
-    "stock_code": "025560",
-    "corp_name": "미래산업",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 16274,
-    "issued_shares": 4482654,
-    "treasury_ratio": 0.0036304385750048967,
-    "floating_shares": 4466380,
-    "source_rcept_no": "20260319001166"
-  },
-  {
     "corp_code": "00158015",
     "stock_code": "025550",
     "corp_name": "한국선재",
@@ -39993,6 +39957,24 @@
     "issued_shares": 5919637922,
     "treasury_ratio": 0.015512601988497092,
     "floating_shares": 5827808935,
+    "source_rcept_no": "20260310002820"
+  },
+  {
+    "corp_code": "00126380",
+    "stock_code": "005935",
+    "corp_name": "삼성전자우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 13603461,
+    "issued_shares": 815974664,
+    "treasury_ratio": 0.016671425719659353,
+    "floating_shares": 802371203,
     "source_rcept_no": "20260310002820"
   },
   {
