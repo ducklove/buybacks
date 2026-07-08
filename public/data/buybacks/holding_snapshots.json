@@ -13968,24 +13968,6 @@
     "source_rcept_no": "20260319000906"
   },
   {
-    "corp_code": "01036367",
-    "stock_code": "203690",
-    "corp_name": "아크솔루션스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 167609,
-    "issued_shares": 20157320,
-    "treasury_ratio": 0.008315043864958238,
-    "floating_shares": 19989711,
-    "source_rcept_no": "20260318000800"
-  },
-  {
     "corp_code": "01038693",
     "stock_code": "203650",
     "corp_name": "드림시큐리티",
@@ -42387,24 +42369,6 @@
     "issued_shares": 292266,
     "treasury_ratio": 0.008338294567277754,
     "floating_shares": 289829,
-    "source_rcept_no": "20260318001135"
-  },
-  {
-    "corp_code": "00106313",
-    "stock_code": "002990",
-    "corp_name": "금호건설",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 1058231,
-    "issued_shares": 36996760,
-    "treasury_ratio": 0.02860334256297038,
-    "floating_shares": 35938529,
     "source_rcept_no": "20260318001135"
   },
   {
