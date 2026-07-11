@@ -134,6 +134,33 @@ describe("AnalysisSection", () => {
     expect(panel.getByText(/선택한 조건에 해당하는 그룹이 없습니다/)).toBeInTheDocument();
   });
 
+  it("shows a visual tooltip with per-type values on CAR column hover and clears on leave", () => {
+    renderSection();
+    const panel = carPanel();
+    const chart = panel.querySelector(".car-chart") as HTMLElement;
+    const rects = chart.querySelectorAll("svg rect");
+
+    // k=10 컬럼: 직접취득 mean_car[9]=0.0045, 소각 mean_car[9]=null
+    fireEvent.mouseEnter(rects[9]);
+    expect(within(panel).getByText("t+10 거래일")).toBeInTheDocument();
+    expect(within(panel).getByText("직접취득 (n=12): +0.45%")).toBeInTheDocument();
+    expect(within(panel).getByText("소각 (n=7): -")).toBeInTheDocument();
+
+    fireEvent.mouseLeave(chart);
+    expect(within(panel).queryByText("t+10 거래일")).not.toBeInTheDocument();
+  });
+
+  it("shows the CAR tooltip on tap (click) for touch devices", () => {
+    renderSection();
+    const panel = carPanel();
+    const chart = panel.querySelector(".car-chart") as HTMLElement;
+    const rects = chart.querySelectorAll("svg rect");
+
+    fireEvent.click(rects[0]);
+    expect(within(panel).getByText("t+1 거래일")).toBeInTheDocument();
+    expect(within(panel).getByText("직접취득 (n=12): 0.00%")).toBeInTheDocument();
+  });
+
   it("computes backtest metrics for the default 20-day holding period", () => {
     renderSection();
     const panel = within(backtestPanel());

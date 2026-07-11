@@ -1,6 +1,23 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_FILTERS } from "./metrics";
-import { parseAppStateFromSearch, serializeAppState } from "./urlState";
+import { parseAppStateFromSearch, preserveEmbedParams, serializeAppState } from "./urlState";
+
+describe("preserveEmbedParams", () => {
+  it("carries embed and theme params over to the serialized app state", () => {
+    expect(preserveEmbedParams("?embed=true&theme=dark", "?market=KOSPI")).toBe(
+      "?market=KOSPI&embed=true&theme=dark"
+    );
+  });
+
+  it("keeps embed params even when the app state serializes to an empty query", () => {
+    expect(preserveEmbedParams("?embed=true", "")).toBe("?embed=true");
+  });
+
+  it("returns the app state untouched when no embed params are present", () => {
+    expect(preserveEmbedParams("?market=KOSPI&stock=005930", "?year=2025")).toBe("?year=2025");
+    expect(preserveEmbedParams("", "")).toBe("");
+  });
+});
 
 describe("parseAppStateFromSearch", () => {
   it("returns defaults for an empty query string", () => {

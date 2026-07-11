@@ -99,3 +99,23 @@ export function serializeAppState(
   const query = params.toString();
   return query ? `?${query}` : "";
 }
+
+/** 임베드 계약 파라미터: 앱 상태 직렬화와 무관하게 URL에 항상 보존한다. */
+const PRESERVED_PARAMS = ["embed", "theme"] as const;
+
+/**
+ * serializeAppState 결과에 현재 URL의 embed·theme 파라미터를 이어붙입니다.
+ * history.replaceState 로 URL을 정리할 때 임베드 계약이 풀리지 않도록 합니다.
+ */
+export function preserveEmbedParams(currentSearch: string, nextSearch: string): string {
+  const current = new URLSearchParams(currentSearch);
+  const next = new URLSearchParams(nextSearch);
+  for (const key of PRESERVED_PARAMS) {
+    const value = current.get(key);
+    if (value !== null && !next.has(key)) {
+      next.set(key, value);
+    }
+  }
+  const query = next.toString();
+  return query ? `?${query}` : "";
+}

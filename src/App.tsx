@@ -18,7 +18,11 @@ import {
   filterEvents,
   latestHoldingSnapshots
 } from "./utils/metrics";
-import { parseAppStateFromSearch, serializeAppState } from "./utils/urlState";
+import {
+  parseAppStateFromSearch,
+  preserveEmbedParams,
+  serializeAppState
+} from "./utils/urlState";
 import type { BuybacksDataset, Filters } from "./types/buybacks";
 
 function currentLocationSearch() {
@@ -80,12 +84,12 @@ function App() {
 
   useEffect(() => {
     if (!dataset || typeof window === "undefined") return;
-    const nextSearch = serializeAppState(
-      filters,
-      selectedStockCode,
-      dataset.companies[0]?.stock_code ?? ""
-    );
     const { pathname, search, hash } = window.location;
+    // embed·theme(임베드 계약)는 앱 상태가 아니지만 URL 정리 과정에서 유실되면 안 된다.
+    const nextSearch = preserveEmbedParams(
+      search,
+      serializeAppState(filters, selectedStockCode, dataset.companies[0]?.stock_code ?? "")
+    );
     if (nextSearch === search) return;
     window.history.replaceState(window.history.state, "", `${pathname}${nextSearch}${hash}`);
   }, [dataset, filters, selectedStockCode]);

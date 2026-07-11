@@ -52,8 +52,14 @@
   color: var(--ink);
 }
 
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* data-theme 미설정(수동 선택·강제 테마 없음) 시 OS 다크 모드 폴백 */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --bg: #10161a;
     --surface: #1a2226;
     --surface-strong: #212b2f;
@@ -92,6 +98,58 @@
     --status-progress-text: #aab6ef;
     --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
   }
+}
+
+/* 수동 토글·?theme=dark 강제 시 다크 팔레트 (위 @media 블록과 동일 토큰) */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #10161a;
+  --surface: #1a2226;
+  --surface-strong: #212b2f;
+  --surface-hover: #223330;
+  --track-bg: #26312f;
+  --topbar-bg: rgba(20, 27, 30, 0.92);
+  --input-bg: #202a2e;
+  --ink: #e9f1ee;
+  --ink-soft: #c3cfcb;
+  --muted: #93a3a0;
+  --border: #303c3f;
+  --border-strong: #445052;
+  --teal: #35c9bd;
+  --teal-strong: #6fe0d5;
+  --teal-soft: #163330;
+  --amber: #f5b94a;
+  --orange: #ff8a52;
+  --green: #6fc783;
+  --neutral-tone: #97a6a3;
+  --price-up: #ff6b64;
+  --price-down: #6ea3ff;
+  --warning-text: #e8cf7f;
+  --chip-disposition-bg: #4a2c1a;
+  --chip-disposition-text: #ffb488;
+  --chip-retirement-bg: #4a3c12;
+  --chip-retirement-text: #f2cf6e;
+  --chip-trust-bg: #29304a;
+  --chip-trust-text: #aab6ef;
+  --chip-periodic-bg: #2a3432;
+  --chip-periodic-text: #c1cdc9;
+  --status-complete-bg: #1f3a26;
+  --status-complete-text: #8fe0a1;
+  --status-shortfall-bg: #43231f;
+  --status-shortfall-text: #ff9d92;
+  --status-progress-bg: #29304a;
+  --status-progress-text: #aab6ef;
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* iframe embed mode: hide standalone chrome so the dashboard fits a host frame */
+html[data-embed] .topbar {
+  display: none;
+}
+
+html[data-embed] .app-main {
+  width: min(1880px, calc(100vw - 24px));
+  padding: 12px 0 24px;
 }
 
 * {
@@ -197,6 +255,12 @@ a:hover {
   border-bottom-color: var(--teal);
 }
 
+.topbar-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .github-link {
   display: inline-flex;
   min-height: 36px;
@@ -204,6 +268,24 @@ a:hover {
   color: var(--ink);
   font-size: 14px;
   font-weight: 650;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 34px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  border-color: var(--teal);
 }
 
 .hub-link {
@@ -694,7 +776,31 @@ meter::-moz-meter-bar {
 }
 
 .car-chart {
+  position: relative;
   margin-top: 16px;
+}
+
+.car-tooltip {
+  position: absolute;
+  top: 10px;
+  z-index: 2;
+  display: grid;
+  gap: 3px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 8px 10px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.car-tooltip strong {
+  color: var(--ink);
 }
 
 .car-chart svg {

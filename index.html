@@ -9,6 +9,27 @@
     />
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%buybacks-icon.svg" />
     <title>Buybacks</title>
+    <script>
+      // iframe embed + theme: ?theme=dark|light overrides stored theme; ?embed hides chrome.
+      // data-theme 미설정 시에는 CSS의 prefers-color-scheme 폴백이 적용된다.
+      (function () {
+        try {
+          var params = new URLSearchParams(location.search);
+          var urlTheme = params.get("theme");
+          var stored = localStorage.getItem("theme");
+          var theme = urlTheme === "dark" || urlTheme === "light" ? urlTheme : stored;
+          if (theme === "dark" || theme === "light") {
+            document.documentElement.dataset.theme = theme;
+          }
+          var embed = params.get("embed");
+          if (embed !== null && embed !== "0" && embed !== "false") {
+            document.documentElement.dataset.embed = "1";
+          }
+        } catch (e) {
+          /* localStorage 접근 불가 시 data-theme 미설정 → prefers-color-scheme 폴백 */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

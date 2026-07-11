@@ -122,6 +122,8 @@ export function CarCurveChart({ carCurves }: CarCurveChartProps) {
 }
 
 function CarSvg({ carCurves, groups }: { carCurves: CarCurves; groups: CarCurveGroup[] }) {
+  // 네이티브 <title> 툴팁은 터치에서 접근 불가라 hover/tap 공용의 시각 툴팁으로 대체한다.
+  const [hoverK, setHoverK] = useState<number | null>(null);
   const window = Math.max(
     1,
     Math.min(carCurves.window || 60, Math.max(...groups.map((group) => group.mean_car.length), 1))
@@ -151,7 +153,7 @@ function CarSvg({ carCurves, groups }: { carCurves: CarCurves; groups: CarCurveG
 
   return (
     <>
-      <div className="car-chart">
+      <div className="car-chart" onMouseLeave={() => setHoverK(null)}>
         <svg
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
           role="img"
@@ -214,11 +216,27 @@ function CarSvg({ carCurves, groups }: { carCurves: CarCurves; groups: CarCurveG
               width={columnWidth}
               height={PLOT_HEIGHT}
               fill="transparent"
-            >
-              <title>{tooltipFor(k, groups)}</title>
-            </rect>
+              onMouseEnter={() => setHoverK(k)}
+              onClick={() => setHoverK(k)}
+            />
           ))}
         </svg>
+        {hoverK !== null ? (
+          <div
+            className="car-tooltip"
+            role="status"
+            style={{
+              left: `${((xOf(hoverK) / WIDTH) * 100).toFixed(2)}%`,
+              transform:
+                xOf(hoverK) / WIDTH > 0.62 ? "translateX(calc(-100% - 8px))" : "translateX(8px)"
+            }}
+          >
+            <strong>t+{hoverK} 거래일</strong>
+            {tooltipLines(hoverK, groups).map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </div>
+        ) : null}
       </div>
       <ul className="car-legend">
         {groups.map((group) => {
@@ -267,13 +285,12 @@ function buildLinePath(
   return segments.join(" ");
 }
 
-function tooltipFor(k: number, groups: CarCurveGroup[]): string {
-  const lines = groups.map((group) => {
+function tooltipLines(k: number, groups: CarCurveGroup[]): string[] {
+  return groups.map((group) => {
     const value = group.mean_car[k - 1];
     const label = EVENT_TYPE_LABELS[group.event_type] ?? group.event_type;
     return `${label} (n=${group.n}): ${value === null || value === undefined ? "-" : formatSignedPercent(value, 2)}`;
   });
-  return [`t+${k} 거래일`, ...lines].join("\n");
 }
 
 function buildTicks(min: number, max: number): number[] {
