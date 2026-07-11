@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { AnalysisSection } from "./components/AnalysisSection";
+import { LazyAnalysisSection } from "./components/AnalysisSection";
 import { CompanyDetail } from "./components/CompanyDetail";
 import { DashboardCharts } from "./components/DashboardCharts";
 import { DataStatusBanner } from "./components/DataStatusBanner";
@@ -9,7 +9,8 @@ import { KpiGrid } from "./components/KpiGrid";
 import { Methodology } from "./components/Methodology";
 import { ScreenerTable } from "./components/ScreenerTable";
 import { Shell } from "./components/Shell";
-import { loadBuybacksDataset } from "./data/loadBuybacks";
+import { loadBuybacksDataset, loadDetailDataset, type DetailDataset } from "./data/loadBuybacks";
+import { useVisibleOnce } from "./hooks/useVisibleOnce";
 import {
   availableYears,
   buildKpis,
@@ -32,6 +33,14 @@ function App() {
   const [selectedStockCode, setSelectedStockCode] = useState<string>(
     initialUrlState.selectedStockCode ?? ""
   );
+  // 이행결과(executions)·배당(dividends)은 이벤트 테이블/상세 섹션 접근 시 지연 로드한다.
+  // sentinel div 는 코어 데이터셋 로드 후에야 렌더되므로 그때부터 관찰을 시작한다.
+  const { ref: detailGateRef, visible: detailGateVisible } = useVisibleOnce<HTMLDivElement>(
+    "800px 0px",
+    dataset !== null
+  );
+  const [detailData, setDetailData] = useState<DetailDataset | null>(null);
+  const [detailError, setDetailError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -54,6 +63,22 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (!dataset || !detailGateVisible || detailData || detailError) return;
+    let cancelled = false;
+    const knownEventIds = new Set(dataset.events.map((event) => event.event_id));
+    loadDetailDataset(knownEventIds)
+      .then((loaded) => {
+        if (!cancelled) setDetailData(loaded);
+      })
+      .catch((err: unknown) => {
+        if (!cancelled) setDetailError(err instanceof Error ? err.message : String(err));
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [dataset, detailGateVisible, detailData, detailError]);
+
+  useEffect(() => {
     if (!dataset || typeof window === "undefined") return;
     const nextSearch = serializeAppState(
       filters,
@@ -65,7 +90,17 @@ function App() {
     window.history.replaceState(window.history.state, "", `${pathname}${nextSearch}${hash}`);
   }, [dataset, filters, selectedStockCode]);
 
-  const enrichedEvents = useMemo(() => (dataset ? enrichEvents(dataset) : []), [dataset]);
+  const enrichedEvents = useMemo(
+    () =>
+      dataset
+        ? enrichEvents({
+            ...dataset,
+            executions: detailData?.executions ?? [],
+            dividends: detailData?.dividends ?? []
+          })
+        : [],
+    [dataset, detailData]
+  );
   const filteredEvents = useMemo(
     () => filterEvents(enrichedEvents, filters),
     [enrichedEvents, filters]
@@ -146,12 +181,23 @@ function App() {
           reactions={filteredPriceReactions}
         />
 
-        <AnalysisSection
-          carCurves={dataset.carCurves ?? null}
-          reactionSeries={dataset.reactionSeries ?? []}
-          events={dataset.events}
-          companies={dataset.companies}
-        />
+        <LazyAnalysisSection events={dataset.events} companies={dataset.companies} />
+
+        {/* 이 지점이 뷰포트에 접근하면 executions/dividends 를 지연 로드한다 */}
+        <div ref={detailGateRef} aria-hidden="true" />
+        {detailError ? (
+          <section className="empty-state" role="alert">
+            <p>이행결과·배당 데이터를 불러오지 못했습니다.</p>
+            <p className="muted">{detailError}</p>
+            <button
+              className="secondary-button"
+              type="button"
+              onClick={() => setDetailError(null)}
+            >
+              다시 시도
+            </button>
+          </section>
+        ) : null}
 
         <EventTable
           events={filteredEvents}
@@ -171,8 +217,8 @@ function App() {
           holdings={dataset.holdingSnapshots}
           priceReactions={dataset.priceReactions}
           latestPrices={dataset.latestPrices}
-          executions={dataset.executions}
-          dividends={dataset.dividends ?? []}
+          executions={detailData?.executions ?? []}
+          dividends={detailData?.dividends ?? []}
           selectedStockCode={selectedStockCode}
           onSelectStock={setSelectedStockCode}
         />

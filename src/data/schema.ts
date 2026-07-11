@@ -143,8 +143,54 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
     }
   });
 
+  collectExecutionErrors(dataset.executions, eventIds, errors);
+
+  collectReactionSeriesErrors(dataset.reactionSeries, errors);
+  collectCarCurvesErrors(dataset.carCurves, errors);
+  collectDividendErrors(dataset.dividends, errors);
+
+  if (dataset.status.companies_count !== dataset.companies.length) {
+    errors.push("data_status.companies_count does not match companies length");
+  }
+  if (dataset.status.events_count !== dataset.events.length) {
+    errors.push("data_status.events_count does not match events length");
+  }
+
+  return errors;
+}
+
+/** 지연 로드되는 분석 데이터(reaction_series/car_curves)만 검증한다. */
+export function validateAnalysisDataset(payload: {
+  reactionSeries?: BuybacksDataset["reactionSeries"];
+  carCurves?: BuybacksDataset["carCurves"];
+}): string[] {
+  const errors: string[] = [];
+  collectReactionSeriesErrors(payload.reactionSeries, errors);
+  collectCarCurvesErrors(payload.carCurves, errors);
+  return errors;
+}
+
+/** 지연 로드되는 상세 데이터(executions/dividends)만 검증한다. */
+export function validateDetailDataset(
+  payload: {
+    executions: BuybacksDataset["executions"];
+    dividends?: BuybacksDataset["dividends"];
+  },
+  knownEventIds: ReadonlySet<string>
+): string[] {
+  const errors: string[] = [];
+  collectExecutionErrors(payload.executions, knownEventIds, errors);
+  collectDividendErrors(payload.dividends, errors);
+  return errors;
+}
+
+function collectExecutionErrors(
+  executions: BuybacksDataset["executions"],
+  eventIds: ReadonlySet<string>,
+  errors: string[]
+) {
   const executionIds = new Set<string>();
-  dataset.executions.forEach((execution, index) => {
+  executions.forEach((execution, index) => {
     if (!execution.execution_id) {
       errors.push(`executions[${index}] missing execution_id`);
     }
@@ -171,29 +217,19 @@ export function validateDataset(dataset: BuybacksDataset): string[] {
       errors.push(`executions[${index}] unknown linked_event_id ${execution.linked_event_id}`);
     }
   });
-
-  validateReactionSeries(dataset, errors);
-  validateCarCurves(dataset, errors);
-  validateDividends(dataset, errors);
-
-  if (dataset.status.companies_count !== dataset.companies.length) {
-    errors.push("data_status.companies_count does not match companies length");
-  }
-  if (dataset.status.events_count !== dataset.events.length) {
-    errors.push("data_status.events_count does not match events length");
-  }
-
-  return errors;
 }
 
-function validateReactionSeries(dataset: BuybacksDataset, errors: string[]) {
-  if (dataset.reactionSeries === undefined) return;
-  if (!Array.isArray(dataset.reactionSeries)) {
+function collectReactionSeriesErrors(
+  reactionSeries: BuybacksDataset["reactionSeries"],
+  errors: string[]
+) {
+  if (reactionSeries === undefined) return;
+  if (!Array.isArray(reactionSeries)) {
     errors.push("reactionSeries must be an array");
     return;
   }
   const seriesEventIds = new Set<string>();
-  dataset.reactionSeries.forEach((series, index) => {
+  reactionSeries.forEach((series, index) => {
     if (!series.event_id) errors.push(`reactionSeries[${index}] missing event_id`);
     if (seriesEventIds.has(series.event_id)) {
       errors.push(`reactionSeries[${index}] duplicate event_id ${series.event_id}`);
@@ -215,9 +251,8 @@ function validateReactionSeries(dataset: BuybacksDataset, errors: string[]) {
   });
 }
 
-function validateCarCurves(dataset: BuybacksDataset, errors: string[]) {
-  if (dataset.carCurves === undefined || dataset.carCurves === null) return;
-  const carCurves = dataset.carCurves;
+function collectCarCurvesErrors(carCurves: BuybacksDataset["carCurves"], errors: string[]) {
+  if (carCurves === undefined || carCurves === null) return;
   if (!Array.isArray(carCurves.groups)) {
     errors.push("carCurves.groups must be an array");
     return;
@@ -242,14 +277,14 @@ function validateCarCurves(dataset: BuybacksDataset, errors: string[]) {
   });
 }
 
-function validateDividends(dataset: BuybacksDataset, errors: string[]) {
-  if (dataset.dividends === undefined) return;
-  if (!Array.isArray(dataset.dividends)) {
+function collectDividendErrors(dividends: BuybacksDataset["dividends"], errors: string[]) {
+  if (dividends === undefined) return;
+  if (!Array.isArray(dividends)) {
     errors.push("dividends must be an array");
     return;
   }
   const keys = new Set<string>();
-  dataset.dividends.forEach((dividend, index) => {
+  dividends.forEach((dividend, index) => {
     if (!dividend.corp_code) errors.push(`dividends[${index}] missing corp_code`);
     if (!dividend.stock_code) errors.push(`dividends[${index}] missing stock_code`);
     if (typeof dividend.bsns_year !== "number") {

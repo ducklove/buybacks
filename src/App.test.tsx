@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
+import { resetBuybacksDataCache } from "./data/loadBuybacks";
 
 const okResponse = (payload: unknown) =>
   Promise.resolve({
@@ -16,6 +17,11 @@ const notFoundResponse = () =>
   } as Response);
 
 describe("App", () => {
+  beforeEach(() => {
+    // 지연 로드 promise 캐시가 테스트 간 공유되지 않도록 초기화한다
+    resetBuybacksDataCache();
+  });
+
   it("renders the primary dashboard after static JSON loads", async () => {
     vi.stubGlobal("fetch", (input: RequestInfo | URL) => {
       const url = String(input);
@@ -300,7 +306,8 @@ describe("App", () => {
     render(<App />);
     expect(await screen.findByText("이벤트 탐색기")).toBeInTheDocument();
     expect(screen.getByText("이행률")).toBeInTheDocument();
-    expect(screen.getAllByText("99.8%").length).toBeGreaterThan(0);
+    // executions.json 은 지연 로드되므로(jsdom 에서는 즉시 로드 폴백) 렌더를 기다린다
+    expect((await screen.findAllByText("99.8%")).length).toBeGreaterThan(0);
     expect(screen.getAllByText("완료").length).toBeGreaterThan(0);
     expect(screen.getByText("미연결 결과보고서")).toBeInTheDocument();
     expect(screen.getByText("미달")).toBeInTheDocument();
@@ -377,8 +384,9 @@ describe("App", () => {
     render(<App />);
     expect(await screen.findByText("자사주 매입·처분·소각 분석")).toBeInTheDocument();
     // 분석 섹션과 네비게이션은 데이터 부재 시에도 렌더된다
+    // (분석 데이터는 지연 로드되므로 jsdom 즉시 로드 폴백 후 렌더를 기다린다)
     expect(screen.getByRole("button", { name: "분석" })).toBeInTheDocument();
-    expect(screen.getByText("CAR 곡선")).toBeInTheDocument();
+    expect(await screen.findByText("CAR 곡선")).toBeInTheDocument();
     expect(screen.getByText("간이 백테스트")).toBeInTheDocument();
     expect(screen.getAllByText(/가격 시계열 보강 후 표시됩니다/)).toHaveLength(2);
     // 나머지 대시보드는 기존과 동일하게 동작한다

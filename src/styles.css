@@ -665,6 +665,12 @@ meter::-moz-meter-bar {
   min-height: 320px;
 }
 
+/* 지연 로드 중/실패 시 분석 섹션 자리에 표시되는 패널은 두 컬럼을 가로지른다 */
+.analysis-section > .loading-panel,
+.analysis-section > .empty-state {
+  grid-column: 1 / -1;
+}
+
 .analysis-controls {
   display: flex;
   flex-wrap: wrap;
