@@ -47,7 +47,8 @@ export function Shell({ children }: ShellProps) {
             aria-hidden="true"
           />
           <span className="brand-text">
-            <strong>Buybacks</strong>
+            <strong>자사주 분석</strong>
+            <small className="brand-sub">Buybacks</small>
           </span>
         </button>
         <nav aria-label="Primary navigation">

@@ -86,7 +86,7 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
   const pageNumbers = paginationWindow(clampedPage, pageCount);
 
   return (
-    <section className="table-panel" id="events">
+    <section className="table-panel card-table" id="events">
       <header className="panel-header">
         <div>
           <h2>이벤트 탐색기</h2>
@@ -157,8 +157,8 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                   className={event.stock_code === selectedStockCode ? "selected-row" : undefined}
                   key={event.event_id}
                 >
-                  <td>{event.disclosure_date}</td>
-                  <td>
+                  <td data-label="공시일">{event.disclosure_date}</td>
+                  <td className="company-cell">
                     <button
                       className="link-button"
                       type="button"
@@ -168,28 +168,30 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                       <small>{event.stock_code}</small>
                     </button>
                   </td>
-                  <td>
+                  <td data-label="유형">
                     <span className={`event-chip event-${event.event_type}`}>
                       {EVENT_TYPE_LABELS[event.event_type]}
                     </span>
                   </td>
-                  <td className="numeric-cell">
+                  <td className="numeric-cell" data-label="예정금액">
                     <AmountBreakdown event={event} />
                   </td>
-                  <td className="numeric-cell col-optional">
+                  <td className="numeric-cell col-optional" data-label="예정주식수">
                     <ShareBreakdown event={event} />
                   </td>
-                  <td className="col-optional">
+                  <td className="col-optional" data-label="예정지분">
                     <PlannedStakeCell event={event} />
                   </td>
-                  <td className="purpose-cell col-optional">{event.purpose ?? "-"}</td>
-                  <td className="col-optional">
+                  <td className="purpose-cell col-optional" data-label="목적">
+                    {event.purpose ?? "-"}
+                  </td>
+                  <td className="col-optional" data-label="기보유비율">
                     <HoldingBeforeCell event={event} />
                   </td>
-                  <td className="numeric-cell">
+                  <td className="numeric-cell" data-label="시가총액">
                     <MarketCapCell event={event} />
                   </td>
-                  <td className="numeric-cell">
+                  <td className="numeric-cell" data-label="이행률">
                     <CompletionRateCell event={event} />
                   </td>
                 </tr>

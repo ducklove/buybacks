@@ -230,6 +230,20 @@ a:hover {
   color: var(--teal);
 }
 
+.brand-sub {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.03em;
+}
+
+/* 중간 폭에서는 nav 공간이 빠듯해 영문 병기를 숨긴다 (모바일 1열 topbar 에서는 표시) */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .brand-sub {
+    display: none;
+  }
+}
+
 .topbar nav {
   display: flex;
   align-items: stretch;
@@ -1667,5 +1681,125 @@ tbody tr:last-child td {
 
   .col-optional {
     display: none;
+  }
+
+  /* ── 카드 모드: 이벤트 탐색기·기업 스크리너 테이블 행을 카드로 재배치 ──
+     정렬(헤더 칩)·페이지네이션·선택 동작은 데스크톱과 동일하게 유지된다. */
+  .card-table .table-scroll {
+    overflow-x: visible; /* min-width 640px 가로 스크롤 규칙 해제 */
+    border: 0;
+    border-radius: 0;
+  }
+
+  .card-table table {
+    display: block;
+    min-width: 0;
+  }
+
+  .card-table thead {
+    display: block;
+  }
+
+  /* 정렬 가능한 헤더만 칩 나열로 유지 — 카드 모드에서도 정렬 동작 불변 */
+  .card-table thead tr {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .card-table thead th {
+    border: 0;
+    background: transparent;
+    padding: 0;
+  }
+
+  .card-table thead th:not([aria-sort]) {
+    display: none;
+  }
+
+  .card-table thead th .sort-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    width: auto;
+    min-height: 32px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    padding: 0 12px;
+    text-align: left;
+    font-size: 12px;
+  }
+
+  .card-table thead th .sort-button.active-sort {
+    border-color: var(--teal);
+    background: var(--teal-soft);
+    color: var(--teal-strong);
+  }
+
+  .card-table tbody {
+    display: block;
+  }
+
+  .card-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    padding: 12px 14px;
+  }
+
+  .card-table tbody tr + tr {
+    margin-top: 10px;
+  }
+
+  .card-table tbody td {
+    display: block;
+    border: 0;
+    padding: 0;
+  }
+
+  /* 카드 모드에서도 col-optional 숨김 계약 유지 (위 display: block 재정의 방지) */
+  .card-table tbody td.col-optional {
+    display: none;
+  }
+
+  .card-table tbody td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 750;
+  }
+
+  .card-table tbody .company-cell {
+    grid-column: 1 / -1;
+    order: -1;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+  }
+
+  .card-table tbody .empty-table-cell {
+    grid-column: 1 / -1;
+    padding: 16px 0;
+    text-align: center;
+  }
+
+  /* 카드에서는 좌측 정렬하되 tabular-nums 자릿수 정렬은 유지 */
+  .card-table tbody .numeric-cell {
+    text-align: left;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .card-table tbody .numeric-cell .stacked-value {
+    justify-items: start;
+  }
+
+  .card-table .purpose-cell {
+    max-width: none;
   }
 }

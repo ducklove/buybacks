@@ -129,7 +129,7 @@ export function ScreenerTable({ events, selectedStockCode, onSelectStock }: Scre
   };
 
   return (
-    <section className="table-panel" id="screener">
+    <section className="table-panel card-table" id="screener">
       <header className="panel-header">
         <div>
           <h2>기업 스크리너</h2>
@@ -283,7 +283,7 @@ export function ScreenerTable({ events, selectedStockCode, onSelectStock }: Scre
                 className={row.stockCode === selectedStockCode ? "selected-row" : undefined}
                 key={row.stockCode}
               >
-                <td>
+                <td className="company-cell">
                   <button
                     className="link-button"
                     type="button"
@@ -293,20 +293,36 @@ export function ScreenerTable({ events, selectedStockCode, onSelectStock }: Scre
                     <small>{row.stockCode}</small>
                   </button>
                 </td>
-                <td className="col-optional">{row.market ? MARKET_LABELS[row.market] : "-"}</td>
-                <td className="numeric-cell">{row.eventCount}</td>
-                <td className="numeric-cell">{formatKRW(row.recentPlannedAcquisitionAmountKrw)}</td>
-                <td className="numeric-cell">{formatPercent(row.acquisitionIntensity, 2)}</td>
-                <td className="numeric-cell col-optional">{formatPercent(row.dividendYield, 2)}</td>
-                <td className="numeric-cell col-optional">
+                <td className="col-optional" data-label="시장">
+                  {row.market ? MARKET_LABELS[row.market] : "-"}
+                </td>
+                <td className="numeric-cell" data-label="이벤트 수">
+                  {row.eventCount}
+                </td>
+                <td className="numeric-cell" data-label="12M 취득계획">
+                  {formatKRW(row.recentPlannedAcquisitionAmountKrw)}
+                </td>
+                <td className="numeric-cell" data-label="시총대비 %">
+                  {formatPercent(row.acquisitionIntensity, 2)}
+                </td>
+                <td className="numeric-cell col-optional" data-label="배당수익률 %">
+                  {formatPercent(row.dividendYield, 2)}
+                </td>
+                <td className="numeric-cell col-optional" data-label="총환원율 %">
                   {formatPercent(row.totalShareholderReturn, 2)}
                 </td>
-                <td className="numeric-cell col-optional">
+                <td className="numeric-cell col-optional" data-label="소각비중 %">
                   {formatPercent(row.retirementShare, 1)}
                 </td>
-                <td className="numeric-cell">{formatPercent(row.averageCompletionRate, 1)}</td>
-                <td className="numeric-cell col-optional">{formatPercent(row.holdingRatio)}</td>
-                <td className="col-optional">{row.lastEventDate ?? "-"}</td>
+                <td className="numeric-cell" data-label="평균 이행률 %">
+                  {formatPercent(row.averageCompletionRate, 1)}
+                </td>
+                <td className="numeric-cell col-optional" data-label="보유비율 %">
+                  {formatPercent(row.holdingRatio)}
+                </td>
+                <td className="col-optional" data-label="최근 이벤트일">
+                  {row.lastEventDate ?? "-"}
+                </td>
               </tr>
             ))}
             {visibleRows.length === 0 ? (

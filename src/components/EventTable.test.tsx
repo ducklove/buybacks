@@ -67,4 +67,34 @@ describe("EventTable", () => {
     expect(container.querySelectorAll("tbody tr")).toHaveLength(30);
     expect(screen.getByText("1-30 / 30건")).toBeInTheDocument();
   });
+
+  it("카드 모드 마크업 계약: 셀 data-label 라벨과 company-cell 종목 셀을 제공한다", () => {
+    const { container } = render(
+      <EventTable events={events} selectedStockCode="" onSelectStock={vi.fn()} />
+    );
+
+    // ≤760px CSS 카드 모드는 section.card-table 로 옵트인한다.
+    expect(container.querySelector("section.table-panel.card-table#events")).not.toBeNull();
+
+    const firstRow = container.querySelector("tbody tr");
+    const labels = Array.from(firstRow?.querySelectorAll("td[data-label]") ?? []).map((cell) =>
+      cell.getAttribute("data-label")
+    );
+    expect(labels).toEqual([
+      "공시일",
+      "유형",
+      "예정금액",
+      "예정주식수",
+      "예정지분",
+      "목적",
+      "기보유비율",
+      "시가총액",
+      "이행률"
+    ]);
+
+    // 종목 셀은 카드 타이틀 역할 — 라벨 없이 company-cell 클래스로 전폭 배치된다.
+    const companyCell = firstRow?.querySelector("td.company-cell");
+    expect(companyCell?.hasAttribute("data-label")).toBe(false);
+    expect(companyCell?.querySelector(".link-button")).not.toBeNull();
+  });
 });

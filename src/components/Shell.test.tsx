@@ -12,6 +12,14 @@ describe("Shell", () => {
     const githubLink = screen.getByRole("link", { name: "GitHub" });
     expect(githubLink).toHaveAttribute("href", "https://github.com/ducklove/buybacks");
   });
+
+  it("브랜드 텍스트가 한국어 서비스명 '자사주 분석' 을 표시한다", () => {
+    const { container } = render(<Shell>본문</Shell>);
+
+    const brandText = container.querySelector(".brand .brand-text");
+    expect(brandText?.querySelector("strong")?.textContent).toBe("자사주 분석");
+    expect(brandText?.querySelector(".brand-sub")?.textContent).toBe("Buybacks");
+  });
 });
 
 describe("Shell 테마 토글", () => {
