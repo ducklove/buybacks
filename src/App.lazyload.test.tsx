@@ -242,7 +242,7 @@ describe("App lazy loading", () => {
     expect(screen.getByText("분석 데이터를 불러오는 중입니다.")).toBeInTheDocument();
   });
 
-  it("loads and renders the analysis/detail data when their sections come into view", async () => {
+  it("loads and renders the analysis/detail data when their sections come into view", { timeout: 30000 }, async () => {
     const { requestedFiles, stub } = createFetchStub();
     vi.stubGlobal("fetch", stub);
 
@@ -253,10 +253,13 @@ describe("App lazy loading", () => {
       MockIntersectionObserver.enterAll();
     });
 
+    // CI 러너는 로컬보다 느려 기본 1초 대기로는 지연 로드 → 파싱 → 재렌더
+    // 체인이 끝나지 않을 수 있다(29142680322 실패). 넉넉히 기다린다.
+    const findOpts = { timeout: 10000 } as const;
     // 백테스트 패널: 20거래일 × 1% 복리 → +22.02%
-    expect((await screen.findAllByText("+22.02%")).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText("+22.02%", undefined, findOpts)).length).toBeGreaterThan(0);
     // 이행결과: 998400000000 / 1000000000000 → 99.8%
-    expect((await screen.findAllByText("99.8%")).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText("99.8%", undefined, findOpts)).length).toBeGreaterThan(0);
     expect(screen.getAllByText("완료").length).toBeGreaterThan(0);
 
     for (const lazy of [
