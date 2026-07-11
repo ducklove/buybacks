@@ -206,6 +206,22 @@ a:hover {
   font-weight: 650;
 }
 
+.hub-link {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  min-height: 32px;
+  padding: 0 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.hub-link:hover {
+  color: var(--teal-strong);
+}
+
 .app-main {
   width: min(1880px, calc(100vw - 48px));
   margin: 0 auto;

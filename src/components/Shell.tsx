@@ -43,8 +43,16 @@ export function Shell({ children }: ShellProps) {
               {item.label}
             </button>
           ))}
+          <a className="hub-link" href="https://cantabile.tplinkdns.com:3691" rel="noopener">
+            Value Compass ↗
+          </a>
         </nav>
-        <a className="github-link" href="https://github.com" target="_blank" rel="noreferrer">
+        <a
+          className="github-link"
+          href="https://github.com/ducklove/buybacks"
+          target="_blank"
+          rel="noreferrer"
+        >
           GitHub
         </a>
       </header>
