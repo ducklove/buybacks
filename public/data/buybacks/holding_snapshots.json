@@ -34470,24 +34470,6 @@
     "source_rcept_no": "20260609000080"
   },
   {
-    "corp_code": "00108913",
-    "stock_code": "019685",
-    "corp_name": "대교우B",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 5652913,
-    "issued_shares": 19426990,
-    "treasury_ratio": 0.29098244246792737,
-    "floating_shares": 13774077,
-    "source_rcept_no": "20260609000080"
-  },
-  {
     "corp_code": "00159731",
     "stock_code": "019660",
     "corp_name": "글로본",
