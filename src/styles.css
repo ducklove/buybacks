@@ -1438,7 +1438,15 @@ tbody tr:last-child td {
 
   .split-layout,
   .analysis-section {
-    grid-template-columns: 1fr;
+    /* 1fr 단독은 fr 트랙의 자동 최소치(min-content)가 살아 있어, 자식
+       그리드(.backtest-bars 등)의 열 최소폭 합이 375px 폰에서 레이아웃
+       뷰포트를 502px로 밀어냈다. minmax(0, 1fr)로 최소치를 죽인다. */
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .split-layout > *,
+  .analysis-section > * {
+    min-width: 0;
   }
 }
 
@@ -1481,7 +1489,7 @@ tbody tr:last-child td {
   .method-grid,
   .detail-metrics,
   .reaction-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .kpi-grid {
