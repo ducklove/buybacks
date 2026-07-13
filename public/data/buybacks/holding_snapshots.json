@@ -7056,24 +7056,6 @@
     "source_rcept_no": "20260318001264"
   },
   {
-    "corp_code": "01408999",
-    "stock_code": "336060",
-    "corp_name": "웨이버스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 48155200,
-    "treasury_ratio": null,
-    "floating_shares": 48155200,
-    "source_rcept_no": "20260318000548"
-  },
-  {
     "corp_code": "01405585",
     "stock_code": "335870",
     "corp_name": "윙스풋",
@@ -16074,24 +16056,6 @@
     "source_rcept_no": "20260319000343"
   },
   {
-    "corp_code": "00980043",
-    "stock_code": "148780",
-    "corp_name": "비큐AI",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 31445725,
-    "treasury_ratio": null,
-    "floating_shares": 31445725,
-    "source_rcept_no": "20260323001692"
-  },
-  {
     "corp_code": "00915508",
     "stock_code": "148250",
     "corp_name": "알엔투테크놀로지",
@@ -22678,24 +22642,6 @@
     "treasury_ratio": null,
     "floating_shares": 76894182,
     "source_rcept_no": "20260319001413"
-  },
-  {
-    "corp_code": "00406037",
-    "stock_code": "083660",
-    "corp_name": "CSA 코스믹",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 72353269,
-    "treasury_ratio": null,
-    "floating_shares": 72353269,
-    "source_rcept_no": "20260324000035"
   },
   {
     "corp_code": "00409788",
@@ -41451,6 +41397,24 @@
     "issued_shares": 6000000,
     "treasury_ratio": 0.018675,
     "floating_shares": 5887950,
+    "source_rcept_no": "20260319001235"
+  },
+  {
+    "corp_code": "00107598",
+    "stock_code": "003925",
+    "corp_name": "남양유업우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": null,
+    "issued_shares": 2000000,
+    "treasury_ratio": null,
+    "floating_shares": 2000000,
     "source_rcept_no": "20260319001235"
   },
   {

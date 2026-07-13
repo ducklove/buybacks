@@ -104,14 +104,6 @@
     "last_updated": "2026-06-02"
   },
   {
-    "corp_code": "00406037",
-    "stock_code": "083660",
-    "corp_name": "CSA 코스믹",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-12-31"
-  },
-  {
     "corp_code": "01814589",
     "stock_code": "477760",
     "corp_name": "DB금융스팩12호",
@@ -4198,14 +4190,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2026-04-02"
-  },
-  {
-    "corp_code": "00980043",
-    "stock_code": "148780",
-    "corp_name": "비큐AI",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-08-18"
   },
   {
     "corp_code": "01326792",
@@ -8736,14 +8720,6 @@
     "last_updated": "2026-03-10"
   },
   {
-    "corp_code": "01408999",
-    "stock_code": "336060",
-    "corp_name": "웨이버스",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2024-10-18"
-  },
-  {
     "corp_code": "00526696",
     "stock_code": "095270",
     "corp_name": "웨이브일렉트로",
@@ -8789,7 +8765,7 @@
     "corp_name": "웹스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2022-12-13"
+    "last_updated": "2026-07-13"
   },
   {
     "corp_code": "00405320",
@@ -8837,7 +8813,7 @@
     "corp_name": "위드텍",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-01-12"
+    "last_updated": "2026-07-13"
   },
   {
     "corp_code": "00444329",
@@ -10581,7 +10557,7 @@
     "corp_name": "카스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-07-01"
+    "last_updated": "2026-07-13"
   },
   {
     "corp_code": "01137383",
@@ -12485,7 +12461,7 @@
     "corp_name": "피스피스스튜디오",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-06-08"
+    "last_updated": "2026-07-13"
   },
   {
     "corp_code": "00297934",
@@ -15405,7 +15381,7 @@
     "corp_name": "남양유업",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-07-16"
+    "last_updated": "2026-07-13"
   },
   {
     "corp_code": "00107598",
@@ -16909,7 +16885,7 @@
     "corp_name": "삼성전자",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-07-07"
+    "last_updated": "2026-07-13"
   },
   {
     "corp_code": "00126380",
@@ -17957,7 +17933,7 @@
     "corp_name": "엔케이",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-06-19"
+    "last_updated": "2026-07-13"
   },
   {
     "corp_code": "00838500",
