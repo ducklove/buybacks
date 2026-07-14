@@ -12341,7 +12341,7 @@
     "corp_name": "프로이천",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-04-25"
+    "last_updated": "2026-07-14"
   },
   {
     "corp_code": "00325112",
@@ -14254,14 +14254,6 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2023-11-16"
-  },
-  {
-    "corp_code": "00190321",
-    "stock_code": "030200",
-    "corp_name": "KT",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2025-08-13"
   },
   {
     "corp_code": "00244455",
@@ -17208,14 +17200,6 @@
     "last_updated": "2026-03-30"
   },
   {
-    "corp_code": "00130879",
-    "stock_code": "004415",
-    "corp_name": "서울식품우",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2025-12-31"
-  },
-  {
     "corp_code": "00131197",
     "stock_code": "021050",
     "corp_name": "서원",
@@ -17909,7 +17893,7 @@
     "corp_name": "에이플러스에셋",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2024-03-29"
+    "last_updated": "2026-07-14"
   },
   {
     "corp_code": "01190568",
@@ -18896,6 +18880,14 @@
     "last_updated": "2023-03-30"
   },
   {
+    "corp_code": "00190321",
+    "stock_code": "030200",
+    "corp_name": "KT",
+    "market": "KOSPI",
+    "sector": null,
+    "last_updated": "2026-07-14"
+  },
+  {
     "corp_code": "01430475",
     "stock_code": "357120",
     "corp_name": "코람코라이프인프라리츠",
@@ -19389,7 +19381,7 @@
     "corp_name": "하나금융지주",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-10-28"
+    "last_updated": "2026-07-14"
   },
   {
     "corp_code": "00248974",
@@ -20061,7 +20053,7 @@
     "corp_name": "한화엔진",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-03-09"
+    "last_updated": "2026-07-14"
   },
   {
     "corp_code": "00111704",
