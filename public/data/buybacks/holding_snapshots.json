@@ -1836,24 +1836,6 @@
     "source_rcept_no": "20260320001240"
   },
   {
-    "corp_code": "01785700",
-    "stock_code": "467930",
-    "corp_name": "IBKS제23호스팩",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 4230000,
-    "treasury_ratio": null,
-    "floating_shares": 4230000,
-    "source_rcept_no": "20260312000541"
-  },
-  {
     "corp_code": "01784677",
     "stock_code": "466690",
     "corp_name": "키움히어로제1호스팩",
@@ -43038,24 +43020,6 @@
     "source_rcept_no": "20260319000542"
   },
   {
-    "corp_code": "00113234",
-    "stock_code": "001795",
-    "corp_name": "대한제당우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 6482760,
-    "treasury_ratio": null,
-    "floating_shares": 6482760,
-    "source_rcept_no": "20260319000542"
-  },
-  {
     "corp_code": "00117027",
     "stock_code": "001780",
     "corp_name": "알루코",
@@ -43684,24 +43648,6 @@
     "treasury_ratio": 0.021978911452382656,
     "floating_shares": 31101543,
     "source_rcept_no": "20260318000823"
-  },
-  {
-    "corp_code": "00106395",
-    "stock_code": "001210",
-    "corp_name": "금호전기",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 865884,
-    "issued_shares": 61553997,
-    "treasury_ratio": 0.014067063752171935,
-    "floating_shares": 60688113,
-    "source_rcept_no": "20260318001105"
   },
   {
     "corp_code": "00131054",
