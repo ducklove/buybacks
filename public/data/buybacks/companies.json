@@ -8381,7 +8381,7 @@
     "corp_name": "와이제이링크",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-06-18"
+    "last_updated": "2026-07-16"
   },
   {
     "corp_code": "00351427",
@@ -8677,7 +8677,7 @@
     "corp_name": "원텍",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-12-24"
+    "last_updated": "2026-07-16"
   },
   {
     "corp_code": "01441611",
@@ -9429,7 +9429,7 @@
     "corp_name": "이엘씨",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-05-22"
+    "last_updated": "2026-07-16"
   },
   {
     "corp_code": "00374020",
@@ -10549,7 +10549,7 @@
     "corp_name": "카스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-07-13"
+    "last_updated": "2026-07-16"
   },
   {
     "corp_code": "01137383",
@@ -12944,14 +12944,6 @@
     "last_updated": "2026-03-13"
   },
   {
-    "corp_code": "00403766",
-    "stock_code": "062970",
-    "corp_name": "한국첨단소재",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-03-19"
-  },
-  {
     "corp_code": "00149594",
     "stock_code": "023760",
     "corp_name": "한국캐피탈",
@@ -14157,7 +14149,7 @@
     "corp_name": "KB금융",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-07-24"
+    "last_updated": "2026-07-16"
   },
   {
     "corp_code": "01622720",
@@ -15541,7 +15533,7 @@
     "corp_name": "대구백화점",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-07-15"
+    "last_updated": "2026-07-16"
   },
   {
     "corp_code": "00109189",
@@ -17485,7 +17477,7 @@
     "corp_name": "신세계푸드",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-03-27"
+    "last_updated": "2026-07-16"
   },
   {
     "corp_code": "00136402",
@@ -18301,7 +18293,7 @@
     "corp_name": "이마트",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-07-17"
+    "last_updated": "2026-07-16"
   },
   {
     "corp_code": "01762569",
@@ -19704,14 +19696,6 @@
     "last_updated": "2026-02-09"
   },
   {
-    "corp_code": "00161860",
-    "stock_code": "003680",
-    "corp_name": "한성기업",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2023-02-23"
-  },
-  {
     "corp_code": "00728638",
     "stock_code": "105630",
     "corp_name": "한세실업",
@@ -19837,7 +19821,7 @@
     "corp_name": "한익스프레스",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-07-02"
+    "last_updated": "2026-07-16"
   },
   {
     "corp_code": "01319808",

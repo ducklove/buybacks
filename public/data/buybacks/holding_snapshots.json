@@ -25848,24 +25848,6 @@
     "source_rcept_no": "20260320001317"
   },
   {
-    "corp_code": "00403766",
-    "stock_code": "062970",
-    "corp_name": "한국첨단소재",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 23059076,
-    "treasury_ratio": null,
-    "floating_shares": 23059076,
-    "source_rcept_no": "20260312000851"
-  },
-  {
     "corp_code": "00366438",
     "stock_code": "062040",
     "corp_name": "산일전기",
@@ -38268,24 +38250,6 @@
     "source_rcept_no": "20260311004398"
   },
   {
-    "corp_code": "00165680",
-    "stock_code": "008775",
-    "corp_name": "호텔신라우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 11407,
-    "issued_shares": 751879,
-    "treasury_ratio": 0.015171324109331422,
-    "floating_shares": 740472,
-    "source_rcept_no": "20260311004398"
-  },
-  {
     "corp_code": "00145260",
     "stock_code": "008730",
     "corp_name": "율촌화학",
@@ -41488,24 +41452,6 @@
     "treasury_ratio": 0.09290578079324506,
     "floating_shares": 176721031,
     "source_rcept_no": "20260331003834"
-  },
-  {
-    "corp_code": "00161860",
-    "stock_code": "003680",
-    "corp_name": "한성기업",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 561460,
-    "issued_shares": 6209515,
-    "treasury_ratio": 0.09041930005805607,
-    "floating_shares": 5648055,
-    "source_rcept_no": "20260318001070"
   },
   {
     "corp_code": "00155276",
