@@ -162,24 +162,6 @@
     "source_rcept_no": "20260430001581"
   },
   {
-    "corp_code": "01160512",
-    "stock_code": "900270",
-    "corp_name": "헝셩그룹",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 244047040,
-    "treasury_ratio": null,
-    "floating_shares": 244047040,
-    "source_rcept_no": "20260430000392"
-  },
-  {
     "corp_code": "01139266",
     "stock_code": "900260",
     "corp_name": "로스웰",
@@ -5202,24 +5184,6 @@
     "source_rcept_no": "20260319001026"
   },
   {
-    "corp_code": "01217865",
-    "stock_code": "377220",
-    "corp_name": "프롬바이오",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주식",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 28310000,
-    "treasury_ratio": null,
-    "floating_shares": 28310000,
-    "source_rcept_no": "20260323001651"
-  },
-  {
     "corp_code": "01409095",
     "stock_code": "377030",
     "corp_name": "비트맥스",
@@ -5560,24 +5524,6 @@
     "treasury_ratio": null,
     "floating_shares": 8556830,
     "source_rcept_no": "20260310002997"
-  },
-  {
-    "corp_code": "01508855",
-    "stock_code": "369370",
-    "corp_name": "블리츠웨이엔터테인먼트",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2231568,
-    "issued_shares": 49871911,
-    "treasury_ratio": 0.04474598938067563,
-    "floating_shares": 47640343,
-    "source_rcept_no": "20260319001297"
   },
   {
     "corp_code": "01491607",
@@ -9106,24 +9052,6 @@
     "treasury_ratio": null,
     "floating_shares": 11368712,
     "source_rcept_no": "20260312000904"
-  },
-  {
-    "corp_code": "01265251",
-    "stock_code": "291650",
-    "corp_name": "압타머사이언스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 40257092,
-    "treasury_ratio": null,
-    "floating_shares": 40257092,
-    "source_rcept_no": "20260313001240"
   },
   {
     "corp_code": "01276901",
@@ -13716,24 +13644,6 @@
     "source_rcept_no": "20260318001631"
   },
   {
-    "corp_code": "01021949",
-    "stock_code": "206560",
-    "corp_name": "덱스터",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 256603,
-    "issued_shares": 25411736,
-    "treasury_ratio": 0.010097814647531362,
-    "floating_shares": 25155133,
-    "source_rcept_no": "20260320000939"
-  },
-  {
     "corp_code": "01043853",
     "stock_code": "206400",
     "corp_name": "베노티앤알",
@@ -13804,24 +13714,6 @@
     "treasury_ratio": null,
     "floating_shares": 71462308,
     "source_rcept_no": "20260318001293"
-  },
-  {
-    "corp_code": "01042359",
-    "stock_code": "204840",
-    "corp_name": "지엘팜텍",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 20,
-    "issued_shares": 77549006,
-    "treasury_ratio": 2.5790143589977157e-07,
-    "floating_shares": 77548986,
-    "source_rcept_no": "20260318001300"
   },
   {
     "corp_code": "01042711",
@@ -15266,7 +15158,7 @@
   {
     "corp_code": "00861997",
     "stock_code": "175140",
-    "corp_name": "휴먼테크놀로지",
+    "corp_name": "아고스",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -19170,24 +19062,6 @@
     "source_rcept_no": "20260619000667"
   },
   {
-    "corp_code": "00766106",
-    "stock_code": "105550",
-    "corp_name": "엣지파운드리",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 6643745,
-    "issued_shares": 78307051,
-    "treasury_ratio": 0.08484223215097195,
-    "floating_shares": 71663306,
-    "source_rcept_no": "20260323001355"
-  },
-  {
     "corp_code": "00606664",
     "stock_code": "105330",
     "corp_name": "케이엔더블유",
@@ -21528,24 +21402,6 @@
     "source_rcept_no": "20260312000811"
   },
   {
-    "corp_code": "00365624",
-    "stock_code": "090150",
-    "corp_name": "아이윈",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2159457,
-    "issued_shares": 41875293,
-    "treasury_ratio": 0.05156876156066538,
-    "floating_shares": 39715836,
-    "source_rcept_no": "20260323001346"
-  },
-  {
     "corp_code": "00573579",
     "stock_code": "090080",
     "corp_name": "평화산업",
@@ -21994,24 +21850,6 @@
     "treasury_ratio": 0.20104271591532197,
     "floating_shares": 6524731,
     "source_rcept_no": "20260318000528"
-  },
-  {
-    "corp_code": "00556615",
-    "stock_code": "087260",
-    "corp_name": "모바일어플라이언스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 32552861,
-    "treasury_ratio": null,
-    "floating_shares": 32552861,
-    "source_rcept_no": "20260324000733"
   },
   {
     "corp_code": "00415868",
@@ -26728,24 +26566,6 @@
     "treasury_ratio": 0.047305964354354864,
     "floating_shares": 11517968,
     "source_rcept_no": "20260323001116"
-  },
-  {
-    "corp_code": "00360577",
-    "stock_code": "054940",
-    "corp_name": "엑사이엔씨",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 33173548,
-    "treasury_ratio": null,
-    "floating_shares": 33173548,
-    "source_rcept_no": "20260316001688"
   },
   {
     "corp_code": "00144650",
@@ -32418,24 +32238,6 @@
     "source_rcept_no": "20260319001031"
   },
   {
-    "corp_code": "00274933",
-    "stock_code": "031440",
-    "corp_name": "신세계푸드",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 257029,
-    "issued_shares": 3872480,
-    "treasury_ratio": 0.06637322852538942,
-    "floating_shares": 3615451,
-    "source_rcept_no": "20260318000936"
-  },
-  {
     "corp_code": "00234412",
     "stock_code": "031430",
     "corp_name": "신세계인터내셔날",
@@ -32794,24 +32596,6 @@
     "treasury_ratio": 0.045941415304925834,
     "floating_shares": 162167581,
     "source_rcept_no": "20260312000856"
-  },
-  {
-    "corp_code": "00178754",
-    "stock_code": "028100",
-    "corp_name": "동아지질",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 1077624,
-    "issued_shares": 13389502,
-    "treasury_ratio": 0.08048275432499281,
-    "floating_shares": 12311878,
-    "source_rcept_no": "20260318001545"
   },
   {
     "corp_code": "00219440",
@@ -39204,6 +38988,24 @@
     "source_rcept_no": "20260515002972"
   },
   {
+    "corp_code": "00111722",
+    "stock_code": "00680K",
+    "corp_name": "미래에셋증권2우B",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "2우선주\n(미래에셋증권2우B)",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 1000000,
+    "issued_shares": 136678482,
+    "treasury_ratio": 0.007316440637671115,
+    "floating_shares": 135678482,
+    "source_rcept_no": "20260515002972"
+  },
+  {
     "corp_code": "00141404",
     "stock_code": "006740",
     "corp_name": "블루산업개발",
@@ -39525,6 +39327,24 @@
     "issued_shares": 18347855,
     "treasury_ratio": 0.06718153157412679,
     "floating_shares": 17115218,
+    "source_rcept_no": "20260317000867"
+  },
+  {
+    "corp_code": "00131832",
+    "stock_code": "006125",
+    "corp_name": "SK디스커버리우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "의결권 없는 주식\n(우선주)",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 82217,
+    "issued_shares": 1312455,
+    "treasury_ratio": 0.06264367159254984,
+    "floating_shares": 1230238,
     "source_rcept_no": "20260317000867"
   },
   {
@@ -44802,6 +44622,24 @@
     "source_rcept_no": "20260312001236"
   },
   {
+    "corp_code": "00145109",
+    "stock_code": "000105",
+    "corp_name": "유한양행우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 32600,
+    "issued_shares": 1180940,
+    "treasury_ratio": 0.02760512811827866,
+    "floating_shares": 1148340,
+    "source_rcept_no": "20260312001236"
+  },
+  {
     "corp_code": "00150244",
     "stock_code": "000087",
     "corp_name": "하이트진로2우B",
@@ -45938,7 +45776,7 @@
   {
     "corp_code": "00118008",
     "stock_code": "018500",
-    "corp_name": "동원금속",
+    "corp_name": "동원모빌리티",
     "as_of_date": "2025-03-31",
     "report_year": 2025,
     "report_code": "11011",
