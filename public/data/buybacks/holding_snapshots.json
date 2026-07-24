@@ -12998,7 +12998,7 @@
   {
     "corp_code": "01065013",
     "stock_code": "215380",
-    "corp_name": "우정바이오",
+    "corp_name": "콜마바이오텍",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -15100,24 +15100,6 @@
     "treasury_ratio": 0.160661469720766,
     "floating_shares": 11325993,
     "source_rcept_no": "20260323000889"
-  },
-  {
-    "corp_code": "00813389",
-    "stock_code": "177350",
-    "corp_name": "베셀",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 39542,
-    "issued_shares": 19653767,
-    "treasury_ratio": 0.002011929824954168,
-    "floating_shares": 19614225,
-    "source_rcept_no": "20260323001310"
   },
   {
     "corp_code": "00867034",
@@ -19654,24 +19636,6 @@
     "treasury_ratio": 0.0059182319456292055,
     "floating_shares": 9984772,
     "source_rcept_no": "20260331002681"
-  },
-  {
-    "corp_code": "00618410",
-    "stock_code": "101000",
-    "corp_name": "KS인더스트리",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 16979,
-    "issued_shares": 33446802,
-    "treasury_ratio": 0.000507641956322162,
-    "floating_shares": 33429823,
-    "source_rcept_no": "20260622000085"
   },
   {
     "corp_code": "00648721",
@@ -31572,24 +31536,6 @@
     "source_rcept_no": "20260319001300"
   },
   {
-    "corp_code": "00105138",
-    "stock_code": "033540",
-    "corp_name": "파라텍",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 329072,
-    "issued_shares": 37751063,
-    "treasury_ratio": 0.008716893614359945,
-    "floating_shares": 37421991,
-    "source_rcept_no": "20260320001022"
-  },
-  {
     "corp_code": "00134510",
     "stock_code": "033530",
     "corp_name": "SJG세종",
@@ -32366,7 +32312,7 @@
   {
     "corp_code": "00204262",
     "stock_code": "030520",
-    "corp_name": "한글과컴퓨터",
+    "corp_name": "한컴",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -32596,6 +32542,24 @@
     "treasury_ratio": 0.045941415304925834,
     "floating_shares": 162167581,
     "source_rcept_no": "20260312000856"
+  },
+  {
+    "corp_code": "00178754",
+    "stock_code": "028100",
+    "corp_name": "동아지질",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "보통주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 1077624,
+    "issued_shares": 13389502,
+    "treasury_ratio": 0.08048275432499281,
+    "floating_shares": 12311878,
+    "source_rcept_no": "20260318001545"
   },
   {
     "corp_code": "00219440",
@@ -39582,24 +39546,6 @@
     "source_rcept_no": "20260310002820"
   },
   {
-    "corp_code": "00126380",
-    "stock_code": "005935",
-    "corp_name": "삼성전자우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 13603461,
-    "issued_shares": 815974664,
-    "treasury_ratio": 0.016671425719659353,
-    "floating_shares": 802371203,
-    "source_rcept_no": "20260310002820"
-  },
-  {
     "corp_code": "00113535",
     "stock_code": "005880",
     "corp_name": "대한해운",
@@ -41145,24 +41091,6 @@
     "issued_shares": 6000000,
     "treasury_ratio": 0.018675,
     "floating_shares": 5887950,
-    "source_rcept_no": "20260319001235"
-  },
-  {
-    "corp_code": "00107598",
-    "stock_code": "003925",
-    "corp_name": "남양유업우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 2000000,
-    "treasury_ratio": null,
-    "floating_shares": 2000000,
     "source_rcept_no": "20260319001235"
   },
   {
