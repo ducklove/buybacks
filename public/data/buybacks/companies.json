@@ -8480,14 +8480,6 @@
     "last_updated": "2022-12-06"
   },
   {
-    "corp_code": "01065013",
-    "stock_code": "215380",
-    "corp_name": "콜마바이오텍",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-04-01"
-  },
-  {
     "corp_code": "00390903",
     "stock_code": "065680",
     "corp_name": "우주일렉트로",
@@ -11088,6 +11080,14 @@
     "last_updated": "2026-04-08"
   },
   {
+    "corp_code": "01065013",
+    "stock_code": "215380",
+    "corp_name": "콜마바이오텍",
+    "market": "KOSDAQ",
+    "sector": null,
+    "last_updated": "2026-04-01"
+  },
+  {
     "corp_code": "01032404",
     "stock_code": "200130",
     "corp_name": "콜마비앤에이치",
@@ -12904,14 +12904,6 @@
     "last_updated": "2025-04-04"
   },
   {
-    "corp_code": "00204262",
-    "stock_code": "030520",
-    "corp_name": "한컴",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-11-05"
-  },
-  {
     "corp_code": "00244783",
     "stock_code": "052600",
     "corp_name": "한네트",
@@ -13086,6 +13078,14 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2022-12-01"
+  },
+  {
+    "corp_code": "00204262",
+    "stock_code": "030520",
+    "corp_name": "한컴",
+    "market": "KOSDAQ",
+    "sector": null,
+    "last_updated": "2025-11-05"
   },
   {
     "corp_code": "00363592",
