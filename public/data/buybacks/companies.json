@@ -12056,6 +12056,14 @@
     "last_updated": "2026-03-19"
   },
   {
+    "corp_code": "00793155",
+    "stock_code": "220180",
+    "corp_name": "폴라리스AI핸디",
+    "market": "KOSDAQ",
+    "sector": null,
+    "last_updated": "2025-09-10"
+  },
+  {
     "corp_code": "00617998",
     "stock_code": "234100",
     "corp_name": "폴라리스세원",
@@ -13070,14 +13078,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2023-11-28"
-  },
-  {
-    "corp_code": "00793155",
-    "stock_code": "220180",
-    "corp_name": "폴라리스AI핸디",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-09-10"
   },
   {
     "corp_code": "01013311",
@@ -19944,14 +19944,6 @@
     "last_updated": "2025-03-20"
   },
   {
-    "corp_code": "00164742",
-    "stock_code": "005380",
-    "corp_name": "현대차",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-07-23"
-  },
-  {
     "corp_code": "00145880",
     "stock_code": "004020",
     "corp_name": "현대제철",
@@ -19966,6 +19958,14 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2025-11-04"
+  },
+  {
+    "corp_code": "00164742",
+    "stock_code": "005380",
+    "corp_name": "현대차",
+    "market": "KOSPI",
+    "sector": null,
+    "last_updated": "2026-07-23"
   },
   {
     "corp_code": "00137997",

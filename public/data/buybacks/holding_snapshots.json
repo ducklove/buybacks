@@ -38808,24 +38808,6 @@
     "source_rcept_no": "20260515002972"
   },
   {
-    "corp_code": "00111722",
-    "stock_code": "00680K",
-    "corp_name": "미래에셋증권2우B",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "2우선주\n(미래에셋증권2우B)",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 1000000,
-    "issued_shares": 136678482,
-    "treasury_ratio": 0.007316440637671115,
-    "floating_shares": 135678482,
-    "source_rcept_no": "20260515002972"
-  },
-  {
     "corp_code": "00141404",
     "stock_code": "006740",
     "corp_name": "블루산업개발",
@@ -44385,24 +44367,6 @@
     "issued_shares": 79968437,
     "treasury_ratio": 0.07943954187825379,
     "floating_shares": 73615781,
-    "source_rcept_no": "20260312001236"
-  },
-  {
-    "corp_code": "00145109",
-    "stock_code": "000105",
-    "corp_name": "유한양행우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 32600,
-    "issued_shares": 1180940,
-    "treasury_ratio": 0.02760512811827866,
-    "floating_shares": 1148340,
     "source_rcept_no": "20260312001236"
   },
   {

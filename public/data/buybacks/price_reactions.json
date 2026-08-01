@@ -2336,7 +2336,7 @@
     "abnormal_return_20d": null,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": 2.3363451210529926,
+    "volume_change_20d": 3.8737925401579085,
     "data_quality": "partial"
   },
   {
@@ -3823,21 +3823,21 @@
     "event_id": "dart-20260707000081-trust_contract_start",
     "stock_code": "146060",
     "event_date": "2026-07-07",
-    "close_t0": 953.0,
-    "return_1d": -0.03252885624344182,
-    "return_5d": 0.11332633788037771,
+    "close_t0": null,
+    "return_1d": null,
+    "return_5d": null,
     "return_20d": null,
     "return_60d": null,
-    "max_drawdown_20d": -0.17355371900826444,
-    "max_drawdown_60d": -0.17355371900826444,
-    "market_return_5d": 0.05659872611464967,
-    "abnormal_return_5d": 0.05672761176572805,
+    "max_drawdown_20d": null,
+    "max_drawdown_60d": null,
+    "market_return_5d": null,
+    "abnormal_return_5d": null,
     "market_return_20d": null,
     "abnormal_return_20d": null,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": 0.6600498905846486,
-    "data_quality": "partial"
+    "volume_change_20d": null,
+    "data_quality": "missing"
   },
   {
     "event_id": "dart-20260706900536-trust_contract_start",
@@ -3923,21 +3923,21 @@
     "event_id": "dart-20260706000447-trust_contract_start",
     "stock_code": "001790",
     "event_date": "2026-07-06",
-    "close_t0": 2585.0,
-    "return_1d": 0.12379110251450687,
-    "return_5d": 0.05609284332688591,
+    "close_t0": null,
+    "return_1d": null,
+    "return_5d": null,
     "return_20d": null,
     "return_60d": null,
-    "max_drawdown_20d": -0.12908777969018936,
-    "max_drawdown_60d": -0.12908777969018936,
-    "market_return_5d": -0.10442105923088285,
-    "abnormal_return_5d": 0.16051390255776876,
+    "max_drawdown_20d": null,
+    "max_drawdown_60d": null,
+    "market_return_5d": null,
+    "abnormal_return_5d": null,
     "market_return_20d": null,
     "abnormal_return_20d": null,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": 2.716422805404966,
-    "data_quality": "partial"
+    "volume_change_20d": null,
+    "data_quality": "missing"
   },
   {
     "event_id": "dart-20260706000351-direct_disposition",
@@ -4256,7 +4256,7 @@
     "abnormal_return_20d": null,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": 0.10754554448481723,
+    "volume_change_20d": -0.45105011017725627,
     "data_quality": "partial"
   },
   {
@@ -6196,7 +6196,7 @@
     "abnormal_return_20d": 0.06741091924489162,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": -0.18638708329905007,
+    "volume_change_20d": -0.1738676286610341,
     "data_quality": "partial"
   },
   {
