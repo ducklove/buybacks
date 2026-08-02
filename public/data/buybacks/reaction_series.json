@@ -1,11 +1,123 @@
 [
   {
+    "event_id": "dart-20260731900828-trust_contract_start",
+    "stock_code": "036830",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "dart-20260731900646-retirement",
+    "stock_code": "049070",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "dart-20260731800776-retirement",
+    "stock_code": "018880",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "dart-20260731000762-direct_disposition",
+    "stock_code": "230240",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "dart-20260731000756-direct_acquisition",
+    "stock_code": "051360",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "dart-20260731000555-direct_acquisition",
+    "stock_code": "067770",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "dart-20260731000502-direct_acquisition",
+    "stock_code": "006880",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "dart-20260731000491-trust_contract_start",
+    "stock_code": "357780",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "dart-20260731000440-trust_contract_end",
+    "stock_code": "473980",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "dart-20260731000286-trust_contract_end",
+    "stock_code": "067770",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "dart-20260731000235-trust_contract_start",
+    "stock_code": "005290",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
+    "event_id": "dart-20260731000213-trust_contract_end",
+    "stock_code": "049070",
+    "event_date": "2026-07-31",
+    "t0_date": "2026-08-03",
+    "daily_return": [],
+    "daily_abnormal": [],
+    "data_quality": "partial"
+  },
+  {
     "event_id": "dart-20260730900678-retirement",
     "stock_code": "214270",
     "event_date": "2026-07-30",
     "t0_date": "2026-07-31",
-    "daily_return": [],
-    "daily_abnormal": [],
+    "daily_return": [
+      0.0
+    ],
+    "daily_abnormal": [
+      null
+    ],
     "data_quality": "partial"
   },
   {
@@ -13,8 +125,12 @@
     "stock_code": "332290",
     "event_date": "2026-07-30",
     "t0_date": "2026-07-31",
-    "daily_return": [],
-    "daily_abnormal": [],
+    "daily_return": [
+      0.0
+    ],
+    "daily_abnormal": [
+      null
+    ],
     "data_quality": "partial"
   },
   {
@@ -22,8 +138,12 @@
     "stock_code": "003550",
     "event_date": "2026-07-30",
     "t0_date": "2026-07-31",
-    "daily_return": [],
-    "daily_abnormal": [],
+    "daily_return": [
+      0.0
+    ],
+    "daily_abnormal": [
+      null
+    ],
     "data_quality": "partial"
   },
   {
@@ -31,8 +151,12 @@
     "stock_code": "000210",
     "event_date": "2026-07-30",
     "t0_date": "2026-07-31",
-    "daily_return": [],
-    "daily_abnormal": [],
+    "daily_return": [
+      0.0
+    ],
+    "daily_abnormal": [
+      null
+    ],
     "data_quality": "partial"
   },
   {
@@ -40,8 +164,12 @@
     "stock_code": "051910",
     "event_date": "2026-07-30",
     "t0_date": "2026-07-31",
-    "daily_return": [],
-    "daily_abnormal": [],
+    "daily_return": [
+      0.0
+    ],
+    "daily_abnormal": [
+      null
+    ],
     "data_quality": "partial"
   },
   {
@@ -49,8 +177,12 @@
     "stock_code": "002790",
     "event_date": "2026-07-30",
     "t0_date": "2026-07-31",
-    "daily_return": [],
-    "daily_abnormal": [],
+    "daily_return": [
+      0.0
+    ],
+    "daily_abnormal": [
+      null
+    ],
     "data_quality": "partial"
   },
   {
@@ -58,8 +190,12 @@
     "stock_code": "044450",
     "event_date": "2026-07-30",
     "t0_date": "2026-07-31",
-    "daily_return": [],
-    "daily_abnormal": [],
+    "daily_return": [
+      0.0
+    ],
+    "daily_abnormal": [
+      null
+    ],
     "data_quality": "partial"
   },
   {
@@ -67,8 +203,12 @@
     "stock_code": "375500",
     "event_date": "2026-07-30",
     "t0_date": "2026-07-31",
-    "daily_return": [],
-    "daily_abnormal": [],
+    "daily_return": [
+      0.0
+    ],
+    "daily_abnormal": [
+      null
+    ],
     "data_quality": "partial"
   },
   {
@@ -76,8 +216,12 @@
     "stock_code": "090430",
     "event_date": "2026-07-30",
     "t0_date": "2026-07-31",
-    "daily_return": [],
-    "daily_abnormal": [],
+    "daily_return": [
+      0.0
+    ],
+    "daily_abnormal": [
+      null
+    ],
     "data_quality": "partial"
   },
   {
@@ -85,8 +229,12 @@
     "stock_code": "002790",
     "event_date": "2026-07-30",
     "t0_date": "2026-07-31",
-    "daily_return": [],
-    "daily_abnormal": [],
+    "daily_return": [
+      0.0
+    ],
+    "daily_abnormal": [
+      null
+    ],
     "data_quality": "partial"
   },
   {
@@ -94,8 +242,12 @@
     "stock_code": "098660",
     "event_date": "2026-07-30",
     "t0_date": "2026-07-31",
-    "daily_return": [],
-    "daily_abnormal": [],
+    "daily_return": [
+      0.0
+    ],
+    "daily_abnormal": [
+      null
+    ],
     "data_quality": "partial"
   },
   {
@@ -104,9 +256,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      0.027264
+      0.027264,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -117,9 +271,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      0.048755
+      0.048755,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -130,9 +286,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      0.085106
+      0.085106,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -143,9 +301,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      0.093695
+      0.093695,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -156,9 +316,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      -0.061776
+      -0.061776,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -169,9 +331,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      0.048755
+      0.048755,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -182,9 +346,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      -0.03776
+      -0.03776,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -195,9 +361,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      0.04106
+      0.04106,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -208,9 +376,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      -0.061776
+      -0.061776,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -221,9 +391,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      0.103314
+      0.103314,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -234,9 +406,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      0.002252
+      0.002252,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -247,9 +421,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      0.09527
+      0.09527,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -260,9 +436,11 @@
     "event_date": "2026-07-29",
     "t0_date": "2026-07-30",
     "daily_return": [
-      0.027264
+      0.027264,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null
     ],
     "data_quality": "partial"
@@ -274,9 +452,11 @@
     "t0_date": "2026-07-29",
     "daily_return": [
       0.022569,
-      0.027165
+      0.027165,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null
     ],
@@ -289,9 +469,11 @@
     "t0_date": "2026-07-29",
     "daily_return": [
       0.035768,
-      0.031655
+      0.031655,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null
     ],
@@ -304,9 +486,11 @@
     "t0_date": "2026-07-29",
     "daily_return": [
       0.035768,
-      0.031655
+      0.031655,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null
     ],
@@ -319,9 +503,11 @@
     "t0_date": "2026-07-29",
     "daily_return": [
       -0.032609,
-      0.070626
+      0.070626,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null
     ],
@@ -334,9 +520,11 @@
     "t0_date": "2026-07-29",
     "daily_return": [
       0.0,
-      0.191933
+      0.191933,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null
     ],
@@ -349,9 +537,11 @@
     "t0_date": "2026-07-29",
     "daily_return": [
       0.044888,
-      0.040573
+      0.040573,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null
     ],
@@ -365,9 +555,11 @@
     "daily_return": [
       -0.088502,
       -0.009174,
-      0.044753
+      0.044753,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -382,9 +574,11 @@
     "daily_return": [
       -0.068316,
       -0.039191,
-      0.130263
+      0.130263,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -399,9 +593,11 @@
     "daily_return": [
       -0.036913,
       0.026132,
-      0.061121
+      0.061121,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -416,9 +612,11 @@
     "daily_return": [
       -0.07874,
       -0.035897,
-      0.239362
+      0.239362,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -433,9 +631,11 @@
     "daily_return": [
       -0.061493,
       0.050254,
-      0.026651
+      0.026651,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -450,9 +650,11 @@
     "daily_return": [
       -0.061493,
       0.050254,
-      0.026651
+      0.026651,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -467,9 +669,11 @@
     "daily_return": [
       -0.040476,
       -0.033747,
-      0.06831
+      0.06831,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -484,9 +688,11 @@
     "daily_return": [
       -0.011817,
       0.004484,
-      -0.004464
+      -0.004464,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -501,9 +707,11 @@
     "daily_return": [
       -0.061493,
       0.050254,
-      0.026651
+      0.026651,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -518,9 +726,11 @@
     "daily_return": [
       -0.072165,
       0.3,
-      0.025641
+      0.025641,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -535,9 +745,11 @@
     "daily_return": [
       0.044444,
       -0.022244,
-      0.050445
+      0.050445,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -552,9 +764,11 @@
     "daily_return": [
       -0.024933,
       -0.017352,
-      0.07342
+      0.07342,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -569,9 +783,11 @@
     "daily_return": [
       -0.08726,
       -0.032505,
-      0.160079
+      0.160079,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null
@@ -587,9 +803,11 @@
       -0.088698,
       -0.122449,
       0.019678,
-      0.12807
+      0.12807,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -606,9 +824,11 @@
       -0.040785,
       0.009449,
       0.020281,
-      0.027523
+      0.027523,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -625,9 +845,11 @@
       -0.046909,
       -0.133758,
       -0.010695,
-      0.025
+      0.025,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -644,9 +866,11 @@
       -0.058193,
       -0.021138,
       0.034884,
-      0.006421
+      0.006421,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -663,9 +887,11 @@
       -0.034036,
       -0.036913,
       0.026132,
-      0.061121
+      0.061121,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -682,9 +908,11 @@
       -0.148794,
       -0.07874,
       -0.035897,
-      0.239362
+      0.239362,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -701,9 +929,11 @@
       -0.034036,
       -0.036913,
       0.026132,
-      0.061121
+      0.061121,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -720,9 +950,11 @@
       -0.040785,
       0.009449,
       0.020281,
-      0.027523
+      0.027523,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -739,9 +971,11 @@
       -0.058193,
       -0.021138,
       0.034884,
-      0.006421
+      0.006421,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -758,9 +992,11 @@
       -0.046909,
       -0.133758,
       -0.010695,
-      0.025
+      0.025,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -777,9 +1013,11 @@
       -0.148794,
       -0.07874,
       -0.035897,
-      0.239362
+      0.239362,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -797,9 +1035,11 @@
       -0.007326,
       -0.02214,
       -0.062264,
-      0.04829
+      0.04829,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -818,9 +1058,11 @@
       -0.057245,
       -0.064516,
       0.004057,
-      0.064646
+      0.064646,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -839,9 +1081,11 @@
       -0.094796,
       -0.082136,
       0.002237,
-      0.178571
+      0.178571,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -860,9 +1104,11 @@
       -0.046602,
       -0.086558,
       0.027871,
-      -0.04013
+      -0.04013,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -881,9 +1127,11 @@
       -0.018056,
       -0.005658,
       0.052632,
-      -0.006757
+      -0.006757,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -902,9 +1150,11 @@
       -0.071759,
       -0.087282,
       0.043716,
-      0.045026
+      0.045026,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -923,9 +1173,11 @@
       -0.050435,
       -0.038462,
       0.024762,
-      -0.016729
+      -0.016729,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -944,9 +1196,11 @@
       -0.107962,
       -0.071104,
       -0.016287,
-      0.14404
+      0.14404,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -965,9 +1219,11 @@
       -0.042874,
       -0.030872,
       0.045597,
-      0.006571
+      0.006571,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -986,9 +1242,11 @@
       -0.006599,
       -0.00785,
       0.020085,
-      0.038186
+      0.038186,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1007,9 +1265,11 @@
       -0.039048,
       -0.025768,
       0.025432,
-      -0.000992
+      -0.000992,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1028,9 +1288,11 @@
       -0.021215,
       -0.06798,
       -0.044397,
-      0.044248
+      0.044248,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1049,9 +1311,11 @@
       -0.037572,
       -0.048048,
       0.05205,
-      0.074963
+      0.074963,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1070,9 +1334,11 @@
       -0.018579,
       -0.036748,
       0.042775,
-      0.034368
+      0.034368,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1091,9 +1357,11 @@
       -0.047733,
       -0.046617,
       0.018402,
-      0.024781
+      0.024781,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1112,9 +1380,11 @@
       -0.096774,
       -0.028846,
       -0.007072,
-      0.105413
+      0.105413,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1133,9 +1403,11 @@
       -0.008439,
       -0.031489,
       0.034271,
-      0.033985
+      0.033985,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1154,9 +1426,11 @@
       -0.050435,
       -0.038462,
       0.024762,
-      -0.016729
+      -0.016729,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1175,9 +1449,11 @@
       -0.008439,
       -0.031489,
       0.034271,
-      0.033985
+      0.033985,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1196,9 +1472,11 @@
       -0.022523,
       -0.041475,
       0.024038,
-      0.042254
+      0.042254,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1217,9 +1495,11 @@
       -0.042874,
       -0.030872,
       0.045597,
-      0.006571
+      0.006571,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1238,9 +1518,11 @@
       -0.034166,
       -0.013605,
       0.005517,
-      0.001372
+      0.001372,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1259,9 +1541,11 @@
       -0.064394,
       -0.122807,
       0.038462,
-      0.105185
+      0.105185,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1280,9 +1564,11 @@
       -0.006599,
       -0.00785,
       0.020085,
-      0.038186
+      0.038186,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1301,9 +1587,11 @@
       -0.042051,
       0.036403,
       0.019628,
-      -0.010132
+      -0.010132,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1322,9 +1610,11 @@
       -0.039048,
       -0.025768,
       0.025432,
-      -0.000992
+      -0.000992,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1343,9 +1633,11 @@
       -0.006599,
       -0.00785,
       0.020085,
-      0.038186
+      0.038186,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1364,9 +1656,11 @@
       -0.042051,
       0.036403,
       0.019628,
-      -0.010132
+      -0.010132,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1386,9 +1680,11 @@
       -0.034991,
       -0.072519,
       0.002058,
-      0.041068
+      0.041068,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1409,9 +1705,11 @@
       -0.038035,
       0.0,
       -0.001647,
-      -0.006601
+      -0.006601,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1432,9 +1730,11 @@
       -0.032688,
       -0.042553,
       0.037908,
-      0.027708
+      0.027708,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1455,9 +1755,11 @@
       -0.156022,
       -0.081081,
       -0.06,
-      0.299124
+      0.299124,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1478,9 +1780,11 @@
       -0.038035,
       0.0,
       -0.001647,
-      -0.006601
+      -0.006601,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1501,9 +1805,11 @@
       -0.109742,
       -0.006289,
       -0.006329,
-      0.043312
+      0.043312,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1524,9 +1830,11 @@
       -0.027559,
       -0.017544,
       0.01511,
-      0.040595
+      0.040595,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1547,9 +1855,11 @@
       -0.013237,
       -0.012195,
       0.0,
-      0.044444
+      0.044444,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1570,9 +1880,11 @@
       -0.080808,
       -0.10989,
       -0.007055,
-      0.172291
+      0.172291,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1594,9 +1906,11 @@
       -0.041426,
       -0.041206,
       -0.025157,
-      0.107527
+      0.107527,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1619,9 +1933,11 @@
       -0.050701,
       0.011364,
       0.0,
-      0.069663
+      0.069663,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1644,9 +1960,11 @@
       -0.013487,
       0.035156,
       -0.118868,
-      -0.053533
+      -0.053533,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1669,9 +1987,11 @@
       -0.011702,
       -0.004306,
       -0.064865,
-      -0.02659
+      -0.02659,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1694,9 +2014,11 @@
       -0.05401,
       -0.034602,
       0.0,
-      0.050179
+      0.050179,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1719,9 +2041,11 @@
       -0.047406,
       -0.047747,
       0.003531,
-      0.125264
+      0.125264,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1744,9 +2068,11 @@
       -0.006079,
       -0.030071,
       -0.006306,
-      0.000529
+      0.000529,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1769,9 +2095,11 @@
       0.010563,
       -0.065505,
       -0.029828,
-      0.041507
+      0.041507,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1795,9 +2123,11 @@
       -0.073826,
       -0.105797,
       0.006483,
-      0.049919
+      0.049919,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1822,9 +2152,11 @@
       -0.042874,
       -0.030872,
       0.045597,
-      0.006571
+      0.006571,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1849,9 +2181,11 @@
       -0.043662,
       -0.011782,
       0.035768,
-      0.031655
+      0.031655,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1876,9 +2210,11 @@
       -0.074367,
       -0.076923,
       -0.041667,
-      0.069565
+      0.069565,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1903,9 +2239,11 @@
       -0.055932,
       -0.012567,
       -0.036364,
-      0.020755
+      0.020755,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1930,9 +2268,11 @@
       -0.08502,
       -0.039823,
       0.031106,
-      0.073743
+      0.073743,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1957,9 +2297,11 @@
       -0.031603,
       -0.044289,
       0.12439,
-      0.030369
+      0.030369,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -1984,9 +2326,11 @@
       -0.01995,
       -0.006361,
       0.058899,
-      0.051995
+      0.051995,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -2011,9 +2355,11 @@
       0.009153,
       -0.036281,
       0.00549,
-      0.021841
+      0.021841,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -2038,9 +2384,11 @@
       -0.027704,
       -0.024423,
       0.08484,
-      0.044872
+      0.044872,
+      0.0
     ],
     "daily_abnormal": [
+      null,
       null,
       null,
       null,
@@ -2066,10 +2414,12 @@
       -0.042874,
       -0.030872,
       0.045597,
-      0.006571
+      0.006571,
+      0.0
     ],
     "daily_abnormal": [
       -0.004748,
+      null,
       null,
       null,
       null,
@@ -2095,10 +2445,12 @@
       -0.073394,
       -0.033663,
       0.006148,
-      0.008147
+      0.008147,
+      0.0
     ],
     "daily_abnormal": [
       -0.004361,
+      null,
       null,
       null,
       null,
@@ -2124,10 +2476,12 @@
       -0.049462,
       -0.078054,
       0.030675,
-      0.10119
+      0.10119,
+      0.0
     ],
     "daily_abnormal": [
       -0.009425,
+      null,
       null,
       null,
       null,
@@ -2153,10 +2507,12 @@
       -0.085346,
       -0.068662,
       0.003781,
-      0.131827
+      0.131827,
+      0.0
     ],
     "daily_abnormal": [
       -0.008198,
+      null,
       null,
       null,
       null,
@@ -2182,10 +2538,12 @@
       -0.00198,
       -0.03373,
       0.026694,
-      0.007
+      0.007,
+      0.0
     ],
     "daily_abnormal": [
       -0.006916,
+      null,
       null,
       null,
       null,
@@ -2211,10 +2569,12 @@
       -0.041112,
       -0.027743,
       0.009079,
-      0.025707
+      0.025707,
+      0.0
     ],
     "daily_abnormal": [
       0.022724,
+      null,
       null,
       null,
       null,
@@ -2240,10 +2600,12 @@
       -0.057957,
       -0.057351,
       -0.030973,
-      0.110731
+      0.110731,
+      0.0
     ],
     "daily_abnormal": [
       -0.000936,
+      null,
       null,
       null,
       null,
@@ -2269,10 +2631,12 @@
       -0.068702,
       -0.030738,
       0.002114,
-      0.054852
+      0.054852,
+      0.0
     ],
     "daily_abnormal": [
       -0.083371,
+      null,
       null,
       null,
       null,
@@ -2299,11 +2663,13 @@
       -0.061201,
       -0.126076,
       -0.009852,
-      0.000711
+      0.000711,
+      0.0
     ],
     "daily_abnormal": [
       0.061358,
       -0.006079,
+      null,
       null,
       null,
       null,
@@ -2330,11 +2696,13 @@
       -0.121311,
       -0.091418,
       -0.082136,
-      0.194631
+      0.194631,
+      0.0
     ],
     "daily_abnormal": [
       -0.033506,
       0.000227,
+      null,
       null,
       null,
       null,
@@ -2361,11 +2729,13 @@
       -0.026744,
       0.015532,
       0.028235,
-      -0.003432
+      -0.003432,
+      0.0
     ],
     "daily_abnormal": [
       0.019826,
       -0.04645,
+      null,
       null,
       null,
       null,
@@ -2392,11 +2762,13 @@
       -0.024221,
       0.001418,
       0.016997,
-      -0.017409
+      -0.017409,
+      0.0
     ],
     "daily_abnormal": [
       0.054662,
       -0.008565,
+      null,
       null,
       null,
       null,
@@ -2423,11 +2795,13 @@
       -0.1225,
       -0.066667,
       -0.082418,
-      0.229541
+      0.229541,
+      0.0
     ],
     "daily_abnormal": [
       -0.011697,
       0.019103,
+      null,
       null,
       null,
       null,
@@ -2454,11 +2828,13 @@
       -0.073394,
       -0.033663,
       0.006148,
-      0.008147
+      0.008147,
+      0.0
     ],
     "daily_abnormal": [
       -0.026931,
       -0.004361,
+      null,
       null,
       null,
       null,
@@ -2485,11 +2861,13 @@
       -0.024221,
       0.001418,
       0.016997,
-      -0.017409
+      -0.017409,
+      0.0
     ],
     "daily_abnormal": [
       0.054662,
       -0.008565,
+      null,
       null,
       null,
       null,
@@ -2516,11 +2894,13 @@
       -0.113043,
       -0.035294,
       -0.023374,
-      0.144641
+      0.144641,
+      0.0
     ],
     "daily_abnormal": [
       -0.029453,
       0.131341,
+      null,
       null,
       null,
       null,
@@ -2547,11 +2927,13 @@
       -0.044655,
       -0.008499,
       0.038571,
-      0.015131
+      0.015131,
+      0.0
     ],
     "daily_abnormal": [
       0.03914,
       -0.063102,
+      null,
       null,
       null,
       null,
@@ -2578,11 +2960,13 @@
       -0.085917,
       -0.075581,
       -0.046122,
-      0.137363
+      0.137363,
+      0.0
     ],
     "daily_abnormal": [
       -0.087209,
       0.013228,
+      null,
       null,
       null,
       null,
@@ -2609,11 +2993,13 @@
       -0.024221,
       0.001418,
       0.016997,
-      -0.017409
+      -0.017409,
+      0.0
     ],
     "daily_abnormal": [
       0.054662,
       -0.008565,
+      null,
       null,
       null,
       null,
@@ -2640,11 +3026,13 @@
       -0.008806,
       -0.030602,
       0.040733,
-      0.030333
+      0.030333,
+      0.0
     ],
     "daily_abnormal": [
       0.108537,
       -0.12561,
+      null,
       null,
       null,
       null,
@@ -2672,12 +3060,14 @@
       -0.058193,
       -0.021138,
       0.034884,
-      0.006421
+      0.006421,
+      0.0
     ],
     "daily_abnormal": [
       0.063672,
       0.019765,
       -0.041551,
+      null,
       null,
       null,
       null,
@@ -2705,12 +3095,14 @@
       -0.1,
       -0.094737,
       0.015504,
-      -0.006361
+      -0.006361,
+      0.0
     ],
     "daily_abnormal": [
       0.056264,
       -0.05133,
       0.011616,
+      null,
       null,
       null,
       null,
@@ -2738,12 +3130,14 @@
       -0.009191,
       -0.001855,
       -0.018587,
-      -0.017045
+      -0.017045,
+      0.0
     ],
     "daily_abnormal": [
       0.071364,
       0.065612,
       -0.050507,
+      null,
       null,
       null,
       null,
@@ -2771,12 +3165,14 @@
       -0.009191,
       -0.001855,
       -0.018587,
-      -0.017045
+      -0.017045,
+      0.0
     ],
     "daily_abnormal": [
       0.071364,
       0.065612,
       -0.050507,
+      null,
       null,
       null,
       null,
@@ -2804,12 +3200,14 @@
       -0.072727,
       -0.097363,
       0.010487,
-      0.100074
+      0.100074,
+      0.0
     ],
     "daily_abnormal": [
       -0.009113,
       -0.017923,
       0.033403,
+      null,
       null,
       null,
       null,
@@ -2837,12 +3235,14 @@
       -0.025778,
       0.000912,
       0.035552,
-      0.072183
+      0.072183,
+      0.0
     ],
     "daily_abnormal": [
       0.061967,
       -0.015159,
       -0.002857,
+      null,
       null,
       null,
       null,
@@ -2871,13 +3271,15 @@
       -0.00198,
       -0.03373,
       0.026694,
-      0.007
+      0.007,
+      0.0
     ],
     "daily_abnormal": [
       -0.065886,
       0.053296,
       0.052304,
       -0.006916,
+      null,
       null,
       null,
       null,
@@ -2906,13 +3308,15 @@
       -0.133858,
       -0.052273,
       -0.007194,
-      0.268116
+      0.268116,
+      0.0
     ],
     "daily_abnormal": [
       0.000379,
       -0.023985,
       0.001482,
       0.025921,
+      null,
       null,
       null,
       null,
@@ -2941,13 +3345,15 @@
       -0.026744,
       0.015532,
       0.028235,
-      -0.003432
+      -0.003432,
+      0.0
     ],
     "daily_abnormal": [
       -0.074123,
       0.072005,
       0.019826,
       -0.04645,
+      null,
       null,
       null,
       null,
@@ -2976,13 +3382,15 @@
       -0.047876,
       0.001622,
       0.0,
-      0.017004
+      0.017004,
+      0.0
     ],
     "daily_abnormal": [
       -0.03405,
       0.250928,
       -0.006396,
       -0.032141,
+      null,
       null,
       null,
       null,
@@ -3011,13 +3419,15 @@
       -0.086114,
       -0.068316,
       -0.039191,
-      0.130263
+      0.130263,
+      0.0
     ],
     "daily_abnormal": [
       -0.007381,
       0.014583,
       0.027924,
       0.023264,
+      null,
       null,
       null,
       null,
@@ -3046,13 +3456,15 @@
       -0.023227,
       -0.041302,
       -0.005222,
-      0.085302
+      0.085302,
+      0.0
     ],
     "daily_abnormal": [
       -0.005854,
       0.061184,
       0.03215,
       -0.025453,
+      null,
       null,
       null,
       null,
@@ -3081,13 +3493,15 @@
       -0.051565,
       -0.03301,
       0.038153,
-      0.046422
+      0.046422,
+      0.0
     ],
     "daily_abnormal": [
       0.008082,
       0.019503,
       0.019725,
       0.013346,
+      null,
       null,
       null,
       null,
@@ -3117,7 +3531,8 @@
       -0.10233,
       0.027088,
       -0.054396,
-      0.041255
+      0.041255,
+      0.0
     ],
     "daily_abnormal": [
       -0.096144,
@@ -3125,6 +3540,7 @@
       -0.006849,
       -0.023546,
       0.081251,
+      null,
       null,
       null,
       null,
@@ -3154,7 +3570,8 @@
       -0.039048,
       -0.025768,
       0.025432,
-      -0.000992
+      -0.000992,
+      0.0
     ],
     "daily_abnormal": [
       -0.026668,
@@ -3162,6 +3579,7 @@
       0.069263,
       -0.011915,
       -0.007067,
+      null,
       null,
       null,
       null,
@@ -3191,7 +3609,8 @@
       -0.039048,
       -0.025768,
       0.025432,
-      -0.000992
+      -0.000992,
+      0.0
     ],
     "daily_abnormal": [
       -0.026668,
@@ -3199,6 +3618,7 @@
       0.069263,
       -0.011915,
       -0.007067,
+      null,
       null,
       null,
       null,
@@ -3228,7 +3648,8 @@
       -0.026152,
       0.0,
       0.061381,
-      0.072289
+      0.072289,
+      0.0
     ],
     "daily_abnormal": [
       -0.011063,
@@ -3236,6 +3657,7 @@
       0.033352,
       0.064061,
       0.004385,
+      null,
       null,
       null,
       null,
@@ -3265,7 +3687,8 @@
       0.020781,
       -0.019544,
       0.013289,
-      0.031148
+      0.031148,
+      0.0
     ],
     "daily_abnormal": [
       -0.022951,
@@ -3273,6 +3696,7 @@
       0.111436,
       -0.001566,
       -0.30462,
+      null,
       null,
       null,
       null,
@@ -3302,7 +3726,8 @@
       -0.068807,
       -0.064039,
       0.045789,
-      0.054353
+      0.054353,
+      0.0
     ],
     "daily_abnormal": [
       0.052337,
@@ -3310,6 +3735,7 @@
       0.080027,
       0.023943,
       -0.024374,
+      null,
       null,
       null,
       null,
@@ -3340,7 +3766,8 @@
       -0.005474,
       -0.009174,
       -0.018519,
-      -0.001887
+      -0.001887,
+      0.0
     ],
     "daily_abnormal": [
       0.123387,
@@ -3349,6 +3776,7 @@
       0.076854,
       0.040902,
       -0.039285,
+      null,
       null,
       null,
       null,
@@ -3379,7 +3807,8 @@
       -0.029698,
       -0.044519,
       -0.015725,
-      0.03432
+      0.03432,
+      0.0
     ],
     "daily_abnormal": [
       0.014194,
@@ -3388,6 +3817,7 @@
       0.049024,
       0.041169,
       -0.006537,
+      null,
       null,
       null,
       null,
@@ -3418,7 +3848,8 @@
       -0.077283,
       -0.053299,
       0.045576,
-      0.075641
+      0.075641,
+      0.0
     ],
     "daily_abnormal": [
       0.046394,
@@ -3427,6 +3858,7 @@
       0.031269,
       0.007668,
       -0.010374,
+      null,
       null,
       null,
       null,
@@ -3457,7 +3889,8 @@
       -0.0025,
       0.002506,
       0.04,
-      -0.013622
+      -0.013622,
+      0.0
     ],
     "daily_abnormal": [
       0.12605,
@@ -3466,6 +3899,7 @@
       0.104488,
       0.057097,
       -0.031153,
+      null,
       null,
       null,
       null,
@@ -3496,7 +3930,8 @@
       -0.057554,
       -0.08626,
       -0.010025,
-      0.113924
+      0.113924,
+      0.0
     ],
     "daily_abnormal": [
       -0.00412,
@@ -3505,6 +3940,7 @@
       0.030215,
       0.021852,
       0.029902,
+      null,
       null,
       null,
       null,
@@ -3535,7 +3971,8 @@
       -0.031008,
       -0.05,
       0.035789,
-      0.02439
+      0.02439,
+      0.0
     ],
     "daily_abnormal": [
       0.062461,
@@ -3544,6 +3981,7 @@
       0.070389,
       0.028413,
       -0.041368,
+      null,
       null,
       null,
       null,
@@ -3574,7 +4012,8 @@
       -0.018591,
       -0.02991,
       0.023638,
-      0.006024
+      0.006024,
+      0.0
     ],
     "daily_abnormal": [
       0.000108,
@@ -3583,6 +4022,7 @@
       0.024107,
       0.061097,
       0.048539,
+      null,
       null,
       null,
       null,
@@ -3613,7 +4053,8 @@
       0.0,
       -0.036458,
       -0.005405,
-      0.010326
+      0.010326,
+      0.0
     ],
     "daily_abnormal": [
       0.045461,
@@ -3622,6 +4063,7 @@
       0.062908,
       0.008849,
       0.009018,
+      null,
       null,
       null,
       null,
@@ -3653,7 +4095,8 @@
       -0.054362,
       -0.01738,
       0.020408,
-      0.062667
+      0.062667,
+      0.0
     ],
     "daily_abnormal": [
       -0.071207,
@@ -3663,6 +4106,7 @@
       0.051731,
       0.027816,
       -0.012779,
+      null,
       null,
       null,
       null,
@@ -3694,7 +4138,8 @@
       -0.085917,
       -0.075581,
       -0.046122,
-      0.137363
+      0.137363,
+      0.0
     ],
     "daily_abnormal": [
       -0.040773,
@@ -3704,6 +4149,7 @@
       0.12289,
       -0.087209,
       0.013228,
+      null,
       null,
       null,
       null,
@@ -3735,7 +4181,8 @@
       0.010563,
       -0.065505,
       -0.029828,
-      0.041507
+      0.041507,
+      0.0
     ],
     "daily_abnormal": [
       -0.061796,
@@ -3745,6 +4192,7 @@
       0.060663,
       0.049738,
       0.154743,
+      null,
       null,
       null,
       null,
@@ -3776,7 +4224,8 @@
       -0.019063,
       -0.012955,
       0.041017,
-      -0.029157
+      -0.029157,
+      0.0
     ],
     "daily_abnormal": [
       -0.129759,
@@ -3786,6 +4235,7 @@
       0.079245,
       0.037355,
       -0.056692,
+      null,
       null,
       null,
       null,
@@ -3817,7 +4267,8 @@
       -0.005474,
       -0.009174,
       -0.018519,
-      -0.001887
+      -0.001887,
+      0.0
     ],
     "daily_abnormal": [
       -0.032714,
@@ -3827,6 +4278,7 @@
       0.076854,
       0.040902,
       -0.039285,
+      null,
       null,
       null,
       null,
@@ -3858,7 +4310,8 @@
       -0.095238,
       0.298246,
       0.114865,
-      -0.015152
+      -0.015152,
+      0.0
     ],
     "daily_abnormal": [
       -0.080214,
@@ -3868,6 +4321,7 @@
       -0.118587,
       0.122601,
       0.05062,
+      null,
       null,
       null,
       null,
@@ -3899,7 +4353,8 @@
       -0.074367,
       -0.076923,
       -0.041667,
-      0.069565
+      0.069565,
+      0.0
     ],
     "daily_abnormal": [
       0.004347,
@@ -3909,6 +4364,7 @@
       -0.013844,
       -0.019844,
       0.009076,
+      null,
       null,
       null,
       null,
@@ -3940,7 +4396,8 @@
       -0.006593,
       -0.050885,
       -0.025641,
-      0.066986
+      0.066986,
+      0.0
     ],
     "daily_abnormal": [
       -0.034427,
@@ -3950,6 +4407,7 @@
       0.08821,
       0.040307,
       -0.024673,
+      null,
       null,
       null,
       null,
@@ -3981,7 +4439,8 @@
       -0.089431,
       -0.080357,
       -0.043689,
-      0.181726
+      0.181726,
+      0.0
     ],
     "daily_abnormal": [
       0.029009,
@@ -3991,6 +4450,7 @@
       -0.017273,
       -0.024608,
       0.01403,
+      null,
       null,
       null,
       null,
@@ -4022,7 +4482,8 @@
       -0.027859,
       -0.036199,
       -0.00313,
-      -0.00471
+      -0.00471,
+      0.0
     ],
     "daily_abnormal": [
       0.027984,
@@ -4032,6 +4493,7 @@
       0.060894,
       0.005622,
       -0.04425,
+      null,
       null,
       null,
       null,
@@ -4063,7 +4525,8 @@
       -0.012579,
       -0.06242,
       0.005435,
-      0.054054
+      0.054054,
+      0.0
     ],
     "daily_abnormal": [
       0.036301,
@@ -4073,6 +4536,7 @@
       0.058949,
       0.057668,
       -0.07888,
+      null,
       null,
       null,
       null,
@@ -4104,7 +4568,8 @@
       -0.047921,
       0.032141,
       -0.018214,
-      0.016158
+      0.016158,
+      0.0
     ],
     "daily_abnormal": [
       0.023104,
@@ -4114,6 +4579,7 @@
       0.013618,
       -0.02712,
       0.045033,
+      null,
       null,
       null,
       null,
@@ -4145,7 +4611,8 @@
       -0.012281,
       0.001776,
       0.010638,
-      -0.007018
+      -0.007018,
+      0.0
     ],
     "daily_abnormal": [
       -0.030595,
@@ -4155,6 +4622,7 @@
       0.055021,
       0.039384,
       -0.035554,
+      null,
       null,
       null,
       null,
@@ -4186,7 +4654,8 @@
       -0.033943,
       -0.078378,
       0.076246,
-      0.044959
+      0.044959,
+      0.0
     ],
     "daily_abnormal": [
       0.015924,
@@ -4196,6 +4665,7 @@
       0.034904,
       -0.025654,
       0.025064,
+      null,
       null,
       null,
       null,
@@ -4227,7 +4697,8 @@
       -0.085917,
       -0.075581,
       -0.046122,
-      0.137363
+      0.137363,
+      0.0
     ],
     "daily_abnormal": [
       -0.040773,
@@ -4237,6 +4708,7 @@
       0.12289,
       -0.087209,
       0.013228,
+      null,
       null,
       null,
       null,
@@ -4269,7 +4741,8 @@
       -0.044776,
       -0.059028,
       -0.02952,
-      0.072243
+      0.072243,
+      0.0
     ],
     "daily_abnormal": [
       -0.049927,
@@ -4280,6 +4753,7 @@
       -0.009197,
       0.033524,
       0.003468,
+      null,
       null,
       null,
       null,
@@ -4312,7 +4786,8 @@
       -0.025362,
       -0.124535,
       0.053079,
-      0.060484
+      0.060484,
+      0.0
     ],
     "daily_abnormal": [
       -0.021333,
@@ -4323,6 +4798,7 @@
       0.067734,
       0.00439,
       0.014568,
+      null,
       null,
       null,
       null,
@@ -4355,7 +4831,8 @@
       -0.032751,
       -0.009029,
       0.006834,
-      -0.033937
+      -0.033937,
+      0.0
     ],
     "daily_abnormal": [
       -0.024408,
@@ -4366,6 +4843,7 @@
       0.04212,
       0.046822,
       -0.031158,
+      null,
       null,
       null,
       null,
@@ -4398,7 +4876,8 @@
       -0.02521,
       -0.060345,
       -0.017202,
-      0.016336
+      0.016336,
+      0.0
     ],
     "daily_abnormal": [
       -0.053799,
@@ -4409,6 +4888,7 @@
       0.076383,
       -0.015004,
       -0.018869,
+      null,
       null,
       null,
       null,
@@ -4441,7 +4921,8 @@
       -0.007117,
       -0.179211,
       -0.019651,
-      0.028953
+      0.028953,
+      0.0
     ],
     "daily_abnormal": [
       -0.056642,
@@ -4452,6 +4933,7 @@
       -0.044482,
       -0.010252,
       0.045064,
+      null,
       null,
       null,
       null,
@@ -4484,7 +4966,8 @@
       -0.133858,
       -0.052273,
       -0.007194,
-      0.268116
+      0.268116,
+      0.0
     ],
     "daily_abnormal": [
       -0.004424,
@@ -4495,6 +4978,7 @@
       -0.023985,
       0.001482,
       0.025921,
+      null,
       null,
       null,
       null,
@@ -4527,7 +5011,8 @@
       0.04,
       -0.100796,
       -0.085546,
-      0.172581
+      0.172581,
+      0.0
     ],
     "daily_abnormal": [
       -0.02731,
@@ -4538,6 +5023,7 @@
       -0.010235,
       -0.060893,
       0.293892,
+      null,
       null,
       null,
       null,
@@ -4570,7 +5056,8 @@
       -0.046602,
       -0.086558,
       0.027871,
-      -0.04013
+      -0.04013,
+      0.0
     ],
     "daily_abnormal": [
       -0.063517,
@@ -4581,6 +5068,7 @@
       -0.001409,
       0.054274,
       -0.006895,
+      null,
       null,
       null,
       null,
@@ -4613,7 +5101,8 @@
       -0.067034,
       -0.07185,
       -0.045599,
-      0.064444
+      0.064444,
+      0.0
     ],
     "daily_abnormal": [
       -0.043994,
@@ -4624,6 +5113,7 @@
       0.058515,
       0.011433,
       0.026132,
+      null,
       null,
       null,
       null,
@@ -4657,7 +5147,8 @@
       0.04,
       -0.100796,
       -0.085546,
-      0.172581
+      0.172581,
+      0.0
     ],
     "daily_abnormal": [
       0.184841,
@@ -4669,6 +5160,7 @@
       -0.010235,
       -0.060893,
       0.293892,
+      null,
       null,
       null,
       null,
@@ -4702,7 +5194,8 @@
       -0.022059,
       0.052632,
       0.028571,
-      0.06746
+      0.06746,
+      0.0
     ],
     "daily_abnormal": [
       0.105561,
@@ -4714,6 +5207,7 @@
       0.055524,
       -0.003945,
       0.127207,
+      null,
       null,
       null,
       null,
@@ -4747,7 +5241,8 @@
       -0.073826,
       -0.105797,
       0.006483,
-      0.049919
+      0.049919,
+      0.0
     ],
     "daily_abnormal": [
       0.008703,
@@ -4759,6 +5254,7 @@
       0.022507,
       0.009195,
       0.01406,
+      null,
       null,
       null,
       null,
@@ -4792,7 +5288,8 @@
       -0.02521,
       -0.060345,
       -0.017202,
-      0.016336
+      0.016336,
+      0.0
     ],
     "daily_abnormal": [
       0.003672,
@@ -4804,6 +5301,7 @@
       0.076383,
       -0.015004,
       -0.018869,
+      null,
       null,
       null,
       null,
@@ -4837,7 +5335,8 @@
       -0.011538,
       -0.015564,
       0.005929,
-      0.015717
+      0.015717,
+      0.0
     ],
     "daily_abnormal": [
       0.177279,
@@ -4849,6 +5348,7 @@
       0.076611,
       0.04097,
       -0.068521,
+      null,
       null,
       null,
       null,
@@ -4882,7 +5382,8 @@
       -0.108638,
       -0.032967,
       -0.084711,
-      0.267494
+      0.267494,
+      0.0
     ],
     "daily_abnormal": [
       -0.01899,
@@ -4894,6 +5395,7 @@
       -0.05296,
       -0.075453,
       -0.021355,
+      null,
       null,
       null,
       null,
@@ -4927,7 +5429,8 @@
       0.04,
       -0.100796,
       -0.085546,
-      0.172581
+      0.172581,
+      0.0
     ],
     "daily_abnormal": [
       0.184841,
@@ -4939,6 +5442,7 @@
       -0.010235,
       -0.060893,
       0.293892,
+      null,
       null,
       null,
       null,
@@ -4972,7 +5476,8 @@
       -0.07482,
       -0.080871,
       -0.013536,
-      0.116638
+      0.116638,
+      0.0
     ],
     "daily_abnormal": [
       0.031913,
@@ -4984,6 +5489,7 @@
       0.010885,
       0.010498,
       0.024871,
+      null,
       null,
       null,
       null,
@@ -5017,7 +5523,8 @@
       0.0,
       0.003876,
       0.007722,
-      -0.005747
+      -0.005747,
+      0.0
     ],
     "daily_abnormal": [
       0.155174,
@@ -5029,6 +5536,7 @@
       0.12856,
       0.140521,
       -0.072749,
+      null,
       null,
       null,
       null,
@@ -5062,7 +5570,8 @@
       -0.066246,
       -0.056306,
       -0.01432,
-      0.010896
+      0.010896,
+      0.0
     ],
     "daily_abnormal": [
       0.04698,
@@ -5074,6 +5583,7 @@
       0.083567,
       0.046673,
       -0.067316,
+      null,
       null,
       null,
       null,
@@ -5107,7 +5617,8 @@
       -0.034205,
       -0.040625,
       0.035831,
-      0.01782
+      0.01782,
+      0.0
     ],
     "daily_abnormal": [
       0.107812,
@@ -5119,6 +5630,7 @@
       0.110207,
       0.032762,
       -0.037554,
+      null,
       null,
       null,
       null,
@@ -5152,7 +5664,8 @@
       -0.105556,
       -0.148378,
       -0.015397,
-      0.15144
+      0.15144,
+      0.0
     ],
     "daily_abnormal": [
       -0.035787,
@@ -5164,6 +5677,7 @@
       -0.018288,
       -0.012023,
       0.036294,
+      null,
       null,
       null,
       null,
@@ -5197,7 +5711,8 @@
       -0.013746,
       -0.088502,
       -0.009174,
-      0.044753
+      0.044753,
+      0.0
     ],
     "daily_abnormal": [
       0.111936,
@@ -5209,6 +5724,7 @@
       0.011967,
       -0.023871,
       -0.019212,
+      null,
       null,
       null,
       null,
@@ -5242,7 +5758,8 @@
       -0.062267,
       -0.050465,
       0.006993,
-      0.093056
+      0.093056,
+      0.0
     ],
     "daily_abnormal": [
       0.083139,
@@ -5254,6 +5771,7 @@
       0.036825,
       0.017798,
       -0.046814,
+      null,
       null,
       null,
       null,
@@ -5287,7 +5805,8 @@
       -0.025362,
       -0.124535,
       0.053079,
-      0.060484
+      0.060484,
+      0.0
     ],
     "daily_abnormal": [
       0.020696,
@@ -5299,6 +5818,7 @@
       0.067734,
       0.00439,
       0.014568,
+      null,
       null,
       null,
       null,
@@ -5333,7 +5853,8 @@
       -0.023753,
       -0.038929,
       0.012658,
-      0.06125
+      0.06125,
+      0.0
     ],
     "daily_abnormal": [
       0.028002,
@@ -5346,6 +5867,7 @@
       0.044133,
       0.030701,
       0.016962,
+      null,
       null,
       null,
       null,
@@ -5380,7 +5902,8 @@
       -0.037594,
       0.010417,
       -0.015464,
-      0.025131
+      0.025131,
+      0.0
     ],
     "daily_abnormal": [
       -0.016698,
@@ -5393,6 +5916,7 @@
       0.03935,
       0.014255,
       -0.007019,
+      null,
       null,
       null,
       null,
@@ -5428,7 +5952,8 @@
       0.01663,
       0.017448,
       0.039657,
-      0.082474
+      0.082474,
+      0.0
     ],
     "daily_abnormal": [
       0.0305,
@@ -5442,6 +5967,7 @@
       0.06639,
       0.046944,
       0.046183,
+      null,
       null,
       null,
       null,
@@ -5477,7 +6003,8 @@
       -0.068702,
       -0.030738,
       0.002114,
-      0.054852
+      0.054852,
+      0.0
     ],
     "daily_abnormal": [
       0.018243,
@@ -5491,6 +6018,7 @@
       0.165023,
       0.028259,
       -0.083371,
+      null,
       null,
       null,
       null,
@@ -5526,7 +6054,8 @@
       -0.014634,
       -0.006188,
       -0.026152,
-      -0.002558
+      -0.002558,
+      0.0
     ],
     "daily_abnormal": [
       0.003508,
@@ -5540,6 +6069,7 @@
       0.061302,
       0.004239,
       -0.035554,
+      null,
       null,
       null,
       null,
@@ -5575,7 +6105,8 @@
       -0.090141,
       -0.078947,
       0.005042,
-      0.023411
+      0.023411,
+      0.0
     ],
     "daily_abnormal": [
       0.023335,
@@ -5589,6 +6120,7 @@
       -0.071386,
       0.010289,
       -0.037848,
+      null,
       null,
       null,
       null,
@@ -5624,7 +6156,8 @@
       -0.010601,
       -0.014286,
       0.009058,
-      0.068223
+      0.068223,
+      0.0
     ],
     "daily_abnormal": [
       -0.030322,
@@ -5638,6 +6171,7 @@
       0.075916,
       0.043919,
       -0.052254,
+      null,
       null,
       null,
       null,
@@ -5673,7 +6207,8 @@
       -0.059263,
       -0.001135,
       0.038636,
-      0.025711
+      0.025711,
+      0.0
     ],
     "daily_abnormal": [
       0.050903,
@@ -5687,6 +6222,7 @@
       0.05939,
       0.013725,
       0.018071,
+      null,
       null,
       null,
       null,
@@ -5722,7 +6258,8 @@
       -0.067703,
       -0.053571,
       0.044025,
-      0.039759
+      0.039759,
+      0.0
     ],
     "daily_abnormal": [
       0.085368,
@@ -5736,6 +6273,7 @@
       0.034403,
       0.031219,
       0.000708,
+      null,
       null,
       null,
       null,
@@ -5772,7 +6310,8 @@
       -0.041379,
       -0.028777,
       0.007407,
-      0.041667
+      0.041667,
+      0.0
     ],
     "daily_abnormal": [
       -0.00195,
@@ -5787,6 +6326,7 @@
       0.036167,
       0.046365,
       -0.004936,
+      null,
       null,
       null,
       null,
@@ -5823,7 +6363,8 @@
       -0.015312,
       -0.050239,
       0.028967,
-      0.045288
+      0.045288,
+      0.0
     ],
     "daily_abnormal": [
       0.031746,
@@ -5838,6 +6379,7 @@
       0.03196,
       -0.010248,
       -0.021621,
+      null,
       null,
       null,
       null,
@@ -5874,7 +6416,8 @@
       -0.011494,
       -0.027907,
       0.011962,
-      0.020095
+      0.020095,
+      0.0
     ],
     "daily_abnormal": [
       -0.038762,
@@ -5889,6 +6432,7 @@
       0.104148,
       0.037754,
       -0.044771,
+      null,
       null,
       null,
       null,
@@ -5925,7 +6469,8 @@
       0.00495,
       0.002956,
       -0.015717,
-      0.125749
+      0.125749,
+      0.0
     ],
     "daily_abnormal": [
       -0.07028,
@@ -5940,6 +6485,7 @@
       0.082002,
       0.047619,
       -0.047518,
+      null,
       null,
       null,
       null,
@@ -5976,7 +6522,8 @@
       -0.019417,
       -0.044004,
       0.025316,
-      0.011223
+      0.011223,
+      0.0
     ],
     "daily_abnormal": [
       -0.085601,
@@ -5991,6 +6538,7 @@
       0.092304,
       0.039465,
       -0.059388,
+      null,
       null,
       null,
       null,
@@ -6027,7 +6575,8 @@
       -0.032915,
       -0.024311,
       -0.048173,
-      0.024433
+      0.024433,
+      0.0
     ],
     "daily_abnormal": [
       -0.026989,
@@ -6042,6 +6591,7 @@
       0.056665,
       0.006819,
       -0.011658,
+      null,
       null,
       null,
       null,
@@ -6078,7 +6628,8 @@
       -0.088785,
       -0.065641,
       -0.008782,
-      -0.078627
+      -0.078627,
+      0.0
     ],
     "daily_abnormal": [
       -0.017304,
@@ -6093,6 +6644,7 @@
       0.056292,
       0.054533,
       0.057697,
+      null,
       null,
       null,
       null,
@@ -6129,7 +6681,8 @@
       0.0,
       0.003876,
       0.007722,
-      -0.005747
+      -0.005747,
+      0.0
     ],
     "daily_abnormal": [
       -0.019807,
@@ -6144,6 +6697,7 @@
       0.12856,
       0.140521,
       -0.072749,
+      null,
       null,
       null,
       null,
@@ -6180,7 +6734,8 @@
       0.00188,
       0.031895,
       -0.003636,
-      0.034672
+      0.034672,
+      0.0
     ],
     "daily_abnormal": [
       -0.094577,
@@ -6195,6 +6750,7 @@
       0.030111,
       0.064877,
       0.01224,
+      null,
       null,
       null,
       null,
@@ -6231,7 +6787,8 @@
       -0.00198,
       -0.03373,
       0.026694,
-      0.007
+      0.007,
+      0.0
     ],
     "daily_abnormal": [
       0.004406,
@@ -6246,6 +6803,7 @@
       0.053296,
       0.052304,
       -0.006916,
+      null,
       null,
       null,
       null,
@@ -6282,7 +6840,8 @@
       -0.033333,
       -0.018568,
       0.02027,
-      0.02649
+      0.02649,
+      0.0
     ],
     "daily_abnormal": [
       0.024824,
@@ -6297,6 +6856,7 @@
       0.03567,
       -0.00639,
       0.001541,
+      null,
       null,
       null,
       null,
@@ -6333,7 +6893,8 @@
       -0.021053,
       -0.064516,
       -0.054023,
-      0.03949
+      0.03949,
+      0.0
     ],
     "daily_abnormal": [
       0.101409,
@@ -6348,6 +6909,7 @@
       0.01913,
       -0.00343,
       -0.086843,
+      null,
       null,
       null,
       null,
@@ -6384,7 +6946,8 @@
       -0.033333,
       -0.018568,
       0.02027,
-      0.02649
+      0.02649,
+      0.0
     ],
     "daily_abnormal": [
       0.024824,
@@ -6399,6 +6962,7 @@
       0.03567,
       -0.00639,
       0.001541,
+      null,
       null,
       null,
       null,
@@ -6435,7 +6999,8 @@
       -0.020606,
       0.002475,
       0.004938,
-      0.006143
+      0.006143,
+      0.0
     ],
     "daily_abnormal": [
       -0.019107,
@@ -6450,6 +7015,7 @@
       0.03881,
       0.027081,
       0.009869,
+      null,
       null,
       null,
       null,
@@ -6487,7 +7053,8 @@
       -0.090909,
       -0.111321,
       -0.021231,
-      0.02603
+      0.02603,
+      0.0
     ],
     "daily_abnormal": [
       0.03444,
@@ -6503,6 +7070,7 @@
       0.036714,
       0.027252,
       -0.024544,
+      null,
       null,
       null,
       null,
@@ -6540,7 +7108,8 @@
       -0.04,
       -0.102431,
       -0.027079,
-      0.083499
+      0.083499,
+      0.0
     ],
     "daily_abnormal": [
       -0.03949,
@@ -6556,6 +7125,7 @@
       0.099419,
       -0.004249,
       1.5e-05,
+      null,
       null,
       null,
       null,
@@ -6593,7 +7163,8 @@
       -0.035629,
       -0.045567,
       -0.04129,
-      0.04576
+      0.04576,
+      0.0
     ],
     "daily_abnormal": [
       0.042162,
@@ -6609,6 +7180,7 @@
       0.009859,
       0.061872,
       0.00357,
+      null,
       null,
       null,
       null,
@@ -6646,7 +7218,8 @@
       -0.029932,
       -0.043478,
       0.038123,
-      0.016949
+      0.016949,
+      0.0
     ],
     "daily_abnormal": [
       0.041624,
@@ -6662,6 +7235,7 @@
       0.034271,
       0.009998,
       0.002364,
+      null,
       null,
       null,
       null,
@@ -6699,7 +7273,8 @@
       -0.080706,
       -0.083676,
       0.017964,
-      0.114706
+      0.114706,
+      0.0
     ],
     "daily_abnormal": [
       0.001683,
@@ -6715,6 +7290,7 @@
       -0.000243,
       -0.000727,
       0.005688,
+      null,
       null,
       null,
       null,
@@ -6752,7 +7328,8 @@
       -0.03268,
       -0.118243,
       -0.061303,
-      0.122449
+      0.122449,
+      0.0
     ],
     "daily_abnormal": [
       -0.048916,
@@ -6768,6 +7345,7 @@
       0.038447,
       -0.034942,
       0.095634,
+      null,
       null,
       null,
       null,
@@ -6805,7 +7383,8 @@
       -0.002782,
       -0.040446,
       0.027616,
-      0.016973
+      0.016973,
+      0.0
     ],
     "daily_abnormal": [
       0.126674,
@@ -6821,6 +7400,7 @@
       0.046765,
       -0.036172,
       0.113923,
+      null,
       null,
       null,
       null,
@@ -6858,7 +7438,8 @@
       -0.053398,
       -0.044444,
       0.007156,
-      0.099467
+      0.099467,
+      0.0
     ],
     "daily_abnormal": [
       0.06287,
@@ -6874,6 +7455,7 @@
       0.101253,
       -0.029397,
       -0.013445,
+      null,
       null,
       null,
       null,
@@ -6911,7 +7493,8 @@
       -0.050435,
       -0.038462,
       0.024762,
-      -0.016729
+      -0.016729,
+      0.0
     ],
     "daily_abnormal": [
       0.119738,
@@ -6927,6 +7510,7 @@
       0.04575,
       0.009948,
       -0.052567,
+      null,
       null,
       null,
       null,
@@ -6964,7 +7548,8 @@
       -0.088235,
       -0.060215,
       -0.025172,
-      0.084507
+      0.084507,
+      0.0
     ],
     "daily_abnormal": [
       0.04054,
@@ -6980,6 +7565,7 @@
       -0.082608,
       0.016554,
       -0.318229,
+      null,
       null,
       null,
       null,
@@ -7017,7 +7603,8 @@
       -0.03876,
       -0.072581,
       0.057971,
-      0.035616
+      0.035616,
+      0.0
     ],
     "daily_abnormal": [
       0.099028,
@@ -7033,6 +7620,7 @@
       0.02593,
       0.009508,
       -0.006413,
+      null,
       null,
       null,
       null,
@@ -7070,7 +7658,8 @@
       -0.050435,
       -0.038462,
       0.024762,
-      -0.016729
+      -0.016729,
+      0.0
     ],
     "daily_abnormal": [
       0.119738,
@@ -7086,6 +7675,7 @@
       0.04575,
       0.009948,
       -0.052567,
+      null,
       null,
       null,
       null,
@@ -7123,7 +7713,8 @@
       -0.074627,
       -0.005376,
       -0.034234,
-      0.067164
+      0.067164,
+      0.0
     ],
     "daily_abnormal": [
       0.001473,
@@ -7139,6 +7730,7 @@
       0.0325,
       0.024073,
       -0.019986,
+      null,
       null,
       null,
       null,
@@ -7176,7 +7768,8 @@
       -0.030804,
       -0.006977,
       -0.007806,
-      0.051141
+      0.051141,
+      0.0
     ],
     "daily_abnormal": [
       0.028491,
@@ -7192,6 +7785,7 @@
       0.027647,
       0.030805,
       -0.029476,
+      null,
       null,
       null,
       null,
@@ -7229,7 +7823,8 @@
       -0.033259,
       -0.065367,
       0.003681,
-      0.020782
+      0.020782,
+      0.0
     ],
     "daily_abnormal": [
       0.05018,
@@ -7245,6 +7840,7 @@
       0.043999,
       0.011174,
       -0.042474,
+      null,
       null,
       null,
       null,
@@ -7282,7 +7878,8 @@
       -0.035629,
       -0.045567,
       -0.04129,
-      0.04576
+      0.04576,
+      0.0
     ],
     "daily_abnormal": [
       0.042162,
@@ -7298,6 +7895,7 @@
       0.009859,
       0.061872,
       0.00357,
+      null,
       null,
       null,
       null,
@@ -7335,7 +7933,8 @@
       -0.052023,
       -0.060976,
       -0.015152,
-      0.098901
+      0.098901,
+      0.0
     ],
     "daily_abnormal": [
       0.089002,
@@ -7351,6 +7950,7 @@
       0.049004,
       0.055128,
       -0.01043,
+      null,
       null,
       null,
       null,
@@ -7389,7 +7989,8 @@
       -0.085917,
       -0.075581,
       -0.046122,
-      0.137363
+      0.137363,
+      0.0
     ],
     "daily_abnormal": [
       0.088538,
@@ -7406,6 +8007,7 @@
       0.12289,
       -0.087209,
       0.013228,
+      null,
       null,
       null,
       null,
@@ -7444,7 +8046,8 @@
       0.01171,
       -0.076389,
       -0.000501,
-      0.005517
+      0.005517,
+      0.0
     ],
     "daily_abnormal": [
       -0.006839,
@@ -7461,6 +8064,7 @@
       0.046846,
       0.06599,
       -0.005437,
+      null,
       null,
       null,
       null,
@@ -7499,7 +8103,8 @@
       -0.085917,
       -0.075581,
       -0.046122,
-      0.137363
+      0.137363,
+      0.0
     ],
     "daily_abnormal": [
       0.088538,
@@ -7516,6 +8121,7 @@
       0.12289,
       -0.087209,
       0.013228,
+      null,
       null,
       null,
       null,
@@ -7554,7 +8160,8 @@
       -0.033126,
       -0.039615,
       0.031215,
-      0.015135
+      0.015135,
+      0.0
     ],
     "daily_abnormal": [
       0.036901,
@@ -7571,6 +8178,7 @@
       0.042566,
       -0.043676,
       -0.059203,
+      null,
       null,
       null,
       null,
@@ -7609,7 +8217,8 @@
       -0.065642,
       -0.088191,
       0.037705,
-      0.088468
+      0.088468,
+      0.0
     ],
     "daily_abnormal": [
       0.012583,
@@ -7626,6 +8235,7 @@
       0.035949,
       -0.004815,
       -0.00637,
+      null,
       null,
       null,
       null,
@@ -7664,7 +8274,8 @@
       0.01171,
       -0.076389,
       -0.000501,
-      0.005517
+      0.005517,
+      0.0
     ],
     "daily_abnormal": [
       -0.006839,
@@ -7681,6 +8292,7 @@
       0.046846,
       0.06599,
       -0.005437,
+      null,
       null,
       null,
       null,
@@ -7719,7 +8331,8 @@
       -0.065574,
       -0.037037,
       0.012146,
-      0.01
+      0.01,
+      0.0
     ],
     "daily_abnormal": [
       -0.001444,
@@ -7736,6 +8349,7 @@
       0.122565,
       0.022286,
       -0.034936,
+      null,
       null,
       null,
       null,
@@ -7774,7 +8388,8 @@
       -0.015312,
       -0.050239,
       0.028967,
-      0.045288
+      0.045288,
+      0.0
     ],
     "daily_abnormal": [
       0.022662,
@@ -7791,6 +8406,7 @@
       0.03196,
       -0.010248,
       -0.021621,
+      null,
       null,
       null,
       null,
@@ -7829,7 +8445,8 @@
       -0.063492,
       -0.113559,
       0.022945,
-      0.15514
+      0.15514,
+      0.0
     ],
     "daily_abnormal": [
       -0.016001,
@@ -7846,6 +8463,7 @@
       0.043738,
       0.00258,
       -0.019961,
+      null,
       null,
       null,
       null,
@@ -7884,7 +8502,8 @@
       -0.01074,
       -0.034982,
       0.0125,
-      0.032099
+      0.032099,
+      0.0
     ],
     "daily_abnormal": [
       0.001774,
@@ -7901,6 +8520,7 @@
       0.036752,
       0.037244,
       0.002593,
+      null,
       null,
       null,
       null,
@@ -7940,7 +8560,8 @@
       -0.04468,
       -0.032615,
       0.018448,
-      0.016864
+      0.016864,
+      0.0
     ],
     "daily_abnormal": [
       -0.01677,
@@ -7958,6 +8579,7 @@
       0.067746,
       0.016793,
       -0.037343,
+      null,
       null,
       null,
       null,
@@ -7997,7 +8619,8 @@
       -0.081707,
       -0.058433,
       0.038082,
-      0.078804
+      0.078804,
+      0.0
     ],
     "daily_abnormal": [
       0.047006,
@@ -8015,6 +8638,7 @@
       0.004528,
       0.010766,
       0.015369,
+      null,
       null,
       null,
       null,
@@ -8054,7 +8678,8 @@
       -0.015312,
       -0.050239,
       0.028967,
-      0.045288
+      0.045288,
+      0.0
     ],
     "daily_abnormal": [
       0.05796,
@@ -8072,6 +8697,7 @@
       0.03196,
       -0.010248,
       -0.021621,
+      null,
       null,
       null,
       null,
@@ -8111,7 +8737,8 @@
       -0.019608,
       -0.063077,
       0.024631,
-      0.070513
+      0.070513,
+      0.0
     ],
     "daily_abnormal": [
       0.001619,
@@ -8129,6 +8756,7 @@
       0.04995,
       0.019499,
       0.018912,
+      null,
       null,
       null,
       null,
@@ -8168,7 +8796,8 @@
       -0.040413,
       -0.072581,
       -0.009662,
-      0.013659
+      0.013659,
+      0.0
     ],
     "daily_abnormal": [
       0.009986,
@@ -8186,6 +8815,7 @@
       0.040274,
       0.011873,
       0.00741,
+      null,
       null,
       null,
       null,
@@ -8226,7 +8856,8 @@
       -0.080706,
       -0.083676,
       0.017964,
-      0.114706
+      0.114706,
+      0.0
     ],
     "daily_abnormal": [
       0.008271,
@@ -8245,6 +8876,7 @@
       -0.000243,
       -0.000727,
       0.005688,
+      null,
       null,
       null,
       null,
@@ -8285,7 +8917,8 @@
       -0.016304,
       -0.00442,
       0.00111,
-      0.008869
+      0.008869,
+      0.0
     ],
     "daily_abnormal": [
       -0.055051,
@@ -8304,6 +8937,7 @@
       0.039938,
       0.041389,
       0.022447,
+      null,
       null,
       null,
       null,
@@ -8344,7 +8978,8 @@
       -0.03268,
       -0.118243,
       -0.061303,
-      0.122449
+      0.122449,
+      0.0
     ],
     "daily_abnormal": [
       -0.00415,
@@ -8363,6 +8998,7 @@
       0.038447,
       -0.034942,
       0.095634,
+      null,
       null,
       null,
       null,
@@ -8403,7 +9039,8 @@
       -0.081977,
       -0.074731,
       0.039699,
-      0.081633
+      0.081633,
+      0.0
     ],
     "daily_abnormal": [
       0.057538,
@@ -8422,6 +9059,7 @@
       0.057835,
       0.00915,
       -0.001857,
+      null,
       null,
       null,
       null,
@@ -8462,7 +9100,8 @@
       -0.128,
       -0.093272,
       -0.037099,
-      0.211909
+      0.211909,
+      0.0
     ],
     "daily_abnormal": [
       -0.062305,
@@ -8481,6 +9120,7 @@
       -0.044615,
       -0.017295,
       -0.015062,
+      null,
       null,
       null,
       null,
@@ -8521,7 +9161,8 @@
       -0.016064,
       -0.021769,
       0.069541,
-      -0.003901
+      -0.003901,
+      0.0
     ],
     "daily_abnormal": [
       0.080205,
@@ -8540,6 +9181,7 @@
       0.086207,
       0.006052,
       -0.032689,
+      null,
       null,
       null,
       null,
@@ -8580,7 +9222,8 @@
       -0.018868,
       -0.019231,
       0.039216,
-      0.044597
+      0.044597,
+      0.0
     ],
     "daily_abnormal": [
       -0.02152,
@@ -8599,6 +9242,7 @@
       0.04197,
       0.028084,
       -0.003212,
+      null,
       null,
       null,
       null,
@@ -8639,7 +9283,8 @@
       -0.022635,
       -0.031431,
       -0.005124,
-      0.054077
+      0.054077,
+      0.0
     ],
     "daily_abnormal": [
       -0.027283,
@@ -8658,6 +9303,7 @@
       0.044519,
       0.04768,
       -0.021065,
+      null,
       null,
       null,
       null,
@@ -8698,7 +9344,8 @@
       -0.01625,
       0.0,
       0.024142,
-      0.001241
+      0.001241,
+      0.0
     ],
     "daily_abnormal": [
       0.038377,
@@ -8717,6 +9364,7 @@
       0.03285,
       -0.002495,
       -0.026901,
+      null,
       null,
       null,
       null,
@@ -8757,7 +9405,8 @@
       -0.035398,
       -0.077326,
       -0.002841,
-      0.092593
+      0.092593,
+      0.0
     ],
     "daily_abnormal": [
       0.061576,
@@ -8776,6 +9425,7 @@
       0.02522,
       -0.015937,
       0.014348,
+      null,
       null,
       null,
       null,
@@ -8816,7 +9466,8 @@
       -0.056266,
       -0.090786,
       -0.004471,
-      0.151198
+      0.151198,
+      0.0
     ],
     "daily_abnormal": [
       -0.030113,
@@ -8835,6 +9486,7 @@
       0.00465,
       -0.011544,
       0.008398,
+      null,
       null,
       null,
       null,
@@ -8875,7 +9527,8 @@
       -0.05303,
       -0.0528,
       0.028716,
-      0.041051
+      0.041051,
+      0.0
     ],
     "daily_abnormal": [
       7.5e-05,
@@ -8894,6 +9547,7 @@
       0.032561,
       0.048447,
       -0.014676,
+      null,
       null,
       null,
       null,
@@ -8935,7 +9589,8 @@
       -0.042882,
       -0.069892,
       -0.019268,
-      0.086444
+      0.086444,
+      0.0
     ],
     "daily_abnormal": [
       0.024238,
@@ -8955,6 +9610,7 @@
       0.019048,
       0.033058,
       0.013997,
+      null,
       null,
       null,
       null,
@@ -8996,7 +9652,8 @@
       -0.0444,
       -0.13622,
       -0.141809,
-      0.172365
+      0.172365,
+      0.0
     ],
     "daily_abnormal": [
       -0.069399,
@@ -9016,6 +9673,7 @@
       0.002274,
       -0.095495,
       -0.051684,
+      null,
       null,
       null,
       null,
@@ -9057,7 +9715,8 @@
       -0.085917,
       -0.075581,
       -0.046122,
-      0.137363
+      0.137363,
+      0.0
     ],
     "daily_abnormal": [
       -0.026016,
@@ -9077,6 +9736,7 @@
       0.12289,
       -0.087209,
       0.013228,
+      null,
       null,
       null,
       null,
@@ -9118,7 +9778,8 @@
       -0.172179,
       -0.109283,
       -0.047493,
-      0.252078
+      0.252078,
+      0.0
     ],
     "daily_abnormal": [
       -0.019752,
@@ -9138,6 +9799,7 @@
       -0.038013,
       -0.040921,
       0.077181,
+      null,
       null,
       null,
       null,
@@ -9179,7 +9841,8 @@
       0.025924,
       -0.086545,
       0.031812,
-      0.040885
+      0.040885,
+      0.0
     ],
     "daily_abnormal": [
       -0.020933,
@@ -9199,6 +9862,7 @@
       0.088143,
       -0.003387,
       0.017137,
+      null,
       null,
       null,
       null,
@@ -9240,7 +9904,8 @@
       -0.042857,
       -0.052239,
       -0.031496,
-      0.056911
+      0.056911,
+      0.0
     ],
     "daily_abnormal": [
       0.044681,
@@ -9260,6 +9925,7 @@
       0.048829,
       0.004343,
       -0.023318,
+      null,
       null,
       null,
       null,
@@ -9301,7 +9967,8 @@
       -0.088199,
       -0.117166,
       -0.033951,
-      0.076677
+      0.076677,
+      0.0
     ],
     "daily_abnormal": [
       -0.049057,
@@ -9321,6 +9988,7 @@
       -0.035666,
       0.022642,
       0.02932,
+      null,
       null,
       null,
       null,
@@ -9362,6 +10030,7 @@
       -0.009221,
       -0.05274,
       0.055677,
+      0.0,
       0.0
     ],
     "daily_abnormal": [
@@ -9382,6 +10051,7 @@
       0.034947,
       0.061679,
       -0.01741,
+      null,
       null,
       null,
       null,
@@ -9423,7 +10093,8 @@
       -0.037004,
       -0.004686,
       0.012241,
-      0.047442
+      0.047442,
+      0.0
     ],
     "daily_abnormal": [
       0.061749,
@@ -9443,6 +10114,7 @@
       0.060163,
       0.037754,
       0.024776,
+      null,
       null,
       null,
       null,
@@ -9484,7 +10156,8 @@
       -0.087923,
       -0.061441,
       -0.020316,
-      0.118664
+      0.118664,
+      0.0
     ],
     "daily_abnormal": [
       -0.004366,
@@ -9504,6 +10177,7 @@
       0.004998,
       0.007075,
       0.033611,
+      null,
       null,
       null,
       null,
@@ -9545,7 +10219,8 @@
       0.025924,
       -0.086545,
       0.031812,
-      0.040885
+      0.040885,
+      0.0
     ],
     "daily_abnormal": [
       -0.020933,
@@ -9565,6 +10240,7 @@
       0.088143,
       -0.003387,
       0.017137,
+      null,
       null,
       null,
       null,
@@ -9606,7 +10282,8 @@
       -0.052486,
       -0.062682,
       0.029549,
-      0.055891
+      0.055891,
+      0.0
     ],
     "daily_abnormal": [
       0.079686,
@@ -9626,6 +10303,7 @@
       0.062279,
       0.032067,
       -0.022842,
+      null,
       null,
       null,
       null,
@@ -9667,6 +10345,7 @@
       -0.009221,
       -0.05274,
       0.055677,
+      0.0,
       0.0
     ],
     "daily_abnormal": [
@@ -9687,6 +10366,7 @@
       0.034947,
       0.061679,
       -0.01741,
+      null,
       null,
       null,
       null,
@@ -9728,7 +10408,8 @@
       -0.065005,
       -0.095017,
       0.020487,
-      0.105395
+      0.105395,
+      0.0
     ],
     "daily_abnormal": [
       0.015605,
@@ -9748,6 +10429,7 @@
       0.020617,
       0.005675,
       -0.032595,
+      null,
       null,
       null,
       null,
@@ -9789,7 +10471,8 @@
       -0.052486,
       -0.062682,
       0.029549,
-      0.055891
+      0.055891,
+      0.0
     ],
     "daily_abnormal": [
       0.079686,
@@ -9809,6 +10492,7 @@
       0.062279,
       0.032067,
       -0.022842,
+      null,
       null,
       null,
       null,
@@ -9851,7 +10535,8 @@
       -0.035,
       -0.023834,
       0.024416,
-      0.029016
+      0.029016,
+      0.0
     ],
     "daily_abnormal": [
       -0.083203,
@@ -9872,6 +10557,7 @@
       0.076776,
       0.019744,
       -0.021268,
+      null,
       null,
       null,
       null,
@@ -9914,7 +10600,8 @@
       -0.074074,
       -0.061493,
       0.050254,
-      0.026651
+      0.026651,
+      0.0
     ],
     "daily_abnormal": [
       -0.056101,
@@ -9935,6 +10622,7 @@
       0.079116,
       0.016917,
       -0.022146,
+      null,
       null,
       null,
       null,
@@ -9977,7 +10665,8 @@
       -0.014862,
       -0.038793,
       -0.008969,
-      0.020362
+      0.020362,
+      0.0
     ],
     "daily_abnormal": [
       0.002811,
@@ -9998,6 +10687,7 @@
       0.069984,
       0.027035,
       -0.002689,
+      null,
       null,
       null,
       null,
@@ -10040,7 +10730,8 @@
       -0.071588,
       -0.044578,
       0.0,
-      0.035309
+      0.035309,
+      0.0
     ],
     "daily_abnormal": [
       -0.071422,
@@ -10061,6 +10752,7 @@
       0.037667,
       0.052008,
       -0.017806,
+      null,
       null,
       null,
       null,
@@ -10103,7 +10795,8 @@
       -0.074074,
       -0.061493,
       0.050254,
-      0.026651
+      0.026651,
+      0.0
     ],
     "daily_abnormal": [
       -0.056101,
@@ -10124,6 +10817,7 @@
       0.079116,
       0.016917,
       -0.022146,
+      null,
       null,
       null,
       null,
@@ -10166,7 +10860,8 @@
       -0.019608,
       -0.025,
       0.011538,
-      0.001267
+      0.001267,
+      0.0
     ],
     "daily_abnormal": [
       -0.125982,
@@ -10187,6 +10882,7 @@
       0.061274,
       0.008562,
       -0.01311,
+      null,
       null,
       null,
       null,
@@ -10230,6 +10926,7 @@
       -0.041096,
       -0.016667,
       0.004843,
+      0.0,
       0.0
     ],
     "daily_abnormal": [
@@ -10252,6 +10949,7 @@
       0.046502,
       0.045029,
       0.006969,
+      null,
       null,
       null,
       null,
@@ -10295,7 +10993,8 @@
       -0.029167,
       -0.027182,
       -0.070588,
-      0.063291
+      0.063291,
+      0.0
     ],
     "daily_abnormal": [
       0.008488,
@@ -10317,6 +11016,7 @@
       0.036574,
       0.042999,
       0.005465,
+      null,
       null,
       null,
       null,
@@ -10360,7 +11060,8 @@
       0.002443,
       -0.009141,
       0.026445,
-      -0.033553
+      -0.033553,
+      0.0
     ],
     "daily_abnormal": [
       -0.041411,
@@ -10382,6 +11083,7 @@
       0.06246,
       0.052713,
       -0.005517,
+      null,
       null,
       null,
       null,
@@ -10425,7 +11127,8 @@
       -0.048635,
       -0.054773,
       0.019316,
-      0.076881
+      0.076881,
+      0.0
     ],
     "daily_abnormal": [
       -0.010436,
@@ -10447,6 +11150,7 @@
       0.035444,
       0.012895,
       -0.001817,
+      null,
       null,
       null,
       null,
@@ -10490,7 +11194,8 @@
       -0.021215,
       -0.06798,
       -0.044397,
-      0.044248
+      0.044248,
+      0.0
     ],
     "daily_abnormal": [
       0.062448,
@@ -10512,6 +11217,7 @@
       0.03235,
       0.095344,
       0.102252,
+      null,
       null,
       null,
       null,
@@ -10555,7 +11261,8 @@
       -0.032704,
       -0.072822,
       0.058906,
-      0.04106
+      0.04106,
+      0.0
     ],
     "daily_abnormal": [
       -0.005557,
@@ -10577,6 +11284,7 @@
       0.031656,
       0.030624,
       0.006662,
+      null,
       null,
       null,
       null,
@@ -10620,7 +11328,8 @@
       -0.046679,
       -0.088512,
       -0.014463,
-      0.090147
+      0.090147,
+      0.0
     ],
     "daily_abnormal": [
       -0.008471,
@@ -10642,6 +11351,7 @@
       0.031304,
       0.027014,
       -0.021217,
+      null,
       null,
       null,
       null,
@@ -10685,7 +11395,8 @@
       -0.020344,
       -0.065495,
       0.042735,
-      0.047541
+      0.047541,
+      0.0
     ],
     "daily_abnormal": [
       0.058341,
@@ -10707,6 +11418,7 @@
       0.063672,
       0.029352,
       -0.063461,
+      null,
       null,
       null,
       null,
@@ -10750,7 +11462,8 @@
       -0.057957,
       -0.057351,
       -0.030973,
-      0.110731
+      0.110731,
+      0.0
     ],
     "daily_abnormal": [
       -0.002743,
@@ -10772,6 +11485,7 @@
       0.007346,
       -0.006857,
       -0.000936,
+      null,
       null,
       null,
       null,
@@ -10816,7 +11530,8 @@
       -0.046997,
       -0.069863,
       0.002946,
-      0.071953
+      0.071953,
+      0.0
     ],
     "daily_abnormal": [
       0.024242,
@@ -10839,6 +11554,7 @@
       0.040057,
       0.00832,
       0.00753,
+      null,
       null,
       null,
       null,
@@ -10883,7 +11599,8 @@
       -0.047449,
       -0.043385,
       0.028555,
-      0.069679
+      0.069679,
+      0.0
     ],
     "daily_abnormal": [
       -0.001752,
@@ -10906,6 +11623,7 @@
       0.031169,
       0.008318,
       -0.014455,
+      null,
       null,
       null,
       null,
@@ -10950,7 +11668,8 @@
       -0.033126,
       -0.010707,
       -0.049784,
-      -0.01139
+      -0.01139,
+      0.0
     ],
     "daily_abnormal": [
       0.019432,
@@ -10973,6 +11692,7 @@
       0.067364,
       0.039568,
       -0.026804,
+      null,
       null,
       null,
       null,
@@ -11017,7 +11737,8 @@
       -0.079208,
       -0.104839,
       -0.038038,
-      0.111342
+      0.111342,
+      0.0
     ],
     "daily_abnormal": [
       0.020269,
@@ -11040,6 +11761,7 @@
       -0.011823,
       0.011206,
       0.005609,
+      null,
       null,
       null,
       null,
@@ -11084,7 +11806,8 @@
       -0.061538,
       -0.034836,
       0.016985,
-      0.079332
+      0.079332,
+      0.0
     ],
     "daily_abnormal": [
       0.042024,
@@ -11107,6 +11830,7 @@
       0.048433,
       0.023343,
       -0.029625,
+      null,
       null,
       null,
       null,
@@ -11151,7 +11875,8 @@
       -0.118404,
       -0.060362,
       0.020878,
-      0.090718
+      0.090718,
+      0.0
     ],
     "daily_abnormal": [
       0.002916,
@@ -11174,6 +11899,7 @@
       0.047575,
       0.042574,
       -0.097029,
+      null,
       null,
       null,
       null,
@@ -11218,7 +11944,8 @@
       -0.061538,
       -0.034836,
       0.016985,
-      0.079332
+      0.079332,
+      0.0
     ],
     "daily_abnormal": [
       0.042024,
@@ -11241,6 +11968,7 @@
       0.048433,
       0.023343,
       -0.029625,
+      null,
       null,
       null,
       null,
@@ -11285,7 +12013,8 @@
       -0.039501,
       -0.017316,
       -0.019824,
-      0.022472
+      0.022472,
+      0.0
     ],
     "daily_abnormal": [
       0.079389,
@@ -11308,6 +12037,7 @@
       0.032846,
       0.015399,
       -0.026818,
+      null,
       null,
       null,
       null,
@@ -11353,7 +12083,8 @@
       -0.042857,
       -0.052239,
       -0.031496,
-      0.056911
+      0.056911,
+      0.0
     ],
     "daily_abnormal": [
       -0.025338,
@@ -11377,6 +12108,7 @@
       0.048829,
       0.004343,
       -0.023318,
+      null,
       null,
       null,
       null,
@@ -11422,7 +12154,8 @@
       -0.062762,
       -0.065848,
       0.033453,
-      0.053179
+      0.053179,
+      0.0
     ],
     "daily_abnormal": [
       -0.03484,
@@ -11446,6 +12179,7 @@
       0.003215,
       0.023623,
       0.036967,
+      null,
       null,
       null,
       null,
@@ -11491,7 +12225,8 @@
       -0.057957,
       -0.057351,
       -0.030973,
-      0.110731
+      0.110731,
+      0.0
     ],
     "daily_abnormal": [
       0.008349,
@@ -11515,6 +12250,7 @@
       0.007346,
       -0.006857,
       -0.000936,
+      null,
       null,
       null,
       null,
@@ -11560,7 +12296,8 @@
       -0.085346,
       -0.068662,
       0.003781,
-      0.131827
+      0.131827,
+      0.0
     ],
     "daily_abnormal": [
       -0.006403,
@@ -11584,6 +12321,7 @@
       -0.016902,
       0.021698,
       -0.008198,
+      null,
       null,
       null,
       null,
@@ -11629,7 +12367,8 @@
       -0.014463,
       -0.001572,
       0.004199,
-      0.028751
+      0.028751,
+      0.0
     ],
     "daily_abnormal": [
       0.050552,
@@ -11653,6 +12392,7 @@
       0.023154,
       0.027018,
       -0.003878,
+      null,
       null,
       null,
       null,
@@ -11699,7 +12439,8 @@
       -0.045126,
       -0.051985,
       0.006979,
-      0.055446
+      0.055446,
+      0.0
     ],
     "daily_abnormal": [
       -0.042966,
@@ -11724,6 +12465,7 @@
       0.05839,
       -0.012903,
       -0.056211,
+      null,
       null,
       null,
       null,
@@ -11770,7 +12512,8 @@
       -0.107962,
       -0.071104,
       -0.016287,
-      0.14404
+      0.14404,
+      0.0
     ],
     "daily_abnormal": [
       -0.037202,
@@ -11795,6 +12538,7 @@
       0.022953,
       -0.030287,
       -0.030156,
+      null,
       null,
       null,
       null,
@@ -11841,7 +12585,8 @@
       -0.044776,
       -0.059028,
       -0.02952,
-      0.072243
+      0.072243,
+      0.0
     ],
     "daily_abnormal": [
       -0.131689,
@@ -11866,6 +12611,7 @@
       -0.009197,
       0.033524,
       0.003468,
+      null,
       null,
       null,
       null,
@@ -11912,7 +12658,8 @@
       -0.014463,
       -0.001572,
       0.004199,
-      0.028751
+      0.028751,
+      0.0
     ],
     "daily_abnormal": [
       -0.183128,
@@ -11937,6 +12684,7 @@
       0.023154,
       0.027018,
       -0.003878,
+      null,
       null,
       null,
       null,
@@ -11983,7 +12731,8 @@
       -0.182015,
       -0.091391,
       -0.069971,
-      0.299373
+      0.299373,
+      0.0
     ],
     "daily_abnormal": [
       0.00921,
@@ -12008,6 +12757,7 @@
       -0.071456,
       -0.020263,
       0.009135,
+      null,
       null,
       null,
       null,
@@ -12054,7 +12804,8 @@
       -0.013746,
       -0.088502,
       -0.009174,
-      0.044753
+      0.044753,
+      0.0
     ],
     "daily_abnormal": [
       0.024427,
@@ -12079,6 +12830,7 @@
       0.011967,
       -0.023871,
       -0.019212,
+      null,
       null,
       null,
       null,
@@ -12125,7 +12877,8 @@
       -0.045126,
       -0.051985,
       0.006979,
-      0.055446
+      0.055446,
+      0.0
     ],
     "daily_abnormal": [
       -0.042966,
@@ -12150,6 +12903,7 @@
       0.05839,
       -0.012903,
       -0.056211,
+      null,
       null,
       null,
       null,
@@ -12196,7 +12950,8 @@
       -0.022541,
       -0.062893,
       -0.035794,
-      0.133411
+      0.133411,
+      0.0
     ],
     "daily_abnormal": [
       -0.019466,
@@ -12221,6 +12976,7 @@
       0.029313,
       -0.00508,
       -0.039489,
+      null,
       null,
       null,
       null,
@@ -12268,7 +13024,8 @@
       -0.040234,
       -0.049543,
       0.0417,
-      0.037721
+      0.037721,
+      0.0
     ],
     "daily_abnormal": [
       0.029257,
@@ -12294,6 +13051,7 @@
       -0.018392,
       0.016311,
       0.006585,
+      null,
       null,
       null,
       null,
@@ -12341,7 +13099,8 @@
       -0.023346,
       -0.011952,
       0.0,
-      0.024194
+      0.024194,
+      0.0
     ],
     "daily_abnormal": [
       0.057574,
@@ -12367,6 +13126,7 @@
       0.026309,
       0.016472,
       0.059451,
+      null,
       null,
       null,
       null,
@@ -12414,7 +13174,8 @@
       -0.097489,
       -0.045827,
       -0.03259,
-      0.053191
+      0.053191,
+      0.0
     ],
     "daily_abnormal": [
       -0.001884,
@@ -12440,6 +13201,7 @@
       0.072857,
       0.063167,
       0.003444,
+      null,
       null,
       null,
       null,
@@ -12487,7 +13249,8 @@
       -0.021195,
       -0.011811,
       0.00996,
-      0.005917
+      0.005917,
+      0.0
     ],
     "daily_abnormal": [
       -0.054714,
@@ -12513,6 +13276,7 @@
       0.07729,
       0.017748,
       -0.043444,
+      null,
       null,
       null,
       null,
@@ -12560,7 +13324,8 @@
       -0.000769,
       0.039261,
       0.002222,
-      -0.025868
+      -0.025868,
+      0.0
     ],
     "daily_abnormal": [
       -0.03066,
@@ -12586,6 +13351,7 @@
       0.0739,
       0.033716,
       -0.02768,
+      null,
       null,
       null,
       null,
@@ -12633,7 +13399,8 @@
       -0.021195,
       -0.011811,
       0.00996,
-      0.005917
+      0.005917,
+      0.0
     ],
     "daily_abnormal": [
       -0.054714,
@@ -12659,6 +13426,7 @@
       0.07729,
       0.017748,
       -0.043444,
+      null,
       null,
       null,
       null,
@@ -12706,7 +13474,8 @@
       -0.03132,
       -0.093149,
       0.049236,
-      0.03479
+      0.03479,
+      0.0
     ],
     "daily_abnormal": [
       0.04578,
@@ -12732,6 +13501,7 @@
       0.037367,
       0.018308,
       -0.056295,
+      null,
       null,
       null,
       null,
@@ -12779,7 +13549,8 @@
       -0.001568,
       -0.002618,
       -0.004724,
-      0.05116
+      0.05116,
+      0.0
     ],
     "daily_abnormal": [
       0.066389,
@@ -12805,6 +13576,7 @@
       0.029518,
       0.055301,
       -0.032477,
+      null,
       null,
       null,
       null,
@@ -12852,7 +13624,8 @@
       -0.014634,
       -0.006188,
       -0.026152,
-      -0.002558
+      -0.002558,
+      0.0
     ],
     "daily_abnormal": [
       -0.036471,
@@ -12878,6 +13651,7 @@
       0.061302,
       0.004239,
       -0.035554,
+      null,
       null,
       null,
       null,
@@ -12925,7 +13699,8 @@
       -0.023346,
       -0.011952,
       0.0,
-      0.024194
+      0.024194,
+      0.0
     ],
     "daily_abnormal": [
       0.057574,
@@ -12951,6 +13726,7 @@
       0.026309,
       0.016472,
       0.059451,
+      null,
       null,
       null,
       null,
@@ -12999,7 +13775,8 @@
       -0.05417,
       -0.072727,
       -0.008824,
-      0.063304
+      0.063304,
+      0.0
     ],
     "daily_abnormal": [
       -0.021017,
@@ -13026,6 +13803,7 @@
       0.028776,
       0.02806,
       0.000817,
+      null,
       null,
       null,
       null,
@@ -13074,7 +13852,8 @@
       -0.079474,
       -0.067467,
       -0.040466,
-      0.106709
+      0.106709,
+      0.0
     ],
     "daily_abnormal": [
       -0.029945,
@@ -13101,6 +13880,7 @@
       0.027776,
       0.034284,
       0.077859,
+      null,
       null,
       null,
       null,
@@ -13149,7 +13929,8 @@
       -0.071588,
       -0.044578,
       0.0,
-      0.035309
+      0.035309,
+      0.0
     ],
     "daily_abnormal": [
       0.060885,
@@ -13176,6 +13957,7 @@
       0.037667,
       0.052008,
       -0.017806,
+      null,
       null,
       null,
       null,
@@ -13224,7 +14006,8 @@
       0.002141,
       0.0,
       0.0,
-      -0.001425
+      -0.001425,
+      0.0
     ],
     "daily_abnormal": [
       -0.015772,
@@ -13251,6 +14034,7 @@
       0.065102,
       0.044619,
       -0.033411,
+      null,
       null,
       null,
       null,
@@ -13299,7 +14083,8 @@
       -0.044709,
       -0.014041,
       -0.02057,
-      0.001616
+      0.001616,
+      0.0
     ],
     "daily_abnormal": [
       -0.025968,
@@ -13326,6 +14111,7 @@
       0.04532,
       -0.006319,
       -0.041386,
+      null,
       null,
       null,
       null,
@@ -13374,7 +14160,8 @@
       -0.002286,
       -0.014891,
       0.011628,
-      0.107471
+      0.107471,
+      0.0
     ],
     "daily_abnormal": [
       -0.005119,
@@ -13401,6 +14188,7 @@
       0.030571,
       0.056288,
       -0.001951,
+      null,
       null,
       null,
       null,
@@ -13449,7 +14237,8 @@
       -0.079474,
       -0.067467,
       -0.040466,
-      0.106709
+      0.106709,
+      0.0
     ],
     "daily_abnormal": [
       -0.029945,
@@ -13476,6 +14265,7 @@
       0.027776,
       0.034284,
       0.077859,
+      null,
       null,
       null,
       null,
@@ -13524,7 +14314,8 @@
       -0.039828,
       -0.093049,
       0.032138,
-      0.073054
+      0.073054,
+      0.0
     ],
     "daily_abnormal": [
       0.009691,
@@ -13551,6 +14342,7 @@
       0.048617,
       0.028102,
       0.005177,
+      null,
       null,
       null,
       null,
@@ -13599,7 +14391,8 @@
       -0.032656,
       -0.059236,
       0.007448,
-      0.018145
+      0.018145,
+      0.0
     ],
     "daily_abnormal": [
       0.004267,
@@ -13626,6 +14419,7 @@
       0.017559,
       -0.024636,
       -0.030742,
+      null,
       null,
       null,
       null,
@@ -13674,7 +14468,8 @@
       -0.00189,
       -0.034091,
       -0.021569,
-      0.018036
+      0.018036,
+      0.0
     ],
     "daily_abnormal": [
       -0.002526,
@@ -13701,6 +14496,7 @@
       0.059813,
       0.008651,
       0.000672,
+      null,
       null,
       null,
       null,
@@ -13749,7 +14545,8 @@
       -0.00209,
       0.001571,
       0.003136,
-      0.024492
+      0.024492,
+      0.0
     ],
     "daily_abnormal": [
       -0.019755,
@@ -13776,6 +14573,7 @@
       0.032872,
       0.012852,
       0.02079,
+      null,
       null,
       null,
       null,
@@ -13825,7 +14623,8 @@
       -0.077519,
       -0.019958,
       0.028939,
-      0.15625
+      0.15625,
+      0.0
     ],
     "daily_abnormal": [
       0.009725,
@@ -13853,6 +14652,7 @@
       0.041525,
       0.005675,
       -0.004936,
+      null,
       null,
       null,
       null,
@@ -13902,7 +14702,8 @@
       0.00918,
       -0.119386,
       -0.040671,
-      0.028937
+      0.028937,
+      0.0
     ],
     "daily_abnormal": [
       0.01697,
@@ -13930,6 +14731,7 @@
       0.041953,
       0.077618,
       -0.003616,
+      null,
       null,
       null,
       null,
@@ -13979,7 +14781,8 @@
       -0.001828,
       0.007326,
       0.003636,
-      0.005435
+      0.005435,
+      0.0
     ],
     "daily_abnormal": [
       -0.008291,
@@ -14007,6 +14810,7 @@
       0.070866,
       0.046405,
       -0.035554,
+      null,
       null,
       null,
       null,
@@ -14056,7 +14860,8 @@
       -0.028049,
       -0.050188,
       0.036988,
-      0.043312
+      0.043312,
+      0.0
     ],
     "daily_abnormal": [
       -0.000595,
@@ -14084,6 +14889,7 @@
       0.073404,
       0.014499,
       -0.025616,
+      null,
       null,
       null,
       null,
@@ -14133,7 +14939,8 @@
       -0.011702,
       -0.004306,
       -0.064865,
-      -0.02659
+      -0.02659,
+      0.0
     ],
     "daily_abnormal": [
       0.116333,
@@ -14161,6 +14968,7 @@
       0.048529,
       0.033038,
       0.017915,
+      null,
       null,
       null,
       null,
@@ -14211,7 +15019,8 @@
       -0.051576,
       -0.05136,
       0.019108,
-      0.025
+      0.025,
+      0.0
     ],
     "daily_abnormal": [
       -0.000498,
@@ -14240,6 +15049,7 @@
       0.038157,
       0.034535,
       -0.006406,
+      null,
       null,
       null,
       null,
@@ -14290,7 +15100,8 @@
       -0.062706,
       -0.077465,
       0.007634,
-      0.098485
+      0.098485,
+      0.0
     ],
     "daily_abnormal": [
       0.007557,
@@ -14319,6 +15130,7 @@
       0.006656,
       0.009418,
       0.025657,
+      null,
       null,
       null,
       null,
@@ -14369,7 +15181,8 @@
       -0.07381,
       -0.062982,
       -0.013717,
-      0.05007
+      0.05007,
+      0.0
     ],
     "daily_abnormal": [
       0.033538,
@@ -14398,6 +15211,7 @@
       0.065534,
       -0.023629,
       0.003903,
+      null,
       null,
       null,
       null,
@@ -14448,7 +15262,8 @@
       -0.051576,
       -0.05136,
       0.019108,
-      0.025
+      0.025,
+      0.0
     ],
     "daily_abnormal": [
       -0.000498,
@@ -14477,6 +15292,7 @@
       0.038157,
       0.034535,
       -0.006406,
+      null,
       null,
       null,
       null,
@@ -14527,7 +15343,8 @@
       -0.109989,
       -0.10971,
       -0.012748,
-      0.212339
+      0.212339,
+      0.0
     ],
     "daily_abnormal": [
       -0.013915,
@@ -14556,6 +15373,7 @@
       0.004806,
       -0.019827,
       0.007287,
+      null,
       null,
       null,
       null,
@@ -14606,7 +15424,8 @@
       -0.0195,
       -0.019888,
       -0.01078,
-      0.042949
+      0.042949,
+      0.0
     ],
     "daily_abnormal": [
       -0.003051,
@@ -14635,6 +15454,7 @@
       0.071452,
       0.052672,
       0.008116,
+      null,
       null,
       null,
       null,
@@ -14685,7 +15505,8 @@
       -0.011872,
       0.009242,
       0.008242,
-      -0.008174
+      -0.008174,
+      0.0
     ],
     "daily_abnormal": [
       -0.047475,
@@ -14714,6 +15535,7 @@
       0.073708,
       0.014809,
       -0.030899,
+      null,
       null,
       null,
       null,
@@ -14764,7 +15586,8 @@
       -0.088785,
       -0.065641,
       -0.008782,
-      -0.078627
+      -0.078627,
+      0.0
     ],
     "daily_abnormal": [
       -0.046672,
@@ -14793,6 +15616,7 @@
       0.056292,
       0.054533,
       0.057697,
+      null,
       null,
       null,
       null,
@@ -14843,7 +15667,8 @@
       -0.088847,
       0.014523,
       0.026585,
-      0.073705
+      0.073705,
+      0.0
     ],
     "daily_abnormal": [
       0.173798,
@@ -14872,6 +15697,7 @@
       0.07709,
       -0.053745,
       -0.059123,
+      null,
       null,
       null,
       null,
@@ -14922,7 +15748,8 @@
       -0.023171,
       -0.001248,
       0.03375,
-      0.051995
+      0.051995,
+      0.0
     ],
     "daily_abnormal": [
       -0.012201,
@@ -14951,6 +15778,7 @@
       0.031536,
       0.031693,
       0.024934,
+      null,
       null,
       null,
       null,
@@ -15001,7 +15829,8 @@
       -0.025362,
       -0.124535,
       0.053079,
-      0.060484
+      0.060484,
+      0.0
     ],
     "daily_abnormal": [
       0.007719,
@@ -15030,6 +15859,7 @@
       0.067734,
       0.00439,
       0.014568,
+      null,
       null,
       null,
       null,
@@ -15080,7 +15910,8 @@
       -0.07381,
       -0.062982,
       -0.013717,
-      0.05007
+      0.05007,
+      0.0
     ],
     "daily_abnormal": [
       0.033538,
@@ -15109,6 +15940,7 @@
       0.065534,
       -0.023629,
       0.003903,
+      null,
       null,
       null,
       null,
@@ -15159,7 +15991,8 @@
       -0.061635,
       -0.069705,
       0.010086,
-      0.005706
+      0.005706,
+      0.0
     ],
     "daily_abnormal": [
       0.043979,
@@ -15188,6 +16021,7 @@
       -0.037482,
       0.135238,
       0.018171,
+      null,
       null,
       null,
       null,
@@ -15238,7 +16072,8 @@
       -0.001568,
       -0.002618,
       -0.004724,
-      0.05116
+      0.05116,
+      0.0
     ],
     "daily_abnormal": [
       -0.017894,
@@ -15267,6 +16102,7 @@
       0.029518,
       0.055301,
       -0.032477,
+      null,
       null,
       null,
       null,
@@ -15317,7 +16153,8 @@
       -0.002103,
       -0.043203,
       -0.047357,
-      0.190751
+      0.190751,
+      0.0
     ],
     "daily_abnormal": [
       -0.004839,
@@ -15346,6 +16183,7 @@
       0.056108,
       0.011671,
       -0.013844,
+      null,
       null,
       null,
       null,
@@ -15396,7 +16234,8 @@
       -0.042051,
       0.036403,
       0.019628,
-      -0.010132
+      -0.010132,
+      0.0
     ],
     "daily_abnormal": [
       -0.025912,
@@ -15425,6 +16264,7 @@
       0.056665,
       0.037563,
       -0.064996,
+      null,
       null,
       null,
       null,
@@ -15475,7 +16315,8 @@
       -0.080966,
       -0.069552,
       -0.008306,
-      0.095477
+      0.095477,
+      0.0
     ],
     "daily_abnormal": [
       0.081827,
@@ -15504,6 +16345,7 @@
       0.011754,
       -0.049456,
       0.082161,
+      null,
       null,
       null,
       null,
@@ -15555,7 +16397,8 @@
       -0.078278,
       -0.063694,
       -0.006803,
-      0.057078
+      0.057078,
+      0.0
     ],
     "daily_abnormal": [
       0.009291,
@@ -15585,6 +16428,7 @@
       0.107118,
       -0.026071,
       -0.026008,
+      null,
       null,
       null,
       null,
@@ -15636,7 +16480,8 @@
       -0.061204,
       -0.015773,
       0.014957,
-      0.023158
+      0.023158,
+      0.0
     ],
     "daily_abnormal": [
       -0.082474,
@@ -15666,6 +16511,7 @@
       0.013062,
       -0.000242,
       0.007871,
+      null,
       null,
       null,
       null,
@@ -15717,7 +16563,8 @@
       -0.040785,
       0.009449,
       0.020281,
-      0.027523
+      0.027523,
+      0.0
     ],
     "daily_abnormal": [
       -0.013158,
@@ -15747,6 +16594,7 @@
       0.070061,
       0.014461,
       -0.037191,
+      null,
       null,
       null,
       null,
@@ -15798,7 +16646,8 @@
       -0.041037,
       -0.033784,
       0.017483,
-      0.019473
+      0.019473,
+      0.0
     ],
     "daily_abnormal": [
       -0.002347,
@@ -15828,6 +16677,7 @@
       0.047403,
       0.043517,
       -0.047695,
+      null,
       null,
       null,
       null,
@@ -15879,7 +16729,8 @@
       -0.085917,
       -0.075581,
       -0.046122,
-      0.137363
+      0.137363,
+      0.0
     ],
     "daily_abnormal": [
       -0.088771,
@@ -15909,6 +16760,7 @@
       0.12289,
       -0.087209,
       0.013228,
+      null,
       null,
       null,
       null,
@@ -15960,7 +16812,8 @@
       -0.00209,
       0.001571,
       0.003136,
-      0.024492
+      0.024492,
+      0.0
     ],
     "daily_abnormal": [
       -0.021108,
@@ -15990,6 +16843,7 @@
       0.032872,
       0.012852,
       0.02079,
+      null,
       null,
       null,
       null,
@@ -16041,7 +16895,8 @@
       -0.00198,
       -0.03373,
       0.026694,
-      0.007
+      0.007,
+      0.0
     ],
     "daily_abnormal": [
       -0.015552,
@@ -16071,6 +16926,7 @@
       0.053296,
       0.052304,
       -0.006916,
+      null,
       null,
       null,
       null,
@@ -16122,7 +16978,8 @@
       -0.040785,
       0.009449,
       0.020281,
-      0.027523
+      0.027523,
+      0.0
     ],
     "daily_abnormal": [
       -0.013158,
@@ -16152,6 +17009,7 @@
       0.070061,
       0.014461,
       -0.037191,
+      null,
       null,
       null,
       null,
@@ -16203,7 +17061,8 @@
       -0.061201,
       -0.126076,
       -0.009852,
-      0.000711
+      0.000711,
+      0.0
     ],
     "daily_abnormal": [
       -0.003984,
@@ -16233,6 +17092,7 @@
       0.061714,
       0.061358,
       -0.006079,
+      null,
       null,
       null,
       null,
@@ -16284,7 +17144,8 @@
       0.001044,
       0.028169,
       0.085743,
-      -0.098131
+      -0.098131,
+      0.0
     ],
     "daily_abnormal": [
       -0.022528,
@@ -16314,6 +17175,7 @@
       0.118623,
       0.068493,
       -0.100207,
+      null,
       null,
       null,
       null,
@@ -16365,7 +17227,8 @@
       -0.0311,
       -0.004938,
       -0.004963,
-      0.01995
+      0.01995,
+      0.0
     ],
     "daily_abnormal": [
       -0.068688,
@@ -16395,6 +17258,7 @@
       0.04532,
       0.043882,
       -0.007311,
+      null,
       null,
       null,
       null,
@@ -16446,7 +17310,8 @@
       -0.026742,
       -0.021649,
       -0.000851,
-      0.002555
+      0.002555,
+      0.0
     ],
     "daily_abnormal": [
       -0.007829,
@@ -16476,6 +17341,7 @@
       0.056063,
       0.077209,
       0.033992,
+      null,
       null,
       null,
       null,
@@ -16527,7 +17393,8 @@
       -0.022059,
       0.052632,
       0.028571,
-      0.06746
+      0.06746,
+      0.0
     ],
     "daily_abnormal": [
       0.061147,
@@ -16557,6 +17424,7 @@
       0.055524,
       -0.003945,
       0.127207,
+      null,
       null,
       null,
       null,
@@ -16608,7 +17476,8 @@
       -0.080808,
       -0.10989,
       -0.007055,
-      0.172291
+      0.172291,
+      0.0
     ],
     "daily_abnormal": [
       -0.009787,
@@ -16638,6 +17507,7 @@
       -0.002907,
       -0.000358,
       0.020261,
+      null,
       null,
       null,
       null,
@@ -16689,7 +17559,8 @@
       -0.067982,
       -0.056471,
       0.044888,
-      0.040573
+      0.040573,
+      0.0
     ],
     "daily_abnormal": [
       0.101881,
@@ -16719,6 +17590,7 @@
       0.043108,
       -0.028746,
       -0.014598,
+      null,
       null,
       null,
       null,
@@ -16770,7 +17642,8 @@
       -0.060956,
       -0.040351,
       0.02011,
-      0.048387
+      0.048387,
+      0.0
     ],
     "daily_abnormal": [
       0.003117,
@@ -16800,6 +17673,7 @@
       -0.00882,
       0.019624,
       0.000291,
+      null,
       null,
       null,
       null,
@@ -16851,7 +17725,8 @@
       -0.039975,
       -0.040338,
       -0.004746,
-      -0.002044
+      -0.002044,
+      0.0
     ],
     "daily_abnormal": [
       -0.011663,
@@ -16881,6 +17756,7 @@
       0.048375,
       0.048421,
       -0.011056,
+      null,
       null,
       null,
       null,
@@ -16933,7 +17809,8 @@
       0.009494,
       -0.053292,
       0.032009,
-      0.02139
+      0.02139,
+      0.0
     ],
     "daily_abnormal": [
       -0.052979,
@@ -16964,6 +17841,7 @@
       0.050289,
       0.107682,
       0.022028,
+      null,
       null,
       null,
       null,
@@ -17016,7 +17894,8 @@
       -0.051064,
       -0.017937,
       -0.022831,
-      0.034268
+      0.034268,
+      0.0
     ],
     "daily_abnormal": [
       -0.023912,
@@ -17047,6 +17926,7 @@
       0.032314,
       0.013762,
       0.011833,
+      null,
       null,
       null,
       null,
@@ -17099,7 +17979,8 @@
       -0.036055,
       -0.033003,
       -0.03413,
-      0.055359
+      0.055359,
+      0.0
     ],
     "daily_abnormal": [
       -0.076648,
@@ -17130,6 +18011,7 @@
       0.042139,
       0.036272,
       -0.004936,
+      null,
       null,
       null,
       null,
@@ -17182,7 +18064,8 @@
       -0.128242,
       -0.059504,
       -0.00703,
-      0.076106
+      0.076106,
+      0.0
     ],
     "daily_abnormal": [
       -0.026097,
@@ -17213,6 +18096,7 @@
       0.028746,
       0.005541,
       -0.01231,
+      null,
       null,
       null,
       null,
@@ -17265,7 +18149,8 @@
       -0.001923,
       -0.003854,
       0.027079,
-      0.015066
+      0.015066,
+      0.0
     ],
     "daily_abnormal": [
       -0.014924,
@@ -17296,6 +18181,7 @@
       0.055766,
       0.054579,
       -0.043444,
+      null,
       null,
       null,
       null,
@@ -17348,7 +18234,8 @@
       -0.015504,
       -0.011811,
       0.039841,
-      -0.006386
+      -0.006386,
+      0.0
     ],
     "daily_abnormal": [
       -0.00118,
@@ -17379,6 +18266,7 @@
       0.077998,
       0.053094,
       -0.046759,
+      null,
       null,
       null,
       null,
@@ -17431,7 +18319,8 @@
       -0.001923,
       -0.003854,
       0.027079,
-      0.015066
+      0.015066,
+      0.0
     ],
     "daily_abnormal": [
       -0.014924,
@@ -17462,6 +18351,7 @@
       0.055766,
       0.054579,
       -0.043444,
+      null,
       null,
       null,
       null,
@@ -17514,7 +18404,8 @@
       -0.001049,
       -0.002101,
       0.008421,
-      -0.01357
+      -0.01357,
+      0.0
     ],
     "daily_abnormal": [
       -0.048056,
@@ -17545,6 +18436,7 @@
       0.074553,
       0.032779,
       -0.030107,
+      null,
       null,
       null,
       null,
@@ -17597,7 +18489,8 @@
       -0.051064,
       -0.017937,
       -0.022831,
-      0.034268
+      0.034268,
+      0.0
     ],
     "daily_abnormal": [
       -0.023912,
@@ -17628,6 +18521,7 @@
       0.032314,
       0.013762,
       0.011833,
+      null,
       null,
       null,
       null,
@@ -17680,7 +18574,8 @@
       -0.031936,
       -0.068041,
       0.019912,
-      0.041215
+      0.041215,
+      0.0
     ],
     "daily_abnormal": [
       0.001827,
@@ -17711,6 +18606,7 @@
       0.013839,
       -0.00598,
       -0.015098,
+      null,
       null,
       null,
       null,
@@ -17763,7 +18659,8 @@
       -0.042146,
       -0.042667,
       0.018106,
-      0.098495
+      0.098495,
+      0.0
     ],
     "daily_abnormal": [
       0.046242,
@@ -17794,6 +18691,7 @@
       -0.072004,
       -0.017514,
       0.031161,
+      null,
       null,
       null,
       null,
@@ -17846,7 +18744,8 @@
       -0.036055,
       -0.033003,
       -0.03413,
-      0.055359
+      0.055359,
+      0.0
     ],
     "daily_abnormal": [
       -0.076648,
@@ -17877,6 +18776,7 @@
       0.042139,
       0.036272,
       -0.004936,
+      null,
       null,
       null,
       null,
@@ -17929,7 +18829,8 @@
       -0.062147,
       0.0,
       0.03012,
-      0.038012
+      0.038012,
+      0.0
     ],
     "daily_abnormal": [
       -0.026682,
@@ -17960,6 +18861,7 @@
       0.02161,
       0.014722,
       0.015867,
+      null,
       null,
       null,
       null,
@@ -18012,7 +18914,8 @@
       -0.029932,
       -0.043478,
       0.038123,
-      0.016949
+      0.016949,
+      0.0
     ],
     "daily_abnormal": [
       -0.027995,
@@ -18043,6 +18946,7 @@
       0.034271,
       0.009998,
       0.002364,
+      null,
       null,
       null,
       null,
@@ -18095,7 +18999,8 @@
       -0.035191,
       -0.025836,
       0.049922,
-      0.040119
+      0.040119,
+      0.0
     ],
     "daily_abnormal": [
       -0.053284,
@@ -18126,6 +19031,7 @@
       0.021904,
       0.019443,
       -0.023914,
+      null,
       null,
       null,
       null,
@@ -18178,7 +19084,8 @@
       -0.060956,
       -0.040351,
       0.02011,
-      0.048387
+      0.048387,
+      0.0
     ],
     "daily_abnormal": [
       -0.033266,
@@ -18209,6 +19116,7 @@
       -0.00882,
       0.019624,
       0.000291,
+      null,
       null,
       null,
       null,
@@ -18262,7 +19170,8 @@
       -0.059375,
       -0.009967,
       -0.001678,
-      0.048739
+      0.048739,
+      0.0
     ],
     "daily_abnormal": [
       0.011155,
@@ -18294,6 +19203,7 @@
       -0.005502,
       0.048569,
       0.047279,
+      null,
       null,
       null,
       null,
@@ -18347,7 +19257,8 @@
       -0.024793,
       -0.029661,
       0.021834,
-      0.017094
+      0.017094,
+      0.0
     ],
     "daily_abnormal": [
       0.055728,
@@ -18379,6 +19290,7 @@
       0.055618,
       0.017556,
       -0.023037,
+      null,
       null,
       null,
       null,
@@ -18432,7 +19344,8 @@
       -0.044444,
       -0.003171,
       0.006363,
-      0.052687
+      0.052687,
+      0.0
     ],
     "daily_abnormal": [
       0.014575,
@@ -18464,6 +19377,7 @@
       0.02867,
       0.009469,
       0.029439,
+      null,
       null,
       null,
       null,
@@ -18517,7 +19431,8 @@
       -0.041112,
       -0.027743,
       0.009079,
-      0.025707
+      0.025707,
+      0.0
     ],
     "daily_abnormal": [
       0.047507,
@@ -18549,6 +19464,7 @@
       0.06745,
       -0.008078,
       0.022724,
+      null,
       null,
       null,
       null,
@@ -18602,7 +19518,8 @@
       -0.08953,
       -0.074167,
       0.032403,
-      0.024412
+      0.024412,
+      0.0
     ],
     "daily_abnormal": [
       0.002925,
@@ -18634,6 +19551,7 @@
       0.018672,
       0.028798,
       0.01279,
+      null,
       null,
       null,
       null,
@@ -18687,7 +19605,8 @@
       -0.059375,
       -0.009967,
       -0.001678,
-      0.048739
+      0.048739,
+      0.0
     ],
     "daily_abnormal": [
       0.011155,
@@ -18719,6 +19638,7 @@
       -0.005502,
       0.048569,
       0.047279,
+      null,
       null,
       null,
       null,
@@ -18772,7 +19692,8 @@
       -0.024272,
       -0.004975,
       0.033333,
-      -0.024194
+      -0.024194,
+      0.0
     ],
     "daily_abnormal": [
       0.12447,
@@ -18804,6 +19725,7 @@
       0.081046,
       0.044619,
       -0.010886,
+      null,
       null,
       null,
       null,
@@ -18858,7 +19780,8 @@
       -0.043771,
       -0.033451,
       -0.003643,
-      -0.009141
+      -0.009141,
+      0.0
     ],
     "daily_abnormal": [
       -0.027794,
@@ -18891,6 +19814,7 @@
       0.053824,
       0.031371,
       0.010582,
+      null,
       null,
       null,
       null,
@@ -18945,7 +19869,8 @@
       -0.013487,
       0.035156,
       -0.118868,
-      -0.053533
+      -0.053533,
+      0.0
     ],
     "daily_abnormal": [
       -0.004666,
@@ -18978,6 +19903,7 @@
       0.114579,
       0.085387,
       0.052004,
+      null,
       null,
       null,
       null,
@@ -19032,7 +19958,8 @@
       -0.013487,
       0.035156,
       -0.118868,
-      -0.053533
+      -0.053533,
+      0.0
     ],
     "daily_abnormal": [
       -0.004666,
@@ -19065,6 +19992,7 @@
       0.114579,
       0.085387,
       0.052004,
+      null,
       null,
       null,
       null,
@@ -19119,7 +20047,8 @@
       -0.013487,
       0.035156,
       -0.118868,
-      -0.053533
+      -0.053533,
+      0.0
     ],
     "daily_abnormal": [
       -0.004666,
@@ -19152,6 +20081,7 @@
       0.114579,
       0.085387,
       0.052004,
+      null,
       null,
       null,
       null,
@@ -19206,7 +20136,8 @@
       -0.046251,
       -0.076414,
       -0.120923,
-      0.038914
+      0.038914,
+      0.0
     ],
     "daily_abnormal": [
       -0.076262,
@@ -19239,6 +20170,7 @@
       0.011375,
       0.021955,
       -0.011798,
+      null,
       null,
       null,
       null,
@@ -19293,7 +20225,8 @@
       -0.081707,
       -0.058433,
       0.038082,
-      0.078804
+      0.078804,
+      0.0
     ],
     "daily_abnormal": [
       0.028223,
@@ -19326,6 +20259,7 @@
       0.004528,
       0.010766,
       0.015369,
+      null,
       null,
       null,
       null,
@@ -19380,7 +20314,8 @@
       -0.030449,
       -0.026446,
       0.035654,
-      0.022951
+      0.022951,
+      0.0
     ],
     "daily_abnormal": [
       -0.091756,
@@ -19413,6 +20348,7 @@
       0.074937,
       0.024529,
       0.005517,
+      null,
       null,
       null,
       null,
@@ -19467,7 +20403,8 @@
       0.002141,
       0.0,
       0.0,
-      -0.001425
+      -0.001425,
+      0.0
     ],
     "daily_abnormal": [
       -0.075222,
@@ -19500,6 +20437,7 @@
       0.065102,
       0.044619,
       -0.033411,
+      null,
       null,
       null,
       null,
@@ -19554,7 +20492,8 @@
       -0.02329,
       -0.078987,
       -0.012945,
-      0.040984
+      0.040984,
+      0.0
     ],
     "daily_abnormal": [
       -0.045361,
@@ -19587,6 +20526,7 @@
       0.033398,
       0.053294,
       -0.000411,
+      null,
       null,
       null,
       null,
@@ -19642,7 +20582,8 @@
       -0.010601,
       -0.014286,
       0.009058,
-      0.068223
+      0.068223,
+      0.0
     ],
     "daily_abnormal": [
       0.02608,
@@ -19676,6 +20617,7 @@
       0.075916,
       0.043919,
       -0.052254,
+      null,
       null,
       null,
       null,
@@ -19731,7 +20673,8 @@
       -0.080607,
       -0.086404,
       -0.045897,
-      0.110787
+      0.110787,
+      0.0
     ],
     "daily_abnormal": [
       -0.0449,
@@ -19765,6 +20708,7 @@
       0.049815,
       -0.011583,
       0.008222,
+      null,
       null,
       null,
       null,
@@ -19820,7 +20764,8 @@
       -0.008509,
       -0.030288,
       -0.010932,
-      0.051053
+      0.051053,
+      0.0
     ],
     "daily_abnormal": [
       0.043113,
@@ -19854,6 +20799,7 @@
       0.043242,
       0.039238,
       -0.008104,
+      null,
       null,
       null,
       null,
@@ -19909,7 +20855,8 @@
       -0.098504,
       -0.071923,
       0.007452,
-      0.097633
+      0.097633,
+      0.0
     ],
     "daily_abnormal": [
       0.00029,
@@ -19943,6 +20890,7 @@
       0.05309,
       -0.02891,
       -0.031225,
+      null,
       null,
       null,
       null,
@@ -19998,7 +20946,8 @@
       -0.013487,
       0.035156,
       -0.118868,
-      -0.053533
+      -0.053533,
+      0.0
     ],
     "daily_abnormal": [
       0.031802,
@@ -20032,6 +20981,7 @@
       0.114579,
       0.085387,
       0.052004,
+      null,
       null,
       null,
       null,
@@ -20087,7 +21037,8 @@
       -0.026549,
       -0.111515,
       0.032742,
-      0.056803
+      0.056803,
+      0.0
     ],
     "daily_abnormal": [
       -0.017452,
@@ -20121,6 +21072,7 @@
       0.054149,
       -0.003883,
       0.005584,
+      null,
       null,
       null,
       null,
@@ -20176,7 +21128,8 @@
       -0.074292,
       -0.08535,
       -0.012535,
-      0.102962
+      0.102962,
+      0.0
     ],
     "daily_abnormal": [
       0.018013,
@@ -20210,6 +21163,7 @@
       -0.012466,
       0.015872,
       -0.042733,
+      null,
       null,
       null,
       null,
@@ -20265,7 +21219,8 @@
       -0.080607,
       -0.086404,
       -0.045897,
-      0.110787
+      0.110787,
+      0.0
     ],
     "daily_abnormal": [
       -0.0449,
@@ -20299,6 +21254,7 @@
       0.049815,
       -0.011583,
       0.008222,
+      null,
       null,
       null,
       null,
@@ -20354,7 +21310,8 @@
       -0.038786,
       -0.066667,
       0.026316,
-      0.007326
+      0.007326,
+      0.0
     ],
     "daily_abnormal": [
       0.054644,
@@ -20388,6 +21345,7 @@
       0.032206,
       0.016749,
       0.048513,
+      null,
       null,
       null,
       null,
@@ -20444,7 +21402,8 @@
       -0.031365,
       -0.049524,
       0.026052,
-      0.052734
+      0.052734,
+      0.0
     ],
     "daily_abnormal": [
       0.023814,
@@ -20479,6 +21438,7 @@
       0.043489,
       0.003752,
       -0.003005,
+      null,
       null,
       null,
       null,
@@ -20535,7 +21495,8 @@
       -0.104265,
       -0.121693,
       -0.008032,
-      0.182186
+      0.182186,
+      0.0
     ],
     "daily_abnormal": [
       0.071251,
@@ -20570,6 +21531,7 @@
       -0.024048,
       -0.005009,
       0.006036,
+      null,
       null,
       null,
       null,
@@ -20626,7 +21588,8 @@
       -0.09209,
       -0.080624,
       0.007072,
-      0.122191
+      0.122191,
+      0.0
     ],
     "daily_abnormal": [
       -0.038811,
@@ -20661,6 +21624,7 @@
       -0.004517,
       -0.028804,
       -0.003693,
+      null,
       null,
       null,
       null,
@@ -20717,7 +21681,8 @@
       -0.033333,
       -0.018568,
       0.02027,
-      0.02649
+      0.02649,
+      0.0
     ],
     "daily_abnormal": [
       0.028901,
@@ -20752,6 +21717,7 @@
       0.03567,
       -0.00639,
       0.001541,
+      null,
       null,
       null,
       null,
@@ -20808,7 +21774,8 @@
       0.025924,
       -0.086545,
       0.031812,
-      0.040885
+      0.040885,
+      0.0
     ],
     "daily_abnormal": [
       0.001006,
@@ -20843,6 +21810,7 @@
       0.088143,
       -0.003387,
       0.017137,
+      null,
       null,
       null,
       null,
@@ -20899,7 +21867,8 @@
       -0.019063,
       -0.012955,
       0.041017,
-      -0.029157
+      -0.029157,
+      0.0
     ],
     "daily_abnormal": [
       0.035767,
@@ -20934,6 +21903,7 @@
       0.079245,
       0.037355,
       -0.056692,
+      null,
       null,
       null,
       null,
@@ -20990,7 +21960,8 @@
       -0.025048,
       -0.013834,
       0.078156,
-      0.011152
+      0.011152,
+      0.0
     ],
     "daily_abnormal": [
       0.047988,
@@ -21025,6 +21996,7 @@
       0.065632,
       0.036791,
       -0.035554,
+      null,
       null,
       null,
       null,
@@ -21081,6 +22053,7 @@
       -0.009221,
       -0.05274,
       0.055677,
+      0.0,
       0.0
     ],
     "daily_abnormal": [
@@ -21116,6 +22089,7 @@
       0.034947,
       0.061679,
       -0.01741,
+      null,
       null,
       null,
       null,
@@ -21172,7 +22146,8 @@
       0.025924,
       -0.086545,
       0.031812,
-      0.040885
+      0.040885,
+      0.0
     ],
     "daily_abnormal": [
       0.001006,
@@ -21207,6 +22182,7 @@
       0.088143,
       -0.003387,
       0.017137,
+      null,
       null,
       null,
       null,
@@ -21263,7 +22239,8 @@
       -0.035191,
       -0.025836,
       0.049922,
-      0.040119
+      0.040119,
+      0.0
     ],
     "daily_abnormal": [
       0.039286,
@@ -21298,6 +22275,7 @@
       0.021904,
       0.019443,
       -0.023914,
+      null,
       null,
       null,
       null,
@@ -21354,7 +22332,8 @@
       -0.049973,
       -0.047399,
       0.003034,
-      0.067756
+      0.067756,
+      0.0
     ],
     "daily_abnormal": [
       0.027121,
@@ -21389,6 +22368,7 @@
       0.032201,
       0.009325,
       -0.027424,
+      null,
       null,
       null,
       null,
@@ -21445,7 +22425,8 @@
       0.034582,
       -0.010028,
       -0.024761,
-      0.034622
+      0.034622,
+      0.0
     ],
     "daily_abnormal": [
       0.093054,
@@ -21480,6 +22461,7 @@
       0.033106,
       0.032863,
       0.00165,
+      null,
       null,
       null,
       null,
@@ -21537,7 +22519,8 @@
       -0.077815,
       -0.10772,
       0.00503,
-      0.159159
+      0.159159,
+      0.0
     ],
     "daily_abnormal": [
       0.05724,
@@ -21573,6 +22556,7 @@
       0.01095,
       0.02109,
       -0.029454,
+      null,
       null,
       null,
       null,
@@ -21630,7 +22614,8 @@
       -0.028666,
       -0.037457,
       0.034198,
-      0.074116
+      0.074116,
+      0.0
     ],
     "daily_abnormal": [
       -0.025178,
@@ -21666,6 +22651,7 @@
       0.053027,
       0.053294,
       -0.029792,
+      null,
       null,
       null,
       null,
@@ -21723,7 +22709,8 @@
       -0.001626,
       -0.022801,
       0.001667,
-      0.023295
+      0.023295,
+      0.0
     ],
     "daily_abnormal": [
       -0.135431,
@@ -21759,6 +22746,7 @@
       0.075072,
       0.017244,
       -0.007408,
+      null,
       null,
       null,
       null,
@@ -21816,7 +22804,8 @@
       -0.026152,
       0.0,
       0.061381,
-      0.072289
+      0.072289,
+      0.0
     ],
     "daily_abnormal": [
       -0.056313,
@@ -21852,6 +22841,7 @@
       0.033352,
       0.064061,
       0.004385,
+      null,
       null,
       null,
       null,
@@ -21909,7 +22899,8 @@
       -0.01625,
       0.0,
       0.024142,
-      0.001241
+      0.001241,
+      0.0
     ],
     "daily_abnormal": [
       0.023563,
@@ -21945,6 +22936,7 @@
       0.03285,
       -0.002495,
       -0.026901,
+      null,
       null,
       null,
       null,
@@ -22002,7 +22994,8 @@
       -0.049875,
       -0.058268,
       0.011706,
-      0.052342
+      0.052342,
+      0.0
     ],
     "daily_abnormal": [
       -0.013173,
@@ -22038,6 +23031,7 @@
       0.063408,
       0.058877,
       -0.026137,
+      null,
       null,
       null,
       null,
@@ -22095,7 +23089,8 @@
       -0.04932,
       -0.053667,
       -0.017013,
-      0.023077
+      0.023077,
+      0.0
     ],
     "daily_abnormal": [
       0.032139,
@@ -22131,6 +23126,7 @@
       0.057732,
       0.044537,
       0.002131,
+      null,
       null,
       null,
       null,
@@ -22188,7 +23184,8 @@
       0.01663,
       0.017448,
       0.039657,
-      0.082474
+      0.082474,
+      0.0
     ],
     "daily_abnormal": [
       -0.024585,
@@ -22224,6 +23221,7 @@
       0.06639,
       0.046944,
       0.046183,
+      null,
       null,
       null,
       null,
@@ -22281,7 +23279,8 @@
       -0.032032,
       0.036194,
       -0.04491,
-      -0.016719
+      -0.016719,
+      0.0
     ],
     "daily_abnormal": [
       0.02046,
@@ -22317,6 +23316,7 @@
       0.069025,
       0.044619,
       -0.035554,
+      null,
       null,
       null,
       null,
@@ -22375,7 +23375,8 @@
       -0.074627,
       -0.005376,
       -0.034234,
-      0.067164
+      0.067164,
+      0.0
     ],
     "daily_abnormal": [
       0.022856,
@@ -22412,6 +23413,7 @@
       0.0325,
       0.024073,
       -0.019986,
+      null,
       null,
       null,
       null,
@@ -22470,7 +23472,8 @@
       0.03321,
       -0.059524,
       -0.101266,
-      0.088732
+      0.088732,
+      0.0
     ],
     "daily_abnormal": [
       -0.008557,
@@ -22507,6 +23510,7 @@
       0.169066,
       0.048829,
       0.004033,
+      null,
       null,
       null,
       null,
@@ -22565,7 +23569,8 @@
       -0.051327,
       0.000933,
       -0.016775,
-      0.048341
+      0.048341,
+      0.0
     ],
     "daily_abnormal": [
       -0.014255,
@@ -22602,6 +23607,7 @@
       0.050405,
       0.004283,
       -0.054819,
+      null,
       null,
       null,
       null,
@@ -22660,7 +23666,8 @@
       -0.032704,
       -0.072822,
       0.058906,
-      0.04106
+      0.04106,
+      0.0
     ],
     "daily_abnormal": [
       -0.012818,
@@ -22697,6 +23704,7 @@
       0.031656,
       0.030624,
       0.006662,
+      null,
       null,
       null,
       null,
@@ -22755,7 +23763,8 @@
       -0.097451,
       0.039867,
       -0.015974,
-      0.055195
+      0.055195,
+      0.0
     ],
     "daily_abnormal": [
       -0.106677,
@@ -22792,6 +23801,7 @@
       0.064637,
       0.031428,
       0.024871,
+      null,
       null,
       null,
       null,
@@ -22850,7 +23860,8 @@
       -0.074627,
       -0.005376,
       -0.034234,
-      0.067164
+      0.067164,
+      0.0
     ],
     "daily_abnormal": [
       0.022856,
@@ -22887,6 +23898,7 @@
       0.0325,
       0.024073,
       -0.019986,
+      null,
       null,
       null,
       null,
@@ -22945,7 +23957,8 @@
       -0.013746,
       -0.088502,
       -0.009174,
-      0.044753
+      0.044753,
+      0.0
     ],
     "daily_abnormal": [
       0.031246,
@@ -22982,6 +23995,7 @@
       0.011967,
       -0.023871,
       -0.019212,
+      null,
       null,
       null,
       null,
@@ -23040,6 +24054,7 @@
       -0.018919,
       -0.028926,
       0.096454,
+      0.0,
       0.0
     ],
     "daily_abnormal": [
@@ -23077,6 +24092,7 @@
       0.056401,
       0.054663,
       -0.032295,
+      null,
       null,
       null,
       null,
@@ -23135,7 +24151,8 @@
       -0.004897,
       -0.00689,
       -0.013875,
-      0.001005
+      0.001005,
+      0.0
     ],
     "daily_abnormal": [
       0.038749,
@@ -23172,6 +24189,7 @@
       0.038964,
       0.051161,
       0.002543,
+      null,
       null,
       null,
       null,
@@ -23231,7 +24249,8 @@
       -0.019868,
       -0.001126,
       0.023675,
-      -0.019824
+      -0.019824,
+      0.0
     ],
     "daily_abnormal": [
       -0.009005,
@@ -23269,6 +24288,7 @@
       0.053239,
       0.038703,
       -0.015186,
+      null,
       null,
       null,
       null,
@@ -23328,7 +24348,8 @@
       0.0,
       0.027108,
       -0.039589,
-      0.010687
+      0.010687,
+      0.0
     ],
     "daily_abnormal": [
       0.045327,
@@ -23366,6 +24387,7 @@
       0.022943,
       0.008945,
       0.027998,
+      null,
       null,
       null,
       null,
@@ -23425,7 +24447,8 @@
       -0.038035,
       0.0,
       -0.001647,
-      -0.006601
+      -0.006601,
+      0.0
     ],
     "daily_abnormal": [
       -0.108836,
@@ -23463,6 +24486,7 @@
       0.063672,
       0.054488,
       -0.033925,
+      null,
       null,
       null,
       null,
@@ -23522,7 +24546,8 @@
       0.028037,
       -0.035664,
       0.080493,
-      0.3
+      0.3,
+      0.0
     ],
     "daily_abnormal": [
       -0.066539,
@@ -23560,6 +24585,7 @@
       0.3632,
       -0.254836,
       -0.280114,
+      null,
       null,
       null,
       null,
@@ -23619,7 +24645,8 @@
       -0.070667,
       -0.091822,
       0.025276,
-      0.078582
+      0.078582,
+      0.0
     ],
     "daily_abnormal": [
       -0.008717,
@@ -23657,6 +24684,7 @@
       0.007748,
       0.026267,
       -0.008022,
+      null,
       null,
       null,
       null,
@@ -23716,7 +24744,8 @@
       -0.002782,
       -0.040446,
       0.027616,
-      0.016973
+      0.016973,
+      0.0
     ],
     "daily_abnormal": [
       0.059743,
@@ -23754,6 +24783,7 @@
       0.046765,
       -0.036172,
       0.113923,
+      null,
       null,
       null,
       null,
@@ -23813,7 +24843,8 @@
       0.013652,
       -0.023569,
       0.034483,
-      0.016667
+      0.016667,
+      0.0
     ],
     "daily_abnormal": [
       -0.070502,
@@ -23851,6 +24882,7 @@
       0.053417,
       0.063334,
       0.024885,
+      null,
       null,
       null,
       null,
@@ -23910,7 +24942,8 @@
       -0.031008,
       -0.05,
       0.035789,
-      0.02439
+      0.02439,
+      0.0
     ],
     "daily_abnormal": [
       -0.066845,
@@ -23948,6 +24981,7 @@
       0.070389,
       0.028413,
       -0.041368,
+      null,
       null,
       null,
       null,
@@ -24007,7 +25041,8 @@
       -0.008439,
       -0.031489,
       0.034271,
-      0.033985
+      0.033985,
+      0.0
     ],
     "daily_abnormal": [
       -0.097679,
@@ -24045,6 +25080,7 @@
       0.048507,
       -0.006105,
       -0.039371,
+      null,
       null,
       null,
       null,
@@ -24105,7 +25141,8 @@
       -0.111852,
       -0.085071,
       -0.040109,
-      0.187085
+      0.187085,
+      0.0
     ],
     "daily_abnormal": [
       -0.053909,
@@ -24144,6 +25181,7 @@
       -0.047284,
       -0.002695,
       -0.004185,
+      null,
       null,
       null,
       null,
@@ -24204,7 +25242,8 @@
       -0.002782,
       -0.040446,
       0.027616,
-      0.016973
+      0.016973,
+      0.0
     ],
     "daily_abnormal": [
       0.122244,
@@ -24243,6 +25282,7 @@
       0.046765,
       -0.036172,
       0.113923,
+      null,
       null,
       null,
       null,
@@ -24303,7 +25343,8 @@
       -0.063526,
       -0.071792,
       -0.02497,
-      0.145534
+      0.145534,
+      0.0
     ],
     "daily_abnormal": [
       -0.030334,
@@ -24342,6 +25383,7 @@
       -0.013884,
       0.002527,
       -0.00215,
+      null,
       null,
       null,
       null,
@@ -24402,7 +25444,8 @@
       -0.017857,
       -0.008485,
       -0.003667,
-      0.003681
+      0.003681,
+      0.0
     ],
     "daily_abnormal": [
       -0.014951,
@@ -24441,6 +25484,7 @@
       0.058174,
       0.039334,
       0.010508,
+      null,
       null,
       null,
       null,
@@ -24501,7 +25545,8 @@
       -0.024528,
       -0.067698,
       -0.004149,
-      0.060417
+      0.060417,
+      0.0
     ],
     "daily_abnormal": [
       -0.015787,
@@ -24540,6 +25585,7 @@
       0.036408,
       -0.000663,
       0.00457,
+      null,
       null,
       null,
       null,
@@ -24600,7 +25646,8 @@
       -0.010471,
       0.005291,
       -0.002632,
-      0.010554
+      0.010554,
+      0.0
     ],
     "daily_abnormal": [
       -0.011887,
@@ -24639,6 +25686,7 @@
       0.051805,
       0.015922,
       0.023177,
+      null,
       null,
       null,
       null,
@@ -24700,7 +25748,8 @@
       -0.037004,
       -0.004686,
       0.012241,
-      0.047442
+      0.047442,
+      0.0
     ],
     "daily_abnormal": [
       0.001517,
@@ -24740,6 +25789,7 @@
       0.060163,
       0.037754,
       0.024776,
+      null,
       null,
       null,
       null,
@@ -24801,7 +25851,8 @@
       -0.099321,
       -0.085616,
       -0.012734,
-      0.183612
+      0.183612,
+      0.0
     ],
     "daily_abnormal": [
       0.003651,
@@ -24841,6 +25892,7 @@
       -0.01509,
       -0.005834,
       0.007877,
+      null,
       null,
       null,
       null,
@@ -24902,7 +25954,8 @@
       -0.036145,
       -0.08125,
       -0.011338,
-      0.077982
+      0.077982,
+      0.0
     ],
     "daily_abnormal": [
       0.018811,
@@ -24942,6 +25995,7 @@
       0.04932,
       0.039349,
       0.003145,
+      null,
       null,
       null,
       null,
@@ -25003,7 +26057,8 @@
       -0.027167,
       -0.009309,
       0.013423,
-      0.018543
+      0.018543,
+      0.0
     ],
     "daily_abnormal": [
       0.005256,
@@ -25043,6 +26098,7 @@
       0.038518,
       0.068362,
       0.003161,
+      null,
       null,
       null,
       null,
@@ -25104,7 +26160,8 @@
       -0.047115,
       -0.031667,
       -0.029834,
-      0.058545
+      0.058545,
+      0.0
     ],
     "daily_abnormal": [
       0.020662,
@@ -25144,6 +26201,7 @@
       0.032333,
       0.026978,
       -0.007098,
+      null,
       null,
       null,
       null,
@@ -25206,7 +26264,8 @@
       -0.088319,
       -0.059375,
       -0.026578,
-      0.110922
+      0.110922,
+      0.0
     ],
     "daily_abnormal": [
       -0.020252,
@@ -25247,6 +26306,7 @@
       0.058936,
       0.012995,
       0.021503,
+      null,
       null,
       null,
       null,
@@ -25309,7 +26369,8 @@
       -0.047083,
       -0.009667,
       0.045553,
-      0.048755
+      0.048755,
+      0.0
     ],
     "daily_abnormal": [
       -0.05919,
@@ -25350,6 +26411,7 @@
       0.028515,
       0.006158,
       -0.011344,
+      null,
       null,
       null,
       null,
@@ -25412,7 +26474,8 @@
       -0.056865,
       -0.052941,
       -0.009317,
-      0.085423
+      0.085423,
+      0.0
     ],
     "daily_abnormal": [
       0.024356,
@@ -25453,6 +26516,7 @@
       0.009377,
       0.002029,
       0.002784,
+      null,
       null,
       null,
       null,
@@ -25515,7 +26579,8 @@
       -0.088319,
       -0.059375,
       -0.026578,
-      0.110922
+      0.110922,
+      0.0
     ],
     "daily_abnormal": [
       -0.020252,
@@ -25556,6 +26621,7 @@
       0.058936,
       0.012995,
       0.021503,
+      null,
       null,
       null,
       null,
@@ -25619,7 +26685,8 @@
       -0.046073,
       -0.03787,
       0.057045,
-      -0.024825
+      -0.024825,
+      0.0
     ],
     "daily_abnormal": [
       0.013237,
@@ -25661,6 +26728,7 @@
       0.066774,
       0.019877,
       -0.035026,
+      null,
       null,
       null,
       null,
@@ -25724,7 +26792,8 @@
       -0.046904,
       -0.048228,
       0.01758,
-      0.107724
+      0.107724,
+      0.0
     ],
     "daily_abnormal": [
       -0.018236,
@@ -25766,6 +26835,7 @@
       0.019585,
       0.036312,
       0.0085,
+      null,
       null,
       null,
       null,
@@ -25829,7 +26899,8 @@
       -0.07381,
       -0.062982,
       -0.013717,
-      0.05007
+      0.05007,
+      0.0
     ],
     "daily_abnormal": [
       0.005131,
@@ -25871,6 +26942,7 @@
       0.065534,
       -0.023629,
       0.003903,
+      null,
       null,
       null,
       null,
@@ -25934,7 +27006,8 @@
       -0.07381,
       -0.062982,
       -0.013717,
-      0.05007
+      0.05007,
+      0.0
     ],
     "daily_abnormal": [
       0.005131,
@@ -25976,6 +27049,7 @@
       0.065534,
       -0.023629,
       0.003903,
+      null,
       null,
       null,
       null,
@@ -26039,7 +27113,8 @@
       -0.007275,
       0.014656,
       0.055556,
-      -0.017368
+      -0.017368,
+      0.0
     ],
     "daily_abnormal": [
       -0.044082,
@@ -26081,6 +27156,7 @@
       0.064241,
       0.026417,
       -0.041348,
+      null,
       null,
       null,
       null,
@@ -26145,7 +27221,8 @@
       -0.019646,
       -0.039078,
       -0.063608,
-      -0.024499
+      -0.024499,
+      0.0
     ],
     "daily_abnormal": [
       -0.017784,
@@ -26188,6 +27265,7 @@
       0.042237,
       0.048139,
       -0.005972,
+      null,
       null,
       null,
       null,
@@ -26252,7 +27330,8 @@
       -0.007326,
       -0.02214,
       -0.062264,
-      0.04829
+      0.04829,
+      0.0
     ],
     "daily_abnormal": [
       -0.033152,
@@ -26295,6 +27374,7 @@
       0.063839,
       0.049657,
       -0.015885,
+      null,
       null,
       null,
       null,
@@ -26359,7 +27439,8 @@
       -0.007326,
       -0.02214,
       -0.062264,
-      0.04829
+      0.04829,
+      0.0
     ],
     "daily_abnormal": [
       -0.033152,
@@ -26402,6 +27483,7 @@
       0.063839,
       0.049657,
       -0.015885,
+      null,
       null,
       null,
       null,
@@ -26466,7 +27548,8 @@
       -0.00396,
       -0.017893,
       -0.055668,
-      -0.009646
+      -0.009646,
+      0.0
     ],
     "daily_abnormal": [
       0.068189,
@@ -26509,6 +27592,7 @@
       0.021897,
       -0.007592,
       0.04418,
+      null,
       null,
       null,
       null,
@@ -26573,7 +27657,8 @@
       -0.046997,
       -0.069863,
       0.002946,
-      0.071953
+      0.071953,
+      0.0
     ],
     "daily_abnormal": [
       -0.032081,
@@ -26616,6 +27701,7 @@
       0.040057,
       0.00832,
       0.00753,
+      null,
       null,
       null,
       null,
