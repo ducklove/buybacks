@@ -2805,7 +2805,7 @@
     "corp_name": "라온시큐어",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-07-08"
+    "last_updated": "2026-08-04"
   },
   {
     "corp_code": "00965512",
@@ -3869,7 +3869,7 @@
     "corp_name": "부방",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-03-31"
+    "last_updated": "2026-08-04"
   },
   {
     "corp_code": "00124276",
@@ -8549,7 +8549,7 @@
     "corp_name": "원텍",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-07-16"
+    "last_updated": "2026-08-04"
   },
   {
     "corp_code": "01441611",
@@ -10213,7 +10213,7 @@
     "corp_name": "지어소프트",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-03-18"
+    "last_updated": "2026-08-04"
   },
   {
     "corp_code": "00351995",
@@ -11613,7 +11613,7 @@
     "corp_name": "티이엠씨",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-06-25"
+    "last_updated": "2026-08-04"
   },
   {
     "corp_code": "01113754",
@@ -11686,14 +11686,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2026-05-08"
-  },
-  {
-    "corp_code": "00266934",
-    "stock_code": "043200",
-    "corp_name": "파루",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2022-11-25"
   },
   {
     "corp_code": "00970453",
@@ -15325,7 +15317,7 @@
     "corp_name": "대교",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-08-03"
+    "last_updated": "2026-08-04"
   },
   {
     "corp_code": "00108913",
@@ -17480,14 +17472,6 @@
     "last_updated": "2025-12-30"
   },
   {
-    "corp_code": "00145437",
-    "stock_code": "012170",
-    "corp_name": "아센디오",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-01-16"
-  },
-  {
     "corp_code": "00458234",
     "stock_code": "267850",
     "corp_name": "아시아나IDT",
@@ -19525,7 +19509,7 @@
     "corp_name": "한솔테크닉스",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-07-24"
+    "last_updated": "2026-07-27"
   },
   {
     "corp_code": "00171636",
@@ -19845,7 +19829,7 @@
     "corp_name": "현대그린푸드",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-11-04"
+    "last_updated": "2026-08-04"
   },
   {
     "corp_code": "00360595",
@@ -19941,7 +19925,7 @@
     "corp_name": "현대지에프홀딩스",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-11-04"
+    "last_updated": "2026-08-04"
   },
   {
     "corp_code": "00164742",
