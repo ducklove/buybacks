@@ -9342,24 +9342,6 @@
     "source_rcept_no": "20260313000002"
   },
   {
-    "corp_code": "01136001",
-    "stock_code": "286750",
-    "corp_name": "나노실리칸첨단소재",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 885,
-    "issued_shares": 32028857,
-    "treasury_ratio": 2.763133258236471e-05,
-    "floating_shares": 32027972,
-    "source_rcept_no": "20260324000956"
-  },
-  {
     "corp_code": "00816933",
     "stock_code": "285800",
     "corp_name": "진영",
@@ -31032,24 +31014,6 @@
     "source_rcept_no": "20260326001257"
   },
   {
-    "corp_code": "00231831",
-    "stock_code": "034940",
-    "corp_name": "조아제약",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 30979827,
-    "treasury_ratio": null,
-    "floating_shares": 30979827,
-    "source_rcept_no": "20260313000763"
-  },
-  {
     "corp_code": "00233653",
     "stock_code": "034830",
     "corp_name": "한국토지신탁",
@@ -31534,24 +31498,6 @@
     "treasury_ratio": 0.008082271181568861,
     "floating_shares": 50107101,
     "source_rcept_no": "20260318000889"
-  },
-  {
-    "corp_code": "00158219",
-    "stock_code": "033170",
-    "corp_name": "시그네틱스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 85728319,
-    "treasury_ratio": null,
-    "floating_shares": 85728319,
-    "source_rcept_no": "20260319000661"
   },
   {
     "corp_code": "00121686",
@@ -38754,24 +38700,6 @@
     "source_rcept_no": "20260515002972"
   },
   {
-    "corp_code": "00141404",
-    "stock_code": "006740",
-    "corp_name": "블루산업개발",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2314603,
-    "issued_shares": 56975588,
-    "treasury_ratio": 0.0406244688514667,
-    "floating_shares": 54660985,
-    "source_rcept_no": "20260323001405"
-  },
-  {
     "corp_code": "00130383",
     "stock_code": "006730",
     "corp_name": "서부T&D",
@@ -42066,24 +41994,6 @@
     "source_rcept_no": "20260318000762"
   },
   {
-    "corp_code": "00136457",
-    "stock_code": "002360",
-    "corp_name": "SH에너지화학",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2892194,
-    "issued_shares": 111133730,
-    "treasury_ratio": 0.0260244482030793,
-    "floating_shares": 108241536,
-    "source_rcept_no": "20260320000650"
-  },
-  {
     "corp_code": "00173874",
     "stock_code": "002355",
     "corp_name": "넥센타이어1우B",
@@ -42873,6 +42783,24 @@
     "issued_shares": 6246150,
     "treasury_ratio": 0.019425406050126878,
     "floating_shares": 6124816,
+    "source_rcept_no": "20260319001175"
+  },
+  {
+    "corp_code": "00122579",
+    "stock_code": "001465",
+    "corp_name": "BYC우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 102300,
+    "issued_shares": 2153850,
+    "treasury_ratio": 0.04749634375652901,
+    "floating_shares": 2051550,
     "source_rcept_no": "20260319001175"
   },
   {
