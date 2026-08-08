@@ -24660,24 +24660,6 @@
     "source_rcept_no": "20260706000276"
   },
   {
-    "corp_code": "00401731",
-    "stock_code": "066575",
-    "corp_name": "LG전자우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "의결권 없는 주식\n(우선주)",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 4693,
-    "issued_shares": 17185992,
-    "treasury_ratio": 0.00027307123150063144,
-    "floating_shares": 17181299,
-    "source_rcept_no": "20260706000276"
-  },
-  {
     "corp_code": "00370200",
     "stock_code": "066430",
     "corp_name": "아이로보틱스",
@@ -27159,24 +27141,6 @@
     "issued_shares": 70592343,
     "treasury_ratio": 2.833168464177482e-08,
     "floating_shares": 70592341,
-    "source_rcept_no": "20260313001195"
-  },
-  {
-    "corp_code": "00356361",
-    "stock_code": "051915",
-    "corp_name": "LG화학우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 6041,
-    "issued_shares": 7688800,
-    "treasury_ratio": 0.0007856882738528769,
-    "floating_shares": 7682759,
     "source_rcept_no": "20260313001195"
   },
   {
@@ -36900,24 +36864,6 @@
     "source_rcept_no": "20260325001401"
   },
   {
-    "corp_code": "00162461",
-    "stock_code": "009835",
-    "corp_name": "한화솔루션우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 30733,
-    "issued_shares": 2575349,
-    "treasury_ratio": 0.011933528232484218,
-    "floating_shares": 2544616,
-    "source_rcept_no": "20260325001401"
-  },
-  {
     "corp_code": "00103130",
     "stock_code": "009810",
     "corp_name": "플레이그램",
@@ -40878,24 +40824,6 @@
     "source_rcept_no": "20260318001025"
   },
   {
-    "corp_code": "00120021",
-    "stock_code": "003555",
-    "corp_name": "LG우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 3011199,
-    "treasury_ratio": null,
-    "floating_shares": 3011199,
-    "source_rcept_no": "20260318001025"
-  },
-  {
     "corp_code": "00110893",
     "stock_code": "003540",
     "corp_name": "대신증권",
@@ -43935,24 +43863,6 @@
     "issued_shares": 20955884,
     "treasury_ratio": 0.0012004742916118451,
     "floating_shares": 20930727,
-    "source_rcept_no": "20260318000970"
-  },
-  {
-    "corp_code": "00109693",
-    "stock_code": "000215",
-    "corp_name": "DL우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2039,
-    "issued_shares": 1686115,
-    "treasury_ratio": 0.0012092888088890733,
-    "floating_shares": 1684076,
     "source_rcept_no": "20260318000970"
   },
   {
