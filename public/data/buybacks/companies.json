@@ -1197,7 +1197,7 @@
     "corp_name": "그래디언트",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-02-14"
+    "last_updated": "2026-08-10"
   },
   {
     "corp_code": "01565054",
@@ -3381,7 +3381,7 @@
     "corp_name": "모비데이즈",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-07-23"
+    "last_updated": "2026-08-10"
   },
   {
     "corp_code": "01210190",
@@ -3822,14 +3822,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2026-04-03"
-  },
-  {
-    "corp_code": "01098792",
-    "stock_code": "226340",
-    "corp_name": "본느",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-04-14"
   },
   {
     "corp_code": "00243067",
@@ -4926,14 +4918,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2021-12-02"
-  },
-  {
-    "corp_code": "01169267",
-    "stock_code": "252500",
-    "corp_name": "세화피앤씨",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2023-02-21"
   },
   {
     "corp_code": "01593668",
@@ -9429,7 +9413,7 @@
     "corp_name": "인카금융서비스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-12-05"
+    "last_updated": "2026-08-10"
   },
   {
     "corp_code": "00475976",
@@ -13653,7 +13637,7 @@
     "corp_name": "HD건설기계",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-07-29"
+    "last_updated": "2026-08-10"
   },
   {
     "corp_code": "00164830",
@@ -13797,7 +13781,7 @@
     "corp_name": "INVENI",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-09-22"
+    "last_updated": "2026-08-10"
   },
   {
     "corp_code": "01310269",
@@ -14285,7 +14269,7 @@
     "corp_name": "OCI",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-02-09"
+    "last_updated": "2026-08-10"
   },
   {
     "corp_code": "00148896",
@@ -14293,7 +14277,7 @@
     "corp_name": "OCI홀딩스",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-11-11"
+    "last_updated": "2026-08-10"
   },
   {
     "corp_code": "00155319",
@@ -14893,7 +14877,7 @@
     "corp_name": "교촌에프앤비",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-07-15"
+    "last_updated": "2026-08-10"
   },
   {
     "corp_code": "00104388",
@@ -17512,14 +17496,6 @@
     "last_updated": "2025-04-24"
   },
   {
-    "corp_code": "00143314",
-    "stock_code": "015260",
-    "corp_name": "에이엔피",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2022-12-09"
-  },
-  {
     "corp_code": "00152385",
     "stock_code": "007460",
     "corp_name": "에이프로젠",
@@ -17701,7 +17677,7 @@
     "corp_name": "와이투솔루션",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-02-11"
+    "last_updated": "2026-08-10"
   },
   {
     "corp_code": "01350869",

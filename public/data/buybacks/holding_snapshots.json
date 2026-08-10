@@ -10890,24 +10890,6 @@
     "source_rcept_no": "20260316001120"
   },
   {
-    "corp_code": "01169267",
-    "stock_code": "252500",
-    "corp_name": "세화피앤씨",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 41486390,
-    "treasury_ratio": null,
-    "floating_shares": 41486390,
-    "source_rcept_no": "20260319000242"
-  },
-  {
     "corp_code": "00761059",
     "stock_code": "251970",
     "corp_name": "펌텍코리아",
@@ -12094,24 +12076,6 @@
     "treasury_ratio": 0.029060477936825903,
     "floating_shares": 20061165,
     "source_rcept_no": "20260626000761"
-  },
-  {
-    "corp_code": "01098792",
-    "stock_code": "226340",
-    "corp_name": "본느",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 40,
-    "issued_shares": 41952420,
-    "treasury_ratio": 9.534610875844588e-07,
-    "floating_shares": 41952380,
-    "source_rcept_no": "20260323000741"
   },
   {
     "corp_code": "00911955",
@@ -33696,6 +33660,24 @@
     "source_rcept_no": "20260609000080"
   },
   {
+    "corp_code": "00108913",
+    "stock_code": "019685",
+    "corp_name": "대교우B",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 5652913,
+    "issued_shares": 19426990,
+    "treasury_ratio": 0.29098244246792737,
+    "floating_shares": 13774077,
+    "source_rcept_no": "20260609000080"
+  },
+  {
     "corp_code": "00159731",
     "stock_code": "019660",
     "corp_name": "글로본",
@@ -34756,24 +34738,6 @@
     "treasury_ratio": 0.10350877192982456,
     "floating_shares": 5110000,
     "source_rcept_no": "20260605000111"
-  },
-  {
-    "corp_code": "00143314",
-    "stock_code": "015260",
-    "corp_name": "에이엔피",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 3756,
-    "issued_shares": 45116894,
-    "treasury_ratio": 8.325041169722367e-05,
-    "floating_shares": 45113138,
-    "source_rcept_no": "20260323000919"
   },
   {
     "corp_code": "00112679",
@@ -42549,6 +42513,24 @@
     "issued_shares": 6246150,
     "treasury_ratio": 0.019425406050126878,
     "floating_shares": 6124816,
+    "source_rcept_no": "20260319001175"
+  },
+  {
+    "corp_code": "00122579",
+    "stock_code": "001465",
+    "corp_name": "BYC우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 102300,
+    "issued_shares": 2153850,
+    "treasury_ratio": 0.04749634375652901,
+    "floating_shares": 2051550,
     "source_rcept_no": "20260319001175"
   },
   {
