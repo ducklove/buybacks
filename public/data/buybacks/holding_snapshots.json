@@ -13644,24 +13644,6 @@
     "source_rcept_no": "20260319000959"
   },
   {
-    "corp_code": "00977377",
-    "stock_code": "203400",
-    "corp_name": "에이비온",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 8501,
-    "issued_shares": 90101304,
-    "treasury_ratio": 9.434935592053141e-05,
-    "floating_shares": 90092803,
-    "source_rcept_no": "20260319000686"
-  },
-  {
     "corp_code": "00965813",
     "stock_code": "201490",
     "corp_name": "미투온",
@@ -22302,24 +22284,6 @@
     "source_rcept_no": "20260317000858"
   },
   {
-    "corp_code": "00369107",
-    "stock_code": "082850",
-    "corp_name": "우리바이오",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 1249200,
-    "issued_shares": 48456578,
-    "treasury_ratio": 0.02577978164285559,
-    "floating_shares": 47207378,
-    "source_rcept_no": "20260323000520"
-  },
-  {
     "corp_code": "00533191",
     "stock_code": "082800",
     "corp_name": "비보존 제약",
@@ -24765,7 +24729,7 @@
     "issued_shares": 9240471,
     "treasury_ratio": 0.1300799493878613,
     "floating_shares": 8038471,
-    "source_rcept_no": "20260316001644"
+    "source_rcept_no": "20260814001264"
   },
   {
     "corp_code": "00631837",
@@ -28404,24 +28368,6 @@
     "source_rcept_no": "20260318001708"
   },
   {
-    "corp_code": "00173449",
-    "stock_code": "044480",
-    "corp_name": "빌리언스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 80663728,
-    "treasury_ratio": null,
-    "floating_shares": 80663728,
-    "source_rcept_no": "20260323000776"
-  },
-  {
     "corp_code": "00160232",
     "stock_code": "044450",
     "corp_name": "KSS해운",
@@ -29896,24 +29842,6 @@
     "treasury_ratio": 0.09322731770033704,
     "floating_shares": 12624520,
     "source_rcept_no": "20260316000906"
-  },
-  {
-    "corp_code": "00155692",
-    "stock_code": "037400",
-    "corp_name": "우리엔터프라이즈",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 1972510,
-    "issued_shares": 26223346,
-    "treasury_ratio": 0.07521961537631391,
-    "floating_shares": 24250836,
-    "source_rcept_no": "20260323000543"
   },
   {
     "corp_code": "00261054",
@@ -33604,60 +33532,6 @@
     "treasury_ratio": null,
     "floating_shares": 11650000,
     "source_rcept_no": "20260312000712"
-  },
-  {
-    "corp_code": "00108913",
-    "stock_code": "019685",
-    "corp_name": "대교우B",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 5652913,
-    "issued_shares": 19426990,
-    "treasury_ratio": 0.29098244246792737,
-    "floating_shares": 13774077,
-    "source_rcept_no": "20260609000080"
-  },
-  {
-    "corp_code": "00108913",
-    "stock_code": "019680",
-    "corp_name": "대교",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 15311880,
-    "issued_shares": 84702850,
-    "treasury_ratio": 0.18077172137655345,
-    "floating_shares": 69390970,
-    "source_rcept_no": "20260609000080"
-  },
-  {
-    "corp_code": "00108913",
-    "stock_code": "019685",
-    "corp_name": "대교우B",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 5652913,
-    "issued_shares": 19426990,
-    "treasury_ratio": 0.29098244246792737,
-    "floating_shares": 13774077,
-    "source_rcept_no": "20260609000080"
   },
   {
     "corp_code": "00159731",
@@ -39255,7 +39129,7 @@
     "issued_shares": 155904301,
     "treasury_ratio": null,
     "floating_shares": 155904301,
-    "source_rcept_no": "20260319000764"
+    "source_rcept_no": "20260814002527"
   },
   {
     "corp_code": "00156691",
@@ -41364,24 +41238,6 @@
     "source_rcept_no": "20260318000825"
   },
   {
-    "corp_code": "00150828",
-    "stock_code": "002780",
-    "corp_name": "진흥기업",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 58131,
-    "issued_shares": 145471745,
-    "treasury_ratio": 0.00039960337314988556,
-    "floating_shares": 145413614,
-    "source_rcept_no": "20260311004416"
-  },
-  {
     "corp_code": "00123107",
     "stock_code": "002760",
     "corp_name": "보락",
@@ -42369,24 +42225,6 @@
     "issued_shares": 6246150,
     "treasury_ratio": 0.019425406050126878,
     "floating_shares": 6124816,
-    "source_rcept_no": "20260319001175"
-  },
-  {
-    "corp_code": "00122579",
-    "stock_code": "001465",
-    "corp_name": "BYC우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 102300,
-    "issued_shares": 2153850,
-    "treasury_ratio": 0.04749634375652901,
-    "floating_shares": 2051550,
     "source_rcept_no": "20260319001175"
   },
   {
