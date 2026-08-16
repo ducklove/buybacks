@@ -1456,7 +1456,7 @@
     "abnormal_return_20d": null,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": 0.12405207023804699,
+    "volume_change_20d": 0.06838490842396716,
     "data_quality": "partial"
   },
   {
@@ -4703,21 +4703,21 @@
     "event_id": "dart-20260716000502-direct_disposition",
     "stock_code": "139480",
     "event_date": "2026-07-16",
-    "close_t0": 75500.0,
-    "return_1d": 0.05827814569536427,
-    "return_5d": 0.09536423841059594,
+    "close_t0": null,
+    "return_1d": null,
+    "return_5d": null,
     "return_20d": null,
     "return_60d": null,
-    "max_drawdown_20d": -0.07553956834532372,
-    "max_drawdown_60d": -0.07553956834532372,
-    "market_return_5d": 0.036751086127493116,
-    "abnormal_return_5d": 0.05861315228310282,
+    "max_drawdown_20d": null,
+    "max_drawdown_60d": null,
+    "market_return_5d": null,
+    "abnormal_return_5d": null,
     "market_return_20d": null,
     "abnormal_return_20d": null,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": -0.1049484435411765,
-    "data_quality": "partial"
+    "volume_change_20d": null,
+    "data_quality": "missing"
   },
   {
     "event_id": "dart-20260716000215-trust_contract_end",
@@ -5336,7 +5336,7 @@
     "abnormal_return_20d": null,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": 0.09356239736537475,
+    "volume_change_20d": 0.40421665922874883,
     "data_quality": "partial"
   },
   {
@@ -5616,7 +5616,7 @@
     "abnormal_return_20d": null,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": 0.06830884987459696,
+    "volume_change_20d": 0.20267224645171056,
     "data_quality": "partial"
   },
   {
@@ -6356,7 +6356,7 @@
     "abnormal_return_20d": 0.7761046817363535,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": 1.2724772238103026,
+    "volume_change_20d": 0.7576306538112436,
     "data_quality": "partial"
   },
   {
@@ -6676,7 +6676,7 @@
     "abnormal_return_20d": 0.20704206278069026,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": -0.652235268198525,
+    "volume_change_20d": -0.1720942553131607,
     "data_quality": "partial"
   },
   {
@@ -6716,7 +6716,7 @@
     "abnormal_return_20d": 0.20704206278069026,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": -0.652235268198525,
+    "volume_change_20d": -0.1720942553131607,
     "data_quality": "partial"
   },
   {
@@ -7556,7 +7556,7 @@
     "abnormal_return_20d": 0.16768970231047298,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": -0.33753920934113035,
+    "volume_change_20d": -0.1034545026526722,
     "data_quality": "partial"
   },
   {
@@ -7716,7 +7716,7 @@
     "abnormal_return_20d": 0.20527972668748684,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": 3.0548843026676478,
+    "volume_change_20d": 4.04911216837784,
     "data_quality": "partial"
   },
   {
@@ -7776,7 +7776,7 @@
     "abnormal_return_20d": 0.2635153016974352,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": -0.5900140167722376,
+    "volume_change_20d": -0.5930768773737106,
     "data_quality": "partial"
   },
   {
@@ -7836,7 +7836,7 @@
     "abnormal_return_20d": 0.20527972668748684,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": 3.0548843026676478,
+    "volume_change_20d": 4.04911216837784,
     "data_quality": "partial"
   },
   {
@@ -7876,7 +7876,7 @@
     "abnormal_return_20d": 0.2635153016974352,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": -0.5900140167722376,
+    "volume_change_20d": -0.5930768773737106,
     "data_quality": "partial"
   },
   {
@@ -10096,7 +10096,7 @@
     "abnormal_return_20d": 0.18504274782597907,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": -0.29006267158887966,
+    "volume_change_20d": -0.3285770554824682,
     "data_quality": "partial"
   },
   {
@@ -10183,21 +10183,21 @@
     "event_id": "dart-20260608000434-direct_disposition",
     "stock_code": "139480",
     "event_date": "2026-06-08",
-    "close_t0": 87300.0,
-    "return_1d": 0.002290950744558984,
-    "return_5d": 0.04238258877434142,
-    "return_20d": -0.0297823596792669,
+    "close_t0": null,
+    "return_1d": null,
+    "return_5d": null,
+    "return_20d": null,
     "return_60d": null,
-    "max_drawdown_20d": -0.12637362637362637,
-    "max_drawdown_60d": -0.17032967032967028,
-    "market_return_5d": 0.07776651150497771,
-    "abnormal_return_5d": -0.035383922730636286,
-    "market_return_20d": -0.05441815601715716,
-    "abnormal_return_20d": 0.02463579633789026,
+    "max_drawdown_20d": null,
+    "max_drawdown_60d": null,
+    "market_return_5d": null,
+    "abnormal_return_5d": null,
+    "market_return_20d": null,
+    "abnormal_return_20d": null,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": -0.3542579741309093,
-    "data_quality": "partial"
+    "volume_change_20d": null,
+    "data_quality": "missing"
   },
   {
     "event_id": "dart-20260608000355-trust_contract_start",
