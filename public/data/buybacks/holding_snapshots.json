@@ -38484,6 +38484,24 @@
     "source_rcept_no": "20260316000708"
   },
   {
+    "corp_code": "00159254",
+    "stock_code": "006200",
+    "corp_name": "한국전자홀딩스",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "보통주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 2947249,
+    "issued_shares": 46803136,
+    "treasury_ratio": 0.06297118637520357,
+    "floating_shares": 43855887,
+    "source_rcept_no": "20260319000807"
+  },
+  {
     "corp_code": "00155735",
     "stock_code": "006140",
     "corp_name": "피제이전자",

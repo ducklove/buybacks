@@ -16877,7 +16877,7 @@
     "corp_name": "세아홀딩스",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-05-19"
+    "last_updated": "2026-08-18"
   },
   {
     "corp_code": "00134176",
@@ -19006,6 +19006,14 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2024-04-16"
+  },
+  {
+    "corp_code": "00159254",
+    "stock_code": "006200",
+    "corp_name": "한국전자홀딩스",
+    "market": "KOSPI",
+    "sector": null,
+    "last_updated": "2026-08-18"
   },
   {
     "corp_code": "00159500",
