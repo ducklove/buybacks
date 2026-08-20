@@ -685,7 +685,7 @@
     "corp_name": "PS일렉트로닉스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-08-11"
+    "last_updated": "2026-08-18"
   },
   {
     "corp_code": "01078178",
@@ -733,7 +733,7 @@
     "corp_name": "SBI인베스트먼트",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-03-28"
+    "last_updated": "2026-08-20"
   },
   {
     "corp_code": "01110182",
@@ -1704,14 +1704,6 @@
     "last_updated": "2025-07-16"
   },
   {
-    "corp_code": "01494118",
-    "stock_code": "376930",
-    "corp_name": "노을",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2024-09-05"
-  },
-  {
     "corp_code": "01810477",
     "stock_code": "486990",
     "corp_name": "노타",
@@ -1781,7 +1773,7 @@
     "corp_name": "뉴보텍",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-04-09"
+    "last_updated": "2026-08-20"
   },
   {
     "corp_code": "01639508",
@@ -1998,14 +1990,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2022-12-08"
-  },
-  {
-    "corp_code": "01792825",
-    "stock_code": "471050",
-    "corp_name": "대신밸런스제17호스팩",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2024-01-24"
   },
   {
     "corp_code": "01845534",
@@ -2464,14 +2448,6 @@
     "last_updated": "2026-02-10"
   },
   {
-    "corp_code": "00407771",
-    "stock_code": "073190",
-    "corp_name": "듀오백",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2023-12-04"
-  },
-  {
     "corp_code": "00867034",
     "stock_code": "176750",
     "corp_name": "듀켐바이오",
@@ -2550,14 +2526,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2026-04-10"
-  },
-  {
-    "corp_code": "01062867",
-    "stock_code": "214680",
-    "corp_name": "디알텍",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2023-02-22"
   },
   {
     "corp_code": "01376715",
@@ -3413,7 +3381,7 @@
     "corp_name": "모트렉스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-04-23"
+    "last_updated": "2026-08-20"
   },
   {
     "corp_code": "00367400",
@@ -8176,14 +8144,6 @@
     "last_updated": "2026-07-07"
   },
   {
-    "corp_code": "01236532",
-    "stock_code": "273060",
-    "corp_name": "와이즈버즈",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-06-30"
-  },
-  {
     "corp_code": "00139719",
     "stock_code": "019210",
     "corp_name": "와이지-원",
@@ -11293,7 +11253,7 @@
     "corp_name": "토비스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-07-31"
+    "last_updated": "2026-08-20"
   },
   {
     "corp_code": "00355089",
@@ -12448,14 +12408,6 @@
     "last_updated": "2025-10-01"
   },
   {
-    "corp_code": "01505186",
-    "stock_code": "365590",
-    "corp_name": "하이딥",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2022-12-05"
-  },
-  {
     "corp_code": "00977641",
     "stock_code": "149980",
     "corp_name": "하이로닉",
@@ -12613,7 +12565,7 @@
     "corp_name": "한국정보인증",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-08-12"
+    "last_updated": "2026-08-20"
   },
   {
     "corp_code": "00159342",
@@ -17285,7 +17237,7 @@
     "corp_name": "아이에스동서",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-08-14"
+    "last_updated": "2026-08-20"
   },
   {
     "corp_code": "00186559",
@@ -17397,7 +17349,7 @@
     "corp_name": "에이블씨엔씨",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-08-11"
+    "last_updated": "2026-08-13"
   },
   {
     "corp_code": "00152385",
@@ -17862,14 +17814,6 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2023-08-02"
-  },
-  {
-    "corp_code": "00540605",
-    "stock_code": "084680",
-    "corp_name": "이월드",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-01-30"
   },
   {
     "corp_code": "01436628",

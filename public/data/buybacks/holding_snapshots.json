@@ -1692,24 +1692,6 @@
     "source_rcept_no": "20260629000325"
   },
   {
-    "corp_code": "01792825",
-    "stock_code": "471050",
-    "corp_name": "대신밸런스제17호스팩",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 6060000,
-    "treasury_ratio": null,
-    "floating_shares": 6060000,
-    "source_rcept_no": "20260318000039"
-  },
-  {
     "corp_code": "01791561",
     "stock_code": "469900",
     "corp_name": "하나31호스팩",
@@ -5166,24 +5148,6 @@
     "source_rcept_no": "20260316001419"
   },
   {
-    "corp_code": "01494118",
-    "stock_code": "376930",
-    "corp_name": "노을",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 51291323,
-    "treasury_ratio": null,
-    "floating_shares": 51291323,
-    "source_rcept_no": "20260323001248"
-  },
-  {
     "corp_code": "01335143",
     "stock_code": "376900",
     "corp_name": "로킷헬스케어",
@@ -5596,24 +5560,6 @@
     "treasury_ratio": null,
     "floating_shares": 7310300,
     "source_rcept_no": "20260318000245"
-  },
-  {
-    "corp_code": "01505186",
-    "stock_code": "365590",
-    "corp_name": "하이딥",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 33328,
-    "issued_shares": 30956622,
-    "treasury_ratio": 0.0010766032547091216,
-    "floating_shares": 30923294,
-    "source_rcept_no": "20260319001067"
   },
   {
     "corp_code": "01274329",
@@ -9738,24 +9684,6 @@
     "source_rcept_no": "20260320000600"
   },
   {
-    "corp_code": "01236532",
-    "stock_code": "273060",
-    "corp_name": "와이즈버즈",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 7,
-    "issued_shares": 50459582,
-    "treasury_ratio": 1.387248907452305e-07,
-    "floating_shares": 50459575,
-    "source_rcept_no": "20260313001171"
-  },
-  {
     "corp_code": "01060814",
     "stock_code": "272550",
     "corp_name": "삼양패키징",
@@ -12922,24 +12850,6 @@
     "treasury_ratio": 0.043075238848745465,
     "floating_shares": 6005100,
     "source_rcept_no": "20260319001346"
-  },
-  {
-    "corp_code": "01062867",
-    "stock_code": "214680",
-    "corp_name": "디알텍",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주식",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 124,
-    "issued_shares": 80198367,
-    "treasury_ratio": 1.54616614575207e-06,
-    "floating_shares": 80198243,
-    "source_rcept_no": "20260320001313"
   },
   {
     "corp_code": "00970453",
@@ -21960,24 +21870,6 @@
     "source_rcept_no": "20260327001423"
   },
   {
-    "corp_code": "00540605",
-    "stock_code": "084680",
-    "corp_name": "이월드",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 5215,
-    "issued_shares": 141806193,
-    "treasury_ratio": 3.6775544774691184e-05,
-    "floating_shares": 141800978,
-    "source_rcept_no": "20260319000675"
-  },
-  {
     "corp_code": "00540641",
     "stock_code": "084670",
     "corp_name": "동양고속",
@@ -23362,24 +23254,6 @@
     "treasury_ratio": null,
     "floating_shares": 287260287,
     "source_rcept_no": "20260317000836"
-  },
-  {
-    "corp_code": "00407771",
-    "stock_code": "073190",
-    "corp_name": "듀오백",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 904602,
-    "issued_shares": 11968040,
-    "treasury_ratio": 0.07558480753740797,
-    "floating_shares": 11063438,
-    "source_rcept_no": "20260317000661"
   },
   {
     "corp_code": "00494218",
@@ -37545,24 +37419,6 @@
     "issued_shares": 33890150,
     "treasury_ratio": 0.058217505676428104,
     "floating_shares": 31917150,
-    "source_rcept_no": "20260319001087"
-  },
-  {
-    "corp_code": "00109189",
-    "stock_code": "00806K",
-    "corp_name": "대덕1우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 1212357,
-    "treasury_ratio": null,
-    "floating_shares": 1212357,
     "source_rcept_no": "20260319001087"
   },
   {
