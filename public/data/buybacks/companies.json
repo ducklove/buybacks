@@ -744,14 +744,6 @@
     "last_updated": "2024-09-04"
   },
   {
-    "corp_code": "00574611",
-    "stock_code": "099220",
-    "corp_name": "SDN",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-06-09"
-  },
-  {
     "corp_code": "00358271",
     "stock_code": "056190",
     "corp_name": "SFA",
@@ -1742,14 +1734,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2026-02-27"
-  },
-  {
-    "corp_code": "01394669",
-    "stock_code": "332290",
-    "corp_name": "누보",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-07-30"
   },
   {
     "corp_code": "01336461",
@@ -3334,14 +3318,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2025-01-03"
-  },
-  {
-    "corp_code": "01493535",
-    "stock_code": "363260",
-    "corp_name": "모비데이즈",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-08-10"
   },
   {
     "corp_code": "01210190",
@@ -5264,14 +5240,6 @@
     "last_updated": "2026-06-12"
   },
   {
-    "corp_code": "00135999",
-    "stock_code": "001000",
-    "corp_name": "신라섬유",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2024-05-02"
-  },
-  {
     "corp_code": "00136004",
     "stock_code": "025870",
     "corp_name": "신라에스지",
@@ -6246,14 +6214,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2026-04-21"
-  },
-  {
-    "corp_code": "01309795",
-    "stock_code": "297570",
-    "corp_name": "아틀라스링크",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-07-22"
   },
   {
     "corp_code": "00990819",
@@ -9328,14 +9288,6 @@
     "last_updated": "2026-08-10"
   },
   {
-    "corp_code": "00475976",
-    "stock_code": "083640",
-    "corp_name": "인콘",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-04-01"
-  },
-  {
     "corp_code": "00819073",
     "stock_code": "216050",
     "corp_name": "인크로스",
@@ -10144,14 +10096,6 @@
     "last_updated": "2025-12-11"
   },
   {
-    "corp_code": "00816933",
-    "stock_code": "285800",
-    "corp_name": "진영",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-02-24"
-  },
-  {
     "corp_code": "00525679",
     "stock_code": "085660",
     "corp_name": "차바이오텍",
@@ -10726,14 +10670,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2026-05-04"
-  },
-  {
-    "corp_code": "01031502",
-    "stock_code": "196450",
-    "corp_name": "코아시아씨엠",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-02-24"
   },
   {
     "corp_code": "01512575",
@@ -16624,14 +16560,6 @@
     "last_updated": "2025-12-23"
   },
   {
-    "corp_code": "00112059",
-    "stock_code": "001290",
-    "corp_name": "상상인증권",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-03-27"
-  },
-  {
     "corp_code": "00129642",
     "stock_code": "041650",
     "corp_name": "상신브레이크",
@@ -18110,14 +18038,6 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2025-02-07"
-  },
-  {
-    "corp_code": "00149239",
-    "stock_code": "018470",
-    "corp_name": "조일알미늄",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-07-27"
   },
   {
     "corp_code": "00149345",
