@@ -14544,6 +14544,24 @@
     "source_rcept_no": "20260318001143"
   },
   {
+    "corp_code": "00983040",
+    "stock_code": "18064K",
+    "corp_name": "한진칼우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 6469,
+    "issued_shares": 536766,
+    "treasury_ratio": 0.01205180656002802,
+    "floating_shares": 530297,
+    "source_rcept_no": "20260318001143"
+  },
+  {
     "corp_code": "00995993",
     "stock_code": "180400",
     "corp_name": "DXVX",
@@ -38463,6 +38481,24 @@
     "issued_shares": 5919637922,
     "treasury_ratio": 0.015512601988497092,
     "floating_shares": 5827808935,
+    "source_rcept_no": "20260310002820"
+  },
+  {
+    "corp_code": "00126380",
+    "stock_code": "005935",
+    "corp_name": "삼성전자우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 13603461,
+    "issued_shares": 815974664,
+    "treasury_ratio": 0.016671425719659353,
+    "floating_shares": 802371203,
     "source_rcept_no": "20260310002820"
   },
   {
