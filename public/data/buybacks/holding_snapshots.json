@@ -14544,24 +14544,6 @@
     "source_rcept_no": "20260318001143"
   },
   {
-    "corp_code": "00983040",
-    "stock_code": "18064K",
-    "corp_name": "한진칼우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 6469,
-    "issued_shares": 536766,
-    "treasury_ratio": 0.01205180656002802,
-    "floating_shares": 530297,
-    "source_rcept_no": "20260318001143"
-  },
-  {
     "corp_code": "00995993",
     "stock_code": "180400",
     "corp_name": "DXVX",
@@ -38484,24 +38466,6 @@
     "source_rcept_no": "20260310002820"
   },
   {
-    "corp_code": "00126380",
-    "stock_code": "005935",
-    "corp_name": "삼성전자우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 13603461,
-    "issued_shares": 815974664,
-    "treasury_ratio": 0.016671425719659353,
-    "floating_shares": 802371203,
-    "source_rcept_no": "20260310002820"
-  },
-  {
     "corp_code": "00113535",
     "stock_code": "005880",
     "corp_name": "대한해운",
@@ -40876,24 +40840,6 @@
     "treasury_ratio": 0.037172874396135265,
     "floating_shares": 39861043,
     "source_rcept_no": "20260318001226"
-  },
-  {
-    "corp_code": "00149804",
-    "stock_code": "002880",
-    "corp_name": "디와이에이",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 11868,
-    "issued_shares": 46773995,
-    "treasury_ratio": 0.0002537307322156254,
-    "floating_shares": 46762127,
-    "source_rcept_no": "20260317000864"
   },
   {
     "corp_code": "00137368",
@@ -43864,24 +43810,6 @@
     "treasury_ratio": 6.8398268398268395e-06,
     "floating_shares": 80849447,
     "source_rcept_no": "20251023000250"
-  },
-  {
-    "corp_code": "00800084",
-    "stock_code": "900120",
-    "corp_name": "씨엑스아이",
-    "as_of_date": "2025-06-30",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 300577845,
-    "treasury_ratio": null,
-    "floating_shares": 300577845,
-    "source_rcept_no": "20251028000429"
   },
   {
     "corp_code": "01436558",

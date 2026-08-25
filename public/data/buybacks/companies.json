@@ -5600,14 +5600,6 @@
     "last_updated": "2024-10-28"
   },
   {
-    "corp_code": "00800084",
-    "stock_code": "900120",
-    "corp_name": "씨엑스아이",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2023-11-24"
-  },
-  {
     "corp_code": "01487446",
     "stock_code": "359090",
     "corp_name": "씨엔알리서치",
@@ -15686,14 +15678,6 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2025-09-24"
-  },
-  {
-    "corp_code": "00149804",
-    "stock_code": "002880",
-    "corp_name": "디와이에이",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-04-15"
   },
   {
     "corp_code": "01059605",
