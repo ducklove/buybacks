@@ -216,24 +216,6 @@
     "source_rcept_no": "20260428000679"
   },
   {
-    "corp_code": "00799070",
-    "stock_code": "900110",
-    "corp_name": "딥커머스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 6232,
-    "issued_shares": 26286743,
-    "treasury_ratio": 0.00023707767828064512,
-    "floating_shares": 26280511,
-    "source_rcept_no": "20260429001114"
-  },
-  {
     "corp_code": "00781202",
     "stock_code": "900100",
     "corp_name": "파이온엑스",
@@ -21399,7 +21381,7 @@
     "issued_shares": 278325814,
     "treasury_ratio": 0.027939905710650324,
     "floating_shares": 270549417,
-    "source_rcept_no": "20260316001292"
+    "source_rcept_no": "20260814004019"
   },
   {
     "corp_code": "00132202",
@@ -29304,24 +29286,6 @@
     "source_rcept_no": "20260702000541"
   },
   {
-    "corp_code": "00255105",
-    "stock_code": "038530",
-    "corp_name": "케이바이오랩스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 217506,
-    "issued_shares": 115714347,
-    "treasury_ratio": 0.001879680485947002,
-    "floating_shares": 115496841,
-    "source_rcept_no": "20260323000803"
-  },
-  {
     "corp_code": "00239639",
     "stock_code": "038500",
     "corp_name": "삼표시멘트",
@@ -30544,6 +30508,42 @@
     "treasury_ratio": 0.08978160883281823,
     "floating_shares": 29633850,
     "source_rcept_no": "20260323001389"
+  },
+  {
+    "corp_code": "00181712",
+    "stock_code": "03473K",
+    "corp_name": "SK우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "의결권있는 주식",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 17980699,
+    "issued_shares": 72502703,
+    "treasury_ratio": 0.24800039524043677,
+    "floating_shares": 54522004,
+    "source_rcept_no": "20260318001157"
+  },
+  {
+    "corp_code": "00181712",
+    "stock_code": "03473K",
+    "corp_name": "SK우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "의결권없는 주식",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 1787,
+    "issued_shares": 566135,
+    "treasury_ratio": 0.003156490942972966,
+    "floating_shares": 564348,
+    "source_rcept_no": "20260318001157"
   },
   {
     "corp_code": "00181712",
@@ -36326,7 +36326,7 @@
   {
     "corp_code": "00103130",
     "stock_code": "009810",
-    "corp_name": "플레이그램",
+    "corp_name": "MDS스피어",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -38463,6 +38463,24 @@
     "issued_shares": 5919637922,
     "treasury_ratio": 0.015512601988497092,
     "floating_shares": 5827808935,
+    "source_rcept_no": "20260310002820"
+  },
+  {
+    "corp_code": "00126380",
+    "stock_code": "005935",
+    "corp_name": "삼성전자우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "우선주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 13603461,
+    "issued_shares": 815974664,
+    "treasury_ratio": 0.016671425719659353,
+    "floating_shares": 802371203,
     "source_rcept_no": "20260310002820"
   },
   {
