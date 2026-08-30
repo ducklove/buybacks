@@ -11304,24 +11304,6 @@
     "source_rcept_no": "20260316001343"
   },
   {
-    "corp_code": "01128622",
-    "stock_code": "239340",
-    "corp_name": "이스트에이드",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 72,
-    "issued_shares": 26979634,
-    "treasury_ratio": 2.6686796418365053e-06,
-    "floating_shares": 26979562,
-    "source_rcept_no": "20260316000918"
-  },
-  {
     "corp_code": "00556712",
     "stock_code": "238490",
     "corp_name": "힘스",
@@ -36450,24 +36432,6 @@
     "source_rcept_no": "20260318000984"
   },
   {
-    "corp_code": "00125822",
-    "stock_code": "009620",
-    "corp_name": "삼보산업",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 6820,
-    "issued_shares": 16386091,
-    "treasury_ratio": 0.0004162066474548445,
-    "floating_shares": 16379271,
-    "source_rcept_no": "20260407003361"
-  },
-  {
     "corp_code": "00119007",
     "stock_code": "009580",
     "corp_name": "무림P&P",
@@ -43612,24 +43576,6 @@
     "treasury_ratio": null,
     "floating_shares": 12061867,
     "source_rcept_no": "20251219000592"
-  },
-  {
-    "corp_code": "00531078",
-    "stock_code": "084440",
-    "corp_name": "유비온",
-    "as_of_date": "2025-09-30",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 19712800,
-    "treasury_ratio": null,
-    "floating_shares": 19712800,
-    "source_rcept_no": "20251229000628"
   },
   {
     "corp_code": "00349060",
