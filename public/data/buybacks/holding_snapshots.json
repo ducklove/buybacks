@@ -4340,7 +4340,7 @@
   {
     "corp_code": "00534701",
     "stock_code": "396300",
-    "corp_name": "세아메카닉스",
+    "corp_name": "HT로보틱스",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -5020,24 +5020,6 @@
     "treasury_ratio": 0.0001493659213937225,
     "floating_shares": 18990786,
     "source_rcept_no": "20260323000996"
-  },
-  {
-    "corp_code": "01387164",
-    "stock_code": "378800",
-    "corp_name": "샤페론",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 46243031,
-    "treasury_ratio": null,
-    "floating_shares": 46243031,
-    "source_rcept_no": "20260319000869"
   },
   {
     "corp_code": "01488320",
@@ -8170,24 +8152,6 @@
     "treasury_ratio": 0.06172153011384346,
     "floating_shares": 9256894,
     "source_rcept_no": "20260318000906"
-  },
-  {
-    "corp_code": "01267967",
-    "stock_code": "305090",
-    "corp_name": "마이크로디지탈",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 18567123,
-    "treasury_ratio": null,
-    "floating_shares": 18567123,
-    "source_rcept_no": "20260323001576"
   },
   {
     "corp_code": "01258020",
@@ -12022,24 +11986,6 @@
     "treasury_ratio": 0.058543500291114846,
     "floating_shares": 18066570,
     "source_rcept_no": "20260319000806"
-  },
-  {
-    "corp_code": "00992543",
-    "stock_code": "225190",
-    "corp_name": "LK삼양",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 0,
-    "issued_shares": 70468440,
-    "treasury_ratio": 0.0,
-    "floating_shares": 70468440,
-    "source_rcept_no": "20260318001650"
   },
   {
     "corp_code": "01099861",
@@ -37689,7 +37635,7 @@
     "issued_shares": 3090000,
     "treasury_ratio": 0.1693346278317152,
     "floating_shares": 2566756,
-    "source_rcept_no": "20260312001396"
+    "source_rcept_no": "20260814003673"
   },
   {
     "corp_code": "00163318",
@@ -38355,24 +38301,6 @@
     "issued_shares": 5919637922,
     "treasury_ratio": 0.015512601988497092,
     "floating_shares": 5827808935,
-    "source_rcept_no": "20260310002820"
-  },
-  {
-    "corp_code": "00126380",
-    "stock_code": "005935",
-    "corp_name": "삼성전자우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 13603461,
-    "issued_shares": 815974664,
-    "treasury_ratio": 0.016671425719659353,
-    "floating_shares": 802371203,
     "source_rcept_no": "20260310002820"
   },
   {
@@ -44332,24 +44260,6 @@
     "treasury_ratio": 0.00021661885388649793,
     "floating_shares": 46744805,
     "source_rcept_no": "20250618000195"
-  },
-  {
-    "corp_code": "00141626",
-    "stock_code": "002630",
-    "corp_name": "오리엔트바이오",
-    "as_of_date": "2025-03-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 14879,
-    "issued_shares": 118583005,
-    "treasury_ratio": 0.00012547329189372457,
-    "floating_shares": 118568126,
-    "source_rcept_no": "20250619000265"
   },
   {
     "corp_code": "00136721",
