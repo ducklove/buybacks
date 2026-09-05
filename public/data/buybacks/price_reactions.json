@@ -4636,7 +4636,7 @@
     "abnormal_return_20d": null,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": -0.19724681227850793,
+    "volume_change_20d": -0.04712025131457087,
     "data_quality": "partial"
   },
   {
@@ -5556,7 +5556,7 @@
     "abnormal_return_20d": 0.05268602188409499,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": 0.16333857443166688,
+    "volume_change_20d": -0.35790135723784744,
     "data_quality": "partial"
   },
   {
@@ -6516,7 +6516,7 @@
     "abnormal_return_20d": -0.09480081105597349,
     "market_return_60d": null,
     "abnormal_return_60d": null,
-    "volume_change_20d": -0.27134073144942894,
+    "volume_change_20d": -0.14857930673496944,
     "data_quality": "partial"
   },
   {

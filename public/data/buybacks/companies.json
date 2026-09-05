@@ -352,6 +352,14 @@
     "last_updated": "2025-12-24"
   },
   {
+    "corp_code": "00534701",
+    "stock_code": "396300",
+    "corp_name": "HT로보틱스",
+    "market": "KOSDAQ",
+    "sector": null,
+    "last_updated": "2025-08-28"
+  },
+  {
     "corp_code": "00572905",
     "stock_code": "095340",
     "corp_name": "ISC",
@@ -4718,14 +4726,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2025-12-24"
-  },
-  {
-    "corp_code": "00534701",
-    "stock_code": "396300",
-    "corp_name": "HT로보틱스",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-08-28"
   },
   {
     "corp_code": "00362201",
@@ -19392,14 +19392,6 @@
     "last_updated": "2025-03-20"
   },
   {
-    "corp_code": "00164742",
-    "stock_code": "005380",
-    "corp_name": "현대차",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-08-26"
-  },
-  {
     "corp_code": "00145880",
     "stock_code": "004020",
     "corp_name": "현대제철",
@@ -19414,6 +19406,14 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2026-08-07"
+  },
+  {
+    "corp_code": "00164742",
+    "stock_code": "005380",
+    "corp_name": "현대차",
+    "market": "KOSPI",
+    "sector": null,
+    "last_updated": "2026-08-26"
   },
   {
     "corp_code": "00137997",
