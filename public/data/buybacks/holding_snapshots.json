@@ -38052,6 +38052,24 @@
     "source_rcept_no": "20260317000867"
   },
   {
+    "corp_code": "00131832",
+    "stock_code": "006125",
+    "corp_name": "SK디스커버리우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "의결권 없는 주식\n(우선주)",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 82217,
+    "issued_shares": 1312455,
+    "treasury_ratio": 0.06264367159254984,
+    "floating_shares": 1230238,
+    "source_rcept_no": "20260317000867"
+  },
+  {
     "corp_code": "00126779",
     "stock_code": "006110",
     "corp_name": "삼아알미늄",
