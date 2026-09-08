@@ -29,7 +29,7 @@
     "corp_name": "AP시스템",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-08-14"
+    "last_updated": "2026-09-08"
   },
   {
     "corp_code": "00874803",
@@ -701,7 +701,7 @@
     "corp_name": "RF머트리얼즈",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-10-21"
+    "last_updated": "2026-09-08"
   },
   {
     "corp_code": "01286476",
@@ -4037,7 +4037,7 @@
     "corp_name": "삐아",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-06-09"
+    "last_updated": "2026-09-08"
   },
   {
     "corp_code": "00857480",
@@ -4109,7 +4109,7 @@
     "corp_name": "삼목에스폼",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-09-23"
+    "last_updated": "2026-09-08"
   },
   {
     "corp_code": "00125664",
@@ -14352,14 +14352,6 @@
     "last_updated": "2025-12-03"
   },
   {
-    "corp_code": "01784394",
-    "stock_code": "465770",
-    "corp_name": "STX그린로지스",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2025-03-31"
-  },
-  {
     "corp_code": "00480455",
     "stock_code": "077970",
     "corp_name": "STX엔진",
@@ -15541,7 +15533,7 @@
     "corp_name": "두올",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-07-08"
+    "last_updated": "2026-09-08"
   },
   {
     "corp_code": "00415646",
