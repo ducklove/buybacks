@@ -62,7 +62,7 @@ export function Shell({ children }: ShellProps) {
               {item.label}
             </button>
           ))}
-          <a className="hub-link" href="https://cantabile.tplinkdns.com:3691" rel="noopener">
+          <a className="hub-link" href="https://ducklove.duckdns.org:3691" rel="noopener">
             Value Compass ↗
           </a>
         </nav>

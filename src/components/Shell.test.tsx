@@ -7,7 +7,7 @@ describe("Shell", () => {
     render(<Shell>본문</Shell>);
 
     const hubLink = screen.getByRole("link", { name: "Value Compass ↗" });
-    expect(hubLink).toHaveAttribute("href", "https://cantabile.tplinkdns.com:3691");
+    expect(hubLink).toHaveAttribute("href", "https://ducklove.duckdns.org:3691");
 
     const githubLink = screen.getByRole("link", { name: "GitHub" });
     expect(githubLink).toHaveAttribute("href", "https://github.com/ducklove/buybacks");
