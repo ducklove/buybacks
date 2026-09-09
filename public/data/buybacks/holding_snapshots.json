@@ -1692,24 +1692,6 @@
     "source_rcept_no": "20260305001434"
   },
   {
-    "corp_code": "01516766",
-    "stock_code": "469750",
-    "corp_name": "아이비젼웍스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주식",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 65994,
-    "issued_shares": 34456481,
-    "treasury_ratio": 0.0019152855452650548,
-    "floating_shares": 34390487,
-    "source_rcept_no": "20260522000549"
-  },
-  {
     "corp_code": "01745173",
     "stock_code": "469610",
     "corp_name": "이노테크",
@@ -6264,24 +6246,6 @@
     "source_rcept_no": "20260323001123"
   },
   {
-    "corp_code": "01440153",
-    "stock_code": "351320",
-    "corp_name": "넥사다이내믹스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 210,
-    "issued_shares": 28823752,
-    "treasury_ratio": 7.2856580225919235e-06,
-    "floating_shares": 28823542,
-    "source_rcept_no": "20260323001172"
-  },
-  {
     "corp_code": "01436628",
     "stock_code": "350520",
     "corp_name": "이지스레지던스리츠",
@@ -6622,24 +6586,6 @@
     "treasury_ratio": null,
     "floating_shares": 23650793,
     "source_rcept_no": "20260316001070"
-  },
-  {
-    "corp_code": "01416572",
-    "stock_code": "340440",
-    "corp_name": "세림B&G",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 5,
-    "issued_shares": 28378364,
-    "treasury_ratio": 1.761905654603627e-07,
-    "floating_shares": 28378359,
-    "source_rcept_no": "20260318000519"
   },
   {
     "corp_code": "01416642",
@@ -11018,7 +10964,7 @@
   {
     "corp_code": "01136348",
     "stock_code": "242040",
-    "corp_name": "나무에이엑스",
+    "corp_name": "나무AX",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -14580,6 +14526,24 @@
     "source_rcept_no": "20260323000889"
   },
   {
+    "corp_code": "00813389",
+    "stock_code": "177350",
+    "corp_name": "베셀",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "보통주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 39542,
+    "issued_shares": 19653767,
+    "treasury_ratio": 0.002011929824954168,
+    "floating_shares": 19614225,
+    "source_rcept_no": "20260323001310"
+  },
+  {
     "corp_code": "00867034",
     "stock_code": "176750",
     "corp_name": "듀켐바이오",
@@ -16342,24 +16306,6 @@
     "treasury_ratio": null,
     "floating_shares": 43431583,
     "source_rcept_no": "20260319000647"
-  },
-  {
-    "corp_code": "00533924",
-    "stock_code": "131400",
-    "corp_name": "이브이첨단소재",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 4208,
-    "issued_shares": 59591882,
-    "treasury_ratio": 7.061364499278609e-05,
-    "floating_shares": 59587674,
-    "source_rcept_no": "20260324000012"
   },
   {
     "corp_code": "00838962",
@@ -36954,24 +36900,6 @@
     "source_rcept_no": "20260319000725"
   },
   {
-    "corp_code": "00144021",
-    "stock_code": "008290",
-    "corp_name": "원풍물산",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 738282,
-    "issued_shares": 40693679,
-    "treasury_ratio": 0.01814242452740633,
-    "floating_shares": 39955397,
-    "source_rcept_no": "20260331002231"
-  },
-  {
     "corp_code": "00116301",
     "stock_code": "008260",
     "corp_name": "NI스틸",
@@ -37311,7 +37239,7 @@
     "issued_shares": 2875800,
     "treasury_ratio": 0.29916266777940054,
     "floating_shares": 2015468,
-    "source_rcept_no": "20260313001077"
+    "source_rcept_no": "20260814000439"
   },
   {
     "corp_code": "00140858",
@@ -38952,24 +38880,6 @@
     "source_rcept_no": "20260319000721"
   },
   {
-    "corp_code": "00127158",
-    "stock_code": "004920",
-    "corp_name": "씨아이테크",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 52179872,
-    "treasury_ratio": null,
-    "floating_shares": 52179872,
-    "source_rcept_no": "20260323001571"
-  },
-  {
     "corp_code": "00148920",
     "stock_code": "004910",
     "corp_name": "조광페인트",
@@ -40518,24 +40428,6 @@
     "source_rcept_no": "20260323001556"
   },
   {
-    "corp_code": "00152880",
-    "stock_code": "003075",
-    "corp_name": "코오롱글로벌우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 12360,
-    "issued_shares": 740737,
-    "treasury_ratio": 0.016686084264725537,
-    "floating_shares": 728377,
-    "source_rcept_no": "20260323001556"
-  },
-  {
     "corp_code": "00101044",
     "stock_code": "003060",
     "corp_name": "에이프로젠바이오로직스",
@@ -41253,24 +41145,6 @@
     "issued_shares": 12907680,
     "treasury_ratio": 0.0006547264884161988,
     "floating_shares": 12899229,
-    "source_rcept_no": "20260323001718"
-  },
-  {
-    "corp_code": "00152862",
-    "stock_code": "002025",
-    "corp_name": "코오롱우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "우선주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2716,
-    "issued_shares": 1160437,
-    "treasury_ratio": 0.0023404975884085046,
-    "floating_shares": 1157721,
     "source_rcept_no": "20260323001718"
   },
   {
