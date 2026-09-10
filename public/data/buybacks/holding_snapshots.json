@@ -12636,6 +12636,24 @@
     "source_rcept_no": "20260319001346"
   },
   {
+    "corp_code": "01062867",
+    "stock_code": "214680",
+    "corp_name": "디알텍",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "보통주식",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 124,
+    "issued_shares": 80198367,
+    "treasury_ratio": 1.54616614575207e-06,
+    "floating_shares": 80198243,
+    "source_rcept_no": "20260320001313"
+  },
+  {
     "corp_code": "00970453",
     "stock_code": "214450",
     "corp_name": "파마리서치",
@@ -25542,24 +25560,6 @@
     "source_rcept_no": "20260610000400"
   },
   {
-    "corp_code": "00346610",
-    "stock_code": "056090",
-    "corp_name": "시지메드텍",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 103259036,
-    "treasury_ratio": null,
-    "floating_shares": 103259036,
-    "source_rcept_no": "20260320001211"
-  },
-  {
     "corp_code": "00234227",
     "stock_code": "056080",
     "corp_name": "유진로봇",
@@ -38032,6 +38032,24 @@
     "treasury_ratio": 0.1337830621836587,
     "floating_shares": 47919121,
     "source_rcept_no": "20260312000403"
+  },
+  {
+    "corp_code": "00104537",
+    "stock_code": "006050",
+    "corp_name": "국영지앤엠",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "보통주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 1000000,
+    "issued_shares": 34895243,
+    "treasury_ratio": 0.028657201212211075,
+    "floating_shares": 33895243,
+    "source_rcept_no": "20260316001289"
   },
   {
     "corp_code": "00118026",
