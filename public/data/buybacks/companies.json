@@ -5224,14 +5224,6 @@
     "last_updated": "2024-07-01"
   },
   {
-    "corp_code": "01796858",
-    "stock_code": "472220",
-    "corp_name": "신영스팩10호",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-03-21"
-  },
-  {
     "corp_code": "01945339",
     "stock_code": "0091W0",
     "corp_name": "신영스팩11호",
@@ -9736,14 +9728,6 @@
     "last_updated": "2026-03-27"
   },
   {
-    "corp_code": "00205003",
-    "stock_code": "033340",
-    "corp_name": "좋은사람들",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-03-31"
-  },
-  {
     "corp_code": "00252135",
     "stock_code": "036930",
     "corp_name": "주성엔지니어링",
@@ -9766,14 +9750,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2026-03-02"
-  },
-  {
-    "corp_code": "00347716",
-    "stock_code": "051980",
-    "corp_name": "중앙첨단소재",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-05-15"
   },
   {
     "corp_code": "01026616",
@@ -10102,14 +10078,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2025-10-27"
-  },
-  {
-    "corp_code": "00330044",
-    "stock_code": "050110",
-    "corp_name": "캠시스",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2024-05-20"
   },
   {
     "corp_code": "01497124",
@@ -10870,14 +10838,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2025-02-28"
-  },
-  {
-    "corp_code": "01873272",
-    "stock_code": "489480",
-    "corp_name": "키움제11호스팩",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2024-12-11"
   },
   {
     "corp_code": "01784677",
@@ -11805,7 +11765,7 @@
     "corp_name": "프럼파스트",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-12-17"
+    "last_updated": "2026-09-11"
   },
   {
     "corp_code": "01258428",
@@ -16893,7 +16853,7 @@
     "corp_name": "신흥",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-11-25"
+    "last_updated": "2026-09-11"
   },
   {
     "corp_code": "00138057",

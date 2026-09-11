@@ -468,24 +468,6 @@
     "source_rcept_no": "20260318001137"
   },
   {
-    "corp_code": "01873272",
-    "stock_code": "489480",
-    "corp_name": "키움제11호스팩",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 6600000,
-    "treasury_ratio": null,
-    "floating_shares": 6600000,
-    "source_rcept_no": "20260313000071"
-  },
-  {
     "corp_code": "01657197",
     "stock_code": "489460",
     "corp_name": "바이오비쥬",
@@ -1636,24 +1618,6 @@
     "treasury_ratio": null,
     "floating_shares": 4155000,
     "source_rcept_no": "20260309001294"
-  },
-  {
-    "corp_code": "01796858",
-    "stock_code": "472220",
-    "corp_name": "신영스팩10호",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 4690000,
-    "treasury_ratio": null,
-    "floating_shares": 4690000,
-    "source_rcept_no": "20260310002778"
   },
   {
     "corp_code": "01448544",
@@ -26514,24 +26478,6 @@
     "source_rcept_no": "20260318001399"
   },
   {
-    "corp_code": "00347716",
-    "stock_code": "051980",
-    "corp_name": "중앙첨단소재",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 226253,
-    "issued_shares": 111091709,
-    "treasury_ratio": 0.002036632634754048,
-    "floating_shares": 110865456,
-    "source_rcept_no": "20260323001194"
-  },
-  {
     "corp_code": "00356361",
     "stock_code": "051915",
     "corp_name": "LG화학우",
@@ -26854,24 +26800,6 @@
     "treasury_ratio": 0.012531548384461732,
     "floating_shares": 13394107,
     "source_rcept_no": "20260701000629"
-  },
-  {
-    "corp_code": "00330044",
-    "stock_code": "050110",
-    "corp_name": "캠시스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 585217,
-    "issued_shares": 73824118,
-    "treasury_ratio": 0.007927179028403699,
-    "floating_shares": 73238901,
-    "source_rcept_no": "20260319001326"
   },
   {
     "corp_code": "00369569",
@@ -30165,7 +30093,7 @@
     "issued_shares": 9730590,
     "treasury_ratio": 0.19508765655525512,
     "floating_shares": 7832272,
-    "source_rcept_no": "20260311003965"
+    "source_rcept_no": "20260814001540"
   },
   {
     "corp_code": "00122551",
@@ -30580,24 +30508,6 @@
     "treasury_ratio": 0.0018794915312675832,
     "floating_shares": 29933129,
     "source_rcept_no": "20260318001705"
-  },
-  {
-    "corp_code": "00205003",
-    "stock_code": "033340",
-    "corp_name": "좋은사람들",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 96950558,
-    "treasury_ratio": null,
-    "floating_shares": 96950558,
-    "source_rcept_no": "20260320000913"
   },
   {
     "corp_code": "00223513",
