@@ -13608,6 +13608,14 @@
     "last_updated": "2026-07-30"
   },
   {
+    "corp_code": "00190321",
+    "stock_code": "030200",
+    "corp_name": "KT",
+    "market": "KOSPI",
+    "sector": null,
+    "last_updated": "2026-09-09"
+  },
+  {
     "corp_code": "00244455",
     "stock_code": "033780",
     "corp_name": "KT&G",
@@ -18038,14 +18046,6 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2023-03-30"
-  },
-  {
-    "corp_code": "00190321",
-    "stock_code": "030200",
-    "corp_name": "KT",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-09-09"
   },
   {
     "corp_code": "01430475",
