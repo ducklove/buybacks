@@ -1056,14 +1056,6 @@
     "last_updated": "2025-05-15"
   },
   {
-    "corp_code": "00249502",
-    "stock_code": "035290",
-    "corp_name": "골드앤에스",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-04-01"
-  },
-  {
     "corp_code": "01067516",
     "stock_code": "215000",
     "corp_name": "골프존",
@@ -4960,14 +4952,6 @@
     "last_updated": "2024-11-29"
   },
   {
-    "corp_code": "00243979",
-    "stock_code": "084180",
-    "corp_name": "수성웹툰",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2025-10-14"
-  },
-  {
     "corp_code": "01063954",
     "stock_code": "253840",
     "corp_name": "수젠텍",
@@ -7333,7 +7317,7 @@
     "corp_name": "엘디티",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-06-19"
+    "last_updated": "2026-09-16"
   },
   {
     "corp_code": "01181515",
@@ -7494,14 +7478,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2026-09-04"
-  },
-  {
-    "corp_code": "00110884",
-    "stock_code": "032790",
-    "corp_name": "엠젠솔루션",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-06-16"
   },
   {
     "corp_code": "00121686",
@@ -15904,14 +15880,6 @@
     "last_updated": "2026-06-01"
   },
   {
-    "corp_code": "00107677",
-    "stock_code": "002070",
-    "corp_name": "비비안",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2022-12-07"
-  },
-  {
     "corp_code": "00520887",
     "stock_code": "100220",
     "corp_name": "비상교육",
@@ -16573,7 +16541,7 @@
     "corp_name": "셀트리온",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-08-31"
+    "last_updated": "2026-09-16"
   },
   {
     "corp_code": "01412822",
@@ -18645,7 +18613,7 @@
     "corp_name": "한국전자홀딩스",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-08-18"
+    "last_updated": "2026-09-16"
   },
   {
     "corp_code": "00159500",
@@ -19150,14 +19118,6 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2025-03-25"
-  },
-  {
-    "corp_code": "00428321",
-    "stock_code": "101530",
-    "corp_name": "해태제과식품",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2024-07-01"
   },
   {
     "corp_code": "00164478",

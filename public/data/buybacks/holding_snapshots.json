@@ -18720,24 +18720,6 @@
     "source_rcept_no": "20260323001738"
   },
   {
-    "corp_code": "00428321",
-    "stock_code": "101530",
-    "corp_name": "해태제과식품",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2599160,
-    "issued_shares": 29116822,
-    "treasury_ratio": 0.08926661020903999,
-    "floating_shares": 26517662,
-    "source_rcept_no": "20260318001023"
-  },
-  {
     "corp_code": "00411048",
     "stock_code": "101490",
     "corp_name": "에스앤에스텍",
@@ -21490,24 +21472,6 @@
     "treasury_ratio": 0.013149085692895832,
     "floating_shares": 22614717,
     "source_rcept_no": "20260319000837"
-  },
-  {
-    "corp_code": "00243979",
-    "stock_code": "084180",
-    "corp_name": "수성웹툰",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2513,
-    "issued_shares": 18074283,
-    "treasury_ratio": 0.0001390373272345022,
-    "floating_shares": 18071770,
-    "source_rcept_no": "20260319001100"
   },
   {
     "corp_code": "00228059",
@@ -29970,24 +29934,6 @@
     "source_rcept_no": "20260313001021"
   },
   {
-    "corp_code": "00249502",
-    "stock_code": "035290",
-    "corp_name": "골드앤에스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2018,
-    "issued_shares": 23838240,
-    "treasury_ratio": 8.465390062353597e-05,
-    "floating_shares": 23836222,
-    "source_rcept_no": "20260323000991"
-  },
-  {
     "corp_code": "00255619",
     "stock_code": "035250",
     "corp_name": "강원랜드",
@@ -30706,24 +30652,6 @@
     "treasury_ratio": 9.522850613759116e-06,
     "floating_shares": 166755202,
     "source_rcept_no": "20260323001668"
-  },
-  {
-    "corp_code": "00110884",
-    "stock_code": "032790",
-    "corp_name": "엠젠솔루션",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 51360212,
-    "treasury_ratio": null,
-    "floating_shares": 51360212,
-    "source_rcept_no": "20260320000990"
   },
   {
     "corp_code": "00173351",
@@ -37782,24 +37710,6 @@
     "source_rcept_no": "20260317000867"
   },
   {
-    "corp_code": "00131832",
-    "stock_code": "006125",
-    "corp_name": "SK디스커버리우",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "의결권 없는 주식\n(우선주)",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 82217,
-    "issued_shares": 1312455,
-    "treasury_ratio": 0.06264367159254984,
-    "floating_shares": 1230238,
-    "source_rcept_no": "20260317000867"
-  },
-  {
     "corp_code": "00126779",
     "stock_code": "006110",
     "corp_name": "삼아알미늄",
@@ -40912,24 +40822,6 @@
     "treasury_ratio": 0.08492347961270479,
     "floating_shares": 17864650,
     "source_rcept_no": "20260318001176"
-  },
-  {
-    "corp_code": "00107677",
-    "stock_code": "002070",
-    "corp_name": "비비안",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 45196077,
-    "treasury_ratio": null,
-    "floating_shares": 45196077,
-    "source_rcept_no": "20260323001209"
   },
   {
     "corp_code": "00138701",
