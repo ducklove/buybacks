@@ -828,24 +828,6 @@
     "source_rcept_no": "20260313000769"
   },
   {
-    "corp_code": "01845701",
-    "stock_code": "482520",
-    "corp_name": "교보16호스팩",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 6100000,
-    "treasury_ratio": null,
-    "floating_shares": 6100000,
-    "source_rcept_no": "20260304001040"
-  },
-  {
     "corp_code": "01834194",
     "stock_code": "481890",
     "corp_name": "엔에이치스팩31호",
@@ -33228,24 +33210,6 @@
     "source_rcept_no": "20260318000532"
   },
   {
-    "corp_code": "00109781",
-    "stock_code": "017650",
-    "corp_name": "대림제지",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 8785000,
-    "treasury_ratio": null,
-    "floating_shares": 8785000,
-    "source_rcept_no": "20260318001548"
-  },
-  {
     "corp_code": "00135111",
     "stock_code": "017550",
     "corp_name": "수산세보틱스",
@@ -36344,7 +36308,7 @@
   {
     "corp_code": "00102140",
     "stock_code": "009140",
-    "corp_name": "경인전자",
+    "corp_name": "케이아이이",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
