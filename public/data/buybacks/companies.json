@@ -14368,14 +14368,6 @@
     "last_updated": "2025-02-28"
   },
   {
-    "corp_code": "00102140",
-    "stock_code": "009140",
-    "corp_name": "케이아이이",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2025-11-27"
-  },
-  {
     "corp_code": "00102432",
     "stock_code": "013580",
     "corp_name": "계룡건설",
@@ -17934,6 +17926,14 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2025-03-26"
+  },
+  {
+    "corp_code": "00102140",
+    "stock_code": "009140",
+    "corp_name": "케이아이이",
+    "market": "KOSPI",
+    "sector": null,
+    "last_updated": "2025-11-27"
   },
   {
     "corp_code": "01323032",
