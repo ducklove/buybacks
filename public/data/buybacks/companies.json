@@ -2589,7 +2589,7 @@
     "corp_name": "디지털대성",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-11-17"
+    "last_updated": "2026-09-21"
   },
   {
     "corp_code": "00231442",
@@ -3069,7 +3069,7 @@
     "corp_name": "멀티캠퍼스",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-04-01"
+    "last_updated": "2026-09-22"
   },
   {
     "corp_code": "00422284",
@@ -6784,14 +6784,6 @@
     "last_updated": "2025-11-24"
   },
   {
-    "corp_code": "01223219",
-    "stock_code": "312610",
-    "corp_name": "에이에프더블류",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-05-04"
-  },
-  {
     "corp_code": "00493325",
     "stock_code": "172670",
     "corp_name": "에이엘티",
@@ -8901,7 +8893,7 @@
     "corp_name": "이엘씨",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-07-16"
+    "last_updated": "2026-09-21"
   },
   {
     "corp_code": "00374020",
@@ -14912,14 +14904,6 @@
     "last_updated": "2026-09-14"
   },
   {
-    "corp_code": "00111111",
-    "stock_code": "009190",
-    "corp_name": "대양금속",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-03-03"
-  },
-  {
     "corp_code": "00124540",
     "stock_code": "047040",
     "corp_name": "대우건설",
@@ -17933,7 +17917,7 @@
     "corp_name": "케이아이이",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2025-11-27"
+    "last_updated": "2026-09-21"
   },
   {
     "corp_code": "01323032",

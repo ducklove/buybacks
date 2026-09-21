@@ -7632,24 +7632,6 @@
     "source_rcept_no": "20260320001084"
   },
   {
-    "corp_code": "01223219",
-    "stock_code": "312610",
-    "corp_name": "에이에프더블류",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 20256888,
-    "treasury_ratio": null,
-    "floating_shares": 20256888,
-    "source_rcept_no": "20260317000168"
-  },
-  {
     "corp_code": "01071041",
     "stock_code": "311690",
     "corp_name": "CJ 바이오사이언스",
@@ -36214,24 +36196,6 @@
     "treasury_ratio": null,
     "floating_shares": 6068000,
     "source_rcept_no": "20260310002858"
-  },
-  {
-    "corp_code": "00111111",
-    "stock_code": "009190",
-    "corp_name": "대양금속",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 4663,
-    "issued_shares": 43192625,
-    "treasury_ratio": 0.00010795824518653358,
-    "floating_shares": 43187962,
-    "source_rcept_no": "20260319001294"
   },
   {
     "corp_code": "00140946",
