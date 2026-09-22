@@ -4862,7 +4862,7 @@
   {
     "corp_code": "01323032",
     "stock_code": "381970",
-    "corp_name": "케이카",
+    "corp_name": "KG모빌리티플랫폼",
     "as_of_date": "2025-12-31",
     "report_year": 2025,
     "report_code": "11011",
@@ -10438,24 +10438,6 @@
     "treasury_ratio": null,
     "floating_shares": 14438000,
     "source_rcept_no": "20260319000268"
-  },
-  {
-    "corp_code": "01174038",
-    "stock_code": "254120",
-    "corp_name": "자비스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 42100,
-    "issued_shares": 30754270,
-    "treasury_ratio": 0.0013689156009880905,
-    "floating_shares": 30712170,
-    "source_rcept_no": "20260319000014"
   },
   {
     "corp_code": "01063954",
@@ -25288,24 +25270,6 @@
     "treasury_ratio": null,
     "floating_shares": 71248501,
     "source_rcept_no": "20260319000012"
-  },
-  {
-    "corp_code": "00265005",
-    "stock_code": "057540",
-    "corp_name": "옴니시스템",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 55087,
-    "issued_shares": 59449355,
-    "treasury_ratio": 0.0009266206504679488,
-    "floating_shares": 59394268,
-    "source_rcept_no": "20260318001260"
   },
   {
     "corp_code": "00307222",

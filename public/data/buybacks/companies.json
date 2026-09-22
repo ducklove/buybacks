@@ -3461,7 +3461,7 @@
     "corp_name": "바디텍메드",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-07-27"
+    "last_updated": "2026-09-22"
   },
   {
     "corp_code": "00259590",
@@ -7808,14 +7808,6 @@
     "last_updated": "2024-10-10"
   },
   {
-    "corp_code": "00265005",
-    "stock_code": "057540",
-    "corp_name": "옴니시스템",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-07-21"
-  },
-  {
     "corp_code": "00831428",
     "stock_code": "131030",
     "corp_name": "옵투스제약",
@@ -9270,14 +9262,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2023-03-07"
-  },
-  {
-    "corp_code": "01174038",
-    "stock_code": "254120",
-    "corp_name": "자비스",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2023-02-17"
   },
   {
     "corp_code": "00418379",
@@ -11589,7 +11573,7 @@
     "corp_name": "푸드웰",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2023-03-29"
+    "last_updated": "2026-09-22"
   },
   {
     "corp_code": "00537832",
@@ -13509,7 +13493,7 @@
     "corp_name": "KSS해운",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-07-30"
+    "last_updated": "2026-09-22"
   },
   {
     "corp_code": "00190321",
@@ -13518,14 +13502,6 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2026-09-09"
-  },
-  {
-    "corp_code": "00244455",
-    "stock_code": "033780",
-    "corp_name": "KT&G",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2025-10-23"
   },
   {
     "corp_code": "00372882",
@@ -17922,7 +17898,7 @@
   {
     "corp_code": "01323032",
     "stock_code": "381970",
-    "corp_name": "케이카",
+    "corp_name": "KG모빌리티플랫폼",
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2023-11-14"
@@ -17934,6 +17910,14 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2023-03-30"
+  },
+  {
+    "corp_code": "00244455",
+    "stock_code": "033780",
+    "corp_name": "KT&G",
+    "market": "KOSPI",
+    "sector": null,
+    "last_updated": "2026-09-22"
   },
   {
     "corp_code": "01430475",
@@ -18757,7 +18741,7 @@
     "corp_name": "한세엠케이",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-07-01"
+    "last_updated": "2026-09-22"
   },
   {
     "corp_code": "00161976",
@@ -18765,7 +18749,7 @@
     "corp_name": "한세예스24홀딩스",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-07-01"
+    "last_updated": "2026-09-22"
   },
   {
     "corp_code": "00140946",
