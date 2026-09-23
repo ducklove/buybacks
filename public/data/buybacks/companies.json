@@ -6469,7 +6469,7 @@
     "corp_name": "에스에스알",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2025-02-21"
+    "last_updated": "2026-09-23"
   },
   {
     "corp_code": "00128661",
@@ -9117,7 +9117,7 @@
     "corp_name": "인터엠",
     "market": "KOSDAQ",
     "sector": null,
-    "last_updated": "2026-07-20"
+    "last_updated": "2026-09-23"
   },
   {
     "corp_code": "00369170",
@@ -13448,6 +13448,14 @@
     "last_updated": "2025-06-04"
   },
   {
+    "corp_code": "01323032",
+    "stock_code": "381970",
+    "corp_name": "KG모빌리티플랫폼",
+    "market": "KOSPI",
+    "sector": null,
+    "last_updated": "2023-11-14"
+  },
+  {
     "corp_code": "00115676",
     "stock_code": "016380",
     "corp_name": "KG스틸",
@@ -13517,7 +13525,7 @@
     "corp_name": "KTis",
     "market": "KOSPI",
     "sector": null,
-    "last_updated": "2026-05-28"
+    "last_updated": "2026-09-23"
   },
   {
     "corp_code": "00593032",
@@ -17894,14 +17902,6 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2026-09-21"
-  },
-  {
-    "corp_code": "01323032",
-    "stock_code": "381970",
-    "corp_name": "KG모빌리티플랫폼",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2023-11-14"
   },
   {
     "corp_code": "00861076",
