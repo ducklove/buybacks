@@ -1530,24 +1530,6 @@
     "source_rcept_no": "20260316000720"
   },
   {
-    "corp_code": "01798980",
-    "stock_code": "473050",
-    "corp_name": "유안타제15호스팩",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 7010000,
-    "treasury_ratio": null,
-    "floating_shares": 7010000,
-    "source_rcept_no": "20260306000285"
-  },
-  {
     "corp_code": "01798722",
     "stock_code": "473000",
     "corp_name": "에스케이증권제12호스팩",
@@ -1582,24 +1564,6 @@
     "treasury_ratio": 0.00024598121694105663,
     "floating_shares": 32335977,
     "source_rcept_no": "20260325000974"
-  },
-  {
-    "corp_code": "01797440",
-    "stock_code": "472230",
-    "corp_name": "에스케이증권제11호스팩",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 4155000,
-    "treasury_ratio": null,
-    "floating_shares": 4155000,
-    "source_rcept_no": "20260309001294"
   },
   {
     "corp_code": "01448544",
@@ -23544,24 +23508,6 @@
     "source_rcept_no": "20260319000406"
   },
   {
-    "corp_code": "00406727",
-    "stock_code": "067770",
-    "corp_name": "세진티에스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 100904,
-    "issued_shares": 8396593,
-    "treasury_ratio": 0.012017255093821982,
-    "floating_shares": 8295689,
-    "source_rcept_no": "20260629000270"
-  },
-  {
     "corp_code": "00238199",
     "stock_code": "067730",
     "corp_name": "로지시스",
@@ -40876,24 +40822,6 @@
     "treasury_ratio": 0.0,
     "floating_shares": 96830132,
     "source_rcept_no": "20260318001554"
-  },
-  {
-    "corp_code": "00137809",
-    "stock_code": "001770",
-    "corp_name": "SHD",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 1214878,
-    "treasury_ratio": null,
-    "floating_shares": 1214878,
-    "source_rcept_no": "20260318000401"
   },
   {
     "corp_code": "00162416",

@@ -4736,14 +4736,6 @@
     "last_updated": "2026-04-01"
   },
   {
-    "corp_code": "00406727",
-    "stock_code": "067770",
-    "corp_name": "세진티에스",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2026-08-31"
-  },
-  {
     "corp_code": "00351630",
     "stock_code": "053450",
     "corp_name": "세코닉스",
@@ -6550,14 +6542,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2025-01-06"
-  },
-  {
-    "corp_code": "01797440",
-    "stock_code": "472230",
-    "corp_name": "에스케이증권제11호스팩",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2024-03-04"
   },
   {
     "corp_code": "01798722",
@@ -8526,14 +8510,6 @@
     "market": "KOSDAQ",
     "sector": null,
     "last_updated": "2026-08-31"
-  },
-  {
-    "corp_code": "01798980",
-    "stock_code": "473050",
-    "corp_name": "유안타제15호스팩",
-    "market": "KOSDAQ",
-    "sector": null,
-    "last_updated": "2024-04-11"
   },
   {
     "corp_code": "01804476",
@@ -13918,14 +13894,6 @@
     "market": "KOSPI",
     "sector": null,
     "last_updated": "2025-10-10"
-  },
-  {
-    "corp_code": "00137809",
-    "stock_code": "001770",
-    "corp_name": "SHD",
-    "market": "KOSPI",
-    "sector": null,
-    "last_updated": "2026-08-13"
   },
   {
     "corp_code": "00138260",
