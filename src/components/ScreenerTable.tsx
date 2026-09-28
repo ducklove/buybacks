@@ -1,3 +1,4 @@
+import { PortfolioHeldBadge } from "./PortfolioHeldBadge";
 import { useMemo, useState } from "react";
 import {
   DEFAULT_TABLE_PAGE_SIZE,
@@ -290,6 +291,7 @@ export function ScreenerTable({ events, selectedStockCode, onSelectStock }: Scre
                     onClick={() => selectStock(row.stockCode)}
                   >
                     {row.corpName || row.stockCode}
+                    <PortfolioHeldBadge code={row.stockCode} price={row.latestPrice} />
                     <small>{row.stockCode}</small>
                   </button>
                 </td>

@@ -119,3 +119,8 @@ describe("serializeAppState", () => {
     });
   });
 });
+
+it("accepts hub code links and gives native stock links precedence", () => {
+  expect(parseAppStateFromSearch("?code=005930").selectedStockCode).toBe("005930");
+  expect(parseAppStateFromSearch("?stock=000660&code=005930").selectedStockCode).toBe("000660");
+});

@@ -1,3 +1,4 @@
+import { PortfolioHeldBadge } from "./PortfolioHeldBadge";
 import { useMemo, useState } from "react";
 import {
   DEFAULT_TABLE_PAGE_SIZE,
@@ -165,6 +166,10 @@ export function EventTable({ events, selectedStockCode, onSelectStock }: EventTa
                       onClick={() => onSelectStock(event.stock_code)}
                     >
                       {event.corp_name}
+                      <PortfolioHeldBadge
+                        code={event.stock_code}
+                        price={event.latestPrice?.close}
+                      />
                       <small>{event.stock_code}</small>
                     </button>
                   </td>

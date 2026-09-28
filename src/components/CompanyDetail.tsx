@@ -1,3 +1,4 @@
+import { PortfolioHeldBadge } from "./PortfolioHeldBadge";
 import { memo, useEffect, useMemo, useState } from "react";
 import type {
   BuybackExecution,
@@ -170,7 +171,10 @@ export const CompanyDetail = memo(function CompanyDetail({
 
       <div className="company-heading">
         <div>
-          <strong>{company.corp_name}</strong>
+          <strong>
+            {company.corp_name}
+            <PortfolioHeldBadge code={company.stock_code} price={latestPrice?.close} />
+          </strong>
           <span>
             {company.stock_code} · {company.market} · {company.sector ?? "업종 미상"}
           </span>

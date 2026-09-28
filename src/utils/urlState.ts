@@ -66,7 +66,7 @@ export function parseAppStateFromSearch(search: string): UrlAppState {
       year: parseYear(params.get(PARAM_YEAR)),
       search: parseSearch(params.get(PARAM_SEARCH))
     },
-    selectedStockCode: parseStockCode(params.get(PARAM_STOCK))
+    selectedStockCode: parseStockCode(params.get(PARAM_STOCK) ?? params.get("code"))
   };
 }
 

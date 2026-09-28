@@ -4,6 +4,7 @@ import { KPI_LOOKBACK_MONTHS } from "../constants";
 import { marketCapFrom } from "./marketCap";
 
 export interface ScreenerRow {
+  latestPrice: number | null;
   stockCode: string;
   corpName: string;
   market: Market | null;
@@ -114,6 +115,7 @@ function buildRowForStock(
   return {
     stockCode,
     corpName: representative.corpName,
+    latestPrice: latestEvent?.latestPrice?.close ?? null,
     market: representative.market,
     eventCount: stockEvents.length,
     acquisitionEventCount,
