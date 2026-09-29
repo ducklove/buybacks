@@ -216,24 +216,6 @@
     "source_rcept_no": "20260428000679"
   },
   {
-    "corp_code": "00781202",
-    "stock_code": "900100",
-    "corp_name": "파이온엑스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "의결권 있는 주식\n(보통주)",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 8219,
-    "issued_shares": 51154999,
-    "treasury_ratio": 0.00016066855948917134,
-    "floating_shares": 51146780,
-    "source_rcept_no": "20260421000356"
-  },
-  {
     "corp_code": "00783246",
     "stock_code": "900070",
     "corp_name": "글로벌에스엠",
@@ -1582,24 +1564,6 @@
     "treasury_ratio": 0.03594764723492024,
     "floating_shares": 11164886,
     "source_rcept_no": "20260629000325"
-  },
-  {
-    "corp_code": "01791561",
-    "stock_code": "469900",
-    "corp_name": "하나31호스팩",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": null,
-    "issued_shares": 5605000,
-    "treasury_ratio": null,
-    "floating_shares": 5605000,
-    "source_rcept_no": "20260305001434"
   },
   {
     "corp_code": "01745173",
@@ -4138,24 +4102,6 @@
     "treasury_ratio": null,
     "floating_shares": 11600420,
     "source_rcept_no": "20260319001147"
-  },
-  {
-    "corp_code": "01179866",
-    "stock_code": "398120",
-    "corp_name": "에스지헬스케어",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 330012,
-    "issued_shares": 11309700,
-    "treasury_ratio": 0.02917955383431921,
-    "floating_shares": 10979688,
-    "source_rcept_no": "20260323001132"
   },
   {
     "corp_code": "01551042",
@@ -27594,24 +27540,6 @@
     "source_rcept_no": "20260318001401"
   },
   {
-    "corp_code": "00269241",
-    "stock_code": "044380",
-    "corp_name": "주연테크",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 2323,
-    "issued_shares": 64481582,
-    "treasury_ratio": 3.602579105456811e-05,
-    "floating_shares": 64479259,
-    "source_rcept_no": "20260319000699"
-  },
-  {
     "corp_code": "00293886",
     "stock_code": "044340",
     "corp_name": "위닉스",
@@ -31158,24 +31086,6 @@
     "source_rcept_no": "20260318001545"
   },
   {
-    "corp_code": "00219440",
-    "stock_code": "028080",
-    "corp_name": "휴맥스홀딩스",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 1659448,
-    "issued_shares": 12577506,
-    "treasury_ratio": 0.13193776254211287,
-    "floating_shares": 10918058,
-    "source_rcept_no": "20260318001706"
-  },
-  {
     "corp_code": "00126308",
     "stock_code": "028050",
     "corp_name": "삼성E&A",
@@ -34558,6 +34468,24 @@
     "treasury_ratio": 0.07808423004765704,
     "floating_shares": 2180352,
     "source_rcept_no": "20260323001615"
+  },
+  {
+    "corp_code": "00141413",
+    "stock_code": "012280",
+    "corp_name": "영화금속",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "보통주",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": 2140000,
+    "issued_shares": 51664505,
+    "treasury_ratio": 0.04142108784357849,
+    "floating_shares": 49524505,
+    "source_rcept_no": "20260316000700"
   },
   {
     "corp_code": "00125664",
