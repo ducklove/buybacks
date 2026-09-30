@@ -2,6 +2,11 @@ name: Refresh holdings
 
 on:
   workflow_dispatch:
+    inputs:
+      allow_shrink:
+        description: "Set to true to let validation pass when events/holdings/executions drop by more than 2% (intentional cleanup only)."
+        required: false
+        default: "false"
   schedule:
     - cron: "30 19 1 * *"
 
@@ -17,6 +22,8 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    env:
+      BUYBACKS_ALLOW_SHRINK: ${{ github.event.inputs.allow_shrink || 'false' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -34,6 +41,10 @@ jobs:
 
       - name: Install Python test tools
         run: python -m pip install --upgrade pip pytest
+
+      # Row-count baseline for the validator's shrink guard (the committed dataset).
+      - name: Snapshot committed dataset
+        run: cp -R public/data/buybacks "$RUNNER_TEMP/buybacks-baseline"
 
       # The full-universe holding scan alone takes ~85 minutes (~3,975
       # companies), plus dividends, price reactions, and latest prices —
@@ -66,7 +77,14 @@ jobs:
           --discovery-page-limit 50
 
       - name: Validate data
-        run: python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
+        run: >
+          python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
+          --baseline "$RUNNER_TEMP/buybacks-baseline"
+
+      # Value Compass hub summary (public/summary.json + version.json, served at
+      # the Pages root). Rewritten only when its content changes.
+      - name: Publish hub summary
+        run: python scripts/buybacks/publish_summary.py --data-dir public/data/buybacks --out-dir public
 
       - name: Test Python pipeline
         run: python -m pytest
@@ -75,14 +93,16 @@ jobs:
       # git operation so a late failure (rebase conflict, push, deploy) never
       # discards the collected data.
       - name: Snapshot dataset for failure recovery
-        run: cp -r public/data/buybacks "$RUNNER_TEMP/dataset-snapshot"
+        run: |
+          cp -r public/data/buybacks "$RUNNER_TEMP/dataset-snapshot"
+          cp public/summary.json public/version.json "$RUNNER_TEMP/dataset-snapshot/"
 
       - name: Commit data changes
         id: commit-data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/buybacks
+          git add public/data/buybacks public/summary.json public/version.json
           if git diff --cached --quiet; then
             echo "No buybacks data changes to commit."
             echo "changed=false" >> "$GITHUB_OUTPUT"

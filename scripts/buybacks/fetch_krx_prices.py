@@ -116,22 +116,33 @@ def calculate_kis_proxy_price_reactions(
     stock_prices: dict[str, list[PriceRow]] = {}
     market_prices: dict[str, list[PriceRow]] = {}
 
+    # The index window is the union of every stock window in the same market, so
+    # old and new events alike get index rows (the index used to be fetched with
+    # only the first-iterated stock's start date, leaving ~35% of older events
+    # without market-relative returns or silently misaligned).
+    stock_windows: dict[str, tuple[date, date]] = {}
+    index_windows: dict[str, tuple[date, date]] = {}
     for stock_code, stock_events in events_by_stock.items():
         company = company_by_stock.get(stock_code)
-        market = company.market if company else "OTHER"
-        start_date, end_date = price_window(stock_events)
+        index_market = kis_proxy_index_market(company.market if company else "OTHER")
+        window = price_window(stock_events)
+        stock_windows[stock_code] = window
+        index_windows[index_market] = union_window(index_windows.get(index_market), window)
+
+    for stock_code, (start_date, end_date) in stock_windows.items():
         try:
             stock_prices[stock_code] = [coerce_price_row(row) for row in client.stock_history(stock_code, start_date, end_date)]
         except Exception as exc:  # noqa: BLE001 - live price enrichment should not break DART data.
             warnings.append(f"kis_proxy stock history failed for {stock_code}: {exc}")
             stock_prices[stock_code] = []
-        index_market = kis_proxy_index_market(market)
-        if index_market not in market_prices:
-            try:
-                market_prices[index_market] = [coerce_price_row(row) for row in client.index_history(market, start_date)]
-            except Exception as exc:  # noqa: BLE001
-                warnings.append(f"kis_proxy index history failed for {index_market}: {exc}")
-                market_prices[index_market] = []
+
+    for index_market, (start_date, end_date) in index_windows.items():
+        try:
+            market_prices[index_market], index_warnings = fetch_index_rows(client, index_market, start_date, end_date)
+            warnings.extend(index_warnings)
+        except Exception as exc:  # noqa: BLE001
+            warnings.append(f"kis_proxy index history failed for {index_market}: {exc}")
+            market_prices[index_market] = []
 
     reactions: list[PriceReaction] = []
     series_list: list[ReactionSeries] = []
@@ -155,6 +166,79 @@ def calculate_kis_proxy_price_reactions(
         if series is not None:
             series_list.append(series)
     return reactions, series_list, warnings
+
+
+def union_window(current: tuple[date, date] | None, window: tuple[date, date]) -> tuple[date, date]:
+    if current is None:
+        return window
+    return min(current[0], window[0]), max(current[1], window[1])
+
+
+# Upper bound on index-history requests per market and build. Each KIS index
+# call returns a capped page (~100 trading days), so a multi-year backfill
+# window needs several pages; the cap only guards against a non-advancing API.
+INDEX_HISTORY_MAX_CALLS = 40
+
+
+def fetch_index_rows(
+    client: "KISProxyPriceClient",
+    market: str,
+    start_date: date,
+    end_date: date,
+    max_calls: int = INDEX_HISTORY_MAX_CALLS,
+) -> tuple[list[PriceRow], list[str]]:
+    """Fetch index closes covering start_date..end_date, paging as needed.
+
+    The kis-proxy index endpoint takes a single anchor date and returns a
+    capped page. Depending on the upstream TR the page runs forward from the
+    anchor or backward to it, so the first page (anchored at start_date) is
+    used to detect the direction and the remaining pages walk the window in
+    that direction. Rows are de-duplicated by date and returned sorted.
+    """
+    rows: dict[str, PriceRow] = {}
+    calls = 0
+    start_iso, end_iso = start_date.isoformat(), end_date.isoformat()
+
+    def page(anchor: date) -> list[PriceRow]:
+        nonlocal calls
+        calls += 1
+        batch = [coerce_price_row(row) for row in client.index_history(market, anchor)]
+        for row in batch:
+            rows[row.date] = row
+        return batch
+
+    first = page(start_date)
+    if first and max(row.date for row in first) > start_iso:
+        # Forward pages: continue after the newest row until end_date is covered.
+        newest = max(row.date for row in first)
+        while calls < max_calls and newest < end_iso:
+            batch = page(parse_iso_date(newest) + timedelta(days=1))
+            batch_newest = max((row.date for row in batch), default=newest)
+            if batch_newest <= newest:
+                break
+            newest = batch_newest
+    else:
+        # Backward pages (or an empty first page): walk back from end_date.
+        cursor = end_date
+        while calls < max_calls:
+            batch = page(cursor)
+            if not batch:
+                break
+            oldest = min(row.date for row in batch)
+            if oldest <= start_iso:
+                break
+            next_cursor = parse_iso_date(oldest) - timedelta(days=1)
+            if next_cursor >= cursor:
+                break
+            cursor = next_cursor
+
+    warnings: list[str] = []
+    ordered = [rows[key] for key in sorted(rows)]
+    if calls >= max_calls:
+        warnings.append(f"kis_proxy index history for {market} stopped after {calls} pages")
+    if ordered and ordered[0].date > start_iso:
+        LOGGER.info("index %s history starts %s (requested %s)", market, ordered[0].date, start_iso)
+    return ordered, warnings
 
 
 def calculate_kis_proxy_latest_prices(
@@ -451,7 +535,7 @@ def parse_iso_date(value: str) -> date:
 
 
 def kis_proxy_index_market(market: str) -> str:
-    return "kosdaq" if market == "KOSDAQ" else "kospi"
+    return "kosdaq" if str(market).upper() == "KOSDAQ" else "kospi"
 
 
 def max_drawdown(rows: list[PriceRow], base_close: float) -> float | None:

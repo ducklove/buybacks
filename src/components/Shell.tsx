@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { applyTheme, currentTheme, THEME_CHANGE_EVENT, type Theme } from "../utils/vcShell";
 
 interface ShellProps {
   children: ReactNode;
@@ -13,25 +14,26 @@ const navItems = [
   { label: "방법론", target: "methodology" }
 ];
 
-/** data-theme 미설정이면 OS 선호(prefers-color-scheme)를 현재 테마로 간주한다. */
-function currentTheme(): "dark" | "light" {
-  const applied = document.documentElement.dataset.theme;
-  if (applied === "dark" || applied === "light") return applied;
-  return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-}
-
-/** 생태계 공통 계약: html[data-theme] 반영 + localStorage 'theme' 키에 저장. */
-function toggleTheme() {
-  const next = currentTheme() === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = next;
-  try {
-    localStorage.setItem("theme", next);
-  } catch {
-    /* 프라이빗 모드 등 저장 불가 시 세션 내 전환만 유지 */
-  }
+/**
+ * 현재 테마를 추적한다. 셸 바의 토글·다른 탭(storage)·허브 iframe 메시지로 바뀐 테마도
+ * vc-shell.js가 'vc:themechange'로 알려 주므로 이 이벤트 하나만 구독하면 된다.
+ */
+function useTheme(): [Theme, () => void] {
+  const [theme, setTheme] = useState<Theme>(currentTheme);
+  useEffect(() => {
+    const onChange = (event: CustomEvent<{ theme: Theme }>) => {
+      setTheme(event.detail?.theme === "dark" ? "dark" : "light");
+    };
+    document.addEventListener(THEME_CHANGE_EVENT, onChange);
+    return () => document.removeEventListener(THEME_CHANGE_EVENT, onChange);
+  }, []);
+  // 부트 스크립트·셸이 설정한 data-theme에서 이어서 전환한다(상태가 뒤처져 있어도 안전).
+  const toggle = () => setTheme(applyTheme(currentTheme() === "dark" ? "light" : "dark"));
+  return [theme, toggle];
 }
 
 export function Shell({ children }: ShellProps) {
+  const [theme, toggleTheme] = useTheme();
   const scrollToSection = (target: string) => {
     document.getElementById(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -62,9 +64,6 @@ export function Shell({ children }: ShellProps) {
               {item.label}
             </button>
           ))}
-          <a className="hub-link" href="https://ducklove.duckdns.org:3691" rel="noopener">
-            Value Compass ↗
-          </a>
         </nav>
         <div className="topbar-actions">
           <a
@@ -78,8 +77,9 @@ export function Shell({ children }: ShellProps) {
           <button
             className="theme-toggle"
             type="button"
-            title="테마 전환"
+            title={theme === "dark" ? "라이트 테마로 전환" : "다크 테마로 전환"}
             aria-label="테마 전환"
+            aria-pressed={theme === "dark"}
             onClick={toggleTheme}
           >
             🌓

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from datetime import date
@@ -42,6 +43,16 @@ DIVIDEND_YEAR_MIN = 1990
 # DART source row; report it, never fail on it.
 DIVIDEND_PAYOUT_RATIO_WARNING_MAX = 5.0
 MAX_PRINTED_WARNINGS = 50
+# Shrink guard: a build that loses more than this share of the rows in any of
+# these files (versus the previously committed dataset) fails validation. A
+# partial listing response or an outage must never purge history silently.
+SHRINK_GUARD_FILES = (
+    ("events.json", "events"),
+    ("holding_snapshots.json", "holding_snapshots"),
+    ("executions.json", "executions"),
+)
+DEFAULT_MAX_SHRINK = 0.02
+ALLOW_SHRINK_ENV = "BUYBACKS_ALLOW_SHRINK"
 
 
 def load(path: Path) -> Any:
@@ -167,6 +178,30 @@ def validate_dataset(data_dir: Path) -> tuple[list[str], list[str]]:
     if dividends is not None:
         warnings.extend(dividend_ratio_warnings(dividends))
     return errors, warnings
+
+
+def shrink_errors(data_dir: Path, baseline_dir: Path, max_shrink: float = DEFAULT_MAX_SHRINK) -> list[str]:
+    """Fail when events/holdings/executions lose more than max_shrink of their rows.
+
+    baseline_dir holds the dataset as it was before the build (the committed
+    files). Files missing from the baseline are skipped (nothing to compare).
+    """
+    errors: list[str] = []
+    for name, label in SHRINK_GUARD_FILES:
+        previous = load_optional(baseline_dir / name, None)
+        if not isinstance(previous, list) or not previous:
+            continue
+        current = load_optional(data_dir / name, None)
+        current_count = len(current) if isinstance(current, list) else 0
+        previous_count = len(previous)
+        if current_count < previous_count * (1 - max_shrink):
+            drop = 1 - current_count / previous_count
+            errors.append(
+                f"{label} shrank from {previous_count} to {current_count} rows (-{drop:.1%}), "
+                f"more than the {max_shrink:.0%} shrink guard allows; "
+                f"set {ALLOW_SHRINK_ENV}=1 if the drop is intentional"
+            )
+    return errors
 
 
 def execution_errors(executions: list[dict], event_ids: set) -> list[str]:
@@ -406,8 +441,28 @@ def holding_flow_warnings(holdings: list[dict]) -> list[str]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("data_dir", type=Path, nargs="?", default=Path("public/data/buybacks"))
+    parser.add_argument(
+        "--baseline",
+        type=Path,
+        default=None,
+        help="Directory with the previous (committed) dataset for the row-count shrink guard.",
+    )
+    parser.add_argument(
+        "--max-shrink",
+        type=float,
+        default=DEFAULT_MAX_SHRINK,
+        help="Largest allowed row-count drop versus --baseline, as a fraction (default 0.02).",
+    )
     args = parser.parse_args()
     errors, warnings = validate_dataset(args.data_dir)
+    if args.baseline is not None:
+        guard_errors = shrink_errors(args.data_dir, args.baseline, args.max_shrink)
+        if guard_errors and os.environ.get(ALLOW_SHRINK_ENV, "").strip().lower() in {"1", "true", "yes"}:
+            print(f"{ALLOW_SHRINK_ENV} is set; shrink guard findings are reported but not enforced:")
+            for message in guard_errors:
+                print(f"- {message}")
+        else:
+            errors.extend(guard_errors)
     if warnings:
         print(f"Dataset validation warnings ({len(warnings)}, non-blocking):")
         for warning in warnings[:MAX_PRINTED_WARNINGS]:

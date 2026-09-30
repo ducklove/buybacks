@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
 import { resetBuybacksDataCache } from "./data/loadBuybacks";
 
@@ -392,5 +392,84 @@ describe("App", () => {
     // 나머지 대시보드는 기존과 동일하게 동작한다
     expect(screen.getByText("이벤트 탐색기")).toBeInTheDocument();
     expect(screen.getAllByText("삼성전자").length).toBeGreaterThan(0);
+  });
+});
+
+describe("App 과 생태계 바(VCShell) 종목 연동", () => {
+  const minimalFetch = (input: RequestInfo | URL) => {
+    const url = String(input);
+    if (url.endsWith("companies.json")) {
+      return okResponse([
+        {
+          corp_code: "00126380",
+          stock_code: "005930",
+          corp_name: "삼성전자",
+          market: "KOSPI",
+          sector: "반도체",
+          last_updated: "2026-06-20"
+        },
+        {
+          corp_code: "00164779",
+          stock_code: "000660",
+          corp_name: "SK하이닉스",
+          market: "KOSPI",
+          sector: "반도체",
+          last_updated: "2026-06-20"
+        }
+      ]);
+    }
+    if (
+      url.endsWith("events.json") ||
+      url.endsWith("holding_snapshots.json") ||
+      url.endsWith("price_reactions.json")
+    ) {
+      return okResponse([]);
+    }
+    if (url.endsWith("data_status.json")) {
+      return okResponse({
+        generated_at: "2026-06-20T00:00:00+09:00",
+        dart_available: false,
+        krx_available: false,
+        companies_count: 2,
+        events_count: 0,
+        holdings_count: 0,
+        price_reactions_count: 0,
+        warnings: []
+      });
+    }
+    return notFoundResponse();
+  };
+  const setStock = vi.fn();
+
+  beforeEach(() => {
+    resetBuybacksDataCache();
+    setStock.mockClear();
+    window.VCShell = {
+      version: "test",
+      getTheme: () => "light",
+      setTheme: (theme) => (theme === "dark" ? "dark" : "light"),
+      setStock,
+      hubAnalysisUrl: () => null
+    };
+    vi.stubGlobal("fetch", minimalFetch);
+  });
+
+  afterEach(() => {
+    delete window.VCShell;
+    window.history.replaceState(null, "", "/");
+  });
+
+  it("?stock= 딥링크로 포커스한 종목을 VCShell.setStock 에 이름과 함께 알린다", async () => {
+    window.history.replaceState(null, "", "/?stock=000660");
+    render(<App />);
+    expect(await screen.findByText("자사주 매입·처분·소각 분석")).toBeInTheDocument();
+    expect(setStock).toHaveBeenLastCalledWith("000660", "SK하이닉스");
+  });
+
+  it("기본으로 채워진 첫 기업은 포커스로 치지 않는다(칩 없음)", async () => {
+    render(<App />);
+    expect(await screen.findByText("자사주 매입·처분·소각 분석")).toBeInTheDocument();
+    expect(setStock).not.toHaveBeenCalledWith("005930", expect.anything());
+    expect(setStock.mock.calls.every(([code]) => code === null)).toBe(true);
   });
 });

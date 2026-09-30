@@ -42,6 +42,9 @@ jobs:
       - name: Validate committed data
         run: python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
 
+      - name: Validate hub summary
+        run: python scripts/buybacks/vc_publish.py validate public/summary.json
+
       - name: Test Python pipeline
         run: python -m pytest
 

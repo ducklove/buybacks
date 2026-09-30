@@ -28,6 +28,12 @@ class ListedIssue:
     market: Market
     is_trading: bool
     source: str = "naver_mobile_market_value"
+    # Price fields carried by the same listing response (no extra requests).
+    # They feed latest_prices.json; None when the row did not provide them.
+    close_price: float | None = None
+    change_rate: float | None = None
+    market_cap_krw: int | None = None
+    traded_date: str | None = None
 
 
 def fetch_naver_listed_issues(
@@ -93,9 +99,63 @@ def parse_naver_listed_issues(payload: dict, fallback_market: str) -> list[Liste
                 issue_name=issue_name,
                 market=market,  # type: ignore[arg-type]
                 is_trading=is_trading_issue(row),
+                close_price=listing_close_price(row),
+                change_rate=listing_change_rate(row),
+                market_cap_krw=listing_market_cap(row),
+                traded_date=listing_traded_date(row),
             )
         )
     return issues
+
+
+def _listing_number(value: object) -> float | None:
+    if value is None or isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        number = float(value)
+    else:
+        text = str(value).replace(",", "").replace("%", "").strip()
+        if not text or text in {"-", "N/A"}:
+            return None
+        try:
+            number = float(text)
+        except ValueError:
+            return None
+    return number if number == number and number not in (float("inf"), float("-inf")) else None
+
+
+def listing_close_price(row: dict) -> float | None:
+    """Close (or last) price in KRW from closePriceRaw, falling back to closePrice."""
+    close = _listing_number(row.get("closePriceRaw"))
+    if close is None:
+        close = _listing_number(row.get("closePrice"))
+    return close if close is not None and close > 0 else None
+
+
+def listing_change_rate(row: dict) -> float | None:
+    """Day change as a fraction (Naver reports percent, e.g. "-1.23")."""
+    ratio = _listing_number(row.get("fluctuationsRatioRaw"))
+    if ratio is None:
+        ratio = _listing_number(row.get("fluctuationsRatio"))
+    return round(ratio / 100, 6) if ratio is not None else None
+
+
+def listing_market_cap(row: dict) -> int | None:
+    """Issue market cap in KRW from marketValueRaw (marketValue is in 억원)."""
+    raw = _listing_number(row.get("marketValueRaw"))
+    if raw is not None and raw > 0:
+        return int(raw)
+    eok = _listing_number(row.get("marketValue"))
+    return int(eok * 100_000_000) if eok is not None and eok > 0 else None
+
+
+def listing_traded_date(row: dict) -> str | None:
+    """KST trade date (YYYY-MM-DD) when the row carries a trade timestamp."""
+    for key in ("localTradedAt", "tradedAt", "localTradedDate"):
+        match = re.match(r"^(\d{4})-?(\d{2})-?(\d{2})", str(row.get(key) or "").strip())
+        if match:
+            return "-".join(match.groups())
+    return None
 
 
 def market_from_naver_row(row: dict, fallback_market: str) -> str:

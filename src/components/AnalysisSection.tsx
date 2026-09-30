@@ -67,12 +67,7 @@ export function LazyAnalysisSection({ events, companies }: LazyAnalysisSectionPr
   }
 
   return (
-    <section
-      className="analysis-section"
-      id="analysis"
-      aria-label="이벤트 스터디 분석"
-      ref={ref}
-    >
+    <section className="analysis-section" id="analysis" aria-label="이벤트 스터디 분석" ref={ref}>
       {error ? (
         <div className="empty-state" role="alert">
           <p>분석 데이터를 불러오지 못했습니다.</p>

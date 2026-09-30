@@ -62,6 +62,10 @@ jobs:
           --backfill-dir data/backfills
           --data-dir public/data/buybacks
 
+      # Row-count baseline for the validator's shrink guard (the checked-out dataset).
+      - name: Snapshot committed dataset
+        run: cp -R public/data/buybacks "$RUNNER_TEMP/buybacks-baseline"
+
       - name: Merge temporary backfill into dataset on branch
         run: >
           python scripts/buybacks/backfill_events.py merge
@@ -70,7 +74,12 @@ jobs:
           --data-dir public/data/buybacks
 
       - name: Validate merged dataset
-        run: python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
+        run: >
+          python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
+          --baseline "$RUNNER_TEMP/buybacks-baseline"
+
+      - name: Publish hub summary
+        run: python scripts/buybacks/publish_summary.py --data-dir public/data/buybacks --out-dir public
 
       - name: Test Python pipeline
         run: python -m pytest
@@ -115,7 +124,7 @@ jobs:
               git add "$path"
             fi
           done
-          git add public/data/buybacks
+          git add public/data/buybacks public/summary.json public/version.json
           if git diff --cached --quiet; then
             echo "No backfill changes to commit."
             exit 0
