@@ -17784,24 +17784,6 @@
     "source_rcept_no": "20260323001333"
   },
   {
-    "corp_code": "00492706",
-    "stock_code": "109670",
-    "corp_name": "씨싸이트",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 1303,
-    "issued_shares": 5836602,
-    "treasury_ratio": 0.000223246334082742,
-    "floating_shares": 5835299,
-    "source_rcept_no": "20260318000471"
-  },
-  {
     "corp_code": "00535481",
     "stock_code": "109610",
     "corp_name": "에스와이",
@@ -30906,24 +30888,6 @@
     "source_rcept_no": "20260313001207"
   },
   {
-    "corp_code": "00148276",
-    "stock_code": "030000",
-    "corp_name": "제일기획",
-    "as_of_date": "2025-12-31",
-    "report_year": 2025,
-    "report_code": "11011",
-    "stock_kind": "보통주",
-    "beginning_qty": null,
-    "acquired_qty": null,
-    "disposed_qty": null,
-    "retired_qty": null,
-    "ending_qty": 13762500,
-    "issued_shares": 115041225,
-    "treasury_ratio": 0.11963102792064323,
-    "floating_shares": 101278725,
-    "source_rcept_no": "20260310002959"
-  },
-  {
     "corp_code": "00126292",
     "stock_code": "029780",
     "corp_name": "삼성카드",
@@ -34683,6 +34647,24 @@
     "issued_shares": 26031742,
     "treasury_ratio": 0.13440644886538902,
     "floating_shares": 22532908,
+    "source_rcept_no": "20260318001268"
+  },
+  {
+    "corp_code": "00106368",
+    "stock_code": "011785",
+    "corp_name": "금호석유화학우",
+    "as_of_date": "2025-12-31",
+    "report_year": 2025,
+    "report_code": "11011",
+    "stock_kind": "의결권 없는 주식(우선주)",
+    "beginning_qty": null,
+    "acquired_qty": null,
+    "disposed_qty": null,
+    "retired_qty": null,
+    "ending_qty": null,
+    "issued_shares": 3023486,
+    "treasury_ratio": null,
+    "floating_shares": 3023486,
     "source_rcept_no": "20260318001268"
   },
   {
