@@ -111,9 +111,41 @@ def load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+# Return/drawdown/volume ratios in price_reactions.json are stored with this many
+# decimals (the UI shows 2 decimals of percent; reaction_series uses the same).
+REACTION_FLOAT_DECIMALS = 6
+
+
+def dumps_dataset(payload) -> str:
+    """Serialize a published dataset file.
+
+    Arrays are written one compact record per line: about half the bytes of the
+    old indent=2 output while git diffs stay per record. Small objects
+    (data_status, car_curves) keep indent=2 for readability.
+    """
+    if isinstance(payload, list):
+        if not payload:
+            return "[]\n"
+        lines = ",\n".join(json.dumps(item, ensure_ascii=False, separators=(",", ":")) for item in payload)
+        return f"[\n{lines}\n]\n"
+    return json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+
+
 def write_json(path: Path, payload) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(dumps_dataset(payload), encoding="utf-8")
+
+
+def round_price_reactions(rows: list[dict], decimals: int = REACTION_FLOAT_DECIMALS) -> list[dict]:
+    """Round float fields of price reaction rows (full float64 reprs bloat the core load)."""
+    return [
+        {key: round(value, decimals) if isinstance(value, float) else value for key, value in row.items()}
+        for row in rows
+    ]
+
+
+def write_price_reactions(path: Path, rows: list[dict]) -> None:
+    write_json(path, round_price_reactions(rows))
 
 
 def copy_fixture_dataset(fixture_dir: Path, output_dir: Path, extra_warnings: list[str] | None = None) -> dict:
@@ -143,7 +175,7 @@ def copy_fixture_dataset(fixture_dir: Path, output_dir: Path, extra_warnings: li
     write_json(output_dir / "companies.json", companies)
     write_json(output_dir / "events.json", events)
     write_json(output_dir / "holding_snapshots.json", holdings)
-    write_json(output_dir / "price_reactions.json", reactions)
+    write_price_reactions(output_dir / "price_reactions.json", reactions)
     write_json(output_dir / "latest_prices.json", latest_prices)
     write_json(output_dir / "executions.json", executions)
     write_json(output_dir / "reaction_series.json", reaction_series)
@@ -336,6 +368,7 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
     latest_prices, latest_price_warnings, latest_price_source = build_latest_prices(
         args,
         [company.stock_code for company in live_companies],
+        listed_issues,
     )
     warnings.extend(latest_price_warnings)
 
@@ -380,13 +413,13 @@ def build_live_dataset(args: argparse.Namespace, api_key: str, output_dir: Path)
             f"OpenDART dividend scan scope: {len(dividend_companies)} companies.",
             f"Listed issue master source: {args.listed_issue_source}.",
             "Price reactions use kis_proxy when configured; otherwise they remain missing.",
-            "Latest prices use kis_proxy when configured; otherwise market caps remain missing.",
+            "Latest prices use the Naver listing close, with kis_proxy as the fallback; otherwise market caps remain missing.",
         ],
     }
     write_json(output_dir / "companies.json", to_jsonable(live_companies))
     write_json(output_dir / "events.json", to_jsonable(events))
     write_json(output_dir / "holding_snapshots.json", to_jsonable(holdings))
-    write_json(output_dir / "price_reactions.json", to_jsonable(price_reactions))
+    write_price_reactions(output_dir / "price_reactions.json", to_jsonable(price_reactions))
     write_json(output_dir / "latest_prices.json", to_jsonable(latest_prices))
     write_json(output_dir / "executions.json", to_jsonable(executions))
     write_json(output_dir / "reaction_series.json", to_jsonable(reaction_series))
@@ -560,6 +593,7 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
     refreshed_latest_prices, latest_price_warnings, latest_price_source = build_latest_prices(
         args,
         latest_price_stock_codes,
+        listed_issues,
     )
     warnings.extend(latest_price_warnings)
     latest_prices = merge_latest_prices(existing_latest_prices, refreshed_latest_prices, live_companies)
@@ -612,13 +646,13 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
             f"OpenDART holding scan source: {args.holding_source}.",
             f"Listed issue master source: {args.listed_issue_source}.",
             "Price reactions use kis_proxy when configured; otherwise they remain missing.",
-            "Latest prices use kis_proxy when configured; otherwise market caps remain missing.",
+            "Latest prices use the Naver listing close, with kis_proxy as the fallback; otherwise market caps remain missing.",
         ],
     }
     write_json(output_dir / "companies.json", to_jsonable(live_companies))
     write_json(output_dir / "events.json", to_jsonable(events))
     write_json(output_dir / "holding_snapshots.json", to_jsonable(holdings))
-    write_json(output_dir / "price_reactions.json", to_jsonable(price_reactions))
+    write_price_reactions(output_dir / "price_reactions.json", to_jsonable(price_reactions))
     write_json(output_dir / "latest_prices.json", to_jsonable(latest_prices))
     write_json(output_dir / "executions.json", to_jsonable(executions))
     write_json(output_dir / "reaction_series.json", to_jsonable(reaction_series))
@@ -1000,10 +1034,23 @@ def reaction_series_coverage_warnings(events_count: int, series_count: int) -> l
     ]
 
 
+# Liquid issue used to learn the listing's trade date from kis_proxy when the
+# Naver listing rows carry no trade timestamp (one request instead of ~1,100).
+LATEST_PRICE_PROBE_CODE = "005930"
+
+
 def build_latest_prices(
     args: argparse.Namespace,
     stock_codes: list[str] | set[str],
+    listed_issues: list[ListedIssue] | None = None,
 ) -> tuple[list[LatestPriceSnapshot], list[str], str]:
+    """Latest closes for market caps.
+
+    The Naver listing fetched for the tradable-universe filter already carries
+    each issue's close, day change and market cap, so it is the primary source.
+    kis_proxy is only used for codes the listing does not cover (and, when the
+    listing rows have no trade date, for one probe request that dates them).
+    """
     codes = sorted({code for code in stock_codes if code})
     if not codes:
         return [], [], "missing"
@@ -1011,20 +1058,88 @@ def build_latest_prices(
         return [], [], "missing"
 
     kis_proxy_url = os.environ.get("KIS_PROXY_URL", "").strip()
-    if kis_proxy_url:
-        LOGGER.info("collecting latest prices from kis_proxy for %d stocks...", len(codes))
-        snapshots, warnings = calculate_kis_proxy_latest_prices(
-            codes,
-            base_url=kis_proxy_url,
-            token=os.environ.get("KIS_PROXY_TOKEN", "").strip(),
-            lookback_days=args.latest_price_lookback_days,
-        )
-        return snapshots, warnings, "kis_proxy"
+    kis_proxy_token = os.environ.get("KIS_PROXY_TOKEN", "").strip()
+    lookback_days = getattr(args, "latest_price_lookback_days", 10)
+    warnings: list[str] = []
+    snapshots: list[LatestPriceSnapshot] = []
 
-    warnings = ["KIS_PROXY_URL is not set; latest prices marked missing."]
+    if listed_issues:
+        trade_date = listing_trade_date(listed_issues)
+        if trade_date is None and kis_proxy_url:
+            probe_code = (
+                LATEST_PRICE_PROBE_CODE
+                if any(issue.stock_code == LATEST_PRICE_PROBE_CODE for issue in listed_issues)
+                else codes[0]
+            )
+            probe, probe_warnings = calculate_kis_proxy_latest_prices(
+                [probe_code],
+                base_url=kis_proxy_url,
+                token=kis_proxy_token,
+                lookback_days=lookback_days,
+            )
+            warnings.extend(probe_warnings)
+            trade_date = probe[0].price_date if probe else None
+        if trade_date:
+            snapshots = latest_prices_from_listing(codes, listed_issues, trade_date)
+            LOGGER.info("latest prices from the Naver listing: %d of %d stocks", len(snapshots), len(codes))
+        else:
+            warnings.append("Naver listing trade date unknown; latest prices fall back to kis_proxy.")
+
+    covered = {snapshot.stock_code for snapshot in snapshots}
+    remaining = [code for code in codes if code not in covered]
+    if not remaining:
+        return snapshots, warnings, "naver_listing"
+    if kis_proxy_url:
+        LOGGER.info("collecting latest prices from kis_proxy for %d stocks...", len(remaining))
+        fallback, fallback_warnings = calculate_kis_proxy_latest_prices(
+            remaining,
+            base_url=kis_proxy_url,
+            token=kis_proxy_token,
+            lookback_days=lookback_days,
+        )
+        warnings.extend(fallback_warnings)
+        merged = sorted([*snapshots, *fallback], key=lambda snapshot: snapshot.stock_code)
+        if snapshots:
+            return merged, warnings, "naver_listing+kis_proxy" if fallback else "naver_listing"
+        return merged, warnings, "kis_proxy"
+    if snapshots:
+        warnings.append(f"Latest prices missing for {len(remaining)} stocks outside the Naver listing (KIS_PROXY_URL not set).")
+        return snapshots, warnings, "naver_listing"
+
+    warnings.append("KIS_PROXY_URL is not set; latest prices marked missing.")
     if args.price_source == "kis_proxy":
         warnings.append("Requested --price-source kis_proxy but no proxy URL was configured.")
     return [], warnings, "missing"
+
+
+def listing_trade_date(listed_issues: list[ListedIssue]) -> str | None:
+    """Most recent trade date carried by the listing rows, if any row has one."""
+    dates = [issue.traded_date for issue in listed_issues if issue.traded_date]
+    return max(dates) if dates else None
+
+
+def latest_prices_from_listing(
+    stock_codes: list[str] | set[str],
+    listed_issues: list[ListedIssue],
+    trade_date: str,
+) -> list[LatestPriceSnapshot]:
+    wanted = set(stock_codes)
+    snapshots: list[LatestPriceSnapshot] = []
+    for issue in listed_issues:
+        if issue.stock_code not in wanted or issue.close_price is None:
+            continue
+        snapshots.append(
+            LatestPriceSnapshot(
+                stock_code=issue.stock_code,
+                price_date=issue.traded_date or trade_date,
+                close=float(issue.close_price),
+                source="naver_listing",
+                change_rate=issue.change_rate,
+                market_cap_krw=issue.market_cap_krw,
+            )
+        )
+    by_stock = {snapshot.stock_code: snapshot for snapshot in snapshots}
+    return [by_stock[code] for code in sorted(by_stock)]
 
 
 def missing_price_reactions(events: list[BuybackEvent]) -> list[PriceReaction]:

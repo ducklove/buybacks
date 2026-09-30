@@ -14,31 +14,38 @@
     />
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%buybacks-icon.svg" />
     <title>자사주 분석</title>
-    <script>
-      // iframe embed + theme: ?theme=dark|light overrides stored theme; ?embed hides chrome.
-      // data-theme 미설정 시에는 CSS의 prefers-color-scheme 폴백이 적용된다.
-      (function () {
-        try {
-          var params = new URLSearchParams(location.search);
-          var urlTheme = params.get("theme");
-          var stored = localStorage.getItem("theme");
-          var theme = urlTheme === "dark" || urlTheme === "light" ? urlTheme : stored;
-          if (theme === "dark" || theme === "light") {
-            document.documentElement.dataset.theme = theme;
-          }
-          var embed = params.get("embed");
-          if (embed !== null && embed !== "0" && embed !== "false") {
-            document.documentElement.dataset.embed = "1";
-          }
-        } catch (e) {
-          /* localStorage 접근 불가 시 data-theme 미설정 → prefers-color-scheme 폴백 */
-        }
-      })();
-    </script>
-    <script defer src="https://ducklove.duckdns.org:3691/js/portfolio-held-badges.js?v=20260928-etf"></script>
+    <!-- vc:theme-boot --><script>
+/* vc-theme-boot v1 (value-invest static/ecosystem/vc-theme-boot.js) — pre-paint theme; inlined by sync-ecosystem, do not edit copies. */
+(function () {
+  var d = document.documentElement, p = null, s = null, t, v, i;
+  var legacy = ['bondmate.theme', 'eiayn:theme:v1', 'spac-hunter-theme', 'preferred-theme', 'nps-theme'];
+  try { p = new URLSearchParams(location.search); } catch (e) { p = null; }
+  try {
+    s = localStorage.getItem('theme');
+    if (s === null) {
+      for (i = 0; i < legacy.length && s === null; i++) {
+        v = localStorage.getItem(legacy[i]);
+        if (v && v.charAt(0) === '"') { try { v = JSON.parse(v); } catch (e) { v = null; } }
+        if (v === 'light' || v === 'dark') { s = v; localStorage.setItem('theme', v); }
+      }
+    }
+  } catch (e) { s = null; }
+  t = p && p.get('theme');
+  if (t !== 'light' && t !== 'dark') t = s === 'light' || s === 'dark' ? s : null;
+  if (!t) t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  d.setAttribute('data-theme', t);
+  v = p && p.get('embed');
+  if ((v !== null && v !== undefined && v !== '0' && v !== 'false') || (p && p.get('headless') === '1')) d.setAttribute('data-embed', v || '');
+})();
+</script><!-- /vc:theme-boot -->
+    <link rel="stylesheet" href="%BASE_URL%vc-tokens.css?v=1.1.0" />
+    <script defer src="%BASE_URL%vc-shell.js?v=1.1.0"></script>
+    <script defer src="https://ducklove.duckdns.org:3691/js/portfolio-held-badges.js?v=20260930-vc"></script>
     <script defer src="%BASE_URL%value-analytics.js" data-project="buybacks"></script>
   </head>
   <body>
+    <!-- Value Compass 생태계 바: React 트리 밖(#root 형제). JS 실패 시 앵커가 그대로 보인다. -->
+    <vc-shell tool="buybacks"><a class="hub-link" href="https://ducklove.duckdns.org:3691" rel="noopener">Value Compass ↗</a></vc-shell>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

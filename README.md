@@ -18,7 +18,9 @@ Development environment: Node 24 and Python 3.12+ (matches the `actions/setup-no
 
 `DART_API_KEY` enables live OpenDART collection. The live build discovers recent buyback disclosures and scans listed companies for share-count / treasury-share snapshots. It then maps DART stock-kind rows to currently trading KOSPI/KOSDAQ stock issues so tradable preferred shares such as `00680K` can be included while non-listed preferred classes are excluded. Without `DART_API_KEY`, the build uses fixture data so the GitHub Pages frontend still builds without browser-side API keys.
 
-`KIS_PROXY_URL` enables price reactions and latest close snapshots. The dashboard keeps event reaction windows separate from latest prices, so market-cap display can use the latest available close even when a recent disclosure does not yet have a post-event reaction window. The dashboard shows both simple returns and KOSPI/KOSDAQ index-relative returns; aggregate return views use the index-relative metric. Current listed-issue filtering uses the Naver mobile stock list, not a paid KRX key. `KRX_AUTH_KEY` is not required.
+`KIS_PROXY_URL` enables price reactions. The KOSPI/KOSDAQ index history used for index-relative returns is fetched once per market over the union of every event window in the build (paged, so old and new events are aligned to the same index rows). Latest close snapshots come from the Naver listing that the build already downloads for the tradable-universe filter (`closePriceRaw`, `fluctuationsRatio`, `marketValueRaw`); kis-proxy is only a fallback for codes the listing does not cover, plus one probe request to date the listing when its rows carry no trade timestamp. The dashboard keeps event reaction windows separate from latest prices, so market-cap display can use the latest available close even when a recent disclosure does not yet have a post-event reaction window. The dashboard shows both simple returns and KOSPI/KOSDAQ index-relative returns; aggregate return views use the index-relative metric. Current listed-issue filtering uses the Naver mobile stock list, not a paid KRX key. `KRX_AUTH_KEY` is not required.
+
+Published dataset arrays are written one compact JSON record per line (about half the bytes of indented JSON, still diffable per record), and `price_reactions.json` ratios are rounded to 6 decimals.
 
 ## Automation
 
@@ -26,7 +28,11 @@ GitHub Pages deployment and live data collection are separate. `Deploy Pages` ru
 
 Historical event backfills run through the `Backfill buyback events` workflow. Provide a `start` and `end` date in `YYYYMMDD`; the collector splits the range into OpenDART-safe chunks, writes progress percentages to the Actions log and `data/backfills/<run_id>/status.json`, stores collected events in a temporary JSON table, then prepares a pull request with the merged dataset. Review the PR summary for duration, collected events, duplicate events, and new events; merge the PR to accept the backfill.
 
-`Refresh holdings` runs monthly (1st of the month, 04:30 KST) and on manual dispatch. It calls `build_buybacks_dataset.py` with `--incremental --holding-stock-codes ALL` so every currently listed company's holding snapshot is rescanned and merged into the committed dataset (freshly scanned rows replace stale rows with the same stock/date/report key), while `events.json` keeps the incremental merge semantics: recently discovered events are merged into the existing table, so events older than OpenDART's ~89-day discovery window are preserved instead of being dropped by a full rebuild. It shares the `buybacks-data` concurrency group with `Update buybacks data` to avoid competing commits to `public/data/buybacks`.
+`Refresh holdings` runs monthly (cron `30 19 1 * *` UTC = the 2nd of the month, 04:30 KST) and on manual dispatch. It calls `build_buybacks_dataset.py` with `--incremental --holding-stock-codes ALL` so every currently listed company's holding snapshot is rescanned and merged into the committed dataset (freshly scanned rows replace stale rows with the same stock/date/report key), while `events.json` keeps the incremental merge semantics: recently discovered events are merged into the existing table, so events older than OpenDART's ~89-day discovery window are preserved instead of being dropped by a full rebuild. It shares the `buybacks-data` concurrency group with `Update buybacks data` to avoid competing commits to `public/data/buybacks`.
+
+### Shrink guard
+
+The data workflows snapshot the committed `public/data/buybacks` before the build and validate with `validate_buybacks_dataset.py --baseline <snapshot>`. Validation fails (so nothing is committed or deployed) when `events.json`, `holding_snapshots.json` or `executions.json` lose more than 2% of their rows versus the snapshot, which protects the history from a partial Naver listing response or an upstream outage. For an intentional cleanup, dispatch the workflow with `allow_shrink: true` (sets `BUYBACKS_ALLOW_SHRINK=1`; the findings are then printed but not enforced).
 
 ### Failure notifications
 
@@ -36,6 +42,42 @@ All three data workflows (`Update buybacks data`, `Deploy Pages`, `Backfill buyb
 - `VALUE_INVEST_INTERNAL_TOKEN`: internal token sent as the `X-Internal-Token` header.
 
 If either secret is empty, the notification step logs a message and exits successfully without calling out, so it is safe to leave them unset.
+
+## Value Compass ecosystem integration (생태계 연동)
+
+Tool id in the hub registry (value-invest `config/ecosystem.json`): **`buybacks`** (integrationKey `buybacks`,
+handoff and held-badge enabled).
+
+- **Vendored files (never edit here)**: `public/vc-shell.js`, `public/vc-tokens.css`, the pre-paint theme boot between
+  the `<!-- vc:theme-boot -->` markers in `index.html`, the held-badges `?v=` tag and `scripts/buybacks/vc_publish.py`
+  are owned by the hub. Change them there, then from this repo root run
+  `node ../value-invest/scripts/sync-ecosystem.mjs --write --only buybacks` (without `--write` it only verifies).
+- **Ecosystem bar and theme**: `<vc-shell tool="buybacks">` sits outside the React tree (`#root` sibling) with the hub
+  link as light-DOM fallback. The topbar toggle calls `VCShell.setTheme` and follows `vc:themechange`; the focused
+  company goes to `VCShell.setStock` for the "허브에서 분석" chip. `--price-up`/`--price-down` alias
+  `--vc-up`/`--vc-down` (up = red, down = blue) and the body font is `var(--vc-font-sans)`.
+- **Inbound deep links** (`src/utils/urlState.ts`, details in [URL deep links](#url-deep-links)):
+  - `?stock=<6-char code>` (legacy `?code=` is accepted too) selects the company; `market`, `types`, `year`, `search`
+    restore filters. Invalid values fall back to defaults.
+  - `?theme=light|dark` applies before first paint without being stored; `?embed` (not `0`/`false`) or `?headless=1`
+    sets `html[data-embed]` and hides the topbar and the bar (`?vc-shell=0` or an iframe hides the bar only).
+    Both `embed` and `theme` survive the URL rewrite.
+  - `#vc-held=code:qty,...` is the holdings snapshot the hub's `/go/buybacks` handoff appends; the badge script
+    consumes and removes it.
+- **Published summary**: `scripts/buybacks/publish_summary.py --data-dir public/data/buybacks --out-dir public` writes
+  `public/summary.json` + `public/version.json` (envelope v1). Vite copies `public/` to the Pages root, so they are
+  served at `https://ducklove.github.io/buybacks/summary.json`. The data workflows (`Update buybacks data`,
+  `Refresh holdings`, `Backfill buyback events`) run it after validation and commit it with the dataset; `Deploy Pages`
+  validates it. Files are rewritten only when the content changes. Payload: latest common-stock treasury ratio per code
+  (`ratios`, `ratioAsOf`) plus the top 10, ~23 KB instead of the 1.2 MB `holding_snapshots.json`; the hub falls back to
+  that file if the summary fails. Contract:
+  [data-contract.md](https://github.com/ducklove/value-invest/blob/master/docs/ecosystem/data-contract.md) §6.4.
+- **Hub services used**
+  - Held badges: the hub's `/js/portfolio-held-badges.js` adds **보유** badges to `data-portfolio-code` labels.
+  - `/api/internal/notify`: every workflow posts failures there (see [Failure notifications](#failure-notifications)).
+  - kis-proxy: `KIS_PROXY_URL`/`KIS_PROXY_TOKEN` secrets feed price reactions and latest-price fallback in the data
+    build; the same URL is baked in as `VITE_KIS_PROXY_URL` for browser quotes via `/v1/naverfinance/stocks/{code}/quote`.
+  - `/api/asset-quotes` and finance-pi are not used.
 
 ## Frontend
 

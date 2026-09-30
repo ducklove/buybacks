@@ -19,6 +19,10 @@ on:
         description: Build step timeout in minutes. Raise for missing-series/all recalculations over large backfills.
         required: false
         default: "25"
+      allow_shrink:
+        description: "Set to true to let validation pass when events/holdings/executions drop by more than 2% (intentional cleanup only)."
+        required: false
+        default: "false"
   schedule:
     - cron: "30 20 * * *"
 
@@ -38,6 +42,7 @@ jobs:
       LOOKBACK_DAYS: ${{ github.event.inputs.lookback_days || '7' }}
       PRICE_LOOKBACK_DAYS: ${{ github.event.inputs.price_lookback_days || '75' }}
       PRICE_REACTION_SCOPE: ${{ github.event.inputs.price_reaction_scope || 'recent' }}
+      BUYBACKS_ALLOW_SHRINK: ${{ github.event.inputs.allow_shrink || 'false' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -55,6 +60,10 @@ jobs:
 
       - name: Install Python test tools
         run: python -m pip install --upgrade pip pytest
+
+      # Row-count baseline for the validator's shrink guard (the committed dataset).
+      - name: Snapshot committed dataset
+        run: cp -R public/data/buybacks "$RUNNER_TEMP/buybacks-baseline"
 
       - name: Incrementally update buybacks data
         timeout-minutes: ${{ fromJSON(github.event.inputs.build_timeout_minutes || '25') }}
@@ -82,7 +91,14 @@ jobs:
           --price-reaction-scope "$PRICE_REACTION_SCOPE"
 
       - name: Validate data
-        run: python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
+        run: >
+          python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
+          --baseline "$RUNNER_TEMP/buybacks-baseline"
+
+      # Value Compass hub summary (public/summary.json + version.json, served at
+      # the Pages root). Rewritten only when its content changes.
+      - name: Publish hub summary
+        run: python scripts/buybacks/publish_summary.py --data-dir public/data/buybacks --out-dir public
 
       - name: Test Python pipeline
         run: python -m pytest
@@ -92,7 +108,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/buybacks
+          git add public/data/buybacks public/summary.json public/version.json
           if git diff --cached --quiet; then
             echo "No buybacks data changes to commit."
             echo "changed=false" >> "$GITHUB_OUTPUT"

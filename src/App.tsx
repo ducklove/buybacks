@@ -18,11 +18,8 @@ import {
   filterEvents,
   latestHoldingSnapshots
 } from "./utils/metrics";
-import {
-  parseAppStateFromSearch,
-  preserveEmbedParams,
-  serializeAppState
-} from "./utils/urlState";
+import { parseAppStateFromSearch, preserveEmbedParams, serializeAppState } from "./utils/urlState";
+import { setShellStock } from "./utils/vcShell";
 import type { BuybacksDataset, Filters } from "./types/buybacks";
 
 function currentLocationSearch() {
@@ -34,9 +31,15 @@ function App() {
   const [dataset, setDataset] = useState<BuybacksDataset | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filters>(initialUrlState.filters);
-  const [selectedStockCode, setSelectedStockCode] = useState<string>(
-    initialUrlState.selectedStockCode ?? ""
-  );
+  const initialStockCode = initialUrlState.selectedStockCode ?? "";
+  const [selectedStockCode, setSelectedStockCode] = useState<string>(initialStockCode);
+  // 딥링크(?stock=)나 사용자 선택으로 '포커스한' 종목만 생태계 바에 알린다.
+  // 데이터 로드 직후 기본값으로 채워지는 첫 기업은 포커스로 치지 않는다.
+  const [stockFocused, setStockFocused] = useState(Boolean(initialStockCode));
+  const selectStock = (stockCode: string) => {
+    setStockFocused(true);
+    setSelectedStockCode(stockCode);
+  };
   // 이행결과(executions)·배당(dividends)은 이벤트 테이블/상세 섹션 접근 시 지연 로드한다.
   // sentinel div 는 코어 데이터셋 로드 후에야 렌더되므로 그때부터 관찰을 시작한다.
   const { ref: detailGateRef, visible: detailGateVisible } = useVisibleOnce<HTMLDivElement>(
@@ -52,10 +55,12 @@ function App() {
       .then((loaded) => {
         if (cancelled) return;
         setDataset(loaded);
+        const known = (code: string) =>
+          loaded.companies.some((company) => company.stock_code === code);
+        // 알 수 없는 ?stock= 딥링크는 첫 기업으로 대체되며, 그 기업은 포커스로 치지 않는다.
+        if (!known(initialStockCode)) setStockFocused(false);
         setSelectedStockCode((current) =>
-          current && loaded.companies.some((company) => company.stock_code === current)
-            ? current
-            : (loaded.companies[0]?.stock_code ?? "")
+          current && known(current) ? current : (loaded.companies[0]?.stock_code ?? "")
         );
       })
       .catch((err: unknown) => {
@@ -64,7 +69,8 @@ function App() {
     return () => {
       cancelled = true;
     };
-  }, []);
+    // initialStockCode 는 첫 렌더에서 고정된 값이라 이 효과는 한 번만 실행된다.
+  }, [initialStockCode]);
 
   useEffect(() => {
     if (!dataset || !detailGateVisible || detailData || detailError) return;
@@ -93,6 +99,17 @@ function App() {
     if (nextSearch === search) return;
     window.history.replaceState(window.history.state, "", `${pathname}${nextSearch}${hash}`);
   }, [dataset, filters, selectedStockCode]);
+
+  const focusedCompany =
+    dataset && stockFocused
+      ? dataset.companies.find((company) => company.stock_code === selectedStockCode)
+      : undefined;
+  const focusedCode = focusedCompany?.stock_code ?? null;
+  const focusedName = focusedCompany?.corp_name ?? null;
+  useEffect(() => {
+    setShellStock(focusedCode, focusedName);
+  }, [focusedCode, focusedName]);
+  useEffect(() => () => setShellStock(null), []);
 
   const enrichedEvents = useMemo(
     () =>
@@ -193,11 +210,7 @@ function App() {
           <section className="empty-state" role="alert">
             <p>이행결과·배당 데이터를 불러오지 못했습니다.</p>
             <p className="muted">{detailError}</p>
-            <button
-              className="secondary-button"
-              type="button"
-              onClick={() => setDetailError(null)}
-            >
+            <button className="secondary-button" type="button" onClick={() => setDetailError(null)}>
               다시 시도
             </button>
           </section>
@@ -205,13 +218,13 @@ function App() {
 
         <EventTable
           events={filteredEvents}
-          onSelectStock={setSelectedStockCode}
+          onSelectStock={selectStock}
           selectedStockCode={selectedStockCode}
         />
 
         <ScreenerTable
           events={enrichedEvents}
-          onSelectStock={setSelectedStockCode}
+          onSelectStock={selectStock}
           selectedStockCode={selectedStockCode}
         />
 
@@ -224,7 +237,7 @@ function App() {
           executions={detailData?.executions ?? []}
           dividends={detailData?.dividends ?? []}
           selectedStockCode={selectedStockCode}
-          onSelectStock={setSelectedStockCode}
+          onSelectStock={selectStock}
         />
 
         <Methodology status={dataset.status} />

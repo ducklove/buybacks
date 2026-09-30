@@ -132,7 +132,9 @@ Endpoints used:
 - `GET /v1/stocks/{symbol}/history?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD&period=D&adjusted=true`
 - `GET /v1/indexes/{market}/history?start_date=YYYY-MM-DD&period=D`
 
-The pipeline maps KOSDAQ companies to `market=kosdaq`; all other companies use `market=kospi` for the benchmark return. If `KIS_PROXY_URL` is missing or a proxy request fails, price reaction rows remain present with `data_quality="missing"` and null return fields.
+The pipeline maps KOSDAQ companies to `market=kosdaq`; all other companies use `market=kospi` for the benchmark return. The index endpoint takes one anchor date and returns a capped page, so the pipeline fetches each market once over the union of all event windows in the build (min window start to max window end), paging forward or backward depending on the direction the first page reveals (`fetch_index_rows`). If `KIS_PROXY_URL` is missing or a proxy request fails, price reaction rows remain present with `data_quality="missing"` and null return fields.
+
+Latest close snapshots (`latest_prices.json`) no longer need one stock-history request per company: they come from the Naver listing below, and kis-proxy is only used for codes the listing does not cover (plus a single probe request that dates the listing when its rows carry no trade timestamp).
 
 ## Current Listed Issue Master
 
@@ -150,8 +152,9 @@ Fields used:
 - `stockType`
 - `tradeStopType`
 - `stockExchangeType.nameEng`
+- `closePriceRaw` (fallback `closePrice`), `fluctuationsRatio`, `marketValueRaw` (fallback `marketValue` in 억원), and `localTradedAt` when present — for `latest_prices.json` (`source: "naver_listing"`)
 
-This source is used only to map DART holding rows to currently trading listed issue codes. It is not used for price-reaction calculations, which remain on `kis_proxy`.
+This source maps DART holding rows to currently trading listed issue codes and supplies the latest closes from the same response. It is not used for price-reaction calculations, which remain on `kis_proxy`.
 
 ## KRX Data Marketplace / KRX Open API
 

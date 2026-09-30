@@ -1,6 +1,8 @@
 :root {
   color-scheme: light dark;
-  font-family:
+  /* 생태계 공통 글꼴(vc-tokens.css). 토큰 파일이 없을 때만 기존 스택으로 폴백한다. */
+  font-family: var(
+    --vc-font-sans,
     Inter,
     "Pretendard",
     "Noto Sans KR",
@@ -8,7 +10,8 @@
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
-    sans-serif;
+    sans-serif
+  );
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   --bg: #f6f8f8;
@@ -30,8 +33,10 @@
   --orange: #ee6b2f;
   --green: #4d9b5f;
   --neutral-tone: #7c8c89;
-  --price-up: #c8322b;
-  --price-down: #1f67d8;
+  /* 방향색은 생태계 토큰(한국 관례: 상승=빨강, 하락=파랑)을 따른다. */
+  --vc-tool-accent: #007f78;
+  --price-up: var(--vc-up, #c8322b);
+  --price-down: var(--vc-down, #1f67d8);
   --warning-text: #6d5a22;
   --chip-disposition-bg: #ffe5d7;
   --chip-disposition-text: #b54513;
@@ -56,51 +61,8 @@
   color-scheme: light;
 }
 
-/* data-theme 미설정(수동 선택·강제 테마 없음) 시 OS 다크 모드 폴백 */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #10161a;
-    --surface: #1a2226;
-    --surface-strong: #212b2f;
-    --surface-hover: #223330;
-    --track-bg: #26312f;
-    --topbar-bg: rgba(20, 27, 30, 0.92);
-    --input-bg: #202a2e;
-    --ink: #e9f1ee;
-    --ink-soft: #c3cfcb;
-    --muted: #93a3a0;
-    --border: #303c3f;
-    --border-strong: #445052;
-    --teal: #35c9bd;
-    --teal-strong: #6fe0d5;
-    --teal-soft: #163330;
-    --amber: #f5b94a;
-    --orange: #ff8a52;
-    --green: #6fc783;
-    --neutral-tone: #97a6a3;
-    --price-up: #ff6b64;
-    --price-down: #6ea3ff;
-    --warning-text: #e8cf7f;
-    --chip-disposition-bg: #4a2c1a;
-    --chip-disposition-text: #ffb488;
-    --chip-retirement-bg: #4a3c12;
-    --chip-retirement-text: #f2cf6e;
-    --chip-trust-bg: #29304a;
-    --chip-trust-text: #aab6ef;
-    --chip-periodic-bg: #2a3432;
-    --chip-periodic-text: #c1cdc9;
-    --status-complete-bg: #1f3a26;
-    --status-complete-text: #8fe0a1;
-    --status-shortfall-bg: #43231f;
-    --status-shortfall-text: #ff9d92;
-    --status-progress-bg: #29304a;
-    --status-progress-text: #aab6ef;
-    --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
-  }
-}
-
-/* 수동 토글·?theme=dark 강제 시 다크 팔레트 (위 @media 블록과 동일 토큰) */
+/* 다크 팔레트. vc-theme-boot(index.html)가 페인트 전에 html[data-theme]를 항상 명시적으로
+   (?theme → localStorage 'theme' → prefers-color-scheme 순) 설정하므로 @media 폴백 블록은 두지 않는다. */
 :root[data-theme="dark"] {
   color-scheme: dark;
   --bg: #10161a;
@@ -122,8 +84,9 @@
   --orange: #ff8a52;
   --green: #6fc783;
   --neutral-tone: #97a6a3;
-  --price-up: #ff6b64;
-  --price-down: #6ea3ff;
+  --vc-tool-accent: #35c9bd;
+  --price-up: var(--vc-up, #ff6b64);
+  --price-down: var(--vc-down, #6ea3ff);
   --warning-text: #e8cf7f;
   --chip-disposition-bg: #4a2c1a;
   --chip-disposition-text: #ffb488;
@@ -316,6 +279,12 @@ a:hover {
 
 .hub-link:hover {
   color: var(--teal-strong);
+}
+
+/* vc-shell.js가 로드되지 않았을 때만 보이는 light DOM 폴백 링크(index.html). */
+vc-shell > .hub-link {
+  min-height: var(--vc-bar-h, 40px);
+  padding: 0 16px;
 }
 
 .app-main {

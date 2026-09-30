@@ -28,6 +28,7 @@ if __package__ in {None, ""}:
         merge_price_reactions,
         parse_report_codes,
         write_json,
+        write_price_reactions,
         companies_from_disclosures as build_companies_from_disclosures,
     )
     from scripts.buybacks.car_curves import aggregate_car_curves
@@ -52,6 +53,7 @@ else:
         merge_price_reactions,
         parse_report_codes,
         write_json,
+        write_price_reactions,
         companies_from_disclosures as build_companies_from_disclosures,
     )
     from .car_curves import aggregate_car_curves
@@ -337,7 +339,7 @@ def merge_backfill(args: argparse.Namespace) -> dict[str, Any]:
 
     write_json(data_dir / "companies.json", to_jsonable(merged_companies))
     write_json(data_dir / "events.json", to_jsonable(merged_events))
-    write_json(data_dir / "price_reactions.json", to_jsonable(merged_reactions))
+    write_price_reactions(data_dir / "price_reactions.json", to_jsonable(merged_reactions))
     write_json(data_dir / "latest_prices.json", to_jsonable(merged_latest_prices))
     if merged_series is not None and merged_car_curves is not None:
         write_json(series_path, merged_series)
