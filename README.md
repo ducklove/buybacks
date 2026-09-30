@@ -34,10 +34,6 @@ Historical event backfills run through the `Backfill buyback events` workflow. P
 
 The data workflows snapshot the committed `public/data/buybacks` before the build and validate with `validate_buybacks_dataset.py --baseline <snapshot>`. Validation fails (so nothing is committed or deployed) when `events.json`, `holding_snapshots.json` or `executions.json` lose more than 2% of their rows versus the snapshot, which protects the history from a partial Naver listing response or an upstream outage. For an intentional cleanup, dispatch the workflow with `allow_shrink: true` (sets `BUYBACKS_ALLOW_SHRINK=1`; the findings are then printed but not enforced).
 
-### Value Compass hub summary
-
-`scripts/buybacks/publish_summary.py` writes `public/summary.json` and `public/version.json` (envelope v1 of the value-invest data contract, `docs/ecosystem/data-contract.md` §6.4 in the hub). The payload is the latest common-stock treasury ratio per code (`ratios`, `ratioAsOf`) plus the top 10 (`top`), about 23 KB instead of the 1.2 MB `holding_snapshots.json` the hub used to download. Vite copies `public/` to the Pages root, so the files are served at `https://ducklove.github.io/buybacks/summary.json`. The data workflows run it after validation and commit it together with the dataset; it only rewrites the files when the content changes. `envelope.asOf` is the KST date of `data_status.generated_at` (the dataset scan), `data.asOf` the newest disclosure date. `scripts/buybacks/vc_publish.py` is vendored from value-invest by `node scripts/sync-ecosystem.mjs --write --only buybacks` (do not edit it here). Run it offline with `python scripts/buybacks/publish_summary.py`.
-
 ### Failure notifications
 
 All three data workflows (`Update buybacks data`, `Deploy Pages`, `Backfill buyback events`) and `Refresh holdings` post a failure notification to the `value-invest` hub (`POST {VALUE_INVEST_NOTIFY_URL}/api/internal/notify`) as their last step, gated on `if: failure()`. Configure two repository secrets to enable this:
@@ -47,11 +43,43 @@ All three data workflows (`Update buybacks data`, `Deploy Pages`, `Backfill buyb
 
 If either secret is empty, the notification step logs a message and exits successfully without calling out, so it is safe to leave them unset.
 
+## Value Compass ecosystem integration (생태계 연동)
+
+Tool id in the hub registry (value-invest `config/ecosystem.json`): **`buybacks`** (integrationKey `buybacks`,
+handoff and held-badge enabled).
+
+- **Vendored files (never edit here)**: `public/vc-shell.js`, `public/vc-tokens.css`, the pre-paint theme boot between
+  the `<!-- vc:theme-boot -->` markers in `index.html`, the held-badges `?v=` tag and `scripts/buybacks/vc_publish.py`
+  are owned by the hub. Change them there, then from this repo root run
+  `node ../value-invest/scripts/sync-ecosystem.mjs --write --only buybacks` (without `--write` it only verifies).
+- **Ecosystem bar and theme**: `<vc-shell tool="buybacks">` sits outside the React tree (`#root` sibling) with the hub
+  link as light-DOM fallback. The topbar toggle calls `VCShell.setTheme` and follows `vc:themechange`; the focused
+  company goes to `VCShell.setStock` for the "허브에서 분석" chip. `--price-up`/`--price-down` alias
+  `--vc-up`/`--vc-down` (up = red, down = blue) and the body font is `var(--vc-font-sans)`.
+- **Inbound deep links** (`src/utils/urlState.ts`, details in [URL deep links](#url-deep-links)):
+  - `?stock=<6-char code>` (legacy `?code=` is accepted too) selects the company; `market`, `types`, `year`, `search`
+    restore filters. Invalid values fall back to defaults.
+  - `?theme=light|dark` applies before first paint without being stored; `?embed` (not `0`/`false`) or `?headless=1`
+    sets `html[data-embed]` and hides the topbar and the bar (`?vc-shell=0` or an iframe hides the bar only).
+    Both `embed` and `theme` survive the URL rewrite.
+  - `#vc-held=code:qty,...` is the holdings snapshot the hub's `/go/buybacks` handoff appends; the badge script
+    consumes and removes it.
+- **Published summary**: `scripts/buybacks/publish_summary.py --data-dir public/data/buybacks --out-dir public` writes
+  `public/summary.json` + `public/version.json` (envelope v1). Vite copies `public/` to the Pages root, so they are
+  served at `https://ducklove.github.io/buybacks/summary.json`. The data workflows (`Update buybacks data`,
+  `Refresh holdings`, `Backfill buyback events`) run it after validation and commit it with the dataset; `Deploy Pages`
+  validates it. Files are rewritten only when the content changes. Payload: latest common-stock treasury ratio per code
+  (`ratios`, `ratioAsOf`) plus the top 10, ~23 KB instead of the 1.2 MB `holding_snapshots.json`; the hub falls back to
+  that file if the summary fails. Contract:
+  [data-contract.md](https://github.com/ducklove/value-invest/blob/master/docs/ecosystem/data-contract.md) §6.4.
+- **Hub services used**
+  - Held badges: the hub's `/js/portfolio-held-badges.js` adds **보유** badges to `data-portfolio-code` labels.
+  - `/api/internal/notify`: every workflow posts failures there (see [Failure notifications](#failure-notifications)).
+  - kis-proxy: `KIS_PROXY_URL`/`KIS_PROXY_TOKEN` secrets feed price reactions and latest-price fallback in the data
+    build; the same URL is baked in as `VITE_KIS_PROXY_URL` for browser quotes via `/v1/naverfinance/stocks/{code}/quote`.
+  - `/api/asset-quotes` and finance-pi are not used.
+
 ## Frontend
-
-### Value Compass ecosystem bar
-
-`index.html` hosts `<vc-shell tool="buybacks">` as a sibling of `#root` (outside the React tree) with the hub link as light-DOM fallback, loads `vc-tokens.css` before the app CSS and `vc-shell.js` with `defer`, and inlines the shared pre-paint theme boot between the `<!-- vc:theme-boot -->` markers (`?theme` applies without storing, shared `localStorage` key `theme`, `prefers-color-scheme` otherwise; `?embed` sets `html[data-embed]`). `public/vc-shell.js`, `public/vc-tokens.css` and the boot block are vendored from value-invest (`node scripts/sync-ecosystem.mjs --write --only buybacks` in the hub checkout); never edit them here. The topbar theme toggle calls `VCShell.setTheme` when the shell is loaded and follows `vc:themechange`; the focused company (a `?stock=` deep link or a user selection) is passed to `VCShell.setStock` so the bar shows the "허브에서 분석" chip. Price direction colours alias the ecosystem tokens (`--price-up: var(--vc-up)`, `--price-down: var(--vc-down)`, Korean convention: up = red, down = blue) and the body font is `var(--vc-font-sans)`.
 
 ### URL deep links
 
