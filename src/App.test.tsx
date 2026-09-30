@@ -466,6 +466,14 @@ describe("App 과 생태계 바(VCShell) 종목 연동", () => {
     expect(setStock).toHaveBeenLastCalledWith("000660", "SK하이닉스");
   });
 
+  it("알 수 없는 ?stock= 딥링크가 첫 기업으로 대체되면 그 기업을 알리지 않는다", async () => {
+    window.history.replaceState(null, "", "/?stock=999999");
+    render(<App />);
+    expect(await screen.findByText("자사주 매입·처분·소각 분석")).toBeInTheDocument();
+    expect(setStock).not.toHaveBeenCalledWith("005930", expect.anything());
+    expect(setStock.mock.calls.every(([code]) => code === null)).toBe(true);
+  });
+
   it("기본으로 채워진 첫 기업은 포커스로 치지 않는다(칩 없음)", async () => {
     render(<App />);
     expect(await screen.findByText("자사주 매입·처분·소각 분석")).toBeInTheDocument();

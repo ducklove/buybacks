@@ -31,12 +31,11 @@ function App() {
   const [dataset, setDataset] = useState<BuybacksDataset | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filters>(initialUrlState.filters);
-  const [selectedStockCode, setSelectedStockCode] = useState<string>(
-    initialUrlState.selectedStockCode ?? ""
-  );
+  const initialStockCode = initialUrlState.selectedStockCode ?? "";
+  const [selectedStockCode, setSelectedStockCode] = useState<string>(initialStockCode);
   // 딥링크(?stock=)나 사용자 선택으로 '포커스한' 종목만 생태계 바에 알린다.
   // 데이터 로드 직후 기본값으로 채워지는 첫 기업은 포커스로 치지 않는다.
-  const [stockFocused, setStockFocused] = useState(Boolean(initialUrlState.selectedStockCode));
+  const [stockFocused, setStockFocused] = useState(Boolean(initialStockCode));
   const selectStock = (stockCode: string) => {
     setStockFocused(true);
     setSelectedStockCode(stockCode);
@@ -56,10 +55,12 @@ function App() {
       .then((loaded) => {
         if (cancelled) return;
         setDataset(loaded);
+        const known = (code: string) =>
+          loaded.companies.some((company) => company.stock_code === code);
+        // 알 수 없는 ?stock= 딥링크는 첫 기업으로 대체되며, 그 기업은 포커스로 치지 않는다.
+        if (!known(initialStockCode)) setStockFocused(false);
         setSelectedStockCode((current) =>
-          current && loaded.companies.some((company) => company.stock_code === current)
-            ? current
-            : (loaded.companies[0]?.stock_code ?? "")
+          current && known(current) ? current : (loaded.companies[0]?.stock_code ?? "")
         );
       })
       .catch((err: unknown) => {
@@ -68,7 +69,8 @@ function App() {
     return () => {
       cancelled = true;
     };
-  }, []);
+    // initialStockCode 는 첫 렌더에서 고정된 값이라 이 효과는 한 번만 실행된다.
+  }, [initialStockCode]);
 
   useEffect(() => {
     if (!dataset || !detailGateVisible || detailData || detailError) return;
