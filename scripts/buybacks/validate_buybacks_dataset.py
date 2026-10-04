@@ -9,6 +9,12 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+if __package__ in {None, ""}:
+    sys.path.append(str(Path(__file__).resolve().parents[2]))
+    from scripts.buybacks.fetch_dart_buybacks import normalize_stock_kind
+else:
+    from .fetch_dart_buybacks import normalize_stock_kind
+
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 STOCK_CODE = re.compile(r"^[0-9A-Z]{6}$")
 MARKETS = {"KOSPI", "KOSDAQ"}
@@ -181,10 +187,12 @@ def validate_dataset(data_dir: Path) -> tuple[list[str], list[str]]:
 
 
 def shrink_errors(data_dir: Path, baseline_dir: Path, max_shrink: float = DEFAULT_MAX_SHRINK) -> list[str]:
-    """Fail when events/holdings/executions lose more than max_shrink of their rows.
+    """Fail when events/executions shrink or too many unique holdings disappear.
 
     baseline_dir holds the dataset as it was before the build (the committed
     files). Files missing from the baseline are skipped (nothing to compare).
+    Holdings use the same identity as pipeline deduplication; newly added rows
+    cannot compensate for missing baseline identities.
     """
     errors: list[str] = []
     for name, label in SHRINK_GUARD_FILES:
@@ -192,6 +200,21 @@ def shrink_errors(data_dir: Path, baseline_dir: Path, max_shrink: float = DEFAUL
         if not isinstance(previous, list) or not previous:
             continue
         current = load_optional(data_dir / name, None)
+        if name == "holding_snapshots.json":
+            # A monthly scan could previously publish the same preferred
+            # holding twice after issue mapping. Measure actual lost identities,
+            # not removal of duplicate copies; new holdings cannot hide loss.
+            previous_keys = holding_keys(previous)
+            current_keys = holding_keys(current) if isinstance(current, list) else set()
+            lost = len(previous_keys - current_keys)
+            if lost > len(previous_keys) * max_shrink:
+                errors.append(
+                    f"{label} lost {lost} of {len(previous_keys)} unique holdings "
+                    f"(-{lost / len(previous_keys):.1%}), more than the "
+                    f"{max_shrink:.0%} shrink guard allows; "
+                    f"set {ALLOW_SHRINK_ENV}=1 if the drop is intentional"
+                )
+            continue
         current_count = len(current) if isinstance(current, list) else 0
         previous_count = len(previous)
         if current_count < previous_count * (1 - max_shrink):
@@ -202,6 +225,17 @@ def shrink_errors(data_dir: Path, baseline_dir: Path, max_shrink: float = DEFAUL
                 f"set {ALLOW_SHRINK_ENV}=1 if the drop is intentional"
             )
     return errors
+
+
+def holding_keys(rows: list[dict]) -> set[tuple]:
+    """Use the pipeline's holding identity after listed-issue mapping."""
+    return {
+        (
+            row.get("stock_code"), row.get("as_of_date"), row.get("report_year"),
+            row.get("report_code"), normalize_stock_kind(row.get("stock_kind")),
+        )
+        for row in rows
+    }
 
 
 def execution_errors(executions: list[dict], event_ids: set) -> list[str]:

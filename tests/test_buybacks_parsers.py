@@ -8,6 +8,7 @@ from scripts.buybacks.fetch_dart_buybacks import (
     normalize_holding_rows,
     normalize_holding_snapshot,
     normalize_stock_total_snapshots,
+    normalize_stock_kind,
     parse_retirement_details_from_html,
 )
 import scripts.buybacks.fetch_dart_buybacks as dart_buybacks
@@ -29,6 +30,14 @@ def test_parse_number_handles_commas_missing_and_negative_markers():
     assert parse_number("0") == 0
     assert parse_number("△1,200") == -1200
     assert parse_number("(3.5)") == -3.5
+
+
+def test_bare_voting_stock_labels_match_common_and_preferred_classes():
+    assert normalize_stock_kind("의결권있는 주식") == "보통주"
+    assert normalize_stock_kind("의결권이 있는\n주식") == "보통주"
+    assert normalize_stock_kind("의결권없는 주식") == "우선주"
+    assert normalize_stock_kind("의결권이 없는\n주식") == "우선주"
+    assert normalize_stock_kind("의결권 조건부 종류주식") == "의결권조건부종류주식"
 
 
 def test_normalize_date_variants():

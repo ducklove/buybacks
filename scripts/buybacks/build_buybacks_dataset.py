@@ -25,6 +25,7 @@ if __package__ in {None, ""}:
         dedupe_events,
         dedupe_holdings,
         fetch_buyback_disclosures,
+        normalize_stock_kind,
     )
     from scripts.buybacks.fetch_dart_dividends import (
         DIVIDEND_REPORT_CODES,
@@ -63,6 +64,7 @@ else:
         dedupe_events,
         dedupe_holdings,
         fetch_buyback_disclosures,
+        normalize_stock_kind,
     )
     from .fetch_dart_dividends import (
         DIVIDEND_REPORT_CODES,
@@ -532,6 +534,16 @@ def build_incremental_dataset(args: argparse.Namespace, api_key: str, output_dir
         live_event_companies or event_companies,
     )
     combined_events = merge_events(existing_events, new_events)
+    if listed_issues:
+        # DART reports preferred holdings under the common stock code, while
+        # committed rows already use the listed preferred issue code. Map both
+        # sides before merging so refreshed values replace the same holding.
+        _, _, existing_holdings = filter_live_dataset_to_listed_issues(
+            combined_companies, [], existing_holdings, listed_issues,
+        )
+        _, _, refreshed_holdings = filter_live_dataset_to_listed_issues(
+            combined_companies, [], refreshed_holdings, listed_issues,
+        )
     combined_holdings = merge_holdings(existing_holdings, refreshed_holdings)
     live_companies, events, holdings = filter_live_dataset_to_supported_markets(
         combined_companies,
@@ -1456,7 +1468,13 @@ def filter_live_dataset_to_listed_issues(
     company_by_stock = {company.stock_code: company for company in companies}
     company_by_corp: dict[str, Company] = {}
     for company in companies:
-        company_by_corp.setdefault(company.corp_code, company)
+        primary = company_by_corp.get(company.corp_code)
+        # A previously derived preferred issue can arrive before its common
+        # issue. Choose the base company regardless of the input order.
+        if primary is None or is_preferred_issue_for_company(
+            primary.corp_name, normalized_issue_name(company.corp_name),
+        ):
+            company_by_corp[company.corp_code] = company
 
     filtered_events = [event for event in events if event.stock_code in issue_by_code]
     derived_companies: dict[str, Company] = {}
@@ -1465,7 +1483,12 @@ def filter_live_dataset_to_listed_issues(
     for holding in holdings:
         source_company = company_by_stock.get(holding.stock_code) or company_by_corp.get(holding.corp_code)
         primary_company = company_by_corp.get(holding.corp_code)
-        issue = issue_by_code.get(holding.stock_code) if is_already_mapped_issue(holding, primary_company, issue_by_code) else None
+        if is_common_holding_kind(holding.stock_kind) and primary_company:
+            # Repair common holdings that older voting-label classification
+            # incorrectly stored under a preferred issue code.
+            issue = issue_by_code.get(primary_company.stock_code)
+        else:
+            issue = issue_by_code.get(holding.stock_code) if is_already_mapped_issue(holding, primary_company, issue_by_code) else None
         if issue is None:
             issue = resolve_holding_issue(holding, source_company, issue_by_code, issues)
         if issue is None:
@@ -1475,6 +1498,7 @@ def filter_live_dataset_to_listed_issues(
                 holding,
                 stock_code=issue.stock_code,
                 corp_name=issue.issue_name,
+                stock_kind=canonical_voting_stock_kind(holding.stock_kind),
             )
         )
         if issue.stock_code not in company_by_stock:
@@ -1505,7 +1529,9 @@ def filter_live_dataset_to_listed_issues(
             filtered_companies.append(company)
             seen.add(stock_code)
 
-    return filtered_companies, filtered_events, filtered_holdings
+    # Mapping can make a new DART row and a previously mapped row identical.
+    # Publish each holding once, including in full-universe refreshes.
+    return filtered_companies, filtered_events, dedupe_holdings(filtered_holdings)
 
 
 def is_already_mapped_issue(
@@ -1517,7 +1543,14 @@ def is_already_mapped_issue(
         return False
     if primary_company is None:
         return not is_common_holding_kind(holding.stock_kind)
-    return holding.stock_code != primary_company.stock_code
+    # With only a preferred holding, filtering may have removed the base
+    # company on the previous run. Keep an issue already named as preferred.
+    issue = issue_by_code[holding.stock_code]
+    return holding.stock_code != primary_company.stock_code or (
+        not is_common_holding_kind(holding.stock_kind)
+        and re.search(r"(?:\d+)?우(?:b|전환)?$", normalized_issue_name(issue.issue_name)) is not None
+        and normalized_issue_name(holding.corp_name) == normalized_issue_name(issue.issue_name)
+    )
 
 
 def resolve_holding_issue(
@@ -1559,13 +1592,23 @@ def resolve_holding_issue(
 
 
 def is_common_holding_kind(stock_kind: str) -> bool:
-    normalized = normalized_issue_name(stock_kind)
+    normalized = normalized_issue_name(normalize_stock_kind(stock_kind))
     return "보통" in normalized or "common" in normalized
 
 
 def is_preferred_or_nonvoting_holding_kind(stock_kind: str) -> bool:
+    normalized = normalized_issue_name(normalize_stock_kind(stock_kind))
+    return any(keyword in normalized for keyword in ["우선", "preferred"])
+
+
+def canonical_voting_stock_kind(stock_kind: str) -> str:
+    """Give bare voting labels a class understood by the UI and hub summary."""
     normalized = normalized_issue_name(stock_kind)
-    return any(keyword in normalized for keyword in ["우선", "preferred", "의결권"])
+    if normalized in {
+        "의결권있는주식", "의결권이있는주식", "의결권없는주식", "의결권이없는주식",
+    }:
+        return normalize_stock_kind(stock_kind)
+    return stock_kind
 
 
 def is_preferred_issue_for_company(issue_name: str, normalized_company_name: str) -> bool:
@@ -1595,7 +1638,7 @@ def preferred_issue_match_score(stock_kind: str, issue_name: str) -> int:
 
 
 def normalized_issue_name(value: object) -> str:
-    return str(value or "").strip().replace(" ", "").lower()
+    return re.sub(r"\s+", "", str(value or "")).lower()
 
 
 def filter_json_dataset_to_supported_markets(
