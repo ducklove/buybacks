@@ -290,7 +290,13 @@ def test_price_reaction_floats_are_rounded_to_six_decimals(tmp_path):
 
 def write_rows(directory, name, count):
     directory.mkdir(parents=True, exist_ok=True)
-    (directory / name).write_text(json.dumps([{"i": index} for index in range(count)]), encoding="utf-8")
+    rows = [
+        {"stock_code": f"{index:06d}", "as_of_date": "2025-12-31",
+         "report_year": 2025, "report_code": "11011", "stock_kind": "보통주"}
+        if name == "holding_snapshots.json" else {"i": index}
+        for index in range(count)
+    ]
+    (directory / name).write_text(json.dumps(rows), encoding="utf-8")
 
 
 def test_shrink_guard_allows_small_drops_and_fails_large_ones(tmp_path):
@@ -305,7 +311,35 @@ def test_shrink_guard_allows_small_drops_and_fails_large_ones(tmp_path):
     errors = shrink_errors(current, baseline)
 
     assert len(errors) == 1
-    assert errors[0].startswith("holding_snapshots shrank from 1000 to 900 rows (-10.0%)")
+    assert errors[0].startswith("holding_snapshots lost 100 of 1000 unique holdings (-10.0%)")
+
+
+def test_holding_shrink_guard_ignores_duplicate_copies_but_still_rejects_loss(tmp_path):
+    baseline, current = tmp_path / "baseline", tmp_path / "current"
+    write_rows(baseline, "holding_snapshots.json", 100)
+    path = baseline / "holding_snapshots.json"
+    rows = json.loads(path.read_text())
+    path.write_text(json.dumps(rows + rows[:20]))
+    write_rows(current, "holding_snapshots.json", 100)
+    assert shrink_errors(current, baseline) == []
+    write_rows(current, "holding_snapshots.json", 98)
+    assert shrink_errors(current, baseline) == []  # original 2% tolerance
+    write_rows(current, "holding_snapshots.json", 97)
+    assert "lost 3 of 100 unique holdings" in shrink_errors(current, baseline)[0]
+
+
+def test_new_or_duplicate_holdings_cannot_mask_lost_holding_keys(tmp_path):
+    baseline, current = tmp_path / "baseline", tmp_path / "current"
+    write_rows(baseline, "holding_snapshots.json", 100)
+    write_rows(current, "holding_snapshots.json", 100)
+    path = current / "holding_snapshots.json"
+    rows = json.loads(path.read_text())
+    path.write_text(json.dumps(rows[3:] + rows[3:6] + [
+        {**rows[0], "stock_code": "999999"},
+    ]))
+    assert "lost 3 of 100 unique holdings" in shrink_errors(current, baseline)[0]
+    path.unlink()
+    assert "lost 100 of 100 unique holdings" in shrink_errors(current, baseline)[0]
 
 
 def test_shrink_guard_skips_files_missing_from_the_baseline(tmp_path):

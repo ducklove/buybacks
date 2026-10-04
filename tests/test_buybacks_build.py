@@ -282,8 +282,8 @@ def test_filter_live_dataset_maps_tradable_preferred_holding_to_listed_issue_cod
     )
 
     assert [company.stock_code for company in filtered_companies] == ["006800", "00680K"]
-    assert [snapshot.stock_code for snapshot in filtered_holdings] == ["006800", "00680K"]
-    assert filtered_holdings[1].corp_name == "Mirae Asset Securities우"
+    assert {snapshot.stock_code for snapshot in filtered_holdings} == {"006800", "00680K"}
+    assert next(row for row in filtered_holdings if row.stock_code == "00680K").corp_name == "Mirae Asset Securities우"
 
 
 def test_filter_live_dataset_does_not_match_other_company_preferred_by_short_prefix():
@@ -324,6 +324,53 @@ def test_filter_live_dataset_keeps_already_mapped_preferred_issue_code():
 
     assert [company.stock_code for company in filtered_companies] == ["00680K"]
     assert [snapshot.stock_code for snapshot in filtered_holdings] == ["00680K"]
+    assert filter_live_dataset_to_supported_markets(
+        filtered_companies, [], filtered_holdings, listed_issues,
+    ) == (filtered_companies, [], filtered_holdings)
+
+
+def test_voting_labels_repair_misassigned_common_issue_and_preserve_preferred():
+    companies = [
+        Company("00181712", "03473K", "SK우", "KOSPI", None, "2026-06-17"),
+        Company("00181712", "034730", "SK", "KOSPI", None, "2026-06-17"),
+    ]
+    issues = [
+        ListedIssue("034730", "SK", "KOSPI", True),
+        ListedIssue("03473K", "SK우", "KOSPI", True),
+    ]
+    rows = [
+        holding("03473K", "의결권있는 주식", "00181712", "SK우"),
+        holding("03473K", "의결권없는 주식", "00181712", "SK우"),
+    ]
+    first = filter_live_dataset_to_supported_markets(companies, [], rows, issues)
+    assert {(row.stock_code, row.stock_kind) for row in first[2]} == {
+        ("034730", "보통주"), ("03473K", "우선주"),
+    }
+    assert filter_live_dataset_to_supported_markets(*first, issues) == first
+    fresh = filter_live_dataset_to_supported_markets(companies, [], [
+        holding("034730", "의결권있는 주식", "00181712", "SK"),
+        holding("034730", "의결권없는 주식", "00181712", "SK"),
+    ], issues)
+    assert fresh == first
+
+
+def test_listed_issue_mapping_deduplicates_preferred_holdings_and_is_idempotent():
+    companies = [
+        Company("00111722", "006800", "Mirae Asset Securities", "KOSPI", None, "2026-06-17"),
+        Company("00111722", "00680K", "Mirae Asset Securities우", "KOSPI", None, "2026-06-17"),
+    ]
+    issues = [
+        ListedIssue("006800", "Mirae Asset Securities", "KOSPI", True),
+        ListedIssue("00680K", "Mirae Asset Securities우", "KOSPI", True),
+    ]
+    first = filter_live_dataset_to_supported_markets(companies, [], [
+        holding("006800", "common", "00111722", "Mirae Asset Securities"),
+        holding("006800", "preferred", "00111722", "Mirae Asset Securities"),
+        holding("00680K", "preferred", "00111722", "Mirae Asset Securities우"),
+    ], issues)
+    assert len(first[2]) == 2
+    assert {row.stock_code for row in first[2]} == {"006800", "00680K"}
+    assert filter_live_dataset_to_supported_markets(*first, issues) == first
 
 
 def test_incremental_start_uses_latest_existing_event_with_overlap():

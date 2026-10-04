@@ -1,5 +1,6 @@
 import argparse
 import json
+from dataclasses import replace
 
 import scripts.buybacks.build_buybacks_dataset as build_module
 from scripts.buybacks.build_buybacks_dataset import (
@@ -9,6 +10,7 @@ from scripts.buybacks.build_buybacks_dataset import (
     write_json,
 )
 from scripts.buybacks.fetch_krx_prices import missing_reaction
+from scripts.buybacks.fetch_listed_issues import ListedIssue
 from scripts.buybacks.models import (
     BuybackEvent,
     BuybackExecution,
@@ -413,6 +415,33 @@ def test_merge_holdings_prefers_refreshed_rows_for_identical_keys():
 
     assert len(merged) == 1
     assert merged[0].ending_qty == 120
+
+
+def test_incremental_refresh_replaces_preferred_holding_after_issue_mapping(monkeypatch, tmp_path):
+    output_dir = tmp_path / "out"
+    write_existing_dataset(output_dir)
+    preferred = replace(holding("005935", "00126380", 100), stock_kind="우선주")
+    write_json(output_dir / "holding_snapshots.json", to_jsonable([
+        holding("005930", "00126380", 100), preferred,
+    ]))
+    patch_incremental_collectors(monkeypatch, [], [])
+    monkeypatch.setattr(build_module, "fetch_listed_issues_for_build", lambda *args: [
+        ListedIssue("005930", "Samsung", "KOSPI", True),
+        ListedIssue("005935", "Samsung우", "KOSPI", True),
+        ListedIssue("035420", "NAVER", "KOSPI", True),
+    ])
+    monkeypatch.setattr(build_module, "collect_dart_holding_snapshots", lambda **kwargs: (
+        [replace(preferred, stock_code="005930", ending_qty=120,
+                 treasury_ratio=0.012, floating_shares=9880)], [],
+    ))
+
+    build_incremental_dataset(make_args(tmp_path), "key", output_dir)
+    rows = load(output_dir / "holding_snapshots.json")
+    preferred_rows = [row for row in rows if row["stock_code"] == "005935"]
+    assert len(preferred_rows) == 1
+    assert preferred_rows[0]["ending_qty"] == 120
+    assert preferred_rows[0]["treasury_ratio"] == 0.012
+    assert any(row["stock_code"] == "005930" for row in rows)
 
 
 def test_incremental_merges_dividends_and_preserves_existing_years(monkeypatch, tmp_path):

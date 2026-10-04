@@ -988,10 +988,10 @@ def holding_row_score(row: dict) -> int:
 
 
 def normalize_stock_kind(value: object) -> str:
-    text = str(value or "").replace(" ", "")
-    if "보통" in text:
+    text = re.sub(r"\s+", "", str(value or ""))
+    if "보통" in text or text in {"의결권있는주식", "의결권이있는주식"}:
         return "보통주"
-    if "우선" in text:
+    if "우선" in text or text in {"의결권없는주식", "의결권이없는주식"}:
         return "우선주"
     return text
 
