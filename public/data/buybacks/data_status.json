@@ -18,6 +18,7 @@
   "warnings": [
     "Incremental update merged with the committed dataset instead of rebuilding the full universe.",
     "Holding snapshots are refreshed only for companies with incremental event disclosures; existing all-market snapshots are preserved.",
+    "Preserved 8 previously available price reactions after transient kis_proxy refresh failures; no historical return values were discarded.",
     "20260929000645 execution report has no parsed actual shares/amount; fields kept null.",
     "kis_proxy stock history failed for 004370: HTTP Error 429: Too Many Requests",
     "kis_proxy stock history failed for 016920: HTTP Error 429: Too Many Requests",

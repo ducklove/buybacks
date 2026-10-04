@@ -24,6 +24,8 @@ Bare DART voting labels (`의결권있는 주식`, `의결권없는 주식`) are
 
 Published dataset arrays are written one compact JSON record per line (about half the bytes of indented JSON, still diffable per record), and `price_reactions.json` ratios are rounded to 6 decimals.
 
+Incremental price refreshes preserve an existing reaction when the proxy returns a missing result for the same stock and disclosure date. A corrected event date or stock code is recalculated rather than retaining the old reaction.
+
 ## Automation
 
 GitHub Pages deployment and live data collection are separate. `Deploy Pages` runs on pushes to `master` and deploys the committed static JSON without calling DART or KIS. `Update buybacks data` runs daily at 05:30 KST, performs an incremental DART/KIS refresh against the committed dataset, commits JSON changes only when data changed, and deploys Pages from the updated static JSON in the same run.

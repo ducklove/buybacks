@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
 import { resetBuybacksDataCache } from "./data/loadBuybacks";
@@ -188,6 +188,13 @@ class MockIntersectionObserver {
     return [];
   }
 
+  static observedElementCount() {
+    return MockIntersectionObserver.instances.reduce(
+      (count, instance) => count + instance.elements.size,
+      0
+    );
+  }
+
   /** 관찰 중인 모든 요소를 뷰포트에 진입한 것으로 처리한다 */
   static enterAll() {
     MockIntersectionObserver.instances.forEach((instance) => {
@@ -199,6 +206,19 @@ class MockIntersectionObserver {
       }
     });
   }
+}
+
+const lazyFindOptions = { timeout: 10000 } as const;
+
+async function enterLazySections() {
+  // The heading can appear before passive effects attach both observers.
+  // Deliver the viewport event only after analysis and detail are observed.
+  await waitFor(() => expect(MockIntersectionObserver.observedElementCount()).toBe(2), {
+    timeout: 10000
+  });
+  await act(async () => {
+    MockIntersectionObserver.enterAll();
+  });
 }
 
 describe("App lazy loading", () => {
@@ -252,19 +272,18 @@ describe("App lazy loading", () => {
       render(<App />);
       expect(await screen.findByText("자사주 매입·처분·소각 분석")).toBeInTheDocument();
 
-      await act(async () => {
-        MockIntersectionObserver.enterAll();
-      });
+      await enterLazySections();
 
       // CI 러너는 로컬보다 느려 기본 1초 대기로는 지연 로드 → 파싱 → 재렌더
       // 체인이 끝나지 않을 수 있다(29142680322 실패). 넉넉히 기다린다.
-      const findOpts = { timeout: 10000 } as const;
       // 백테스트 패널: 20거래일 × 1% 복리 → +22.02%
-      expect((await screen.findAllByText("+22.02%", undefined, findOpts)).length).toBeGreaterThan(
-        0
-      );
+      expect(
+        (await screen.findAllByText("+22.02%", undefined, lazyFindOptions)).length
+      ).toBeGreaterThan(0);
       // 이행결과: 998400000000 / 1000000000000 → 99.8%
-      expect((await screen.findAllByText("99.8%", undefined, findOpts)).length).toBeGreaterThan(0);
+      expect(
+        (await screen.findAllByText("99.8%", undefined, lazyFindOptions)).length
+      ).toBeGreaterThan(0);
       expect(screen.getAllByText("완료").length).toBeGreaterThan(0);
 
       for (const lazy of [
@@ -278,32 +297,38 @@ describe("App lazy loading", () => {
     }
   );
 
-  it("shows the error pattern when the analysis load fails and recovers on retry", async () => {
-    let failNextReactionSeries = true;
-    const { stub } = createFetchStub({
-      "reaction_series.json": () => {
-        if (failNextReactionSeries) {
-          failNextReactionSeries = false;
-          return serverErrorResponse();
+  it(
+    "shows the error pattern when the analysis load fails and recovers on retry",
+    { timeout: 30000 },
+    async () => {
+      let failNextReactionSeries = true;
+      const { stub } = createFetchStub({
+        "reaction_series.json": () => {
+          if (failNextReactionSeries) {
+            failNextReactionSeries = false;
+            return serverErrorResponse();
+          }
+          return okResponse(reactionSeriesFixture);
         }
-        return okResponse(reactionSeriesFixture);
-      }
-    });
-    vi.stubGlobal("fetch", stub);
+      });
+      vi.stubGlobal("fetch", stub);
 
-    render(<App />);
-    expect(await screen.findByText("자사주 매입·처분·소각 분석")).toBeInTheDocument();
+      render(<App />);
+      expect(await screen.findByText("자사주 매입·처분·소각 분석")).toBeInTheDocument();
 
-    await act(async () => {
-      MockIntersectionObserver.enterAll();
-    });
+      await enterLazySections();
 
-    expect(await screen.findByText("분석 데이터를 불러오지 못했습니다.")).toBeInTheDocument();
-    expect(
-      screen.getByText(/reaction_series\.json 파일을 불러오지 못했습니다 \(HTTP 500\)/)
-    ).toBeInTheDocument();
+      expect(
+        await screen.findByText("분석 데이터를 불러오지 못했습니다.", undefined, lazyFindOptions)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/reaction_series\.json 파일을 불러오지 못했습니다 \(HTTP 500\)/)
+      ).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "다시 시도" }));
-    expect((await screen.findAllByText("+22.02%")).length).toBeGreaterThan(0);
-  });
+      fireEvent.click(screen.getByRole("button", { name: "다시 시도" }));
+      expect(
+        (await screen.findAllByText("+22.02%", undefined, lazyFindOptions)).length
+      ).toBeGreaterThan(0);
+    }
+  );
 });
