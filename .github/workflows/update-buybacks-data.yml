@@ -51,7 +51,7 @@ jobs:
           # Check out the branch head at job start, not the SHA pinned at
           # dispatch time: queued data runs otherwise base on a stale commit
           # and the final rebase-push conflicts with the previous run's data.
-          ref: master
+          ref: ${{ github.ref_name }}
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -90,105 +90,12 @@ jobs:
           --incremental-price-lookback-days "$PRICE_LOOKBACK_DAYS"
           --price-reaction-scope "$PRICE_REACTION_SCOPE"
 
-      - name: Validate data
-        run: >
-          python scripts/buybacks/validate_buybacks_dataset.py public/data/buybacks
-          --baseline "$RUNNER_TEMP/buybacks-baseline"
-
-      # Value Compass hub summary (public/summary.json + version.json, served at
-      # the Pages root). Rewritten only when its content changes.
-      - name: Publish hub summary
-        run: python scripts/buybacks/publish_summary.py --data-dir public/data/buybacks --out-dir public
-
-      - name: Test Python pipeline
-        run: python -m pytest
-
-      - name: Commit data changes
-        id: commit-data
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/buybacks public/summary.json public/version.json
-          if git diff --cached --quiet; then
-            echo "No buybacks data changes to commit."
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          else
-            git commit -m "Update buybacks data"
-            git pull --rebase origin master
-            git push
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Setup Node
-        if: steps.commit-data.outputs.changed == 'true'
-        uses: actions/setup-node@v5
+      - name: Preserve diagnostic dataset without publishing
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          node-version: "24"
-          cache: npm
-
-      - name: Install frontend dependencies
-        if: steps.commit-data.outputs.changed == 'true'
-        run: npm ci
-
-      - name: Test frontend
-        if: steps.commit-data.outputs.changed == 'true'
-        run: npm run test
-
-      - name: Build static site
-        if: steps.commit-data.outputs.changed == 'true'
-        env:
-          VITE_BASE_PATH: ./
-          VITE_KIS_PROXY_URL: ${{ secrets.KIS_PROXY_URL }}
-        run: npm run build
-
-      - name: Configure Pages
-        if: steps.commit-data.outputs.changed == 'true'
-        uses: actions/configure-pages@v6
-
-      - name: Upload artifact
-        if: steps.commit-data.outputs.changed == 'true'
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: dist
-
-      # The Pages deployment API intermittently returns "Deployment failed,
-      # try again later" and consistently succeeds on retry, so retry once
-      # before treating the run as failed.
-      - name: Deploy to GitHub Pages
-        if: steps.commit-data.outputs.changed == 'true'
-        id: deployment
-        uses: actions/deploy-pages@v5
-        continue-on-error: true
-
-      # An immediate retry hits the same error window; a ~60s delay matches
-      # the manual reruns that consistently succeeded.
-      - name: Wait before deploy retry
-        if: steps.commit-data.outputs.changed == 'true' && steps.deployment.outcome == 'failure'
-        run: sleep 60
-
-      - name: Retry deploy to GitHub Pages
-        if: steps.commit-data.outputs.changed == 'true' && steps.deployment.outcome == 'failure'
-        id: deployment-retry
-        uses: actions/deploy-pages@v5
-
-      - name: Notify value-invest on failure
-        if: failure()
-        env:
-          NOTIFY_URL: ${{ secrets.VALUE_INVEST_NOTIFY_URL }}
-          NOTIFY_TOKEN: ${{ secrets.VALUE_INVEST_INTERNAL_TOKEN }}
-          WORKFLOW_NAME: ${{ github.workflow }}
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: |
-          if [ -z "$NOTIFY_URL" ] || [ -z "$NOTIFY_TOKEN" ]; then
-            echo "VALUE_INVEST_NOTIFY_URL or VALUE_INVEST_INTERNAL_TOKEN not set, skipping notification."
-            exit 0
-          fi
-          body=$(jq -n \
-            --arg title "$WORKFLOW_NAME failed" \
-            --arg text "Workflow run: $RUN_URL" \
-            --arg source "buybacks" \
-            '{title: $title, text: $text, source: $source}')
-          curl -sf -X POST "$NOTIFY_URL/api/internal/notify" \
-            -H "Content-Type: application/json" \
-            -H "X-Internal-Token: $NOTIFY_TOKEN" \
-            -d "$body"
+          name: buybacks-diagnostic-${{ github.run_id }}
+          path: |
+            public/data/buybacks
+            data/raw/buybacks/listed_issues_naver.json
+          retention-days: 7
