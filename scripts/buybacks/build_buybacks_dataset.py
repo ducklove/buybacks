@@ -1282,10 +1282,24 @@ def merge_price_reactions(
     refreshed: list[PriceReaction],
     events: list[BuybackEvent],
 ) -> list[PriceReaction]:
-    event_ids = {event.event_id for event in events}
+    event_by_id = {event.event_id: event for event in events}
+    event_ids = set(event_by_id)
     by_event = {reaction.event_id: reaction for reaction in existing if reaction.event_id in event_ids}
     for reaction in refreshed:
         if reaction.event_id in event_ids:
+            previous = by_event.get(reaction.event_id)
+            event = event_by_id[reaction.event_id]
+            if (
+                reaction.data_quality == "missing"
+                and previous is not None
+                and previous.data_quality != "missing"
+                and previous.stock_code == reaction.stock_code == event.stock_code
+                and previous.event_date == reaction.event_date == event.disclosure_date
+            ):
+                # A transient proxy error must not erase known historical
+                # returns. A corrected event date/code still gets recalculated.
+                LOGGER.warning("preserving existing price reaction after missing refresh: %s", reaction.event_id)
+                continue
             by_event[reaction.event_id] = reaction
     for event in events:
         if event.event_id not in by_event:

@@ -19,6 +19,7 @@ from scripts.buybacks.build_buybacks_dataset import (
     select_price_reaction_events,
 )
 from scripts.buybacks.fetch_listed_issues import ListedIssue
+from scripts.buybacks.fetch_krx_prices import missing_reaction
 from scripts.buybacks.models import BuybackEvent, Company, LatestPriceSnapshot, PriceReaction, TreasuryHoldingSnapshot
 
 FIXTURE_DIR = Path(__file__).parents[1] / "data" / "fixtures" / "buybacks"
@@ -417,6 +418,28 @@ def test_merge_price_reactions_replaces_refreshed_and_adds_missing_for_new_event
         ("one", "complete"),
         ("two", "missing"),
     ]
+
+
+def test_missing_price_refresh_preserves_previously_collected_returns():
+    for quality in ["partial", "complete"]:
+        previous = reaction("one", "2026-06-20", quality)
+        refreshed = missing_reaction("one", "005930", "2026-06-20")
+        merged = merge_price_reactions([previous], [refreshed], [event("one", "2026-06-20")])
+        assert merged == [previous]
+
+
+def test_missing_price_refresh_does_not_retain_returns_for_corrected_event_date():
+    previous = reaction("one", "2026-06-19", "complete")
+    refreshed = missing_reaction("one", "005930", "2026-06-20")
+    merged = merge_price_reactions([previous], [refreshed], [event("one", "2026-06-20")])
+    assert merged == [refreshed]
+
+
+def test_missing_price_refresh_does_not_retain_returns_for_corrected_stock_code():
+    previous = reaction("one", "2026-06-20", "complete")
+    refreshed = missing_reaction("one", "000660", "2026-06-20")
+    merged = merge_price_reactions([previous], [refreshed], [event("one", "2026-06-20", "000660")])
+    assert merged == [refreshed]
 
 
 def test_select_latest_price_stock_codes_refreshes_all_event_stocks_for_market_caps():
